@@ -1,0 +1,545 @@
+{
+  "curso": "NR-10 - Segurança em Instalações e Serviços em Eletricidade",
+  "sigla": "NR-10",
+  "carga_horaria": "40h",
+  "validade_anos": 2,
+  "aprovacao_minima": 0.70,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Legislação, Riscos Elétricos e o Corpo Humano",
+      "descricao": "Fundamentos legais da NR-10, como a eletricidade age no corpo humano e os principais riscos presentes em instalações elétricas.",
+      "exercicios": [
+        {
+          "id": "NR10-M1-Q1",
+          "enunciado": "A NR-10 se aplica a:",
+          "alternativas": [
+            "Apenas empresas do setor elétrico (concessionárias de energia)",
+            "Todas as etapas que envolvam instalações elétricas: geração, transmissão, distribuição e consumo, além de projetos, construção, operação e manutenção",
+            "Somente instalações de alta tensão acima de 15 kV",
+            "Apenas trabalhadores registrados formalmente como eletricistas"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A NR-10 tem abrangência ampla, aplicando-se a todas as fases e a qualquer trabalhador que interaja com instalações elétricas, independentemente da função."
+        },
+        {
+          "id": "NR10-M1-Q2",
+          "enunciado": "O choque elétrico é causado por:",
+          "alternativas": [
+            "Variação brusca de tensão na rede elétrica",
+            "Passagem de corrente elétrica pelo corpo humano",
+            "Falha mecânica em equipamentos elétricos",
+            "Superaquecimento de condutores elétricos"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O choque elétrico ocorre quando há passagem de corrente elétrica pelo corpo humano. A gravidade depende da intensidade da corrente, do tempo de exposição e do trajeto pelo corpo."
+        },
+        {
+          "id": "NR10-M1-Q3",
+          "enunciado": "Qual efeito da corrente elétrica é considerado o mais perigoso para a vida?",
+          "alternativas": [
+            "Sensação de formigamento leve",
+            "Contratura muscular nos dedos",
+            "Fibrilação ventricular (parada cardíaca por desorganização dos batimentos)",
+            "Queimadura superficial na pele no ponto de contato"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A fibrilação ventricular é o efeito mais letal. O coração perde o ritmo coordenado e para de bombear sangue, levando à morte em minutos sem desfibrilação. Pode ser causada por correntes a partir de ~25 mA."
+        },
+        {
+          "id": "NR10-M1-Q4",
+          "enunciado": "Um eletricista é solicitado a realizar um serviço sem ter o treinamento da NR-10. A atitude correta é:",
+          "alternativas": [
+            "Realizar o serviço com cuidado redobrado, pois tem experiência prática",
+            "Realizar apenas se houver um colega de apoio presente",
+            "Recusar a execução e comunicar ao responsável a necessidade do treinamento",
+            "Executar o serviço rapidamente para não prejudicar a produção"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Trabalhadores sem capacitação conforme a NR-10 não estão autorizados a realizar serviços em instalações elétricas. Devem recusar e comunicar ao responsável."
+        },
+        {
+          "id": "NR10-M1-Q5",
+          "enunciado": "A tensão de toque ocorre quando:",
+          "alternativas": [
+            "Dois condutores energizados encostam um no outro, causando curto-circuito",
+            "Uma pessoa toca uma estrutura metálica em potencial diferente do ponto onde está pisando, fechando um circuito pelo corpo",
+            "Um trabalhador encoste em uma parede próxima a um cabo energizado",
+            "Há variação de tensão entre duas fases do sistema trifásico"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A tensão de toque é a diferença de potencial entre uma estrutura metálica (em falta à terra) e o ponto onde a pessoa pisa. O corpo fecha o circuito e sofre choque, mesmo sem tocar diretamente em um condutor energizado."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Medidas de Controle, Aterramento e Proteções",
+      "descricao": "Hierarquia de controles de risco, aterramento elétrico, dispositivos de proteção e sinalização de segurança.",
+      "exercicios": [
+        {
+          "id": "NR10-M2-Q1",
+          "enunciado": "Qual é a hierarquia correta das medidas de controle de risco elétrico, da mais eficaz para a menos eficaz?",
+          "alternativas": [
+            "EPI → EPC → Sinalização → Eliminação do risco",
+            "Eliminação do risco → Substituição → EPC (engenharia) → Procedimentos administrativos → EPI",
+            "Sinalização → Treinamento → EPC → EPI",
+            "EPC → EPI → Treinamento → Eliminação do risco"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A hierarquia correta: Eliminação > Substituição > Controles de engenharia (EPC) > Controles administrativos > EPI. O EPI é sempre o último recurso, pois não elimina o risco — apenas reduz a exposição."
+        },
+        {
+          "id": "NR10-M2-Q2",
+          "enunciado": "O aterramento elétrico de proteção tem como função principal:",
+          "alternativas": [
+            "Aumentar a eficiência energética da instalação",
+            "Estabilizar a tensão nos equipamentos",
+            "Oferecer um caminho de baixa impedância para a corrente de falta, protegendo pessoas e acionando os dispositivos de proteção",
+            "Reduzir o consumo de energia elétrica"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O aterramento garante que, em caso de falta (curto para a massa), a corrente seja desviada pelo condutor de proteção (PE) e não pelo corpo humano, além de acionar disjuntores e DRs."
+        },
+        {
+          "id": "NR10-M2-Q3",
+          "enunciado": "O Dispositivo Diferencial Residual (DR) protege contra:",
+          "alternativas": [
+            "Sobretensões causadas por raios",
+            "Curtos-circuitos de alta intensidade apenas",
+            "Correntes de fuga e choques elétricos, desligando o circuito quando detecta diferença entre a corrente que entra e a que retorna",
+            "Variações de frequência da rede elétrica"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O DR detecta correntes de fuga — parte da corrente seguindo um caminho não previsto, como o corpo humano — e desliga o circuito em milissegundos, antes que o choque cause lesão grave."
+        },
+        {
+          "id": "NR10-M2-Q4",
+          "enunciado": "Durante uma inspeção, um eletricista encontra um cabo com isolamento danificado. A conduta correta é:",
+          "alternativas": [
+            "Usar fita isolante provisoriamente e continuar o serviço normalmente",
+            "Ignorar, pois o dano parece pequeno",
+            "Anotar para informar ao supervisor somente ao final do turno",
+            "Isolar a área, sinalizar o perigo, desenergizar o circuito e providenciar a substituição imediata"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Isolamento danificado representa risco imediato de choque e incêndio. A conduta correta é isolar, sinalizar e corrigir imediatamente. Fita isolante é solução provisória inaceitável como correção definitiva."
+        },
+        {
+          "id": "NR10-M2-Q5",
+          "enunciado": "A sinalização de segurança em áreas com risco elétrico deve ser:",
+          "alternativas": [
+            "Opcional, servindo apenas como recomendação",
+            "Instalada apenas na entrada principal da instalação",
+            "Obrigatória, padronizada conforme normas ABNT, visível, legível e mantida em bom estado de conservação",
+            "Feita exclusivamente com textos escritos, sem pictogramas"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A sinalização é obrigatória pela NR-10 e deve seguir as normas ABNT. Deve ser visível, legível e mantida. Inclui avisos de risco de choque, alta tensão, acesso restrito, entre outros."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "EPI, Desenergização e Trabalho Energizado",
+      "descricao": "Equipamentos de proteção individual e coletiva, procedimento de bloqueio e etiquetagem (LOTO) e regras para trabalho em instalações energizadas.",
+      "exercicios": [
+        {
+          "id": "NR10-M3-Q1",
+          "enunciado": "Para trabalhos em instalações elétricas energizadas de baixa tensão, qual EPI é indispensável para as mãos?",
+          "alternativas": [
+            "Luvas de couro simples",
+            "Luvas de borracha isolante com classe de tensão compatível, sobrepostas por luvas de proteção mecânica",
+            "Luvas de látex de uso doméstico",
+            "Luvas de malha de aço anticorte"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "As luvas dielétricas (borracha isolante) com classe de tensão compatível são obrigatórias. Devem ser usadas com luvas de proteção mecânica por cima, protegendo contra cortes e perfurações que comprometeriam o isolamento."
+        },
+        {
+          "id": "NR10-M3-Q2",
+          "enunciado": "A sequência correta do procedimento de desenergização segura (LOTO) é:",
+          "alternativas": [
+            "Testar ausência de tensão → Desligar → Bloquear → Sinalizar",
+            "Sinalizar → Desligar → Testar → Bloquear",
+            "Desligar → Bloquear e etiquetar → Testar a ausência de tensão com instrumento → Aterrar se necessário",
+            "Bloquear → Sinalizar → Desligar → Testar"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "LOTO: 1) Identificar fontes de energia; 2) Notificar a equipe; 3) Desligar; 4) Isolar todas as fontes; 5) Bloquear e etiquetar; 6) Testar a ausência de tensão com instrumento; 7) Aterrar quando necessário."
+        },
+        {
+          "id": "NR10-M3-Q3",
+          "enunciado": "O cadeado de bloqueio (lockout) instalado durante manutenção:",
+          "alternativas": [
+            "Pode ser removido pelo supervisor em caso de urgência produtiva",
+            "Deve ser retirado ao final do turno, mesmo que o serviço não esteja concluído",
+            "É opcional para serviços de curta duração",
+            "Só pode ser removido pelo próprio trabalhador que o instalou, garantindo que ninguém reenergize enquanto ele trabalha"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O cadeado de bloqueio é pessoal e intransferível. Apenas o trabalhador que o instalou pode retirá-lo. Sua remoção por terceiros é proibida e constitui risco grave de acidente fatal."
+        },
+        {
+          "id": "NR10-M3-Q4",
+          "enunciado": "O trabalho em instalações elétricas energizadas (com tensão) é permitido quando:",
+          "alternativas": [
+            "O trabalhador tiver mais de 10 anos de experiência na área",
+            "Houver autorização verbal do supervisor imediato",
+            "A desenergização for tecnicamente inviável ou representar maior risco, com adoção de todas as medidas de segurança previstas na NR-10",
+            "Sempre que o trabalhador preferir não desenergizar para ganhar tempo"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Trabalho energizado é exceção, não regra. A NR-10 permite apenas quando a desenergização for inviável ou gerar risco maior. Exige procedimento escrito, dois trabalhadores habilitados e EPIs adequados."
+        },
+        {
+          "id": "NR10-M3-Q5",
+          "enunciado": "Antes de iniciar qualquer serviço em instalação elétrica, mesmo acreditando que está desligada, o trabalhador deve:",
+          "alternativas": [
+            "Confiar na informação do colega de que a instalação está desligada",
+            "Verificar se as lâmpadas do local estão apagadas como confirmação",
+            "Verificar pessoalmente a ausência de tensão com instrumento adequado (voltímetro ou detector), testando-o antes e depois em fonte conhecida",
+            "Tocar rapidamente no condutor com os dedos para verificar"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Nunca confie em indicações visuais ou na palavra de outro. O teste pessoal com instrumento é obrigatório. O instrumento deve ser testado em fonte conhecida antes e depois para confirmar que está funcionando corretamente."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Primeiros Socorros, Incêndio e Responsabilidades",
+      "descricao": "Atendimento à vítima de choque elétrico, RCP, combate a incêndio elétrico e responsabilidades legais do trabalhador e do empregador.",
+      "exercicios": [
+        {
+          "id": "NR10-M4-Q1",
+          "enunciado": "Ao encontrar uma vítima de choque elétrico ainda em contato com a fonte, a primeira atitude é:",
+          "alternativas": [
+            "Puxar a vítima imediatamente com as mãos para afastá-la",
+            "Chamar pelo nome da vítima para verificar a consciência",
+            "Iniciar imediatamente a RCP no local",
+            "Desligar a fonte de energia ou afastar a vítima usando material isolante, SEM fazer contato direto com ela"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "NUNCA toque na vítima em contato com a fonte — o socorrista também sofrerá choque. Primeiro: desligar a energia. Se não for possível, usar material isolante (madeira seca, borracha) para afastar a vítima."
+        },
+        {
+          "id": "NR10-M4-Q2",
+          "enunciado": "Para combater incêndio em equipamentos elétricos energizados, o extintor correto é:",
+          "alternativas": [
+            "Extintor de água pressurizada, pois resfria rapidamente",
+            "Extintor de espuma mecânica",
+            "Qualquer extintor disponível, pois a urgência é prioridade",
+            "Extintor de CO2 (gás carbônico) ou de pó químico seco (PQS)"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Água e espuma conduzem eletricidade e não podem ser usadas em equipamentos energizados. CO2 e PQS são agentes não condutores, seguros para incêndios elétricos (Classe C)."
+        },
+        {
+          "id": "NR10-M4-Q3",
+          "enunciado": "Em caso de parada cardiorrespiratória por choque elétrico, após afastar a vítima da fonte e acionar o socorro, deve-se:",
+          "alternativas": [
+            "Aguardar o SAMU sem fazer nada, pois apenas profissionais podem realizar RCP",
+            "Dar água para a vítima beber para ajudar na recuperação",
+            "Iniciar imediatamente a RCP com compressões torácicas (100-120/min) e usar DEA se disponível",
+            "Colocar a vítima sentada para facilitar a respiração"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A RCP precoce é fundamental. Deve ser iniciada imediatamente por qualquer pessoa treinada: 30 compressões para 2 ventilações, a 100-120 compressões por minuto. O DEA deve ser usado assim que disponível."
+        },
+        {
+          "id": "NR10-M4-Q4",
+          "enunciado": "Em caso de acidente elétrico grave com trabalhador, o empregador pode responder nas esferas:",
+          "alternativas": [
+            "Apenas administrativa, perante o Ministério do Trabalho",
+            "Civil, administrativa e criminal, se comprovada culpa ou dolo",
+            "Somente se o trabalhador não estava usando EPI",
+            "Apenas quando o acidente resultar em morte"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O empregador responde em três esferas: Civil (indenização por danos materiais, morais e estéticos), Administrativa (autuação e multa pelo MTE, embargo ou interdição) e Criminal (lesão corporal ou homicídio culposo)."
+        },
+        {
+          "id": "NR10-M4-Q5",
+          "enunciado": "A NR-10 exige que os trabalhadores realizem reciclagem (novo treinamento) com periodicidade mínima de:",
+          "alternativas": [
+            "A cada 6 meses",
+            "A cada 1 ano",
+            "A cada 2 anos (bienal), ou quando houver mudança nas instalações, métodos de trabalho ou retorno de afastamento prolongado",
+            "A cada 5 anos"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A NR-10 exige reciclagem bienal (a cada 2 anos). Também é obrigatório novo treinamento quando houver mudança significativa nas instalações, processos, equipamentos, ou retorno após afastamento prolongado."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 10 questões deste banco de 20. Nota mínima para aprovação: 7/10 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 10,
+    "nota_minima": 7,
+    "banco": [
+      {
+        "id": "NR10-PF-01",
+        "modulo": 1,
+        "enunciado": "A NR-10 define como 'trabalhador habilitado' aquele que:",
+        "alternativas": [
+          "Possui diploma de técnico eletricista de qualquer instituição",
+          "Tem apenas experiência prática comprovada de 5 anos na área elétrica",
+          "Recebeu treinamento específico sobre os riscos da energia elétrica e as principais medidas de prevenção, atendendo os requisitos da NR-10",
+          "É registrado no CREA como engenheiro eletricista"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Habilitado conforme a NR-10 é o trabalhador que atendeu aos requisitos de capacitação, com conhecimento dos riscos e das medidas preventivas, devidamente registrado."
+      },
+      {
+        "id": "NR10-PF-02",
+        "modulo": 1,
+        "enunciado": "Qual dos seguintes fatores determina a gravidade do choque elétrico no corpo humano?",
+        "alternativas": [
+          "Apenas a tensão da instalação elétrica",
+          "A intensidade da corrente, o tempo de exposição, o trajeto pelo corpo e a resistência corporal",
+          "Apenas o tipo de equipamento que gerou o choque",
+          "Somente a frequência da corrente elétrica"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A gravidade do choque depende da intensidade da corrente (mA), do tempo de exposição, do trajeto pelo corpo (coração é crítico) e da resistência elétrica do corpo, que varia conforme umidade e contato."
+      },
+      {
+        "id": "NR10-PF-03",
+        "modulo": 1,
+        "enunciado": "Arco elétrico é um fenômeno perigoso caracterizado por:",
+        "alternativas": [
+          "Apenas superaquecimento de condutores sem emissão de luz",
+          "Vibração mecânica em motores elétricos sobrecarregados",
+          "Descarga elétrica de alta energia entre dois condutores ou para a terra, gerando calor extremo (até 20.000°C), luz intensa e partículas incandescentes",
+          "Variação de tensão em circuitos de baixa corrente"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O arco elétrico é extremamente perigoso: temperaturas altíssimas, ondas de pressão, emissão de UV intensa e projeção de partículas. Mesmo a distância, pode causar queimaduras graves e morte."
+      },
+      {
+        "id": "NR10-PF-04",
+        "modulo": 2,
+        "enunciado": "O SPDA (Sistema de Proteção contra Descargas Atmosféricas — para-raios) funciona:",
+        "alternativas": [
+          "Impedindo a formação de raios próximos à edificação",
+          "Apenas protegendo equipamentos eletrônicos sensíveis contra surtos",
+          "Captando a descarga atmosférica e conduzindo a corrente de forma controlada ao sistema de aterramento, protegendo pessoas e estruturas",
+          "Estabilizando a tensão da rede elétrica durante tempestades"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O SPDA não impede raios, mas oferece um caminho de baixa impedância para conduzi-los ao solo com segurança, protegendo a estrutura, equipamentos e os ocupantes."
+      },
+      {
+        "id": "NR10-PF-05",
+        "modulo": 2,
+        "enunciado": "A NBR 5410 é a norma técnica brasileira que trata de:",
+        "alternativas": [
+          "Instalações elétricas de alta tensão em sistemas de geração e transmissão",
+          "Instalações elétricas de baixa tensão em edificações",
+          "Sistemas de aterramento para subestações de energia",
+          "Classificação de áreas com risco de explosão"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A ABNT NBR 5410 estabelece as condições que as instalações elétricas de baixa tensão devem satisfazer para garantir a segurança de pessoas, animais e propriedades."
+      },
+      {
+        "id": "NR10-PF-06",
+        "modulo": 2,
+        "enunciado": "Área classificada em instalações elétricas é aquela onde:",
+        "alternativas": [
+          "O acesso é restrito apenas a engenheiros",
+          "A tensão elétrica é superior a 1000V",
+          "Existe atmosfera explosiva ou possibilidade de sua formação, devido à presença de gases, vapores ou poeiras inflamáveis",
+          "Há apenas equipamentos de alta potência instalados"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Área classificada é onde pode haver atmosfera explosiva. Equipamentos elétricos nestas áreas devem ser especialmente projetados para não se tornarem fontes de ignição."
+      },
+      {
+        "id": "NR10-PF-07",
+        "modulo": 3,
+        "enunciado": "As luvas de borracha isolante devem ser inspecionadas:",
+        "alternativas": [
+          "Apenas quando apresentam furos visíveis a olho nu",
+          "Somente na compra e depois anualmente",
+          "Antes de cada uso, verificando a integridade e realizando o teste de sopro (inflar e verificar vazamentos)",
+          "A cada 5 anos, conforme recomendação do fabricante"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Luvas dielétricas devem ser inspecionadas antes de cada uso. O teste de sopro é fundamental para detectar furos invisíveis. Qualquer defeito exige descarte e substituição imediata."
+      },
+      {
+        "id": "NR10-PF-08",
+        "modulo": 3,
+        "enunciado": "O aterramento temporário durante serviços em instalações desenergizadas serve para:",
+        "alternativas": [
+          "Indicar visualmente que o circuito está desenergizado",
+          "Melhorar o desempenho do sistema durante a manutenção",
+          "Proteger os trabalhadores contra reenergização acidental, indução eletromagnética e descarga de capacitores",
+          "Reduzir a resistência de aterramento permanente da instalação"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O aterramento temporário garante que qualquer tensão indesejada (reenergização acidental, indução, capacitores) seja drenada para a terra e não passe pelo trabalhador. Deve ser instalado após confirmar ausência de tensão."
+      },
+      {
+        "id": "NR10-PF-09",
+        "modulo": 3,
+        "enunciado": "Para trabalhos em instalações energizadas, a NR-10 exige que haja:",
+        "alternativas": [
+          "Apenas o trabalhador executante, para maior concentração",
+          "Uma equipe de no mínimo cinco pessoas",
+          "No mínimo dois trabalhadores habilitados: o executante e um segundo para apoio e socorro em emergências",
+          "Apenas o supervisor presente no local"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Trabalho energizado exige no mínimo dois trabalhadores habilitados. O segundo está presente para acionar socorro em caso de acidente com o executante — situação em que o executante não conseguiria pedir ajuda sozinho."
+      },
+      {
+        "id": "NR10-PF-10",
+        "modulo": 3,
+        "enunciado": "Ferramentas isoladas para uso elétrico devem ser:",
+        "alternativas": [
+          "Armazenadas junto com ferramentas comuns para facilitar o acesso",
+          "Inspecionadas apenas na compra e descartadas após 5 anos",
+          "Inspecionadas antes de cada uso e descartadas ao primeiro sinal de dano no isolamento",
+          "Mergulhadas em óleo mineral para conservação do isolamento"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Ferramentas isoladas requerem inspeção antes de cada uso e armazenamento separado e protegido. Qualquer dano no isolamento transforma a ferramenta em um condutor perigoso — descarte imediato é obrigatório."
+      },
+      {
+        "id": "NR10-PF-11",
+        "modulo": 4,
+        "enunciado": "Queimaduras elétricas diferem das térmicas comuns porque:",
+        "alternativas": [
+          "São sempre superficiais e de tratamento simples",
+          "Afetam apenas a pele no ponto de contato",
+          "Podem ter lesões internas graves (músculo, nervo, órgãos) mesmo quando a lesão externa parece pequena, pois a corrente percorre o interior do corpo",
+          "Não requerem avaliação médica especializada"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Queimaduras elétricas são traiçoeiras: a lesão de entrada e saída pode parecer pequena, mas internamente a corrente destrói tecidos, músculos e vasos. Toda vítima de choque deve receber avaliação médica, mesmo sem sintomas imediatos."
+      },
+      {
+        "id": "NR10-PF-12",
+        "modulo": 4,
+        "enunciado": "O DEA (Desfibrilador Externo Automático) deve ser usado:",
+        "alternativas": [
+          "Apenas por médicos e paramédicos treinados",
+          "Somente após 10 minutos de RCP sem resultado",
+          "O mais rapidamente possível em vítimas em parada cardíaca — cada minuto sem desfibrilação reduz em ~10% a chance de sobrevivência",
+          "Apenas quando a vítima estiver consciente e pedindo ajuda"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O DEA deve ser usado o mais rápido possível. É seguro e projetado para uso por leigos — ele analisa o ritmo cardíaco e orienta o operador passo a passo, descarregando apenas se necessário."
+      },
+      {
+        "id": "NR10-PF-13",
+        "modulo": 4,
+        "enunciado": "A Comunicação de Acidente de Trabalho (CAT) deve ser emitida pelo empregador:",
+        "alternativas": [
+          "Apenas quando o acidente resultar em internação hospitalar ou morte",
+          "Somente se o trabalhador solicitar formalmente",
+          "Em todo acidente de trabalho, doença ocupacional ou acidente de trajeto, até o 1º dia útil após o ocorrido; em caso de morte, imediatamente",
+          "Apenas após o trabalhador receber alta médica"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A CAT é obrigatória em todo acidente de trabalho (mesmo sem afastamento), doença ocupacional e acidente de trajeto. O não cumprimento gera multa. Em caso de morte, a comunicação deve ser imediata."
+      },
+      {
+        "id": "NR10-PF-14",
+        "modulo": 1,
+        "enunciado": "A corrente elétrica mínima que pode provocar fibrilação ventricular em um adulto é de aproximadamente:",
+        "alternativas": [
+          "0,001 mA",
+          "1 mA",
+          "25 mA a 50 mA",
+          "500 mA"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A partir de ~25 mA existe risco de fibrilação ventricular. Com 1 mA há apenas formigamento. Com ~10 mA ocorre contratura muscular que impede soltar o condutor. Com 25-50 mA o risco de morte por parada cardíaca é real."
+      },
+      {
+        "id": "NR10-PF-15",
+        "modulo": 2,
+        "enunciado": "A Análise Preliminar de Risco (APR) deve ser realizada:",
+        "alternativas": [
+          "Somente após a ocorrência de um acidente",
+          "Apenas para serviços de alta tensão",
+          "Antes do início de qualquer serviço, identificando os riscos e as medidas de controle necessárias",
+          "Uma vez por ano, independentemente das atividades executadas"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A APR é uma ferramenta preventiva que deve ser realizada ANTES de cada serviço. Ela identifica os perigos, avalia os riscos e define as medidas de controle antes de qualquer trabalhador se expor."
+      },
+      {
+        "id": "NR10-PF-16",
+        "modulo": 2,
+        "enunciado": "O Prontuário das Instalações Elétricas exigido pela NR-10 deve conter:",
+        "alternativas": [
+          "Apenas as notas fiscais dos equipamentos elétricos adquiridos",
+          "Somente os certificados de treinamento dos eletricistas da empresa",
+          "Documentação técnica completa: projetos, diagramas unifilares, especificações, laudos de inspeção, relatórios de manutenção e procedimentos",
+          "Apenas o registro de acidentes ocorridos na instalação"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O Prontuário das Instalações Elétricas é exigido pela NR-10 e deve conter toda a documentação técnica da instalação, servindo como referência para operação, manutenção e auditoria."
+      },
+      {
+        "id": "NR10-PF-17",
+        "modulo": 3,
+        "enunciado": "A classe das luvas de borracha isolante (dielétricas) indica:",
+        "alternativas": [
+          "O tamanho da luva (P, M, G, GG)",
+          "O material de fabricação",
+          "O fabricante e o lote de produção",
+          "A tensão máxima para a qual foram testadas e são seguras para uso"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "As classes (00, 0, 1, 2, 3, 4) definem a tensão máxima de uso: Classe 00 = até 500V; Classe 0 = até 1000V; Classe 1 = até 7.500V, e assim por diante. A classe deve ser compatível com a tensão da instalação."
+      },
+      {
+        "id": "NR10-PF-18",
+        "modulo": 3,
+        "enunciado": "Durante a execução de um serviço elétrico, o trabalhador identifica uma condição de risco não prevista na APR. O que deve fazer?",
+        "alternativas": [
+          "Continuar o serviço com cuidado redobrado",
+          "Tentar resolver o risco sozinho sem interromper o serviço para não atrasar a equipe",
+          "Anotar o risco e comunicar somente ao final do turno",
+          "Interromper imediatamente o serviço, recuar para local seguro, comunicar ao responsável e só retomar após análise e adequação das medidas"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "O trabalhador tem o direito e o dever de interromper atividades com risco grave e iminente não previsto. Continuar exposto a um risco não controlado pode resultar em acidente grave."
+      },
+      {
+        "id": "NR10-PF-19",
+        "modulo": 4,
+        "enunciado": "O trabalhador que se recusar injustificadamente a usar o EPI fornecido pelo empregador está:",
+        "alternativas": [
+          "Exercendo seu direito de escolha sobre sua própria segurança",
+          "Protegido pela legislação trabalhista em qualquer situação",
+          "Sujeito a medidas disciplinares e assumindo a responsabilidade pelo risco a que se expõe",
+          "Sem qualquer consequência, pois a responsabilidade é sempre integral do empregador"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O uso do EPI é obrigação legal do trabalhador (NR-6 e CLT). A recusa injustificada pode gerar advertência, suspensão ou demissão por justa causa, além de influenciar a análise de responsabilidade em caso de acidente."
+      },
+      {
+        "id": "NR10-PF-20",
+        "modulo": 4,
+        "enunciado": "A maioria dos acidentes elétricos ocorre principalmente por:",
+        "alternativas": [
+          "Falhas exclusivas de equipamentos modernos com defeito de fábrica",
+          "Fenômenos naturais imprevisíveis como variações de tensão da rede",
+          "Falhas humanas e organizacionais: falta de treinamento, procedimentos inadequados, ausência de EPIs, excesso de confiança e pressão por produção",
+          "Defeitos de fabricação nos materiais elétricos importados"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Estatisticamente, a grande maioria dos acidentes elétricos tem causas humanas e organizacionais. Trabalho sem procedimento, EPI inadequado, falta de capacitação e pressão de prazo são as causas mais frequentes."
+      }
+    ]
+  }
+}

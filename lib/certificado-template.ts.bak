@@ -1,0 +1,223 @@
+export function gerarHTMLCertificado(cert: any): string {
+  const dados = cert.dados
+  const cpfFormatado = dados.cpf?.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
+  const dataInicio = new Date(dados.data_inicio).toLocaleDateString('pt-BR')
+  const dataConclusao = new Date(dados.data_conclusao).toLocaleDateString('pt-BR')
+  const dataValidade = new Date(dados.data_validade).toLocaleDateString('pt-BR')
+  const percentual = Math.round((dados.nota_final / 10) * 100)
+
+  const conteudo = [
+    '1 - Introdução à NR-10 e Legislação (4 horas)',
+    '2 - Riscos em Instalações e Serviços com Eletricidade (4 horas)',
+    '3 - Medidas de Controle do Risco Elétrico (4 horas)',
+    '4 - Normas Técnicas Brasileiras (NBR) e Procedimentos Específicos (2 horas)',
+    '5 - Técnicas de Análise de Risco (4 horas)',
+    '6 - Equipamentos de Proteção Individual (EPI) e Coletiva (EPC) (4 horas)',
+    '7 - Documentação de Segurança (2 horas)',
+    '8 - Trabalho em Altura e em Áreas Classificadas (4 horas)',
+    '9 - Segurança em Instalações Elétricas Desenergizadas (4 horas)',
+    '10 - Segurança em Instalações Elétricas Energizadas (4 horas)',
+    '11 - Primeiros Socorros (4 horas)',
+    '12 - Combate a Incêndios em Instalações Elétricas (2 horas)',
+    '13 - Acidentes de Origem Elétrica — Análise e Prevenção (4 horas)',
+    '14 - Responsabilidades e Implicações Legais (2 horas)',
+  ]
+
+  return `<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Times New Roman',serif; background:white; }
+
+/* ── FRENTE ── */
+.pagina {
+  width:297mm; height:210mm;
+  position:relative; overflow:hidden; background:white;
+  page-break-after:always;
+}
+.borda-tl { position:absolute; top:0; left:0; width:0; height:0; border-style:solid; border-width:55mm 45mm 0 0; border-color:#1A1A2E transparent transparent transparent; }
+.borda-tr { position:absolute; top:0; right:0; width:0; height:0; border-style:solid; border-width:55mm 0 0 45mm; border-color:#1A1A2E transparent transparent transparent; }
+.wave { position:absolute; bottom:0; left:0; right:0; height:40mm; background:linear-gradient(135deg,#1A1A2E 0%,#2d2d50 35%,#C8102E 65%,#F5A623 100%); clip-path:ellipse(55% 100% at 50% 100%); }
+
+/* Logo centralizada no topo */
+.logo-topo {
+  position:absolute; top:8mm; left:50%; transform:translateX(-50%);
+  text-align:center;
+}
+.logo-topo img {
+  width:32mm; height:32mm; object-fit:contain;
+}
+
+/* Título CERTIFICADO */
+.titulo {
+  position:absolute; top:13mm; right:12mm;
+  font-family:Arial,sans-serif; font-size:38pt; font-weight:900;
+  color:#1A1A2E; letter-spacing:2px;
+}
+
+/* Corpo */
+.corpo {
+  position:absolute; top:50mm; left:15mm; right:15mm;
+  text-align:center;
+}
+.cert-txt { font-size:11pt; color:#333; line-height:1.7; }
+.nome { font-size:13pt; font-weight:700; color:#1A1A2E; }
+.nome-curso {
+  font-size:14pt; font-weight:900; color:#1A1A2E;
+  margin:3mm 0; border-top:0.3mm solid #ddd; border-bottom:0.3mm solid #ddd; padding:2mm 0;
+}
+.legal { font-size:8pt; color:#555; line-height:1.5; margin-top:2mm; }
+
+/* Assinaturas */
+.assinaturas {
+  position:absolute; bottom:44mm; left:15mm; right:15mm;
+  display:flex; align-items:flex-end; justify-content:space-between;
+}
+.assin-aluno { text-align:center; flex:0 0 55mm; }
+.assin-aluno .linha { border-top:0.3mm solid #333; margin-bottom:2mm; }
+.assin-aluno .label { font-size:10pt; font-weight:700; color:#1A1A2E; }
+.medalha { flex:0 0 28mm; text-align:center; }
+.assin-resp { text-align:center; flex:0 0 68mm; }
+.assin-resp .linha2 { border-top:0.3mm solid #333; margin-bottom:1mm; }
+.assin-resp .nome-r { font-size:10.5pt; font-weight:700; color:#1A1A2E; }
+.assin-resp .cargo { font-size:7.5pt; color:#444; line-height:1.5; }
+
+/* ── VERSO ── */
+.pagina-verso {
+  width:297mm; height:210mm;
+  position:relative; overflow:hidden; background:white;
+  padding:9mm 14mm 8mm;
+}
+.verso-header {
+  display:flex; align-items:center; gap:5mm;
+  border-bottom:0.6mm solid #C8102E; padding-bottom:3mm; margin-bottom:4mm;
+}
+.verso-logo img { width:16mm; height:16mm; object-fit:contain; }
+.verso-titulo h1 { font-size:13pt; font-weight:900; color:#1A1A2E; line-height:1.2; }
+.verso-titulo h2 { font-size:9pt; color:#C8102E; font-weight:700; margin-top:0.5mm; }
+
+/* Grid 2 colunas */
+.conteudo-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1.5mm 6mm; margin-bottom:3mm;
+}
+.item {
+  font-size:7pt; color:#333; line-height:1.4;
+  padding-left:3mm; border-left:1.5px solid #C8102E;
+}
+
+.verso-footer {
+  position:absolute; bottom:6mm; left:14mm; right:14mm;
+  display:flex; align-items:flex-end; justify-content:space-between;
+  border-top:0.3mm solid #eee; padding-top:3mm;
+}
+.base-legal-v { font-size:6.5pt; color:#666; line-height:1.5; flex:1; }
+.codigo-box {
+  font-size:6pt; color:#888; background:#f5f5f5;
+  border-radius:2mm; padding:1mm 2mm; margin-top:2mm; display:inline-block;
+}
+.assin-v { text-align:right; flex:0 0 58mm; }
+.assin-v .linha-v { border-top:0.3mm solid #333; margin-bottom:1mm; }
+.assin-v .nome-v { font-size:8.5pt; font-weight:700; color:#1A1A2E; }
+.assin-v .cargo-v { font-size:6.5pt; color:#444; line-height:1.4; }
+
+@page { size:A4 landscape; margin:0; }
+</style></head><body>
+
+<!-- FRENTE -->
+<div class="pagina">
+  <div class="borda-tl"></div>
+  <div class="borda-tr"></div>
+  <div class="wave"></div>
+
+  <!-- Logo centralizada -->
+  <div class="logo-topo">
+    <img src="file:///NRCERTIFICA/nrcertifica/public/logo-nrcertifica.svg" alt="NR Certifica" />
+  </div>
+
+  <!-- Título à direita -->
+  <div class="titulo">CERTIFICADO</div>
+
+  <!-- Corpo -->
+  <div class="corpo">
+    <p class="cert-txt">
+      Certificamos que <span class="nome">${dados.nome_aluno}</span>, CPF ${cpfFormatado},<br>
+      concluiu com <strong>100% de frequência</strong> o curso com carga horária de <strong>${dados.carga_horaria}:</strong>
+    </p>
+    <div class="nome-curso">${dados.titulo_curso}</div>
+    <p class="legal">
+      O Curso foi realizado de <strong>${dataInicio}</strong> à <strong>${dataConclusao}</strong> com base legal na Constituição/88 Artigo 206° Inciso II e Artigo 209°,<br>
+      Lei n° 9.394/96, Decreto n° 5.154/2004 e Norma CNE n° 04/99 - MEC (Ministério da Educação) Artigo 7°§ 3°.<br>
+      O Aluno obteve aproveitamento de <strong>${percentual}%</strong> na avaliação de conhecimento aplicada no final do curso.
+    </p>
+  </div>
+
+  <!-- Assinaturas -->
+  <div class="assinaturas">
+    <div class="assin-aluno">
+      <div class="linha"></div>
+      <div class="label">Aluno(a)</div>
+    </div>
+    <div class="medalha">
+      <svg width="55" height="65" viewBox="0 0 100 115" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="42" r="35" fill="#F5A623" stroke="#d4890f" stroke-width="2"/>
+        <circle cx="50" cy="42" r="28" fill="#FFD700" stroke="#F5A623" stroke-width="1.5"/>
+        <circle cx="50" cy="42" r="20" fill="#FFFACD"/>
+        <polygon points="50,24 55,38 70,38 58,47 63,61 50,52 37,61 42,47 30,38 45,38" fill="#F5A623" stroke="#d4890f" stroke-width="0.5"/>
+        <path d="M38,75 L32,98 L50,87 L68,98 L62,75" fill="#C8102E"/>
+        <path d="M38,75 L32,98 L50,87 Z" fill="#a00020"/>
+        <path d="M38,75 L62,75 L50,63 Z" fill="#F5A623"/>
+      </svg>
+    </div>
+    <div class="assin-resp">
+      <div class="linha2"></div>
+      <div class="nome-r">${dados.instrutor || 'Anderson Bicalho Diniz'}</div>
+      <div class="cargo">
+        Instrutor e responsável Técnico<br>
+        Engenheiro Eletricista<br>
+        Engenheiro Segurança do Trabalho<br>
+        Crea: ${dados.crea || '254516/MG'}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VERSO -->
+<div class="pagina-verso">
+  <div class="verso-header">
+    <div class="verso-logo">
+      <img src="file:///NRCERTIFICA/nrcertifica/public/logo-nrcertifica.svg" alt="NR Certifica" />
+    </div>
+    <div class="verso-titulo">
+      <h1>${dados.titulo_curso}</h1>
+      <h2>CONTEÚDO PROGRAMÁTICO — ${dados.carga_horaria?.toUpperCase()}</h2>
+    </div>
+  </div>
+
+  <div class="conteudo-grid">
+    ${conteudo.map(item => `<div class="item">${item}</div>`).join('')}
+  </div>
+
+  <div class="verso-footer">
+    <div class="base-legal-v">
+      Curso (modalidade EAD) com fundamento legal na Constituição Federal/88 Artigo 206o Inciso II e Artigo 209o,<br>
+      Lei no 9.394/96, Decreto no 5.154/2004 e Norma CNE no 04/99 - MEC (Ministério da Educação) Artigo 7o § 3o.<br>
+      Validade do treinamento: até <strong>${dataValidade}</strong>.
+      <div class="codigo-box">Código: ${cert.codigo} · Verifique em: nrcertifica.com.br/validar/${cert.codigo}</div>
+    </div>
+    <div class="assin-v">
+      <div class="linha-v"></div>
+      <div class="nome-v">${dados.instrutor || 'Anderson Bicalho Diniz'}</div>
+      <div class="cargo-v">
+        Engenheiro Eletricista<br>
+        Engenheiro Segurança do trabalho<br>
+        Eletricom Manutenção Especializada<br>
+        CREA: ${dados.crea || '254516/MG'}<br>
+        Registro Nacional: 1419524216
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>`
+}

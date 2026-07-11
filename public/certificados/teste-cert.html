@@ -1,0 +1,287 @@
+`<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Times New Roman',serif; background:white; }
+
+/* ══ FRENTE ══ */
+.pagina {
+  width:297mm; height:210mm;
+  position:relative; overflow:hidden; background:white;
+  page-break-after:always;
+}
+
+/* Cantos triangulares pretos */
+.canto-tl {
+  position:absolute; top:0; left:0; width:0; height:0;
+  border-style:solid; border-width:52mm 42mm 0 0;
+  border-color:#1a1a1a transparent transparent transparent;
+}
+.canto-tr {
+  position:absolute; top:0; right:0; width:0; height:0;
+  border-style:solid; border-width:52mm 0 0 42mm;
+  border-color:#1a1a1a transparent transparent transparent;
+}
+
+/* Linha dourada diagonal nos cantos */
+.ornamento-tl {
+  position:absolute; top:0; left:0; width:50mm; height:55mm;
+  overflow:hidden;
+}
+.ornamento-tr {
+  position:absolute; top:0; right:0; width:50mm; height:55mm;
+  overflow:hidden;
+}
+
+/* Borda interna dourada */
+.borda-ouro {
+  position:absolute;
+  top:5mm; left:5mm; right:5mm; bottom:5mm;
+  border:0.8mm solid #c9a84c;
+}
+.borda-ouro2 {
+  position:absolute;
+  top:7mm; left:7mm; right:7mm; bottom:7mm;
+  border:0.2mm solid #c9a84c66;
+}
+
+/* Ondas no rodapé — igual ao modelo Wellington */
+.waves {
+  position:absolute; bottom:0; left:0; right:0; height:42mm;
+  overflow:hidden;
+}
+.wave-preto {
+  position:absolute; bottom:0; left:-10%; right:-10%; height:42mm;
+  background:#111;
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.wave-cinza {
+  position:absolute; bottom:0; left:-10%; right:-10%; height:34mm;
+  background: linear-gradient(90deg, #888 0%, #bbb 50%, #888 100%);
+  clip-path: ellipse(52% 95% at 46% 100%);
+  opacity:0.5;
+}
+.wave-ouro {
+  position:absolute; bottom:0; left:-10%; right:-10%; height:26mm;
+  background: linear-gradient(90deg, #c9a84c 0%, #f0d080 40%, #e8c555 60%, #c9a84c 100%);
+  clip-path: ellipse(48% 90% at 42% 100%);
+  opacity:0.9;
+}
+.wave-ouro2 {
+  position:absolute; bottom:0; left:-10%; right:-10%; height:16mm;
+  background: linear-gradient(90deg, #8b6914 0%, #c9a84c 50%, #8b6914 100%);
+  clip-path: ellipse(44% 85% at 38% 100%);
+  opacity:0.6;
+}
+
+/* Logo + Título no topo */
+.topo {
+  position:absolute; top:8mm; left:25mm; right:10mm;
+  display:flex; align-items:center; gap:7%;
+}
+.logo-box img {
+  width:46mm; height:auto; object-fit:contain;
+}
+.titulo {
+  font-family:Arial Black, Arial, sans-serif;
+  font-size:28pt; font-weight:900; color:#1a1a1a;
+  letter-spacing:4px; line-height:1;
+}
+
+/* Corpo */
+.corpo {
+  position:absolute; top:58mm; left:14mm; right:14mm;
+  text-align:center;
+}
+.cert-txt { font-size:11pt; color:#222; line-height:1.9; }
+.nome-aluno { font-size:11pt; font-weight:700; color:#1a1a1a; }
+.nome-curso {
+  font-size:11pt; font-weight:900; color:#1a1a1a;
+  margin:4mm 0 3mm;
+  border-top:0.3mm solid #c9a84c;
+  border-bottom:0.3mm solid #c9a84c;
+  padding:2.5mm 0;
+}
+.legal { font-size:6pt; color:#444; line-height:1.7; margin-top:2mm; }
+
+/* Assinaturas */
+.assinaturas {
+  position:absolute; bottom:37mm; left:14mm; right:14mm;
+  display:flex; align-items:flex-end; justify-content:space-between;
+}
+.assin-aluno { text-align:center; flex:0 0 54mm; }
+.linha-a { border-top:0.4mm solid #333; margin-bottom:2mm; }
+.label-a { font-size:8pt; font-weight:700; color:#1a1a1a; }
+
+.medalha-box { flex:0 0 30mm; text-align:center; }
+
+.assin-resp { text-align:center; flex:0 0 77mm; }
+.linha-r { border-top:0.4mm solid #333; margin-bottom:1.5mm; }
+.nome-r { font-size:7.5pt; font-weight:900; color:#1a1a1a; white-space:nowrap; }
+.cargo-r { font-size:5.2pt; color:#555; line-height:1.7; margin-top:0.5mm; font-style:italic; }
+
+/* ══ VERSO ══ */
+.pagina-verso {
+  width:297mm; height:210mm;
+  position:relative; overflow:hidden; background:white;
+  padding:9mm 13mm 8mm;
+}
+.verso-header {
+  display:flex; align-items:center; gap:4mm;
+  border-bottom:0.7mm solid #1a1a1a; padding-bottom:3mm; margin-bottom:3mm;
+}
+.verso-logo img { width:14mm; height:14mm; object-fit:contain; }
+.verso-titulo h1 { font-family:Arial,sans-serif; font-size:12pt; font-weight:900; color:#1a1a1a; }
+.verso-titulo h2 { font-size:8pt; color:#555; font-weight:700; margin-top:0.5mm; letter-spacing:1px; }
+
+.grid-cols { display:grid; grid-template-columns:1fr 1fr; gap:0 7mm; }
+.item-conteudo { margin-bottom:2.5mm; }
+.item-titulo { font-size:6.5pt; font-weight:700; color:#1a1a1a; margin-bottom:0.8mm; }
+.item-lista { list-style:disc; padding-left:3.5mm; }
+.item-lista li { font-size:5.8pt; color:#333; line-height:1.45; }
+
+.verso-footer {
+  position:absolute; bottom:5mm; left:13mm; right:13mm;
+  display:flex; align-items:flex-end; justify-content:space-between;
+  border-top:0.3mm solid #ddd; padding-top:3mm; gap:6mm;
+}
+.footer-esq { display:flex; align-items:flex-end; gap:4mm; flex:1; }
+.footer-logo img { width:11mm; height:11mm; object-fit:contain; opacity:0.7; }
+.base-legal-v { font-size:5.8pt; color:#555; line-height:1.6; }
+.codigo-box { font-size:5.5pt; color:#888; background:#f5f5f5; border-radius:1mm; padding:0.8mm 2mm; margin-top:1.5mm; display:inline-block; }
+
+.assin-v { text-align:right; flex:0 0 60mm; }
+.linha-v { border-top:0.3mm solid #333; margin-bottom:1.5mm; }
+.nome-v { font-size:8.5pt; font-weight:700; color:#1a1a1a; }
+.cargo-v { font-size:6pt; color:#444; line-height:1.5; }
+
+@page { size:A4 landscape; margin:0; }
+</style></head><body>
+
+<!-- ══ FRENTE ══ -->
+<div class="pagina">
+
+  <!-- Cantos pretos triangulares -->
+  <div class="canto-tl"></div>
+  <div class="canto-tr"></div>
+
+  <!-- Bordas douradas -->
+  <div class="borda-ouro"></div>
+  <div class="borda-ouro2"></div>
+
+  <!-- Ornamentos dourados nos cantos (linhas diagonais) -->
+  <svg style="position:absolute;top:0;left:0;width:55mm;height:58mm;" viewBox="0 0 155 165" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="145" x2="130" y2="0" stroke="#c9a84c" stroke-width="2" opacity="0.8"/>
+    <line x1="0" y1="160" x2="145" y2="0" stroke="#f0d080" stroke-width="1" opacity="0.5"/>
+  </svg>
+  <svg style="position:absolute;top:0;right:0;width:55mm;height:58mm;" viewBox="0 0 155 165" xmlns="http://www.w3.org/2000/svg">
+    <line x1="155" y1="145" x2="25" y2="0" stroke="#c9a84c" stroke-width="2" opacity="0.8"/>
+    <line x1="155" y1="160" x2="10" y2="0" stroke="#f0d080" stroke-width="1" opacity="0.5"/>
+  </svg>
+
+  <!-- Ondas rodapé -->
+  <div class="waves">
+    <div class="wave-preto"></div>
+    <div class="wave-cinza"></div>
+    <div class="wave-ouro"></div>
+    <div class="wave-ouro2"></div>
+  </div>
+
+  <!-- Topo -->
+  <div class="topo">
+    <div class="logo-box">
+      <img src="${logoPath}" alt="NR Certifica" />
+    </div>
+    <div class="titulo">CERTIFICADO</div>
+  </div>
+
+  <!-- Corpo -->
+  <div class="corpo">
+    <p class="cert-txt">
+      Certificamos que <span class="nome-aluno">Anderson Bicalho Diniz</span>, CPF 066.782.536-39,<br>
+      concluiu com <strong>100% de frequência</strong> o curso com carga horária de <strong>40h:</strong>
+    </p>
+    <div class="nome-curso">NR-10 — Segurança em Instalações e Serviços em Eletricidade</div>
+    <p class="legal">
+      O Curso foi realizado de <strong>17/06/2026</strong> à <strong>23/06/2026</strong> com base legal na Constituição/88 Artigo 206° Inciso II e Artigo 209°,<br>
+      Lei n° 9.394/96, Decreto n° 5.154/2004 e Norma CNE n° 09/99 - MEC (Ministério da Educação) Artigo 7°§ 3°.<br>
+      O Aluno obteve aproveitamento de <strong>90%</strong> na avaliação de conhecimento aplicada no final do curso.
+    </p>
+  </div>
+
+  <!-- Assinaturas -->
+  <div class="assinaturas">
+    <div class="assin-aluno">
+      <div class="linha-a"></div>
+      <div class="label-a">Aluno(a)</div>
+    </div>
+    <div class="medalha-box">
+      <svg width="72" height="82" viewBox="0 0 120 138" xmlns="http://www.w3.org/2000/svg">
+        <path d="M45,72 L34,122 L60,107 L86,122 L75,72" fill="#C8102E"/>
+        <path d="M45,72 L34,122 L60,107 Z" fill="#9a000e"/>
+        <path d="M75,72 L86,122 L60,107 Z" fill="#9a000e"/>
+        <circle cx="60" cy="52" r="42" fill="#c9a84c" stroke="#a07820" stroke-width="2"/>
+        <circle cx="60" cy="52" r="35" fill="#f0d080" stroke="#c9a84c" stroke-width="1.5"/>
+        <circle cx="60" cy="52" r="26" fill="#fffadc"/>
+        
+        <polygon points="60,35 64.5,48 78,48 67,56 71,69 60,61 49,69 53,56 42,48 55.5,48" fill="#c9a84c" stroke="#a07820" stroke-width="0.8"/>
+        <polygon points="60,38 63.5,49 75,49 66,56 69.5,67 60,60 50.5,67 54,56 45,49 56.5,49" fill="#f0d080"/>
+      </svg>
+    </div>
+    <div class="assin-resp">
+      <div class="linha-r"></div>
+      <div class="nome-r">Anderson Bicalho Diniz</div>
+      <div class="cargo-r">
+        Instrutor e responsável Técnico<br>
+        Engenheiro Eletricista<br>
+        Engenheiro Segurança do Trabalho<br>
+        Crea: 254516/MG
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ VERSO ══ -->
+<div class="pagina-verso">
+  <div class="verso-header">
+    <div class="verso-logo">
+      <img src="${logoPath}" alt="NR Certifica" />
+    </div>
+    <div class="verso-titulo">
+      <h1>NR-10 — Segurança em Instalações e Serviços em Eletricidade</h1>
+      <h2>CONTEÚDO PROGRAMÁTICO — ${dados.carga_horaria?.toUpperCase()}</h2>
+    </div>
+  </div>
+
+  <div class="grid-cols">
+    <div></div>
+    <div></div>
+  </div>
+
+  <div class="verso-footer">
+    <div class="footer-esq">
+      <div class="footer-logo">
+        <img src="${logoPath}" alt="" />
+      </div>
+      <div class="base-legal-v">
+        Curso (modalidade EAD) com fundamento legal na Constituição Federal/88 Artigo 206o Inciso II e Artigo 209o,<br>
+        Lei no 9.394/96, Decreto no 5.154/2004 e Norma CNE no 04/99 - MEC (Ministério da Educação) Artigo 7o § 3o.<br>
+        Validade do treinamento: até <strong>23/06/2028</strong>.
+        <div class="codigo-box">Código: NRCJLD8VO · Verifique em: nrcertifica.com.br/validar/NRCJLD8VO</div>
+      </div>
+    </div>
+    <div class="assin-v">
+      <div class="linha-v"></div>
+      <div class="nome-v">Anderson Bicalho Diniz</div>
+      <div class="cargo-v">
+        Engenheiro Eletricista<br>
+        Engenheiro Segurança do trabalho<br>
+        Eletricom Manutenção Especializada<br>
+        CREA: 254516/MG<br>
+        Registro Nacional: 1419524216
+      </div>
+    </div>
+  </div>
+</div>
+
+</body></html>

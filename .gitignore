@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+
+# build
+.next/
+out/
+build/
+
+# env — NUNCA versionar
+.env
+.env.local
+.env.production
+.env*.local
+
+# certificados gerados (cache, não é código-fonte)
+public/certificados/*.pdf
+
+# uploads de alunos (apostilas etc, se forem gerados/enviados em runtime)
+public/uploads/*
+
+# logs
+*.log
+npm-debug.log*
+
+# PM2
+.pm2/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# stripe backup (se ainda existir na pasta)
+stripe_backup_code.txt
