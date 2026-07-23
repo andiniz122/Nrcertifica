@@ -5,7 +5,7 @@ import { connectDB } from '../../../../lib/db'
 import Certificate from '../../../../models/Certificate'
 import Course from '../../../../models/Course'
 import User from '../../../../models/User'
-import { gerarHtmlCertificado } from '../../../../lib/certificado-template'
+import { gerarHtmlCertificado, getAccentColorPorNr } from '../../../../lib/certificado-template'
 import { mkdir, writeFile, readFile } from 'fs/promises'
 import { existsSync } from 'fs'
 import path from 'path'
@@ -83,6 +83,7 @@ export async function GET(
       assinaturaInstrutorUrl,
       conteudoProgramatico: cert.curso_id?.conteudo_programatico || [],
       validadeAnos: cert.curso_id?.validade_anos || 2,
+      accentColor: getAccentColorPorNr(cert.curso_id?.nr || ""),
     })
     await page.setContent(html, { waitUntil: 'networkidle0' })
 

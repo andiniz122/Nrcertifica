@@ -20,6 +20,16 @@ export interface DadosCertificado {
   assinaturaInstrutorUrl?: string;
   conteudoProgramatico?: string[];
   validadeAnos?: number;
+  accentColor?: string; // cor de destaque do certificado (por curso)
+}
+
+export function getAccentColorPorNr(nr: string): string {
+  const mapa: Record<string, string> = {
+    'NR-35': '#d97706',      // âmbar — trabalho em altura
+    'NR-10 SEP': '#1d4ed8',  // azul — sistemas elétricos de potência
+    'NR-06': '#16a34a',      // verde — proteção individual
+  }
+  return mapa[nr] ?? '#b8860b' // dourado padrão (NR-10 Básico e demais)
 }
 
 function gerarCodigoVerificacao(): string {
@@ -44,6 +54,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     assinaturaInstrutorUrl = "",
     conteudoProgramatico = [],
     validadeAnos = 2,
+    accentColor = "#b8860b",
   } = dados;
 
   const codigo = codigoVerificacao || gerarCodigoVerificacao();
@@ -56,6 +67,8 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
 <title>Certificado</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+  :root { --accent: ${accentColor}; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -84,19 +97,19 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
   .frame-outer {
     position: absolute;
     inset: 22px;
-    border: 2px solid #b8860b;
+    border: 2px solid var(--accent);
   }
   .frame-inner {
     position: absolute;
     inset: 30px;
-    border: 1px solid #b8860b;
+    border: 1px solid var(--accent);
   }
 
   .corner {
     position: absolute;
     width: 46px;
     height: 46px;
-    border: 2px solid #b8860b;
+    border: 2px solid var(--accent);
   }
   .corner.tl { top: 14px; left: 14px; border-right: none; border-bottom: none; }
   .corner.tr { top: 14px; right: 14px; border-left: none; border-bottom: none; }
@@ -141,7 +154,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     font-weight: 500;
     font-size: 11px;
     letter-spacing: 3px;
-    color: #b8860b;
+    color: var(--accent);
     margin-top: 3px;
     white-space: nowrap;
   }
@@ -157,7 +170,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
   .title-underline {
     width: 90px;
     height: 2px;
-    background: #b8860b;
+    background: var(--accent);
     margin: 10px auto 0;
   }
 
@@ -182,8 +195,8 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
   .course-box {
     margin-top: 26px;
     padding: 14px 40px;
-    border-top: 1px solid #b8860b;
-    border-bottom: 1px solid #b8860b;
+    border-top: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
   }
   .course-name {
     font-family: 'Montserrat', Arial, sans-serif;
@@ -240,7 +253,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 500;
     font-size: 9px;
-    color: #b8860b;
+    color: var(--accent);
     margin-top: 2px;
   }
   .sign-extra {
@@ -260,7 +273,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     width: 84px;
     height: 84px;
     border-radius: 50%;
-    border: 1.5px solid #b8860b;
+    border: 1.5px solid var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -316,13 +329,13 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     font-weight: 700;
     font-size: 13px;
     letter-spacing: 4px;
-    color: #b8860b;
+    color: var(--accent);
     margin-top: 10px;
   }
   .page2-title-underline {
     width: 70px;
     height: 1.5px;
-    background: #b8860b;
+    background: var(--accent);
     margin: 10px auto 22px;
   }
   .programa-grid {
