@@ -1,0 +1,411 @@
+{
+  "curso": "NR-06 - Equipamentos de Proteção Individual",
+  "sigla": "NR-06",
+  "carga_horaria": "4h",
+  "validade_anos": 2,
+  "aprovacao_minima": 0.70,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Legislação, Tipos de EPI e Seleção por Risco",
+      "descricao": "Fundamentos legais da NR-06, o que é EPI, Certificado de Aprovação (CA), tipos de EPI por parte do corpo protegida e critérios de seleção conforme o risco.",
+      "exercicios": [
+        {
+          "id": "NR06-M1-Q1",
+          "enunciado": "Conforme a NR-06, Equipamento de Proteção Individual (EPI) é:",
+          "alternativas": [
+            "Qualquer equipamento de segurança instalado no ambiente de trabalho para proteger a coletividade",
+            "Todo dispositivo ou produto de uso individual, de fabricação nacional ou importada, destinado a proteger o trabalhador contra riscos que ameacem a segurança e a saúde no trabalho",
+            "Apenas capacetes, luvas e botas de segurança utilizados em obras de construção civil",
+            "Equipamentos obrigatórios somente quando há risco de acidente com afastamento"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A NR-06 define EPI como todo dispositivo ou produto de uso individual, nacional ou importado, destinado a proteger o trabalhador contra riscos que ameacem sua segurança e saúde. Inclui tanto dispositivos (óculos, capacetes) quanto produtos (cremes de proteção)."
+        },
+        {
+          "id": "NR06-M1-Q2",
+          "enunciado": "O Certificado de Aprovação (CA) do EPI é emitido pelo:",
+          "alternativas": [
+            "Fabricante do EPI, atestando a qualidade do produto",
+            "Médico do trabalho da empresa, após avaliação da adequação ao risco",
+            "Ministério do Trabalho e Emprego (MTE), após os ensaios técnicos que comprovam que o EPI atende às normas de segurança",
+            "CIPA (Comissão Interna de Prevenção de Acidentes) da empresa"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O CA é emitido pelo Ministério do Trabalho e Emprego (MTE) após aprovação nos ensaios técnicos realizados por laboratórios acreditados. Sem CA válido, o EPI não pode ser comercializado ou utilizado no Brasil. O empregador deve exigir o CA do fornecedor."
+        },
+        {
+          "id": "NR06-M1-Q3",
+          "enunciado": "Para proteção auditiva em ambientes com nível de pressão sonora acima de 85 dB(A), o EPI indicado é:",
+          "alternativas": [
+            "Capacete de segurança com jugular reforçada",
+            "Protetor auditivo (tipo concha ou tipo plug/inserção) com NRRsf compatível com o nível de ruído e o tempo de exposição",
+            "Óculos de proteção com lentes de policarbonato",
+            "Máscara facial com filtro para partículas"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A proteção auditiva (protetores auriculares tipo concha ou de inserção) é obrigatória quando o nível de ruído ultrapassa os limites de tolerância. O NRRsf (Número de Redução de Ruído em campo) do protetor deve ser suficiente para atenuar o ruído até abaixo do limite de tolerância."
+        },
+        {
+          "id": "NR06-M1-Q4",
+          "enunciado": "A seleção do EPI adequado deve ser baseada em:",
+          "alternativas": [
+            "Apenas no custo — escolher sempre o modelo mais econômico",
+            "Na preferência estética do trabalhador",
+            "No tipo e nível do risco identificado, na parte do corpo a proteger, nas normas técnicas aplicáveis e no Certificado de Aprovação (CA) válido do produto",
+            "Apenas na disponibilidade do produto no estoque da empresa"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A seleção correta do EPI considera: o risco específico (químico, físico, mecânico, biológico), a intensidade do risco, a parte do corpo exposta, a norma técnica aplicável ao EPI e a validade do CA. Um EPI errado pode dar falsa sensação de segurança sem proteger de fato."
+        },
+        {
+          "id": "NR06-M1-Q5",
+          "enunciado": "O capacete de segurança classe B (elétrica) difere do classe A porque:",
+          "alternativas": [
+            "O classe B é mais leve e indicado para trabalhos em altura",
+            "O classe B oferece proteção contra choques elétricos de até 30.000V — adequado para trabalhos elétricos — enquanto o classe A protege apenas contra impactos mecânicos",
+            "Não há diferença significativa — ambos protegem da mesma forma",
+            "O classe B é obrigatório apenas em obras de construção civil"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O capacete classe B (NBR 8221) é dielétrico, testado até 30.000V, e obrigatório para trabalhos elétricos. O classe A (NBR 8221) protege apenas contra impactos e penetração mecânica. Usar capacete classe A em trabalho elétrico é inadequado e perigoso."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Uso Correto, Conservação, Higienização e Responsabilidades Legais",
+      "descricao": "Como usar cada tipo de EPI corretamente, conservação, higienização, armazenamento, quando descartar e as obrigações legais do empregador e do trabalhador.",
+      "exercicios": [
+        {
+          "id": "NR06-M2-Q1",
+          "enunciado": "São obrigações do EMPREGADOR em relação ao EPI, conforme a NR-06:",
+          "alternativas": [
+            "Apenas disponibilizar o EPI — o trabalhador decide se usa ou não",
+            "Adquirir o EPI com CA válido, fornecer gratuitamente ao trabalhador, treinar sobre uso correto, exigir o uso, substituir quando danificado e registrar o fornecimento",
+            "Fornecer o EPI e cobrar do trabalhador caso seja perdido ou danificado intencionalmente",
+            "Apenas fornecer o EPI — a responsabilidade pelo uso é exclusivamente do trabalhador"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A NR-06 impõe ao empregador: adquirir EPI com CA válido; fornecê-lo gratuitamente; orientar e treinar; exigir o uso; substituir imediatamente quando danificado, perdido ou vencido; e manter registro de entrega. O fornecimento de EPI nunca pode ter custo para o trabalhador."
+        },
+        {
+          "id": "NR06-M2-Q2",
+          "enunciado": "São obrigações do TRABALHADOR em relação ao EPI, conforme a NR-06:",
+          "alternativas": [
+            "Usar o EPI apenas quando achar necessário, com base na própria experiência",
+            "Usar o EPI apenas para os riscos para os qual foi indicado, guardá-lo após uso, comunicar ao empregador qualquer alteração ou dano e responsabilizar-se por sua guarda e conservação",
+            "Apenas usar o EPI — não tem obrigação de comunicar danos ou irregularidades",
+            "Comprar seu próprio EPI para garantir a qualidade que prefere"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O trabalhador deve: usar o EPI apenas para a finalidade indicada; responsabilizar-se pela guarda e conservação; comunicar qualquer irregularidade ou dano; cumprir as determinações do empregador sobre uso. A recusa injustificada em usar EPI pode resultar em medidas disciplinares."
+        },
+        {
+          "id": "NR06-M2-Q3",
+          "enunciado": "Luvas de proteção química (nitrila, neoprene, PVC) devem ser selecionadas com base em:",
+          "alternativas": [
+            "Apenas na espessura — luvas mais grossas protegem contra qualquer produto químico",
+            "Na compatibilidade química entre o material da luva e o produto químico manipulado — cada material resiste a determinados produtos e é permeado por outros",
+            "No tamanho da mão do trabalhador apenas",
+            "Luvas de qualquer material protegem igualmente contra todos os produtos químicos"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Não existe luva universal para produtos químicos. Cada material (nitrila, neoprene, látex, PVC, butílica, neopreno, etc.) tem resistência específica a grupos de produtos. O fabricante fornece tabelas de compatibilidade química. Usar material incompatível pode resultar em permeação química sem que o trabalhador perceba."
+        },
+        {
+          "id": "NR06-M2-Q4",
+          "enunciado": "O respirador semifacial com filtro para poeiras (P2/P3) deve ser descartado ou ter o filtro substituído quando:",
+          "alternativas": [
+            "Apenas quando completar 1 ano de uso, independentemente da frequência de utilização",
+            "Quando a resistência respiratória aumentar significativamente (dificuldade para respirar), quando apresentar dano físico, quando o trabalhador sentir cheiro ou sabor do contaminante, ou quando atingir o prazo do fabricante",
+            "Apenas quando o filtro estiver visivelmente sujo por fora",
+            "Nunca — os filtros são reutilizáveis por tempo indeterminado"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Os critérios de substituição de filtros são: aumento da resistência respiratória (filtros de poeira); percepção de odor ou gosto do contaminante (filtros químicos); dano físico ao respirador; prazo do fabricante; e após uso em atmosfera com concentração de contaminante próxima ao IDLH (concentração imediatamente perigosa à vida)."
+        },
+        {
+          "id": "NR06-M2-Q5",
+          "enunciado": "O trabalhador que se recusar injustificadamente a usar o EPI fornecido pelo empregador está sujeito a:",
+          "alternativas": [
+            "Nenhuma consequência — é um direito do trabalhador recusar equipamentos",
+            "Medidas disciplinares (advertência, suspensão ou demissão por justa causa) e, em caso de acidente, assume responsabilidade por negligência própria — o empregador pode ficar isento se comprovar que forneceu e orientou",
+            "Apenas uma advertência verbal, sem registro formal",
+            "Nenhuma consequência se o trabalhador tiver mais de 10 anos de empresa"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O uso do EPI é obrigação legal do trabalhador (NR-06, art. 6.7 e CLT art. 158). A recusa injustificada pode resultar em advertência, suspensão e demissão por justa causa. Em caso de acidente, a culpa do trabalhador pode ser reconhecida se o empregador comprovar fornecimento adequado, treinamento e exigência de uso."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 10 questões deste banco de 20. Nota mínima para aprovação: 7/10 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 10,
+    "nota_minima": 7,
+    "banco": [
+      {
+        "id": "NR06-PF-01",
+        "modulo": 1,
+        "enunciado": "A diferença entre EPI e EPC (Equipamento de Proteção Coletiva) é que:",
+        "alternativas": [
+          "EPI é mais eficaz — deve sempre ser preferido ao EPC",
+          "EPC protege o ambiente de trabalho de forma coletiva (ex: guarda-corpo, exaustão localizada), enquanto o EPI protege individualmente cada trabalhador. O EPC deve ser priorizado sobre o EPI na hierarquia de controles",
+          "Não há diferença relevante — ambos protegem da mesma forma",
+          "EPC é obrigatório apenas para empresas com mais de 50 funcionários"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O EPC protege todos os trabalhadores da área (guarda-corpo, exaustão, proteção de máquinas). O EPI protege individualmente. Pela hierarquia de controles de risco, o EPC deve ser adotado sempre que possível — o EPI é o último recurso, pois não elimina o risco, apenas reduz a exposição."
+      },
+      {
+        "id": "NR06-PF-02",
+        "modulo": 1,
+        "enunciado": "Um EPI sem Certificado de Aprovação (CA) válido:",
+        "alternativas": [
+          "Pode ser usado se o fornecedor garantir a qualidade do produto por escrito",
+          "É proibido de ser comercializado, fornecido e utilizado no Brasil — o empregador que o fornece e o trabalhador que o usa estão em situação irregular",
+          "Pode ser usado em caráter emergencial por até 30 dias enquanto aguarda o CA",
+          "Só é permitido para empresas pequenas (ME/EPP)"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O CA é obrigatório para todo EPI no Brasil. EPI sem CA não passou pelos ensaios técnicos exigidos e pode não oferecer a proteção declarada. O fornecimento e uso de EPI sem CA é infração à NR-06, sujeitando o empregador a autuação e multa."
+      },
+      {
+        "id": "NR06-PF-03",
+        "modulo": 1,
+        "enunciado": "O óculos de proteção com lentes de policarbonato incolor é indicado para:",
+        "alternativas": [
+          "Apenas para trabalhos ao sol para proteção UV",
+          "Proteção contra impacto de partículas (lascas, rebarbas), respingos de produtos químicos e radiação UV — conforme o tipo e marcação das lentes",
+          "Apenas para soldadores como proteção contra a radiação do arco",
+          "Somente para trabalhos em laboratório químico"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Óculos com lentes de policarbonato oferecem proteção contra impacto de partículas, respingos e radiação. A proteção específica depende da marcação da lente (Ex: Z87.1 para impacto, filtros UV, etc.). Para soldagem, são necessários óculos ou viseiras com filtros de DIN adequado à intensidade do processo."
+      },
+      {
+        "id": "NR06-PF-04",
+        "modulo": 1,
+        "enunciado": "O calçado de segurança com biqueira de aço (ou composite) e solado resistente à perfuração é indicado para:",
+        "alternativas": [
+          "Qualquer ambiente de trabalho, independentemente dos riscos presentes",
+          "Proteção contra esmagamento dos dedos por queda de objetos e perfuração da sola por pregos e objetos pontiagudos — adequado para construção civil, metalurgia e indústrias com esses riscos específicos",
+          "Apenas para eletricistas — a biqueira de aço é dielétrica",
+          "Somente para uso em câmaras frigoríficas e ambientes frios"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O calçado com biqueira e solado antiperfuração protege contra riscos mecânicos específicos: queda de objetos e perfuração. ATENÇÃO: biqueira de aço conduz eletricidade — eletricistas devem usar calçado dielétrico (sem partes condutoras). O calçado deve ser selecionado conforme o risco identificado na área."
+      },
+      {
+        "id": "NR06-PF-05",
+        "modulo": 1,
+        "enunciado": "A proteção respiratória deve ser selecionada com base no:",
+        "alternativas": [
+          "Preço mais acessível e disponibilidade no mercado",
+          "Tipo de contaminante (partícula, vapores orgânicos, gases ácidos, etc.), sua concentração no ar em relação aos limites de tolerância e o Fator de Proteção Atribuído (FPA) do respirador",
+          "Preferência do trabalhador por conforto",
+          "Apenas na cor do filtro — filtros da mesma cor protegem contra os mesmos riscos"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A seleção de proteção respiratória é técnica: identifica-se o contaminante (tipo e concentração), compara-se com o limite de tolerância (TLV/NR-15), calcula-se o fator de proteção necessário e seleciona-se o respirador com FPA adequado. Usar filtro inadequado para o contaminante não oferece proteção real."
+      },
+      {
+        "id": "NR06-PF-06",
+        "modulo": 2,
+        "enunciado": "O registro de fornecimento de EPI ao trabalhador deve ser mantido pelo empregador porque:",
+        "alternativas": [
+          "É apenas uma recomendação — não é legalmente exigido",
+          "Comprova legalmente que o empregador cumpriu sua obrigação de fornecer o EPI, sendo fundamental em caso de acidente para demonstrar que a empresa adotou as medidas de proteção exigidas",
+          "Serve apenas para controle de estoque interno da empresa",
+          "É exigido apenas para empresas com CIPA constituída"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O registro de fornecimento (ficha de EPI assinada pelo trabalhador) é exigido pela NR-06 e tem valor jurídico. Em caso de acidente ou processo trabalhista, é a prova de que o empregador forneceu, treinou e exigiu o uso. Sem esse registro, é muito difícil comprovar o cumprimento da obrigação legal."
+      },
+      {
+        "id": "NR06-PF-07",
+        "modulo": 2,
+        "enunciado": "Um protetor auditivo tipo plug (inserção) deve ser inserido corretamente nas orelhas para:",
+        "alternativas": [
+          "Ser inserido apenas na entrada do canal auditivo, sem precisar comprimir o plug",
+          "Ser enrolado entre os dedos até ficar fino, inserido profundamente no canal auditivo e mantido no lugar até expandir completamente — sem inserção correta, a atenuação real pode ser muito inferior ao declarado na embalagem",
+          "Ser inserido apenas quando o ruído estiver acima de 100 dB(A)",
+          "Ser colocado apenas sobre a orelha, sem inserção no canal auditivo"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O plug de espuma deve ser enrolado até ficar fino, inserido até o fundo do canal auditivo e mantido no lugar com o dedo por 20-30 segundos até expandir e vedar o canal. Uso inadequado pode reduzir a atenuação em até 30 dB — transformando um EPI de boa eficiência em um protetor praticamente ineficaz."
+      },
+      {
+        "id": "NR06-PF-08",
+        "modulo": 2,
+        "enunciado": "EPI danificado ou com CA vencido deve ser:",
+        "alternativas": [
+          "Continuado em uso até o final do estoque — substituído apenas na próxima compra",
+          "Descartado e substituído imediatamente pelo empregador, sem custo para o trabalhador",
+          "Enviado para reparo antes de ser descartado",
+          "Mantido em uso se o dano for pequeno e não comprometer aparentemente a proteção"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "EPI danificado ou com CA vencido não oferece a proteção para a qual foi aprovado e deve ser retirado de uso imediatamente. A substituição é obrigação do empregador, sempre gratuita. Manter em uso EPI em mau estado é infração à NR-06 e pode resultar em acidente por falsa sensação de segurança."
+      },
+      {
+        "id": "NR06-PF-09",
+        "modulo": 1,
+        "enunciado": "A proteção para os olhos e face do soldador (eletricista) deve incluir:",
+        "alternativas": [
+          "Apenas óculos com lentes transparentes de policarbonato",
+          "Máscara de solda com filtro (visor) de DIN (densidade) adequado ao processo e corrente de soldagem — protegendo contra radiação infravermelha, ultravioleta e visível do arco elétrico",
+          "Qualquer protetor facial disponível no estoque",
+          "Apenas o protetor auditivo — não é necessária proteção ocular"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O arco de soldagem emite intensa radiação UV, visível e infravermelha, que pode causar conjuntivite actínica ('olho de soldador') e queimaduras oculares graves mesmo com breve exposição. O filtro DIN deve ser selecionado conforme o processo (TIG, MIG, eletrodo revestido) e a corrente de soldagem."
+      },
+      {
+        "id": "NR06-PF-10",
+        "modulo": 2,
+        "enunciado": "O creme de proteção cutânea (barreira química) utilizado como EPI:",
+        "alternativas": [
+          "Substitui completamente as luvas de proteção química",
+          "É um complemento — nunca substitui luvas ou outros EPIs de proteção química. Protege a pele contra substâncias específicas (óleos, graxas, cimentos, solventes) e deve ser aplicado antes da exposição e renovado conforme indicação",
+          "É indicado apenas como hidratante após o trabalho com produtos químicos",
+          "Não precisa de CA pois não é considerado EPI"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Cremes de proteção cutânea são EPIs (necessitam CA) que formam uma barreira protetora na pele, mas não substituem luvas. São indicados para riscos onde as luvas são impraticáveis ou como complemento. Devem ser aplicados antes da exposição e renovados conforme a ficha de dados de segurança do produto e as indicações do fabricante."
+      },
+      {
+        "id": "NR06-PF-11",
+        "modulo": 1,
+        "enunciado": "Para trabalho com exposição a queda de objetos na cabeça e risco de impacto lateral (ex: movimentação de cargas suspensas), além do capacete, recomenda-se:",
+        "alternativas": [
+          "Apenas o capacete padrão é suficiente para qualquer tipo de impacto",
+          "Capacete com jugular (fixação sob o queixo) para evitar que seja deslocado em caso de impacto ou vento, e verificação se o modelo atende à proteção lateral conforme a atividade",
+          "Apenas óculos de proteção como complemento ao capacete",
+          "Trocar o capacete por um touca ninja de tecido para mais conforto"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A jugular do capacete é fundamental: em caso de impacto, queda ou vento, o capacete sem jugular pode ser deslocado, deixando a cabeça desprotegida. Algumas atividades exigem capacetes com proteção lateral ou frontal específica. A jugular deve estar sempre ajustada durante o trabalho."
+      },
+      {
+        "id": "NR06-PF-12",
+        "modulo": 2,
+        "enunciado": "A higienização de EPIs reutilizáveis (capacetes, óculos, abafadores auriculares) deve ser feita:",
+        "alternativas": [
+          "Apenas quando estiverem visivelmente sujos",
+          "Conforme as instruções do fabricante, usando produtos e métodos adequados que não comprometam as propriedades de proteção do EPI — alguns produtos de limpeza podem degradar materiais como borracha e policarbonato",
+          "Com qualquer produto de limpeza doméstica disponível",
+          "Nunca — a higienização danifica os EPIs"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A higienização deve seguir as instruções do fabricante: solventes e desinfetantes inadequados podem degradar policarbonato (lentes), borracha (vedações de respiradores), espumas (abafadores) e plásticos (capacetes), comprometendo a capacidade de proteção sem que o dano seja visível externamente."
+      },
+      {
+        "id": "NR06-PF-13",
+        "modulo": 2,
+        "enunciado": "Quando um trabalhador alega alergia ou reação cutânea ao EPI fornecido, o empregador deve:",
+        "alternativas": [
+          "Dispensar o trabalhador do uso do EPI e deixá-lo sem proteção",
+          "Ignorar a alegação — allergias a EPI são raras e geralmente não comprovadas",
+          "Encaminhar o trabalhador ao médico do trabalho para avaliação, buscar alternativas de EPI (outros materiais ou modelos) que ofereçam a mesma proteção sem causar reação, e registrar o ocorrido",
+          "Exigir que o trabalhador continue usando o mesmo EPI até encontrar alternativa"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Reações a EPIs (especialmente látex, níquel em metais, biocidas em espumas) são documentadas e devem ser levadas a sério. O empregador deve encaminhar ao médico do trabalho para diagnóstico e buscar alternativas equivalentes de proteção (ex: luvas de nitrila em vez de látex). Não há opção de dispensar o uso sem oferecer alternativa."
+      },
+      {
+        "id": "NR06-PF-14",
+        "modulo": 1,
+        "enunciado": "O avental de raspa de couro utilizado em soldagem protege principalmente contra:",
+        "alternativas": [
+          "Produtos químicos ácidos e solventes orgânicos",
+          "Faíscas, respingos de metal fundido (solda), calor moderado por contato e cortes de rebarbas — é resistente à combustão mas não impermeável a produtos químicos líquidos",
+          "Radiação ionizante (raios X e gama)",
+          "Queda de objetos pesados sobre o tronco"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O avental de raspa de couro é EPI específico para soldagem: resiste às faíscas e respingos de metal fundido sem pegar fogo, e protege contra cortes leves. Não protege contra produtos químicos líquidos (para isso, usam-se aventais de borracha ou PVC) nem contra impactos de alta energia."
+      },
+      {
+        "id": "NR06-PF-15",
+        "modulo": 2,
+        "enunciado": "O prazo de validade indicado na embalagem de um EPI refere-se a:",
+        "alternativas": [
+          "Apenas ao prazo de garantia comercial contra defeitos de fabricação",
+          "Ao período em que o EPI mantém suas propriedades de proteção quando armazenado corretamente — após esse prazo, mesmo sem uso, o material pode ter degradado e o EPI não deve ser utilizado",
+          "Apenas ao prazo para troca gratuita pelo fornecedor",
+          "Ao período mínimo de uso antes de ser necessária a primeira manutenção"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O prazo de validade indica até quando o EPI mantém suas propriedades protetoras nas condições de armazenamento recomendadas. Materiais como borracha, policarbonato, espumas e filtros se degradam com o tempo, temperatura, umidade e exposição à luz, mesmo sem uso. EPI vencido não deve ser utilizado."
+      },
+      {
+        "id": "NR06-PF-16",
+        "modulo": 1,
+        "enunciado": "O protetor facial (viseira) difere dos óculos de proteção porque:",
+        "alternativas": [
+          "O protetor facial é mais barato e pode substituir qualquer tipo de óculos",
+          "O protetor facial protege toda a face (olhos, nariz, boca e queixo) contra respingos, impactos e projeções — mas em algumas situações deve ser usado em conjunto com óculos de proteção para garantir proteção lateral e inferior",
+          "O protetor facial é indicado apenas para trabalhos ao ar livre",
+          "Não há diferença de proteção — são equipamentos equivalentes"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O protetor facial oferece cobertura maior do que os óculos, protegendo toda a face. Porém, em alguns cenários de alto risco (alto impacto, explosões, aerossóis), é necessário usá-lo em conjunto com óculos de proteção, pois a viseira pode ser levantada ou ter lacunas laterais que permitem a entrada de partículas."
+      },
+      {
+        "id": "NR06-PF-17",
+        "modulo": 2,
+        "enunciado": "O armazenamento correto de EPIs exige que:",
+        "alternativas": [
+          "Sejam guardados junto com ferramentas e outros materiais para facilitar o acesso",
+          "Sejam armazenados em local limpo, seco, arejado, protegido de luz solar direta, calor excessivo, produtos químicos e objetos cortantes, conforme as instruções do fabricante de cada EPI",
+          "Sejam guardados em qualquer lugar disponível — o armazenamento não influencia na vida útil",
+          "Sejam mantidos sempre ao alcance do sol para esterilização natural"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O armazenamento inadequado degrada os EPIs: UV e calor degradam plásticos e borrachas; umidade favorece fungos em espumas; produtos químicos podem atacar materiais do EPI. Cada EPI tem recomendações específicas do fabricante que devem ser seguidas para garantir que mantenha suas propriedades até o uso."
+      },
+      {
+        "id": "NR06-PF-18",
+        "modulo": 1,
+        "enunciado": "Trabalhadoras gestantes têm direito a:",
+        "alternativas": [
+          "Ser dispensadas do uso de EPI durante a gravidez",
+          "EPIs adequados às suas condições físicas durante a gestação — o empregador deve adaptar ou substituir os EPIs convencionais por modelos que se ajustem às mudanças corporais, garantindo conforto e proteção",
+          "Apenas ao uso de luvas e sapatos — os demais EPIs são dispensados na gestação",
+          "Nenhum tratamento diferenciado em relação a EPIs"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Trabalhadoras gestantes devem continuar usando EPIs, adaptados à sua condição física. Aventais, cintos de segurança e outros EPIs que pressionam o abdômen devem ser substituídos por modelos adequados. O empregador é responsável por garantir tanto a proteção quanto o conforto durante a gestação."
+      },
+      {
+        "id": "NR06-PF-19",
+        "modulo": 2,
+        "enunciado": "O empregador que não fornece EPI ao trabalhador, ou fornece EPI inadequado ou sem CA, pode sofrer:",
+        "alternativas": [
+          "Apenas uma advertência verbal do fiscal do trabalho na primeira infração",
+          "Autuação e multa pelo Ministério do Trabalho, embargo ou interdição do estabelecimento em caso de risco grave, e responsabilização civil e criminal em caso de acidente decorrente da ausência ou inadequação do EPI",
+          "Apenas responsabilização civil — não há sanção penal",
+          "Nenhuma sanção se o trabalhador assinar um termo de ciência do risco"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O não fornecimento de EPI ou o fornecimento de EPI inadequado é infração à NR-06, sujeita a multas. Em caso de acidente, o empregador responde civil (indenizações), administrativamente (multas, embargo) e criminalmente (lesão corporal ou homicídio culposo). Termo de ciência do risco não exime o empregador de suas obrigações legais."
+      },
+      {
+        "id": "NR06-PF-20",
+        "modulo": 2,
+        "enunciado": "Além de fornecer o EPI, o empregador deve:",
+        "alternativas": [
+          "Apenas disponibilizar o EPI — a responsabilidade pelo treinamento é do próprio trabalhador",
+          "Treinar o trabalhador sobre o uso correto, limitações, conservação e higienização do EPI, assegurando que ele saiba utilizar o equipamento da forma que maximiza a proteção",
+          "Apenas afixar cartazes com instruções de uso no refeitório da empresa",
+          "Fornecer treinamento apenas quando o EPI mudar de modelo"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A NR-06 exige que o empregador treine os trabalhadores sobre: por que usar o EPI; como usá-lo corretamente; como inspecioná-lo antes de cada uso; como conservá-lo e higienizá-lo; e quando solicitar substituição. EPI sem treinamento adequado pode ser usado de forma incorreta, comprometendo totalmente a proteção."
+      }
+    ]
+  }
+}
