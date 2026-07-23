@@ -3,7 +3,11 @@ import { useState, useEffect } from 'react'
 import { Upload, Trash2, FileText, Loader2, CheckCircle2, BookOpen } from 'lucide-react'
 import Link from 'next/link'
 
-const CURSOS = [{ slug: 'nr10-basico', titulo: 'NR-10 Básico', modulos: 4 }]
+const CURSOS = [
+  { slug: 'nr10-basico', titulo: 'NR-10 Básico', modulos: 4 },
+  { slug: 'nr35', titulo: 'NR-35 Trabalho em Altura', modulos: 2 },
+  { slug: 'nr10-sep', titulo: 'NR-10 SEP', modulos: 4 },
+]
 
 export default function AdminApostilas() {
   const [cursoSelecionado, setCursoSelecionado] = useState('nr10-basico')

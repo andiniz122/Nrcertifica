@@ -1,0 +1,411 @@
+{
+  "curso": "NR-35 - Trabalho em Altura",
+  "sigla": "NR-35",
+  "carga_horaria": "8h",
+  "validade_anos": 2,
+  "aprovacao_minima": 0.70,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Legislação, Riscos e Medidas Preventivas em Trabalho em Altura",
+      "descricao": "Fundamentos legais da NR-35, identificação de riscos em trabalhos acima de 2 metros e as principais medidas de prevenção de quedas.",
+      "exercicios": [
+        {
+          "id": "NR35-M1-Q1",
+          "enunciado": "Segundo a NR-35, trabalho em altura é definido como toda atividade executada:",
+          "alternativas": [
+            "Acima de 5 metros do nível do piso",
+            "Acima de 2 metros do nível inferior, onde haja risco de queda",
+            "Apenas em andaimes ou telhados",
+            "Em locais que exijam o uso de escada"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A NR-35 define trabalho em altura como toda atividade executada acima de 2,00 m (dois metros) do nível inferior, onde haja risco de queda. A altura de referência é 2 metros, independentemente do tipo de estrutura."
+        },
+        {
+          "id": "NR35-M1-Q2",
+          "enunciado": "Antes do início do trabalho em altura, o trabalhador deve:",
+          "alternativas": [
+            "Apenas verificar se o cinto de segurança está disponível no local",
+            "Iniciar o trabalho e comunicar os riscos ao supervisor ao final",
+            "Participar da Análise de Risco (AR) e receber a Permissão de Trabalho (PT) devidamente preenchida e autorizada",
+            "Aguardar instruções apenas se o trabalho for acima de 10 metros"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A NR-35 exige que toda atividade em altura seja precedida de Análise de Risco (AR) para identificar os perigos e definir as medidas de controle. A Permissão de Trabalho (PT) é obrigatória e deve estar autorizada antes de qualquer atividade."
+        },
+        {
+          "id": "NR35-M1-Q3",
+          "enunciado": "O principal risco em trabalhos em altura é:",
+          "alternativas": [
+            "Exposição ao calor excessivo",
+            "Ruído excessivo de máquinas próximas",
+            "Queda de pessoas ou queda de objetos/ferramentas sobre terceiros",
+            "Contato com produtos químicos nas estruturas"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O principal risco em trabalho em altura é a queda — tanto do trabalhador quanto de objetos e ferramentas sobre outras pessoas. Quedas de altura são uma das principais causas de acidentes fatais no Brasil."
+        },
+        {
+          "id": "NR35-M1-Q4",
+          "enunciado": "A Permissão de Trabalho (PT) para trabalhos em altura deve ser:",
+          "alternativas": [
+            "Emitida uma única vez e válida para toda a duração da obra",
+            "Emitida pelo próprio trabalhador que realizará a atividade",
+            "Emitida por pessoa competente, válida para cada atividade específica e encerrada ao término do trabalho",
+            "Apenas recomendada — não é obrigatória quando o trabalho dura menos de 30 minutos"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A Permissão de Trabalho deve ser emitida por pessoa legalmente habilitada ou qualificada, para cada atividade, devendo ser encerrada ao término do trabalho. Não é reutilizável e não tem validade permanente."
+        },
+        {
+          "id": "NR35-M1-Q5",
+          "enunciado": "Um trabalhador observa que o ponto de ancoragem indicado para o trabalho está danificado. A atitude correta é:",
+          "alternativas": [
+            "Usar o ponto da mesma forma, pois o dano parece pequeno",
+            "Improvisar outro ponto de ancoragem próximo sem autorização",
+            "Interromper o trabalho, sinalizar o perigo e comunicar imediatamente ao responsável para que seja realizada nova avaliação",
+            "Trabalhar sem ancoragem, sendo rápido para reduzir o tempo de exposição ao risco"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Ponto de ancoragem danificado representa risco grave e iminente. O trabalhador tem o dever de interromper a atividade, sinalizar e comunicar ao responsável. Usar ponto danificado ou improvisar pode resultar em queda fatal."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "EPI, Sistemas de Ancoragem, Procedimentos Operacionais e Emergências",
+      "descricao": "Equipamentos de proteção individual para altura, sistemas de ancoragem e linha de vida, procedimentos de trabalho seguro e resgate em emergências.",
+      "exercicios": [
+        {
+          "id": "NR35-M2-Q1",
+          "enunciado": "O EPI obrigatório para trabalho em altura que distribui as forças de impacto pelo corpo em caso de queda é:",
+          "alternativas": [
+            "Capacete com jugular",
+            "Cinto de segurança tipo paraquedista (arnês de corpo inteiro)",
+            "Cinto de segurança abdominal (tipo eletricista)",
+            "Calçado de segurança com solado antiderrapante"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O arnês de corpo inteiro (cinto paraquedista) é obrigatório para trabalho em altura onde haja risco de queda. Ele distribui as forças de impacto pelo tronco, coxas e ombros, evitando lesões graves. O cinto abdominal só é permitido para posicionamento — não para proteção contra queda."
+        },
+        {
+          "id": "NR35-M2-Q2",
+          "enunciado": "O talabarte de segurança (rabicho) com absorvedor de energia tem como função:",
+          "alternativas": [
+            "Posicionar o trabalhador na estrutura sem risco de queda",
+            "Conectar o arnês ao ponto de ancoragem e absorver parte da energia cinética em caso de queda, reduzindo a força de impacto no corpo",
+            "Substituir a linha de vida em trabalhos de curta duração",
+            "Apenas indicar que o trabalhador está ancorado — não absorve energia"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O talabarte com absorvedor de energia conecta o arnês ao ponto de ancoragem e, em caso de queda, o absorvedor se rasga de forma controlada, dissipando a energia e reduzindo a força de impacto sobre o trabalhador."
+        },
+        {
+          "id": "NR35-M2-Q3",
+          "enunciado": "A Distância de Segurança para o ponto de ancoragem deve ser calculada levando em conta:",
+          "alternativas": [
+            "Apenas a altura do trabalhador",
+            "Somente o comprimento do talabarte",
+            "O comprimento do talabarte, a extensão do absorvedor de energia ativado, a estatura do trabalhador e uma margem de segurança adicional",
+            "Apenas a altura da estrutura onde o trabalho é realizado"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A distância de queda livre deve ser calculada somando: comprimento do talabarte + extensão do absorvedor ao abrir + distância do ponto de conexão do arnês ao chão do trabalhador + margem de segurança. Sem esse cálculo, o trabalhador pode atingir o nível inferior mesmo ancorado."
+        },
+        {
+          "id": "NR35-M2-Q4",
+          "enunciado": "Para o trabalho em telhado com telhas frágeis (fibrocimento, vidro, policarbonato), a medida de proteção coletiva mais adequada é:",
+          "alternativas": [
+            "Trabalhar com sapatos de solado de borracha para não escorregar",
+            "Usar plataformas de trabalho (tábuas de madeira) sobre as telhas para distribuir o peso e linhas de vida para ancoragem",
+            "Trabalhar rapidamente para reduzir o risco de quebrar as telhas",
+            "Exigir que o trabalhador seja leve para não quebrar as telhas"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Em telhados com materiais frágeis, é obrigatório o uso de plataformas (tábuas ou passarelas) sobre as telhas para distribuir o peso e evitar ruptura, combinado com sistemas de ancoragem e linha de vida para proteção contra quedas."
+        },
+        {
+          "id": "NR35-M2-Q5",
+          "enunciado": "Em caso de queda com o trabalhador suspenso pelo arnês (síndrome do arreio), o socorro deve ser prestado:",
+          "alternativas": [
+            "Aguardando o SAMU sem agir, pois qualquer manobra pode agravar lesões",
+            "Com urgência — o trabalhador deve ser resgatado o mais rapidamente possível e não deve permanecer suspenso verticalmente por mais de 10 a 15 minutos para evitar síndrome de suspensão",
+            "Cortando o talabarte para que caia no chão e seja socorrido",
+            "Apenas após a chegada de um médico no local"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A síndrome do arreio (suspensão ortostática) pode causar desmaio e morte em minutos com o trabalhador suspenso verticalmente. O resgate deve ser imediato. Após o resgate, o trabalhador deve ser avaliado medicamente mesmo que pareça bem."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 10 questões deste banco de 20. Nota mínima para aprovação: 7/10 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 10,
+    "nota_minima": 7,
+    "banco": [
+      {
+        "id": "NR35-PF-01",
+        "modulo": 1,
+        "enunciado": "A NR-35 é aplicável a todos os trabalhadores que realizam atividades em altura acima de 2 metros. A responsabilidade pelo cumprimento da norma cabe:",
+        "alternativas": [
+          "Exclusivamente ao trabalhador que executará a atividade",
+          "Apenas à equipe de segurança do trabalho da empresa",
+          "Ao empregador, que deve garantir as condições de segurança, e ao trabalhador, que deve cumprir os procedimentos estabelecidos",
+          "Somente ao supervisor imediato que autorizou o trabalho"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A responsabilidade é compartilhada: o empregador deve fornecer EPI adequado, capacitar, elaborar procedimentos e emitir PT; o trabalhador deve cumprir os procedimentos, usar os EPIs e comunicar irregularidades."
+      },
+      {
+        "id": "NR35-PF-02",
+        "modulo": 1,
+        "enunciado": "O trabalhador considerado 'capacitado' para trabalho em altura, conforme NR-35, é aquele que:",
+        "alternativas": [
+          "Tem mais de 5 anos de experiência em obras de construção civil",
+          "Passou por treinamento teórico e prático com carga horária mínima de 8 horas, com avaliação e certificação",
+          "Possui qualquer treinamento de segurança do trabalho em geral",
+          "Apresenta atestado médico de aptidão física para trabalho em altura"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Trabalhador capacitado conforme NR-35 é aquele que concluiu treinamento teórico e prático mínimo de 8 horas, foi avaliado quanto ao aprendizado e recebeu certificado. O treinamento tem validade de 2 anos."
+      },
+      {
+        "id": "NR35-PF-03",
+        "modulo": 1,
+        "enunciado": "A Análise de Risco (AR) para trabalho em altura deve identificar:",
+        "alternativas": [
+          "Apenas os EPIs necessários para o trabalho",
+          "Somente os riscos de queda do trabalhador",
+          "Os perigos existentes, os riscos associados (queda de pessoas, queda de objetos, condições climáticas adversas, etc.) e as medidas de controle para cada risco identificado",
+          "Apenas o tempo estimado para conclusão do trabalho"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A AR deve identificar todos os perigos (não apenas queda), avaliar os riscos e definir as medidas de controle adequadas. Inclui riscos como queda de pessoas, queda de materiais, condições climáticas, eletricidade, entre outros."
+      },
+      {
+        "id": "NR35-PF-04",
+        "modulo": 1,
+        "enunciado": "Em condições de ventos fortes, chuva intensa, neblina densa ou raios, o trabalho em altura deve ser:",
+        "alternativas": [
+          "Realizado normalmente com uso de EPI adicional",
+          "Suspenso imediatamente, pois são condições climáticas adversas que aumentam significativamente o risco de queda",
+          "Realizado apenas se o trabalhador concordar em continuar",
+          "Apenas adiado se o vento ultrapassar 60 km/h"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Condições climáticas adversas (vento forte, chuva, neblina, raios) tornam o trabalho em altura extremamente perigoso. A NR-35 determina a suspensão das atividades nessas condições para proteção dos trabalhadores."
+      },
+      {
+        "id": "NR35-PF-05",
+        "modulo": 1,
+        "enunciado": "O 'vigia' ou 'trabalhador de apoio em terra' durante trabalho em altura tem a função de:",
+        "alternativas": [
+          "Apenas observar o trabalho sem qualquer responsabilidade",
+          "Manter comunicação com o trabalhador em altura, acionar socorro em emergências e controlar o acesso à área demarcada",
+          "Substituir o trabalhador em altura quando necessário",
+          "Registrar o tempo de trabalho para fins de pagamento"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O apoio em terra é fundamental: mantém comunicação constante com o trabalhador em altura, aciona socorro imediatamente em caso de emergência, controla o acesso de terceiros à área e auxilia nas operações de resgate se necessário."
+      },
+      {
+        "id": "NR35-PF-06",
+        "modulo": 2,
+        "enunciado": "O cinto de segurança abdominal (tipo eletricista) pode ser utilizado em trabalho em altura:",
+        "alternativas": [
+          "Sempre que o trabalhador preferir ao invés do arnês",
+          "Em qualquer situação, pois é mais confortável",
+          "Apenas para posicionamento e restrição de movimento — NUNCA como proteção contra queda livre",
+          "Em alturas de até 5 metros, desde que haja rede de proteção abaixo"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O cinto abdominal só é permitido para posicionamento (restrição de movimentos que evita o trabalhador chegar à borda). Para proteção contra queda livre, é obrigatório o arnês de corpo inteiro. Usar cinto abdominal em queda livre pode causar ruptura de órgãos."
+      },
+      {
+        "id": "NR35-PF-07",
+        "modulo": 2,
+        "enunciado": "A resistência mínima exigida para um ponto de ancoragem para trabalho em altura é de:",
+        "alternativas": [
+          "100 kgf (peso médio do trabalhador)",
+          "500 kgf",
+          "1.500 kgf (conforme NR-35 e normas técnicas aplicáveis)",
+          "Não há especificação — qualquer estrutura firme pode ser usada"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A NR-35 exige que os pontos de ancoragem suportem no mínimo 1.500 kgf (15 kN) para uso individual. Essa resistência elevada é necessária para absorver as forças dinâmicas geradas em uma queda com fator 2."
+      },
+      {
+        "id": "NR35-PF-08",
+        "modulo": 2,
+        "enunciado": "Linha de vida horizontal flexível (corda ou cabo) deve ser instalada:",
+        "alternativas": [
+          "Com a maior flecha possível para facilitar a movimentação do trabalhador",
+          "Por qualquer trabalhador em altura, sem necessidade de projeto técnico",
+          "Com projeto e cálculo de engenheiro, levando em conta cargas estáticas e dinâmicas nos pontos de ancoragem extremos",
+          "Apenas em obras de construção civil — não é exigida em manutenção industrial"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A linha de vida horizontal deve ser dimensionada por engenheiro, pois as forças nos pontos de ancoragem são muito maiores do que se imagina (efeito catapulta). Um projeto inadequado pode resultar em falha catastrófica com múltiplas vítimas."
+      },
+      {
+        "id": "NR35-PF-09",
+        "modulo": 2,
+        "enunciado": "EPI para trabalho em altura deve ser inspecionado:",
+        "alternativas": [
+          "Uma vez por ano, em inspeção periódica pela equipe de segurança",
+          "Apenas quando apresentar dano visível",
+          "Antes de cada uso (inspeção do usuário) e periodicamente por pessoa competente conforme recomendação do fabricante",
+          "Na compra e depois a cada 5 anos"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O arnês e todos os EPIs de altura devem ser inspecionados pelo usuário ANTES de cada uso — verificando costuras, fivelas, anéis e o talabarte. Inspeções periódicas por pessoa competente são adicionais. Qualquer EPI com dano deve ser imediatamente retirado de uso."
+      },
+      {
+        "id": "NR35-PF-10",
+        "modulo": 2,
+        "enunciado": "Ao realizar trabalho em altura próximo a redes elétricas energizadas, deve-se:",
+        "alternativas": [
+          "Usar apenas capacete de segurança como proteção suficiente",
+          "Manter a distância mínima de segurança elétrica ou solicitar o desligamento e sinalização da rede, combinando os requisitos da NR-35 e da NR-10",
+          "Trabalhar normalmente se a rede estiver acima do trabalhador",
+          "Usar apenas botas dielétricas como proteção"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Trabalho em altura próximo a instalações elétricas combina dois riscos graves: queda e choque elétrico. É obrigatório respeitar as distâncias mínimas de segurança elétrica ou solicitar o desligamento da rede, aplicando simultaneamente NR-35 e NR-10."
+      },
+      {
+        "id": "NR35-PF-11",
+        "modulo": 1,
+        "enunciado": "O treinamento de trabalho em altura exigido pela NR-35 deve ter validade máxima de:",
+        "alternativas": [
+          "6 meses",
+          "1 ano",
+          "2 anos — podendo ser antecipado em caso de mudança nos procedimentos, equipamentos ou retorno de afastamento prolongado",
+          "5 anos"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O treinamento NR-35 tem validade de 2 anos. Deve ser refeito ao término deste prazo, ou antes, quando houver mudança nos procedimentos, equipamentos, após acidente ou retorno de afastamento superior a 90 dias."
+      },
+      {
+        "id": "NR35-PF-12",
+        "modulo": 1,
+        "enunciado": "O trabalhador que se sentir em condição de saúde inadequada para trabalho em altura (tontura, vertigem, uso de medicação que cause sonolência) deve:",
+        "alternativas": [
+          "Trabalhar normalmente, pois a empresa já realizou o ASO (Atestado de Saúde Ocupacional)",
+          "Comunicar ao supervisor antes de iniciar o trabalho e aguardar avaliação — não deve realizar trabalho em altura nessa condição",
+          "Trabalhar com um parceiro para supervisão",
+          "Usar o cinto abdominal em vez do arnês para maior segurança"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A NR-35 proíbe o trabalho em altura de trabalhadores com condições de saúde que comprometam sua segurança, mesmo que temporariamente. O trabalhador tem o dever de comunicar ao supervisor qualquer condição (física ou medicamentosa) que possa comprometer sua segurança."
+      },
+      {
+        "id": "NR35-PF-13",
+        "modulo": 2,
+        "enunciado": "Em caso de emergência com trabalhador em altura (queda suspensa, desmaio, acidente), o procedimento de resgate deve:",
+        "alternativas": [
+          "Aguardar o Corpo de Bombeiros sem qualquer intervenção",
+          "Ser improvisado no momento pelo trabalhador de apoio",
+          "Estar previsto antes do início da atividade no plano de emergência, com pessoal treinado e equipamentos disponíveis no local",
+          "Ser realizado apenas por médicos ou paramédicos"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A NR-35 exige que o plano de emergência e resgate seja elaborado e conhecido por todos antes do início do trabalho. Equipe treinada e equipamentos de resgate devem estar disponíveis no local — o resgate imediato pode fazer a diferença entre vida e morte."
+      },
+      {
+        "id": "NR35-PF-14",
+        "modulo": 2,
+        "enunciado": "Andaime tubular deve ser montado e desmontado por:",
+        "alternativas": [
+          "Qualquer trabalhador de construção civil com experiência",
+          "Trabalhador capacitado especificamente para montagem e desmontagem de andaimes, sob supervisão de pessoa qualificada",
+          "Apenas engenheiros civis",
+          "O próprio locatário do andaime, sem necessidade de capacitação"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A NR-35 exige que a montagem, desmontagem e alteração de andaimes seja realizada por trabalhador capacitado sob supervisão de pessoa qualificada. A montagem incorreta de andaimes é causa frequente de acidentes graves e fatais."
+      },
+      {
+        "id": "NR35-PF-15",
+        "modulo": 1,
+        "enunciado": "A delimitação e sinalização da área abaixo do trabalho em altura serve para:",
+        "alternativas": [
+          "Apenas organizar o canteiro de obras",
+          "Proteger terceiros contra a queda de ferramentas, materiais e detritos provenientes do trabalho em altura",
+          "Indicar a área de exclusão apenas para outros trabalhadores",
+          "Servir como referência visual para o trabalhador em altura"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A área abaixo do trabalho em altura deve ser delimitada e sinalizada para impedir o acesso de pessoas não autorizadas à zona de queda de objetos. Ferramentas e materiais podem cair e causar lesões graves em quem estiver abaixo."
+      },
+      {
+        "id": "NR35-PF-16",
+        "modulo": 2,
+        "enunciado": "O 'fator de queda' (fall factor) em trabalho em altura representa:",
+        "alternativas": [
+          "A altura total da estrutura onde o trabalho é realizado",
+          "A relação entre a distância de queda livre e o comprimento do talabarte, usado para calcular as forças geradas sobre o sistema de ancoragem e o trabalhador",
+          "O número de trabalhadores que já sofreram queda no mesmo local",
+          "A porcentagem de risco de queda calculada pela engenharia de segurança"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O fator de queda (fall factor = distância de queda / comprimento do talabarte) determina a intensidade das forças geradas. Fator 2 é o mais crítico — ocorre quando o ponto de ancoragem está abaixo do ponto de conexão do arnês, dobrando a distância de queda."
+      },
+      {
+        "id": "NR35-PF-17",
+        "modulo": 2,
+        "enunciado": "Após uma queda com retenção pelo sistema de ancoragem (queda em que o trabalhador foi retido), o talabarte e o arnês devem:",
+        "alternativas": [
+          "Ser reutilizados normalmente se não apresentarem dano visível",
+          "Ser enviados ao fabricante para inspeção e liberação de reuso",
+          "Ser imediatamente descartados e substituídos — EPIs que sofreram carga de queda não podem ser reutilizados",
+          "Ser lavados e inspecionados visualmente antes de reutilizar"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "EPIs de proteção contra quedas que sofreram carga dinâmica (queda real) devem ser descartados imediatamente, mesmo sem dano aparente. As fibras internas e os metais podem ter sofrido deformações que comprometem a resistência futura."
+      },
+      {
+        "id": "NR35-PF-18",
+        "modulo": 1,
+        "enunciado": "A NR-35 exige que o trabalhador seja considerado 'apto' para trabalho em altura. Esta aptidão é avaliada por:",
+        "alternativas": [
+          "Auto-declaração do próprio trabalhador",
+          "Avaliação exclusiva do supervisor de obra",
+          "Médico do trabalho, que emite o ASO (Atestado de Saúde Ocupacional) com menção à aptidão para trabalho em altura",
+          "Fisioterapeuta da empresa"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A aptidão para trabalho em altura é atribuição do médico do trabalho, expressa no ASO. São avaliadas condições como vertigem, pressão arterial, uso de medicamentos, equilíbrio e outras condições que possam representar risco adicional."
+      },
+      {
+        "id": "NR35-PF-19",
+        "modulo": 2,
+        "enunciado": "A plataforma de trabalho em andaime deve ter largura mínima de:",
+        "alternativas": [
+          "30 cm",
+          "50 cm",
+          "60 cm — e deve ser instalada com guarda-corpo e rodapé para evitar queda de pessoas e materiais",
+          "1 metro obrigatoriamente"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A NR-35 e normas técnicas de andaimes exigem plataforma com largura mínima de 60 cm, piso antiderrapante, guarda-corpo lateral (corrimão superior a 1,20 m e travessa intermediária) e rodapé de 20 cm para evitar queda de materiais."
+      },
+      {
+        "id": "NR35-PF-20",
+        "modulo": 1,
+        "enunciado": "A empresa que terceiriza atividades de trabalho em altura a uma contratada:",
+        "alternativas": [
+          "Não tem responsabilidade sobre a segurança dos trabalhadores terceirizados",
+          "É responsável solidariamente pela segurança do trabalhador contratado, devendo exigir que a contratada cumpra todos os requisitos da NR-35",
+          "Tem responsabilidade apenas se o acidente ocorrer dentro das instalações da contratante",
+          "Tem responsabilidade somente quando assina a ordem de serviço pessoalmente"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A empresa contratante é responsável solidária pela segurança dos trabalhadores terceirizados em suas instalações. Deve garantir que a contratada cumpra a NR-35, incluindo capacitação, EPIs, PT e procedimentos, e pode ser responsabilizada em caso de acidente."
+      }
+    ]
+  }
+}

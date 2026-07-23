@@ -1,0 +1,545 @@
+{
+  "curso": "NR-10 SEP - Segurança em Sistemas Elétricos de Potência",
+  "sigla": "NR-10 SEP",
+  "carga_horaria": "40h",
+  "validade_anos": 2,
+  "aprovacao_minima": 0.70,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Fundamentos e Terminologia dos Sistemas Elétricos de Potência",
+      "descricao": "Conceitos fundamentais de SEP, terminologia técnica, classificação de tensões, estrutura dos sistemas de geração, transmissão e distribuição de energia elétrica.",
+      "exercicios": [
+        {
+          "id": "NR10SEP-M1-Q1",
+          "enunciado": "O complemento SEP da NR-10 se aplica especificamente a trabalhadores que:",
+          "alternativas": [
+            "Atuam em qualquer instalação elétrica de baixa tensão",
+            "Intervêm em sistemas elétricos de potência (SEP), incluindo geração, transmissão, distribuição e consumidores com características de SEP",
+            "Apenas a engenheiros eletricistas com CREA ativo",
+            "Somente aos técnicos de concessionárias de energia elétrica"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O complemento SEP habilita trabalhadores para intervir em Sistemas Elétricos de Potência — geração, transmissão e distribuição de energia, além de instalações de consumidores que possuam características de SEP (subestações, redes de distribuição, linhas de transmissão). É complementar ao NR-10 Básico."
+        },
+        {
+          "id": "NR10SEP-M1-Q2",
+          "enunciado": "Alta tensão (AT) em sistemas elétricos é definida como:",
+          "alternativas": [
+            "Tensão superior a 127V",
+            "Tensão superior a 220V",
+            "Tensão superior a 1.000V em corrente alternada ou 1.500V em corrente contínua",
+            "Tensão superior a 10.000V apenas para linhas de transmissão"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Conforme a NR-10 e as normas ABNT, alta tensão corresponde a valores superiores a 1.000V (CA) ou 1.500V (CC). Abaixo desses valores, é classificada como baixa tensão. Os SEPs tipicamente operam em alta tensão."
+        },
+        {
+          "id": "NR10SEP-M1-Q3",
+          "enunciado": "A distância de segurança (zona controlada) em torno de partes energizadas em alta tensão existe porque:",
+          "alternativas": [
+            "A eletricidade pode aquecer o ar ao redor, causando queimaduras por calor",
+            "A tensão pode se propagar pelo ar — quanto maior a tensão, maior a distância que um arco elétrico pode percorrer para atingir um condutor aterrado ou o corpo humano",
+            "Apenas por questão de organização e espaço de trabalho",
+            "É um requisito administrativo sem base técnica comprovada"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Em alta tensão, o ar não é isolante perfeito. Um arco elétrico pode se estabelecer através do ar entre a parte energizada e um objeto em potencial diferente (incluindo o corpo humano). A distância mínima de segurança depende do nível de tensão e deve ser respeitada rigorosamente."
+        },
+        {
+          "id": "NR10SEP-M1-Q4",
+          "enunciado": "Em sistemas trifásicos de transmissão, a tensão nominal indicada (ex: 138 kV) refere-se a:",
+          "alternativas": [
+            "A tensão entre cada fase e o neutro do sistema",
+            "A tensão entre duas fases quaisquer do sistema (tensão de linha)",
+            "A tensão máxima de operação do sistema",
+            "A tensão de fase medida em relação à terra"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A tensão nominal em sistemas trifásicos (138 kV, 230 kV, 500 kV etc.) refere-se à tensão de linha (entre fases). A tensão de fase (fase-neutro ou fase-terra) é a tensão de linha dividida pela raiz de 3 (√3 ≈ 1,732)."
+        },
+        {
+          "id": "NR10SEP-M1-Q5",
+          "enunciado": "Subestação de energia elétrica é uma instalação que:",
+          "alternativas": [
+            "Gera energia elétrica a partir de fontes primárias (água, vapor, vento)",
+            "Transforma e/ou distribui energia elétrica, podendo elevar ou rebaixar tensões, incluindo equipamentos como transformadores, disjuntores, chaves e sistemas de proteção",
+            "Apenas armazena energia em grandes bancos de baterias",
+            "Serve exclusivamente como ponto de medição de consumo de energia"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Subestações são instalações onde a energia elétrica é transformada (nível de tensão), seccionada, protegida e distribuída. Contêm equipamentos como transformadores de potência, disjuntores, chaves seccionadoras, TCs, TPs, para-raios e sistemas de proteção e controle."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Proteções, Manobras e Equipamentos em SEP",
+      "descricao": "Sistemas de proteção em alta tensão, equipamentos de manobra, procedimentos de comissionamento, transformadores de potência e medição.",
+      "exercicios": [
+        {
+          "id": "NR10SEP-M2-Q1",
+          "enunciado": "O disjuntor de alta tensão tem como função principal em uma subestação:",
+          "alternativas": [
+            "Medir a energia consumida pelo sistema",
+            "Transformar a tensão de transmissão para a tensão de distribuição",
+            "Interromper a corrente de curto-circuito e de sobrecarga, protegendo o sistema — pode abrir em carga e em falta",
+            "Isolar visivelmente partes do sistema para manutenção (abertura visível)"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O disjuntor é o dispositivo de manobra que pode operar (abrir/fechar) tanto em condições normais de carga quanto durante curtos-circuitos. Ele possui câmara de extinção de arco (a óleo, a SF6, a vácuo ou a ar comprimido) e é acionado pelos relés de proteção."
+        },
+        {
+          "id": "NR10SEP-M2-Q2",
+          "enunciado": "A chave seccionadora (disconnect switch) em alta tensão difere do disjuntor porque:",
+          "alternativas": [
+            "A seccionadora pode interromper correntes de curto-circuito com maior segurança",
+            "A seccionadora NÃO pode abrir em carga — deve ser manobrada apenas com o circuito já desenergizado e sem corrente. Seu propósito é criar abertura visível para isolamento",
+            "A seccionadora é mais barata e substitui o disjuntor na maioria das instalações modernas",
+            "A seccionadora pode ser operada remotamente enquanto o disjuntor é apenas manual"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A chave seccionadora NÃO interrompe corrente de carga. Ela deve ser operada apenas após o disjuntor ter aberto o circuito. Sua função é criar isolamento visível e seguro para manutenção. Operar uma seccionadora em carga pode gerar arco elétrico grave e acidente fatal."
+        },
+        {
+          "id": "NR10SEP-M2-Q3",
+          "enunciado": "O Transformador de Corrente (TC) em alta tensão tem como função:",
+          "alternativas": [
+            "Elevar ou rebaixar a tensão do sistema de transmissão",
+            "Reduzir proporcionalmente a corrente do circuito de alta tensão para valores seguros para instrumentos de medição e relés de proteção (tipicamente 5A ou 1A no secundário)",
+            "Fornecer corrente de partida para os motores elétricos de alta tensão",
+            "Compensar a potência reativa do sistema elétrico"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O TC isola galvanicamente e reduz proporcionalmente a corrente de alta tensão para valores seguros (5A ou 1A) para alimentar amperímetros, medidores de energia e relés de proteção. ATENÇÃO: o secundário do TC jamais deve ser deixado em aberto — isso gera tensões perigosas e pode destruir o TC."
+        },
+        {
+          "id": "NR10SEP-M2-Q4",
+          "enunciado": "Antes de realizar manutenção em um transformador de potência, a sequência correta de manobras é:",
+          "alternativas": [
+            "Abrir o disjuntor do lado de alta tensão e iniciar a manutenção",
+            "Abrir o disjuntor de alta tensão, abrir o disjuntor do lado de baixa tensão, abrir as seccionadoras de isolamento, verificar ausência de tensão, instalar aterramento temporário e sinalizar",
+            "Apenas sinalizar a área e iniciar a manutenção rapidamente",
+            "Abrir somente as seccionadoras de isolamento sem necessidade de operar os disjuntores"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A sequência LOTO em SEP exige: 1) Abrir os disjuntores (AT e BT); 2) Abrir as seccionadoras de isolamento; 3) Verificar ausência de tensão com instrumento adequado; 4) Instalar aterramento temporário; 5) Sinalizar; 6) Bloquear as seccionadoras com cadeado. Apenas após todos esses passos inicia-se a manutenção."
+        },
+        {
+          "id": "NR10SEP-M2-Q5",
+          "enunciado": "O gás SF6 (hexafluoreto de enxofre) utilizado em disjuntores e equipamentos de alta tensão representa um risco porque:",
+          "alternativas": [
+            "É altamente inflamável e pode causar explosões",
+            "É um potente gás de efeito estufa (23.900 vezes mais que o CO2) e, quando decomposto por arco elétrico, forma subprodutos tóxicos. O manuseio exige EPR (equipamento de proteção respiratória) e câmara de recuperação",
+            "Reage com a umidade formando ácido sulfúrico que corrói as instalações",
+            "É radioativo e exige monitoramento contínuo"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O SF6 é usado por suas excelentes propriedades dielétricas e de extinção de arco, mas é um gás de efeito estufa extremamente potente. Quando submetido a arco elétrico, forma subprodutos tóxicos (fluoreto de enxofre, etc.). Equipamentos de SF6 exigem procedimentos especiais de manuseio e recuperação do gás."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Linhas de Transmissão e Distribuição — Trabalho em Altura e Proximidade",
+      "descricao": "Segurança em linhas aéreas e cabos subterrâneos, trabalho em proximidade de partes energizadas de alta tensão, escalada de torres e postes.",
+      "exercicios": [
+        {
+          "id": "NR10SEP-M3-Q1",
+          "enunciado": "Para trabalho em linhas de transmissão aéreas energizadas (método ao potencial — trabalho 'live line'), o trabalhador deve:",
+          "alternativas": [
+            "Usar apenas os EPIs convencionais do NR-10 Básico",
+            "Possuir habilitação específica adicional para trabalho em linha viva, utilizar ferramentas isoladas para a tensão de trabalho e seguir rigorosamente os procedimentos estabelecidos para esse método",
+            "Trabalhar apenas com a linha desligada — trabalho em linha viva é proibido pela NR-10",
+            "Usar somente luvas de borracha classe 00 para qualquer tensão"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Trabalho em linha viva (energizada) é permitido pela NR-10 SEP, mas exige habilitação específica, ferramentas isoladas com classe de tensão compatível, procedimentos escritos aprovados e equipe mínima de dois trabalhadores habilitados. É uma das atividades de maior risco em SEP."
+        },
+        {
+          "id": "NR10SEP-M3-Q2",
+          "enunciado": "Ao trabalhar em poste próximo à rede de distribuição energizada (sem desenergizar), a distância mínima de segurança deve ser:",
+          "alternativas": [
+            "30 cm para qualquer tensão de distribuição",
+            "Determinada pelo nível de tensão — quanto maior a tensão, maior a distância mínima requerida pelas tabelas da NR-10 e normas aplicáveis",
+            "Apenas 10 cm se o trabalhador estiver usando luvas dielétricas",
+            "Não há distância definida — o trabalhador avalia caso a caso"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "As distâncias mínimas de segurança elétrica são tabeladas por nível de tensão na NR-10 e nas normas ABNT. Para 13,8 kV (distribuição típica), a distância mínima é de 30 cm; para 69 kV, 60 cm; para 138 kV, 1,00 m; e assim por diante. Aproximar-se mais que esses limites sem os EPIs adequados é proibido."
+        },
+        {
+          "id": "NR10SEP-M3-Q3",
+          "enunciado": "O 'efeito corona' em linhas de transmissão de muito alta tensão:",
+          "alternativas": [
+            "É um fenômeno inofensivo que apenas produz ruído audível",
+            "É uma descarga elétrica parcial no ar ao redor dos condutores, que ocorre quando o campo elétrico supera a rigidez dielétrica do ar, gerando perda de energia, ruído, interferência de rádio e risco de choque a distâncias maiores do que o esperado",
+            "Ocorre apenas em cabos defeituosos e indica necessidade de substituição imediata",
+            "É desejável pois indica que a linha está operando em sua capacidade máxima"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O efeito corona é uma ionização parcial do ar ao redor do condutor de alta tensão. Gera perdas de energia, ruído audível (chiado), interferência em frequências de rádio e, em condições adversas (chuva, neblina), pode aumentar o risco elétrico nas proximidades da linha."
+        },
+        {
+          "id": "NR10SEP-M3-Q4",
+          "enunciado": "Cabos de energia subterrâneos em alta tensão representam riscos específicos porque:",
+          "alternativas": [
+            "São sempre mais seguros que linhas aéreas, não representando riscos adicionais",
+            "Podem estar enterrados em locais não mapeados, a escavação pode danificá-los causando arco elétrico e explosão, e a localização exige equipamentos específicos antes de qualquer escavação",
+            "Apenas geram risco quando há infiltração de água no cabo",
+            "São facilmente identificados pela coloração do solo acima deles"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Cabos subterrâneos de alta tensão exigem extrema cautela: devem ser localizados com equipamentos de detecção antes de qualquer escavação, o solo deve ser escavado manualmente (sem máquinas) nas proximidades, e qualquer dano pode causar arco elétrico explosivo."
+        },
+        {
+          "id": "NR10SEP-M3-Q5",
+          "enunciado": "A indução eletromagnética em linhas de transmissão pode:",
+          "alternativas": [
+            "Ocorrer apenas quando as linhas estão energizadas — linhas desenergizadas são completamente seguras sem aterramento",
+            "Induzir tensões e correntes perigosas em linhas adjacentes desenergizadas, em estruturas metálicas próximas e no próprio circuito em manutenção, tornando o aterramento temporário indispensável",
+            "Ser eliminada simplesmente desligando as linhas adjacentes",
+            "Não representar risco se as linhas estiverem em postes de madeira"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Linhas de transmissão em operação induzem tensões em linhas adjacentes, mesmo que estas estejam desligadas (desenergizadas). Por isso, o aterramento temporário é indispensável: deriva as correntes induzidas e capacitivas para a terra, protegendo os trabalhadores em manutenção."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Gestão de Riscos, Procedimentos Operacionais e Responsabilidades em SEP",
+      "descricao": "Análise de riscos específica para SEP, ordens de serviço, comunicação operacional, investigação de acidentes e responsabilidades legais em sistemas de alta tensão.",
+      "exercicios": [
+        {
+          "id": "NR10SEP-M4-Q1",
+          "enunciado": "A Ordem de Serviço (OS) ou Instrução de Segurança (IS) específica para trabalhos em SEP deve:",
+          "alternativas": [
+            "Ser elaborada apenas para serviços que durem mais de 8 horas",
+            "Descrever detalhadamente a atividade, os riscos envolvidos, as medidas de controle, os EPIs necessários, a sequência de manobras e os responsáveis pelo serviço",
+            "Ser elaborada pelo próprio trabalhador executante no início da atividade",
+            "Apenas listar os EPIs obrigatórios — o restante fica a critério da experiência do eletricista"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A OS/IS para trabalhos em SEP deve ser abrangente e detalhada, pois os riscos são extremamente graves. Deve cobrir: descrição da atividade, identificação dos pontos de energia, sequência de manobras de isolamento, verificação de ausência de tensão, aterramentos, EPIs, responsáveis e procedimento de emergência."
+        },
+        {
+          "id": "NR10SEP-M4-Q2",
+          "enunciado": "A comunicação entre operadores durante manobras em subestações deve seguir o protocolo de:",
+          "alternativas": [
+            "Comunicação informal — o operador executa e informa após a conclusão",
+            "Confirmação verbal direta sem repetição, para agilizar as operações",
+            "Protocolo de ordem-repetição-confirmação: a central emite a ordem, o operador repete verbalmente e a central confirma antes de executar — elimina erros de interpretação em operações críticas",
+            "Comunicação apenas por escrito no livro de ocorrências"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O protocolo ordem-repetição-confirmação é fundamental em SEP: 1) Central ordena: 'Abra o disjuntor 52-A1'; 2) Operador repete: 'Entendido, abrindo o disjuntor 52-A1'; 3) Central confirma: 'Correto, pode executar'. Esse protocolo elimina mal-entendidos que poderiam causar manobras erradas com consequências catastróficas."
+        },
+        {
+          "id": "NR10SEP-M4-Q3",
+          "enunciado": "Em trabalhos em subestações, a sequência de verificação antes de iniciar qualquer serviço em equipamento supostamente desenergizado deve incluir:",
+          "alternativas": [
+            "Apenas conferir no painel de controle se o disjuntor aparece aberto",
+            "Apenas verificar se a seccionadora está visivelmente aberta",
+            "Verificar ausência de tensão com instrumento devidamente calibrado e testado, nos dois lados de cada ponto de isolamento, em todas as fases, antes de instalar o aterramento temporário",
+            "Confiar no lockout colocado pelo turno anterior"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A regra de ouro em SEP: 'Nunca confie, sempre verifique.' O instrumento de verificação de tensão deve ser testado em fonte conhecida antes e depois do teste. A verificação deve ser feita em todos os pontos de isolamento, em todas as fases, dos dois lados, antes do aterramento. Sinais luminosos e indicadores de painel não substituem a verificação física."
+        },
+        {
+          "id": "NR10SEP-M4-Q4",
+          "enunciado": "Um acidente com arco elétrico em subestação de alta tensão pode ser causado por:",
+          "alternativas": [
+            "Apenas por falha mecânica espontânea dos equipamentos",
+            "Erro de manobra (operar equipamento errado ou fora de sequência), ferramentas ou materiais inadvertidamente deixados sobre barramento energizado, insetos ou animais, e aproximação inadequada por trabalhador",
+            "Exclusivamente por sobretensões atmosféricas (raios) que atingem a subestação",
+            "Apenas em equipamentos com mais de 20 anos de operação"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Arcos elétricos em subestações têm múltiplas causas: erros de manobra (causa mais frequente), ferramentas/parafusos esquecidos, animais e aves que criaram curto-circuito, falhas de isolamento, e aproximação excessiva de trabalhadores. A prevenção envolve procedimentos rigorosos, organização e treinamento."
+        },
+        {
+          "id": "NR10SEP-M4-Q5",
+          "enunciado": "O trabalhador habilitado para SEP que identificar uma condição insegura na subestação — como equipamento com aparente falha de isolamento — deve:",
+          "alternativas": [
+            "Continuar o trabalho e registrar a condição no relatório mensal",
+            "Tentar corrigir o problema sozinho para não interromper a operação do sistema",
+            "Imediatamente sinalizar a área, comunicar ao responsável operacional e ao supervisor de segurança, registrar a ocorrência e aguardar avaliação por pessoa competente antes de qualquer intervenção",
+            "Interromper apenas se a falha estiver causando desligamento imediato"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Em SEP, qualquer anomalia deve ser comunicada imediatamente. O trabalhador habilitado tem o dever e o direito de interromper atividades com risco grave. Condições inseguras em alta tensão podem evoluir para arco elétrico catastrófico em segundos. A comunicação e o registro são essenciais para o controle de risco."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 10 questões deste banco de 20. Nota mínima para aprovação: 7/10 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 10,
+    "nota_minima": 7,
+    "banco": [
+      {
+        "id": "NR10SEP-PF-01",
+        "modulo": 1,
+        "enunciado": "Para ser habilitado para trabalhar em SEP, o trabalhador deve ter concluído:",
+        "alternativas": [
+          "Apenas o treinamento SEP de 40h, sem necessidade do NR-10 Básico",
+          "O NR-10 Básico (40h) e, adicionalmente, o complemento SEP (40h) — ambos são obrigatórios e cumulativos",
+          "Apenas um dos dois cursos, a escolha do empregador",
+          "Qualquer curso de segurança elétrica com carga horária mínima de 80h"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A NR-10 estabelece que o trabalho em SEP exige capacitação cumulativa: NR-10 Básico (40h) + Complemento SEP (40h), totalizando 80h. Os dois treinamentos são obrigatórios e cumulativos — o SEP não substitui o Básico."
+      },
+      {
+        "id": "NR10SEP-PF-02",
+        "modulo": 1,
+        "enunciado": "A tensão de 34,5 kV encontrada em redes de subtransmissão é classificada como:",
+        "alternativas": [
+          "Baixa tensão (BT)",
+          "Média tensão (MT)",
+          "Alta tensão (AT) — valores acima de 1.000V CA são considerados alta tensão",
+          "Altíssima tensão (ATE)"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Qualquer tensão acima de 1.000V em CA (ou 1.500V em CC) é considerada alta tensão conforme a NR-10. Os 34,5 kV de subtransmissão, assim como os 13,8 kV de distribuição, enquadram-se nessa categoria, exigindo habilitação SEP para intervenção."
+      },
+      {
+        "id": "NR10SEP-PF-03",
+        "modulo": 2,
+        "enunciado": "O relé de proteção diferencial em um transformador de potência atua quando:",
+        "alternativas": [
+          "A temperatura do óleo do transformador ultrapassa o limite configurado",
+          "Há diferença entre as correntes de entrada e saída do transformador acima de um limiar, indicando falta interna — e dispara o disjuntor de forma instantânea",
+          "A tensão de saída do transformador cai abaixo do nível configurado",
+          "O nível de óleo do conservador fica abaixo do mínimo"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O relé diferencial compara, em tempo real, as correntes que entram e saem do transformador. Em condições normais, a diferença é zero (ou mínima). Ao detectar diferença acima do ajuste (indicando curto interno), o relé dispara instantaneamente os disjuntores, isolando o transformador."
+      },
+      {
+        "id": "NR10SEP-PF-04",
+        "modulo": 2,
+        "enunciado": "O para-raios de alta tensão instalado nas subestações tem como função:",
+        "alternativas": [
+          "Impedir que raios caiam na subestação ou em suas proximidades",
+          "Desviar para a terra as sobretensões de origem atmosférica (raios) ou de manobra, antes que essas tensões atinjam os equipamentos — limitando a tensão a valores que o isolamento dos equipamentos suporte",
+          "Apenas indicar quando há sobretensão no sistema para acionamento manual",
+          "Proteger apenas os transformadores — não os demais equipamentos"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O para-raios (limitador de sobretensão) possui resistência não-linear: alta resistência em tensão normal de operação e baixíssima resistência em sobretensão. Quando surge uma sobretensão (raio, manobra), o para-raios conduz a corrente para a terra, limitando a tensão nos equipamentos."
+      },
+      {
+        "id": "NR10SEP-PF-05",
+        "modulo": 2,
+        "enunciado": "Ao abrir uma chave seccionadora de alta tensão em carga (com corrente fluindo), o resultado esperado é:",
+        "alternativas": [
+          "A seccionadora abre normalmente, pois foi projetada para isso",
+          "Um arco elétrico intenso e prolongado nos contatos da seccionadora, que pode destruir o equipamento e causar acidente grave ao operador",
+          "Um pequeno arco que se extingue rapidamente, sem consequências",
+          "O arco é extinto automaticamente pelo sistema de proteção"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Chaves seccionadoras NÃO são projetadas para interromper corrente de carga. Ao abrir em carga, estabelece-se um arco elétrico que pode ser sustentado indefinidamente até o equipamento ser destruído. Este é um dos erros operacionais mais graves em SEP, com potencial de causar explosão e acidente fatal."
+      },
+      {
+        "id": "NR10SEP-PF-06",
+        "modulo": 3,
+        "enunciado": "Ao trabalhar em uma torre de transmissão, além dos EPIs de altura (arnês, talabarte), o trabalhador deve usar:",
+        "alternativas": [
+          "Apenas o capacete e as luvas de couro",
+          "EPIs específicos para a tensão da linha — se a linha estiver energizada, ferramentas e roupas especiais para a tensão correspondente; se desenergizada com aterramento, os EPIs contra indução",
+          "Nenhum EPI adicional se a torre for de estrutura aterrada",
+          "Apenas botas dielétricas como proteção elétrica adicional"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Trabalho em torres combina riscos de altura E elétrico. Com linha energizada: roupas antiflash, luvas isolantes de classe compatível com a tensão e ferramentas isoladas. Com linha desenergizada e aterrada: aterramento temporário e EPIs contra correntes induzidas. A estrutura aterrada da torre não elimina o risco elétrico dos condutores."
+      },
+      {
+        "id": "NR10SEP-PF-07",
+        "modulo": 3,
+        "enunciado": "A 'tensão de passo' em uma subestação após uma falta (curto à terra) representa risco porque:",
+        "alternativas": [
+          "É a tensão que aparece nos degraus de escadas metálicas da subestação",
+          "É a diferença de potencial entre dois pontos do solo, separados por um passo (~0,7 m), durante a dissipação de uma corrente de falta no solo — pode causar choque mortal mesmo sem tocar em nada",
+          "Apenas afeta equipamentos eletrônicos sensíveis",
+          "Ocorre somente quando chove e o solo fica molhado"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Durante uma falta à terra em SEP, elevadíssimas correntes fluem pelo solo, criando gradientes de potencial. A tensão de passo é a diferença de potencial entre os dois pés de uma pessoa a ~70 cm de distância. Pode ser letal. Em subestações com correntes de falta elevadas, a tensão de passo pode superar centenas de volts."
+      },
+      {
+        "id": "NR10SEP-PF-08",
+        "modulo": 3,
+        "enunciado": "Antes de qualquer escavação próxima a cabos subterrâneos de alta tensão, é obrigatório:",
+        "alternativas": [
+          "Escavar normalmente com máquina e acionar o socorro caso atinja o cabo",
+          "Localizar os cabos com equipamentos de detecção (detetor eletromagnético/GPR), sinalizar o traçado, manter distância de segurança e escavar manualmente (com pá) nas proximidades dos cabos",
+          "Apenas sinalizar a área com fita e escavar com cuidado",
+          "Consultar um mapa antigo da instalação como única referência"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Cabos subterrâneos de AT exigem: detecção com equipamento específico antes de escavar (mapas podem estar desatualizados), sinalização do traçado, escavação manual nas proximidades (mínimo 1 metro de cada lado do cabo) e supervisão de pessoa habilitada. Dano a cabo de AT durante escavação pode causar arco elétrico explosivo e morte."
+      },
+      {
+        "id": "NR10SEP-PF-09",
+        "modulo": 4,
+        "enunciado": "A investigação de acidente ou quase-acidente em SEP deve ser realizada com o objetivo de:",
+        "alternativas": [
+          "Identificar o trabalhador culpado para aplicar punição disciplinar",
+          "Identificar as causas raízes (falhas humanas, procedimentos inadequados, falhas de equipamento, organização deficiente), implementar ações corretivas e prevenir recorrências",
+          "Elaborar relatório apenas para fins de cumprimento legal",
+          "Comprovar que a empresa cumpriu todos os procedimentos de segurança"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A investigação de acidentes e quase-acidentes em SEP deve ser sistêmica e focada em causas raízes, não em culpa individual. A maioria dos acidentes tem múltiplas causas: falha humana + procedimento inadequado + falta de supervisão + pressão de prazo. As ações corretivas devem atacar todas as causas identificadas."
+      },
+      {
+        "id": "NR10SEP-PF-10",
+        "modulo": 4,
+        "enunciado": "O '5 por quê' (5 Whys) é uma técnica usada em investigação de acidentes para:",
+        "alternativas": [
+          "Identificar os 5 trabalhadores envolvidos no acidente para punição",
+          "Aprofundar a análise de causa perguntando repetidamente 'por quê?' até encontrar a causa raiz do acidente, evitando parar na causa imediata superficial",
+          "Estabelecer 5 medidas corretivas para qualquer acidente",
+          "Verificar se o acidentado tinha os 5 EPIs obrigatórios"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A técnica '5 Por Quês' consiste em perguntar 'por quê?' repetidamente (tipicamente 5 vezes) para cada resposta anterior, aprofundando a análise até a causa raiz. Exemplo: acidente → por quê? → não usou EPI → por quê? → não havia EPI → por quê? → não foi solicitado → por quê? → procedimento inadequado → causa raiz."
+      },
+      {
+        "id": "NR10SEP-PF-11",
+        "modulo": 1,
+        "enunciado": "O Sistema de Aterramento de uma subestação de alta tensão tem como função de segurança principal:",
+        "alternativas": [
+          "Apenas melhorar a qualidade da energia fornecida aos consumidores",
+          "Limitar a tensão de toque e de passo durante faltas à terra, conduzindo a corrente de falta para a terra de forma controlada e acionando as proteções para eliminar a falta rapidamente",
+          "Proteger apenas os transformadores de sobretensões atmosféricas",
+          "Reduzir o consumo de energia reativa do sistema"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O sistema de aterramento (malha de terra) de uma subestação é projetado para: 1) Criar caminho de baixa impedância para a corrente de falta; 2) Acionar os relés de proteção rapidamente; 3) Limitar tensões de toque e de passo a valores toleráveis pelo corpo humano; 4) Garantir que os equipamentos permaneçam em potencial próximo à terra."
+      },
+      {
+        "id": "NR10SEP-PF-12",
+        "modulo": 2,
+        "enunciado": "O secundário de um Transformador de Corrente (TC) jamais deve ser deixado em aberto porque:",
+        "alternativas": [
+          "Isso reduz a precisão das medições de energia",
+          "Com o secundário em aberto e corrente fluindo no primário, o núcleo satura e induz tensões extremamente elevadas no secundário (podendo chegar a dezenas de kV), que podem matar o técnico e destruir o TC",
+          "Isso causa desequilíbrio no sistema trifásico",
+          "A norma proíbe apenas por questão de padronização — o risco real é mínimo"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Esta é uma das regras mais críticas em SEP: TC com secundário em aberto e primário energizado é extremamente perigoso. Sem carga no secundário, toda a energia magnética se transforma em tensão elevadíssima no secundário, com risco de choque fatal e destruição do TC. Antes de remover qualquer instrumento, o TC deve ser curto-circuitado."
+      },
+      {
+        "id": "NR10SEP-PF-13",
+        "modulo": 3,
+        "enunciado": "Trabalhos em subestações próximos a barramentos energizados de alta tensão exigem que seja mantida a distância de segurança ou que barramentos adjacentes sejam:",
+        "alternativas": [
+          "Sinalizados com fita amarela como única medida de controle",
+          "Protegidos com coberturas isolantes (mantas, capas) adequadas para a tensão e instaladas com ferramentas isolantes, ou o serviço deve ser realizado com a subestação totalmente desenergizada",
+          "Apenas fotografados para registro antes do trabalho",
+          "Monitorados à distância com câmera durante o trabalho"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Em subestações, partes energizadas adjacentes ao local de trabalho devem ser protegidas com coberturas isolantes (mantas, capas de barramento) adequadas para a tensão, instaladas com ferramentas isolantes por trabalhador habilitado. Sem essa proteção, a aproximação inadvertida pode causar arco elétrico."
+      },
+      {
+        "id": "NR10SEP-PF-14",
+        "modulo": 4,
+        "enunciado": "O Programa de Segurança Baseado em Comportamento (SBC) em empresas de SEP tem como foco:",
+        "alternativas": [
+          "Punir trabalhadores que cometam atos inseguros",
+          "Identificar comportamentos de risco através de observação positiva, oferecer feedback imediato e reforçar comportamentos seguros, criando cultura preventiva",
+          "Aumentar a vigilância sobre trabalhadores por meio de câmeras",
+          "Substituir os procedimentos escritos por treinamentos comportamentais"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O SBC baseia-se na premissa de que a maioria dos acidentes tem componente comportamental. O programa observa comportamentos (não pessoas), fornece feedback positivo imediato para comportamentos seguros e corretivo para comportamentos de risco, sem foco punitivo — criando uma cultura de segurança proativa."
+      },
+      {
+        "id": "NR10SEP-PF-15",
+        "modulo": 1,
+        "enunciado": "A rede de distribuição de 13,8 kV encontrada em cidades brasileiras opera em:",
+        "alternativas": [
+          "Corrente contínua (CC) para facilitar a distribuição urbana",
+          "Corrente alternada (CA) trifásica, pois o CA permite a transformação de tensão com transformadores, sendo mais eficiente para transmissão e distribuição",
+          "Corrente alternada monofásica apenas para redes residenciais",
+          "Sistema de corrente contínua de alta tensão (HVDC)"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A distribuição urbana de energia no Brasil opera em CA trifásica a 13,8 kV (ou 11,95 kV em algumas regiões). O CA é usado porque transformadores permitem elevar a tensão para transmissão eficiente a longas distâncias e rebaixá-la para valores seguros de utilização."
+      },
+      {
+        "id": "NR10SEP-PF-16",
+        "modulo": 2,
+        "enunciado": "O equipamento de proteção individual 'roupa antiflash' (flash suit) para trabalho em SEP é projetado para:",
+        "alternativas": [
+          "Proteger o trabalhador contra quedas de altura em subestações",
+          "Proteger contra a energia incidente de um arco elétrico — absorvendo e dissipando o calor, evitando queimaduras graves que poderiam ser fatais",
+          "Substituir as luvas dielétricas em trabalhos de baixa tensão",
+          "Apenas indicar visualmente a hierarquia de função na equipe de manutenção"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A roupa antiflash (ou roupa de proteção contra arco elétrico) é dimensionada pelo nível de energia incidente do ponto de trabalho (em cal/cm²). Protege o trabalhador contra queimaduras em caso de arco elétrico acidental. É obrigatória sempre que o risco de arco elétrico for identificado e não puder ser eliminado."
+      },
+      {
+        "id": "NR10SEP-PF-17",
+        "modulo": 3,
+        "enunciado": "O 're-fechamento automático' (religamento) em linhas de distribuição representa risco para trabalhadores porque:",
+        "alternativas": [
+          "Nunca representa risco — é um dispositivo de segurança",
+          "Pode reenergizar automaticamente uma linha que foi desligada por uma falta (curto), sem aviso, em tempo programado (tipicamente 0,3s a 60s) — podendo chocar um trabalhador que esteja intervindo na linha",
+          "Apenas representa risco para os equipamentos, não para pessoas",
+          "Só ocorre em linhas de transmissão, não de distribuição"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O religamento automático é uma função de proteção das redes de distribuição: após um desligamento por falta, o sistema tenta reenergizar automaticamente (pois muitas faltas são transitórias). Para trabalhos em linha, o religamento automático DEVE ser bloqueado antes de qualquer intervenção, pois pode reenergizar a linha com trabalhadores sobre ela."
+      },
+      {
+        "id": "NR10SEP-PF-18",
+        "modulo": 4,
+        "enunciado": "A Análise Preliminar de Tarefa (APT) específica para SEP difere da APR convencional porque:",
+        "alternativas": [
+          "É mais simples e rápida, podendo ser feita mentalmente sem registro",
+          "Deve incluir a identificação dos pontos de isolamento elétrico, a sequência de manobras, a verificação de energias secundárias (capacitores, indução), os equipamentos de segurança necessários e o plano de emergência específico para alta tensão",
+          "É aplicável apenas a trabalhos que duram mais de 4 horas",
+          "Pode ser reutilizada para serviços similares sem necessidade de revisão"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A APT para SEP é mais detalhada e específica: deve mapear todos os pontos de isolamento elétrico (disjuntores e seccionadoras a manobrar), identificar energias secundárias (capacitores carregados, correntes induzidas), detalhar a sequência de manobras e incluir o procedimento de emergência para acidentes com alta tensão."
+      },
+      {
+        "id": "NR10SEP-PF-19",
+        "modulo": 2,
+        "enunciado": "A manutenção preditiva em transformadores de potência pode incluir a análise de óleo isolante para:",
+        "alternativas": [
+          "Apenas verificar o nível correto de óleo no equipamento",
+          "Detectar precocemente falhas internas através da análise de gases dissolvidos (ANEEL/ASTM), medição de rigidez dielétrica, umidade e índice de acidez — permitindo intervenção antes da falha catastrófica",
+          "Verificar a viscosidade do óleo para fins ambientais apenas",
+          "Determinar quando o transformador precisa ser pintado externamente"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A análise de óleo (AGD — Análise de Gases Dissolvidos) é a principal ferramenta de manutenção preditiva em transformadores. Gases como hidrogênio, acetileno e etileno dissolvidos no óleo indicam diferentes tipos de falha interna em desenvolvimento, permitindo intervenção programada antes de uma falha catastrófica."
+      },
+      {
+        "id": "NR10SEP-PF-20",
+        "modulo": 4,
+        "enunciado": "A responsabilidade civil e criminal do profissional habilitado para SEP que executa serviço sem seguir os procedimentos de segurança estabelecidos:",
+        "alternativas": [
+          "É nula — a responsabilidade é integralmente do empregador",
+          "Existe somente se o acidentado era colega de trabalho, não se for terceiro",
+          "Pode ser caracterizada nas esferas civil (indenização por danos), administrativa (cassação de habilitação) e criminal (lesão corporal ou homicídio culposo), sendo maior do que a de um trabalhador não habilitado, pois o profissional habilitado tem dever de conhecimento",
+          "Existe apenas se houver dolo (intenção) comprovado"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O profissional habilitado para SEP tem responsabilidade agravada: por ser considerado tecnicamente competente para identificar riscos, sua negligência ou imprudência na aplicação dos procedimentos pode resultar em responsabilidade civil (indenização), administrativa (restrições ao exercício da habilitação) e criminal (lesão corporal culposa ou homicídio culposo)."
+      }
+    ]
+  }
+}

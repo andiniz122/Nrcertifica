@@ -6,9 +6,9 @@ import { CheckCircle2, Clock, Award, ChevronRight } from 'lucide-react'
 
 const CURSOS = [
   { slug: 'nr10-basico', nr: 'NR-10', titulo: 'Segurança em Instalações e Serviços em Eletricidade', subtitulo: 'Básico — obrigatório para quem trabalha com eletricidade', horas: '40h', validade: '2 anos', preco: 97, ativo: true, href: '/nr10', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
-  { slug: 'nr35', nr: 'NR-35', titulo: 'Trabalho em Altura', subtitulo: 'Para trabalhadores que atuam acima de 2 metros', horas: '8h', validade: '2 anos', preco: 67, ativo: false, href: '#', destaques: ['Riscos e prevenção', 'EPI e sistemas de ancoragem', 'Procedimentos operacionais', 'Certificado PDF automático'] },
+  { slug: 'nr35', nr: 'NR-35', titulo: 'Trabalho em Altura', subtitulo: 'Para trabalhadores que atuam acima de 2 metros', horas: '8h', validade: '2 anos', preco: 67, ativo: true, href: '/nr35', destaques: ['2 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
+  { slug: 'nr10-sep', nr: 'NR-10 SEP', titulo: 'Segurança em Sistemas Elétricos de Potência', subtitulo: 'Complemento obrigatório para quem trabalha em alta tensão', horas: '40h', validade: '2 anos', preco: 127, ativo: true, href: '/nr10sep', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
   { slug: 'nr33', nr: 'NR-33', titulo: 'Segurança em Espaços Confinados', subtitulo: 'Vigia, Trabalhador Autorizado e Supervisor', horas: '16h / 40h', validade: '1 ano', preco: 127, ativo: false, href: '#', destaques: ['Vigia/Trabalhador: 16h', 'Supervisor: 40h', 'Atmosferas perigosas', 'Certificado PDF automático'] },
-  { slug: 'nr06', nr: 'NR-06', titulo: 'Equipamentos de Proteção Individual', subtitulo: 'Seleção, uso, conservação e descarte de EPIs', horas: '4h', validade: 'Conforme uso', preco: 47, ativo: false, href: '#', destaques: ['Tipos de EPI por risco', 'Normas de uso e conservação', 'Responsabilidades legais', 'Certificado PDF automático'] },
 ]
 
 export default function Cursos() {
