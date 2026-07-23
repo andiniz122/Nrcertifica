@@ -14,6 +14,7 @@ const MENU = [
   { href: '/admin/certificados', label: 'Certificados', icon: Award },
   { href: '/admin/cursos', label: 'Cursos', icon: BookOpen },
   { href: '/admin/apostilas', label: 'Apostilas', icon: Upload },
+  { href: '/admin/configuracoes', label: 'Configurações', icon: Settings },
 ]
 
 export function AdminSidebar({ usuario }: { usuario: any }) {

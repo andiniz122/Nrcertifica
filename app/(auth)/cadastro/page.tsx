@@ -3,7 +3,7 @@ import { Suspense, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Loader2, BookOpen } from 'lucide-react'
+import { Loader2, BookOpen, X } from 'lucide-react'
 
 function CadastroForm() {
   const router = useRouter()
@@ -53,7 +53,14 @@ function CadastroForm() {
 export default function Cadastro() {
   return (
     <main className="min-h-screen bg-brand-dark flex items-center justify-center px-4 py-8">
-      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md relative">
+        <Link
+          href="/"
+          className="absolute top-4 right-4 text-gray-400 hover:text-brand-dark transition-colors"
+          aria-label="Fechar"
+        >
+          <X className="w-5 h-5" />
+        </Link>
         <div className="text-center mb-6">
           <Link href="/" className="inline-flex items-center gap-2 mb-4">
             <div className="bg-brand-red rounded-lg p-1.5"><BookOpen className="w-5 h-5 text-white" /></div>

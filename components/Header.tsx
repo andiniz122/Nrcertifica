@@ -1,15 +1,27 @@
 'use client'
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
-import { ShoppingCart, User, LogOut, BookOpen, Menu, X, Settings, UserCircle } from 'lucide-react'
-import { useState } from 'react'
+import { ShoppingCart, User, LogOut, BookOpen, Menu, X, Settings, UserCircle, ChevronDown } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
 import { useCart } from './CartProvider'
 
 export function Header() {
   const { data: session } = useSession()
   const { totalItens } = useCart()
   const [menuAberto, setMenuAberto] = useState(false)
+  const [contaAberta, setContaAberta] = useState(false)
+  const contaRef = useRef<HTMLDivElement>(null)
   const isAdmin = session?.user?.papel === 'admin'
+
+  useEffect(() => {
+    function fecharAoClicarFora(e: MouseEvent) {
+      if (contaRef.current && !contaRef.current.contains(e.target as Node)) {
+        setContaAberta(false)
+      }
+    }
+    document.addEventListener('mousedown', fecharAoClicarFora)
+    return () => document.removeEventListener('mousedown', fecharAoClicarFora)
+  }, [])
 
   return (
     <header className="bg-brand-dark shadow-lg sticky top-0 z-50">
@@ -50,14 +62,49 @@ export function Header() {
           </Link>
 
           {session ? (
-            <div className="hidden md:flex items-center gap-2">
-              <Link href="/perfil" className="text-sm text-gray-300 hover:text-white flex items-center gap-1 transition-colors">
+            <div className="hidden md:block relative" ref={contaRef}>
+              <button
+                onClick={() => setContaAberta(!contaAberta)}
+                className="flex items-center gap-1.5 text-sm text-gray-300 hover:text-white transition-colors"
+              >
                 <UserCircle className="w-4 h-4" />
                 {session.user.nome.split(' ')[0]}
-              </Link>
-              <button onClick={() => signOut({ callbackUrl: '/' })} className="text-gray-400 hover:text-white transition-colors">
-                <LogOut className="w-4 h-4" />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${contaAberta ? 'rotate-180' : ''}`} />
               </button>
+              {contaAberta && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-1.5 z-50">
+                  <Link
+                    href="/perfil"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-brand-dark hover:bg-gray-50 transition-colors"
+                    onClick={() => setContaAberta(false)}
+                  >
+                    <UserCircle className="w-4 h-4" /> Meu perfil
+                  </Link>
+                  <Link
+                    href="/dashboard"
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-brand-dark hover:bg-gray-50 transition-colors"
+                    onClick={() => setContaAberta(false)}
+                  >
+                    <BookOpen className="w-4 h-4" /> Meus cursos
+                  </Link>
+                  {isAdmin && (
+                    <Link
+                      href="/admin"
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-brand-dark hover:bg-gray-50 transition-colors"
+                      onClick={() => setContaAberta(false)}
+                    >
+                      <Settings className="w-4 h-4" /> Painel Admin
+                    </Link>
+                  )}
+                  <div className="my-1 border-t border-gray-100" />
+                  <button
+                    onClick={() => signOut({ callbackUrl: '/' })}
+                    className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                  >
+                    <LogOut className="w-4 h-4" /> Sair
+                  </button>
+                </div>
+              )}
             </div>
           ) : (
             <div className="hidden md:flex items-center gap-2">

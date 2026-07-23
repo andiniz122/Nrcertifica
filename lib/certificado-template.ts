@@ -17,6 +17,7 @@ export interface DadosCertificado {
   nomeInstrutor?: string;
   cargoInstrutor?: string;
   creaInstrutor?: string;
+  assinaturaInstrutorUrl?: string;
   conteudoProgramatico?: string[];
   validadeAnos?: number;
 }
@@ -40,6 +41,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     nomeInstrutor = "Anderson Bicalho Diniz",
     cargoInstrutor = "Engenheiro Eletricista | Eng. Segurança do Trabalho",
     creaInstrutor = "CREA 254516/MG",
+    assinaturaInstrutorUrl = "",
     conteudoProgramatico = [],
     validadeAnos = 2,
   } = dados;
@@ -137,10 +139,11 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
   .brand .tagline {
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 500;
-    font-size: 9px;
-    letter-spacing: 2px;
+    font-size: 11px;
+    letter-spacing: 3px;
     color: #b8860b;
-    margin-top: 2px;
+    margin-top: 3px;
+    white-space: nowrap;
   }
 
   .title {
@@ -221,6 +224,12 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     border-top: 1px solid #1a1a1a;
     margin-bottom: 8px;
   }
+  .sign-img {
+    max-width: 200px;
+    max-height: 56px;
+    object-fit: contain;
+    margin-bottom: -6px;
+  }
   .sign-name {
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 700;
@@ -292,14 +301,15 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     gap: 18px;
   }
   .page2-course-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 700;
-    font-size: 26px;
+    font-size: 20px;
     color: #1a1a1a;
     text-align: center;
     margin-top: 18px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
   }
   .page2-section-title {
     font-family: 'Montserrat', Arial, sans-serif;
@@ -324,6 +334,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     line-height: 1.7;
     color: #333;
     flex: 1;
+    margin-top: 26px;
   }
   .programa-item {
     break-inside: avoid;
@@ -409,6 +420,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
       </div>
 
       <div class="sign-block">
+        ${assinaturaInstrutorUrl ? `<img class="sign-img" src="${assinaturaInstrutorUrl}" alt="Assinatura" />` : ''}
         <div class="sign-line"></div>
         <div class="sign-name">${nomeInstrutor}</div>
         <div class="sign-role">INSTRUTOR E RESPONSÁVEL TÉCNICO</div>
@@ -455,6 +467,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
 
     <div class="page2-footer">
       <div class="sign-block">
+        ${assinaturaInstrutorUrl ? `<img class="sign-img" src="${assinaturaInstrutorUrl}" alt="Assinatura" />` : ''}
         <div class="sign-line"></div>
         <div class="sign-name">${nomeInstrutor}</div>
         <div class="sign-role">INSTRUTOR E RESPONSÁVEL TÉCNICO</div>

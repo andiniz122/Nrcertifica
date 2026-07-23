@@ -4,6 +4,7 @@ import { authOptions } from '../../../../lib/auth'
 import { connectDB } from '../../../../lib/db'
 import Certificate from '../../../../models/Certificate'
 import Course from '../../../../models/Course'
+import User from '../../../../models/User'
 import { gerarHtmlCertificado } from '../../../../lib/certificado-template'
 import { mkdir, writeFile, readFile } from 'fs/promises'
 import { existsSync } from 'fs'
@@ -26,6 +27,21 @@ export async function GET(
       .lean() as any
 
     if (!cert) return NextResponse.json({ error: 'Certificado nao encontrado' }, { status: 404 })
+
+    const instrutor = await User.findOne({ papel: 'admin' }).select('assinaturaUrl').lean() as any
+    let assinaturaInstrutorUrl = ''
+    if (instrutor?.assinaturaUrl) {
+      try {
+        const assinaturaPath = path.join(process.cwd(), 'public', instrutor.assinaturaUrl)
+        const assinaturaBuffer = await readFile(assinaturaPath)
+        const extRaw = path.extname(assinaturaPath).replace('.', '').toLowerCase()
+        const mimeMap: Record<string, string> = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp' }
+        const mime = mimeMap[extRaw] || 'image/png'
+        assinaturaInstrutorUrl = `data:${mime};base64,${assinaturaBuffer.toString('base64')}`
+      } catch (e) {
+        console.error('[ASSINATURA] Erro ao ler arquivo de assinatura', e)
+      }
+    }
 
     if (cert.usuario_id._id.toString() !== session.user.id && session.user.papel !== 'admin') {
       return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
@@ -64,6 +80,7 @@ export async function GET(
       dataFim: cert.data_conclusao ? new Date(cert.data_conclusao).toLocaleDateString("pt-BR") : new Date(cert.emitido_em).toLocaleDateString("pt-BR"),
       notaFinal: Math.round((cert.nota_final || 0) * 10),
       codigoVerificacao: cert.codigo || "",
+      assinaturaInstrutorUrl,
       conteudoProgramatico: cert.curso_id?.conteudo_programatico || [],
       validadeAnos: cert.curso_id?.validade_anos || 2,
     })
