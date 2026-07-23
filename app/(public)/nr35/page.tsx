@@ -6,17 +6,20 @@ import { CheckCircle2, Clock, Award, ShieldCheck, Zap, BookOpen, ChevronRight } 
 
 const MODULOS = [
   { id: 1, titulo: 'Legislação, Riscos e Medidas Preventivas em Trabalho em Altura', desc: 'Fundamentos legais da NR-35, riscos de queda, Análise de Risco (AR) e Permissão de Trabalho (PT).' },
-  { id: 2, titulo: 'EPI, Sistemas de Ancoragem, Procedimentos Operacionais e Emergências', desc: 'Arnês, talabarte, linhas de vida, pontos de ancoragem, síndrome do arreio e resgate em altura.' },
+  { id: 2, titulo: 'EPI, Sistemas de Ancoragem e Proteções Coletivas', desc: 'Arnês, talabarte, linhas de vida, pontos de ancoragem, guarda-corpo, redes de proteção e síndrome do arreio.' },
+  { id: 3, titulo: 'Equipamentos de Acesso, Trabalho em Cobertura e Plano de Emergência', desc: 'Andaimes tubulares e suspensos, plataformas elevatórias (PEM/MEWP), escadas portáteis, trabalho em telhados e elaboração do plano de emergência e resgate.' },
 ]
 
 const CONTEUDO = [
-  'Introdução à NR-35 e Legislação (1h)',
-  'Riscos em Trabalho em Altura (1h)',
-  'Análise de Risco e Permissão de Trabalho (1h)',
+  'Introdução à NR-35 e Legislação (0,5h)',
+  'Riscos em Trabalho em Altura e Fatores de Risco (1h)',
+  'Análise de Risco (AR) e Permissão de Trabalho (PT) (1h)',
   'EPI para Trabalho em Altura — Arnês e Talabarte (1h)',
   'Sistemas de Ancoragem e Linha de Vida (1h)',
-  'Procedimentos Operacionais Seguros (1h)',
-  'Prevenção de Queda de Objetos e Materiais (0,5h)',
+  'Proteções Coletivas — Guarda-corpo e Redes (0,5h)',
+  'Andaimes Tubulares e Suspensos (0,5h)',
+  'Plataformas Elevatórias (PEM/MEWP) e Escadas Portáteis (0,5h)',
+  'Trabalho em Telhados e Coberturas (0,5h)',
   'Plano de Emergência e Resgate em Altura (1h)',
   'Responsabilidades e Implicações Legais (0,5h)',
 ]
@@ -173,7 +176,7 @@ function CardCompra({ curso }: { curso: any }) {
         <p className="text-gray-400 text-sm mt-1">ou em até 3x no cartão</p>
       </div>
       <ul className="space-y-2 mb-6">
-        {['Acesso imediato', '2 módulos + prova final', 'Certificado PDF automático', 'Válido por 2 anos', 'Suporte por e-mail'].map(item => (
+        {['Acesso imediato', '3 módulos + prova final', 'Certificado PDF automático', 'Válido por 2 anos', 'Suporte por e-mail'].map(item => (
           <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
             <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" /> {item}
           </li>

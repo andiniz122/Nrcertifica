@@ -29,15 +29,17 @@ async function seed() {
     modulos: questoesNR35.modulos,
     prova_final: questoesNR35.prova_final,
     conteudo_programatico: [
-      'Introdução à NR-35 e Legislação (1h)',
-      'Riscos em Trabalho em Altura (1h)',
-      'Análise de Risco e Permissão de Trabalho (1h)',
+      'Introdução à NR-35 e Legislação (0,5h)',
+      'Riscos em Trabalho em Altura e Fatores de Risco (1h)',
+      'Análise de Risco (AR) e Permissão de Trabalho (PT) (1h)',
       'EPI para Trabalho em Altura — Arnês e Talabarte (1h)',
       'Sistemas de Ancoragem e Linha de Vida (1h)',
-      'Procedimentos Operacionais Seguros (1h)',
-      'Prevenção de Queda de Objetos e Materiais (0,5h)',
+      'Proteções Coletivas — Guarda-corpo e Redes de Proteção (0,5h)',
+      'Andaimes Tubulares e Suspensos (0,5h)',
+      'Plataformas Elevatórias (PEM/MEWP) e Escadas Portáteis (0,5h)',
+      'Trabalho em Telhados e Coberturas Frágeis (0,5h)',
       'Plano de Emergência e Resgate em Altura (1h)',
-      'Responsabilidades e Implicações Legais (0,5h)',
+      'Responsabilidades Legais do Empregador e do Trabalhador (0,5h)',
     ],
   })
 

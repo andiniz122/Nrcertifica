@@ -3,7 +3,7 @@
   "sigla": "NR-35",
   "carga_horaria": "8h",
   "validade_anos": 2,
-  "aprovacao_minima": 0.70,
+  "aprovacao_minima": 0.7,
   "modulos": [
     {
       "id": 1,
@@ -136,6 +136,73 @@
           ],
           "resposta_correta": 1,
           "explicacao": "A síndrome do arreio (suspensão ortostática) pode causar desmaio e morte em minutos com o trabalhador suspenso verticalmente. O resgate deve ser imediato. Após o resgate, o trabalhador deve ser avaliado medicamente mesmo que pareça bem."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Equipamentos de Acesso, Trabalho em Cobertura e Plano de Emergência",
+      "descricao": "Andaimes tubulares e suspensos, plataformas elevatórias (PEM/MEWP), escadas portáteis, trabalho em telhados e coberturas, elaboração e simulação do plano de emergência e resgate em altura.",
+      "exercicios": [
+        {
+          "id": "NR35-M3-Q1",
+          "enunciado": "Andaime tubular (metálico) deve ser montado e desmontado exclusivamente por:",
+          "alternativas": [
+            "Qualquer trabalhador que já tenha trabalhado em altura antes",
+            "Trabalhador capacitado conforme NR-35, sob supervisão de profissional legalmente habilitado, seguindo projeto ou esquema de montagem",
+            "Somente por engenheiros civis — eletricistas e técnicos não podem montar andaimes",
+            "Qualquer trabalhador da obra, pois é uma atividade simples"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A NR-35 exige que andaimes sejam montados e desmontados por trabalhadores capacitados, sob supervisão de profissional habilitado e conforme projeto técnico, pois envolvem riscos críticos de colapso e queda."
+        },
+        {
+          "id": "NR35-M3-Q2",
+          "enunciado": "Ao operar uma Plataforma Elevatória Móvel de Trabalho (MEWP / Plataforma Tipo Tesoura ou Boom Lift), o operador deve:",
+          "alternativas": [
+            "Usar apenas cinto abdominal, pois a plataforma já oferece proteção suficiente",
+            "Usar arnês de corpo inteiro conectado ao ponto de ancoragem da cesta — mesmo dentro da plataforma — e verificar a capacidade de carga máxima antes de operar",
+            "Operar a plataforma sem necessidade de treinamento específico, pois o equipamento é intuitivo",
+            "Não precisar de EPI dentro da cesta, somente ao descer para o solo"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Dentro da cesta de MEWP o trabalhador deve usar arnês conectado ao ponto de ancoragem da própria cesta (não em estrutura externa), pois a plataforma pode tombar ou o trabalhador ser ejetado. Treinamento específico para o equipamento é obrigatório."
+        },
+        {
+          "id": "NR35-M3-Q3",
+          "enunciado": "Ao usar escada portátil de extensão (apoiada) em trabalho em altura, a inclinação correta de posicionamento é:",
+          "alternativas": [
+            "Qualquer ângulo desde que a base esteja no chão firme",
+            "A escada deve ser posicionada em ângulo de aproximadamente 75° (proporção 1:4 — para cada 4 metros de altura, a base fica 1 metro afastada da parede), com os pés antiderrapantes apoiados em superfície estável e o topo ultrapassando 1 metro acima do ponto de apoio superior",
+            "A escada deve ser quase vertical (90°) para evitar que a base escorregue",
+            "Qualquer ângulo — o que importa é que a base esteja amarrada"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O ângulo de 75° (relação 1:4) é o padrão de segurança: muito aberta (ângulo menor) pode fazer a base escorregar; muito vertical (ângulo maior) pode fazer o topo tombar para trás. O topo deve ultrapassar 1 m o ponto de saída para permitir apoio ao subir/descer."
+        },
+        {
+          "id": "NR35-M3-Q4",
+          "enunciado": "Para trabalho em telhado com telhas frágeis (fibrocimento sem amianto, policarbonato, vidro), a proteção coletiva obrigatória inclui:",
+          "alternativas": [
+            "Apenas sinalizar o interior do prédio informando que há trabalho no telhado",
+            "Tábuas ou plataformas de distribuição de carga sobre as telhas, linha de vida ancorada em estrutura resistente, guarda-corpo ou rede de proteção na borda e delimitação da área abaixo para evitar queda de objetos sobre terceiros",
+            "Trabalhar em duplas — se um cair, o outro aciona o socorro",
+            "Usar calçado com solado de borracha grossa — é suficiente para telhas frágeis"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Telhas frágeis não suportam peso concentrado — a distribuição de carga é indispensável. Além disso, linha de vida e guarda-corpo protegem de quedas laterais, e a delimitação abaixo protege contra queda de ferramentas e fragmentos de telha."
+        },
+        {
+          "id": "NR35-M3-Q5",
+          "enunciado": "O Plano de Emergência e Resgate para trabalho em altura, exigido pela NR-35, deve contemplar:",
+          "alternativas": [
+            "Apenas o número do SAMU a ser acionado em caso de acidente",
+            "Procedimentos de comunicação de emergência, identificação dos recursos disponíveis (equipamentos de resgate, pessoal capacitado), técnicas de resgate adequadas ao local e tipo de trabalho, e simulações periódicas para garantir a efetividade do plano",
+            "Somente a localização do kit de primeiros socorros mais próximo",
+            "É opcional quando o trabalho durar menos de 2 horas"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A NR-35 exige plano de emergência e resgate documentado antes do início do trabalho em altura. O plano deve ser específico para o local, contemplar todos os cenários possíveis de emergência e o tempo de resgate deve ser suficiente para evitar a síndrome de suspensão (máx. 10 a 15 minutos suspenso)."
         }
       ]
     }

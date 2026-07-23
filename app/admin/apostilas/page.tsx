@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const CURSOS = [
   { slug: 'nr10-basico', titulo: 'NR-10 Básico', modulos: 4 },
-  { slug: 'nr35', titulo: 'NR-35 Trabalho em Altura', modulos: 2 },
+  { slug: 'nr35', titulo: 'NR-35 Trabalho em Altura', modulos: 3 },
   { slug: 'nr10-sep', titulo: 'NR-10 SEP', modulos: 4 },
   { slug: 'nr06', titulo: 'NR-06 EPI', modulos: 2 },
 ]
