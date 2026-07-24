@@ -109,6 +109,14 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
   const aprovado = matricula.aprovado || resultado?.aprovado
   const datasBloqueadas = !!aprovado
 
+  // Datas válidas = intervalo salvo satisfaz o mínimo de dias úteis
+  const datasValidas = !!(
+    dataInicioInput &&
+    dataFimInput &&
+    dataInicioInput <= dataFimInput &&
+    contarDiasUteis(dataInicioInput, dataFimInput) >= minimosDiasUteis
+  )
+
   const getAbaModulo = (id: number) => abaModulo[id] || 'material'
   const setAba = (id: number, aba: AbaModulo) => setAbaModulo(r => ({ ...r, [id]: aba }))
 
@@ -224,16 +232,16 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
             <BookOpen className="w-4 h-4" /> Módulos
           </button>
           <button
-            onClick={() => todosModulosConcluidos || aprovado ? setAbaAtual('prova') : null}
+            onClick={() => (todosModulosConcluidos && datasValidas) || aprovado ? setAbaAtual('prova') : null}
             className={`px-5 py-2.5 rounded-xl font-semibold text-sm transition-colors flex items-center gap-2 ${
               abaAtual === 'prova' ? 'bg-brand-red text-white' :
-              todosModulosConcluidos || aprovado ? 'bg-white text-gray-500 hover:text-brand-dark border border-gray-100' :
+              (todosModulosConcluidos && datasValidas) || aprovado ? 'bg-white text-gray-500 hover:text-brand-dark border border-gray-100' :
               'bg-gray-100 text-gray-300 cursor-not-allowed border border-gray-100'
             }`}
           >
             <Award className="w-4 h-4" />
             Prova Final
-            {!todosModulosConcluidos && !aprovado && <Lock className="w-3 h-3" />}
+            {(!todosModulosConcluidos || !datasValidas) && !aprovado && <Lock className="w-3 h-3" />}
             {aprovado && <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />}
           </button>
         </div>
@@ -455,32 +463,41 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
             })}
 
             {/* Banner prova final */}
-            <div className={`rounded-2xl border-2 p-5 flex items-center gap-4 transition-all ${
-              todosModulosConcluidos
-                ? 'border-brand-gold bg-yellow-50 cursor-pointer hover:shadow-md'
-                : 'border-gray-200 bg-white opacity-50'
-            }`}
-              onClick={() => todosModulosConcluidos && setAbaAtual('prova')}
-            >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                todosModulosConcluidos ? 'bg-brand-gold/20' : 'bg-gray-100'
-              }`}>
-                {todosModulosConcluidos
-                  ? <Award className="w-6 h-6 text-brand-gold" />
-                  : <Lock className="w-6 h-6 text-gray-300" />
-                }
-              </div>
-              <div className="flex-1">
-                <p className="font-semibold text-brand-dark">Prova Final</p>
-                <p className="text-xs text-gray-400">
-                  {todosModulosConcluidos
-                    ? '10 questões · Nota mínima 70% · Clique para iniciar'
-                    : `Conclua todos os módulos para liberar (${modulosConcluidos.length}/${totalModulos})`
-                  }
-                </p>
-              </div>
-              {todosModulosConcluidos && <ChevronRight className="w-5 h-5 text-brand-gold" />}
-            </div>
+            {(() => {
+              const provaLiberada = (todosModulosConcluidos && datasValidas) || aprovado
+              const modulosOk = todosModulosConcluidos
+              const datasOk = datasValidas
+              return (
+                <div className={`rounded-2xl border-2 p-5 flex items-center gap-4 transition-all ${
+                  provaLiberada
+                    ? 'border-brand-gold bg-yellow-50 cursor-pointer hover:shadow-md'
+                    : 'border-gray-200 bg-white opacity-50'
+                }`}
+                  onClick={() => provaLiberada && setAbaAtual('prova')}
+                >
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                    provaLiberada ? 'bg-brand-gold/20' : 'bg-gray-100'
+                  }`}>
+                    {provaLiberada
+                      ? <Award className="w-6 h-6 text-brand-gold" />
+                      : <Lock className="w-6 h-6 text-gray-300" />
+                    }
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-semibold text-brand-dark">Prova Final</p>
+                    <p className="text-xs text-gray-400">
+                      {provaLiberada
+                        ? '10 questões · Nota mínima 70% · Clique para iniciar'
+                        : !modulosOk
+                          ? `Conclua todos os módulos para liberar (${modulosConcluidos.length}/${totalModulos})`
+                          : `Preencha as datas corretamente para liberar a prova`
+                      }
+                    </p>
+                  </div>
+                  {provaLiberada && <ChevronRight className="w-5 h-5 text-brand-gold" />}
+                </div>
+              )
+            })()}
           </div>
         )}
 
