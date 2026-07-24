@@ -3,7 +3,7 @@ import { useState } from 'react'
 import {
   BookOpen, CheckCircle2, Lock, FileText, Download,
   ChevronRight, ChevronDown, Award, AlertCircle,
-  RotateCcw, Loader2, XCircle, PlayCircle, ClipboardList
+  RotateCcw, Loader2, XCircle, PlayCircle, ClipboardList, CalendarDays
 } from 'lucide-react'
 
 interface Props {
@@ -23,23 +23,50 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
     matricula.modulos_concluidos || []
   )
   const [carregandoModulo, setCarregandoModulo] = useState<number | null>(null)
-  const [dataFimInput, setDataFimInput] = useState<string>(matricula.data_fim_curso ? new Date(matricula.data_fim_curso).toISOString().split('T')[0] : new Date().toISOString().split('T')[0])
-  const [dataFim, setDataFim] = useState<string>(matricula.data_fim_curso ? new Date(matricula.data_fim_curso).toISOString().split('T')[0] : '')
-  const [salvandoData, setSalvandoData] = useState(false)
+  const hoje = new Date().toISOString().split('T')[0]
 
-  const salvarDataInicio = async (data: string) => {
-    if (!data) return
+  const inicioSalvo = matricula.data_inicio_curso
+    ? new Date(matricula.data_inicio_curso).toISOString().split('T')[0] : ''
+  const fimSalvo = matricula.data_fim_curso
+    ? new Date(matricula.data_fim_curso).toISOString().split('T')[0] : ''
+
+  const calcInicioFromFim = (dataFimStr: string): string => {
+    const horas = parseInt(curso.carga_horaria?.replace('h', '') || '8')
+    const diasUteis = Math.ceil(horas / 8)
+    const fim = new Date(dataFimStr + 'T12:00:00')
+    const inicio = new Date(fim)
+    let subtraidos = 0
+    while (subtraidos < diasUteis - 1) {
+      inicio.setDate(inicio.getDate() - 1)
+      const dia = inicio.getDay()
+      if (dia !== 0 && dia !== 6) subtraidos++
+    }
+    return inicio.toISOString().split('T')[0]
+  }
+
+  const [dataFimInput, setDataFimInput] = useState<string>(fimSalvo || hoje)
+  const [dataInicioInput, setDataInicioInput] = useState<string>(
+    inicioSalvo || calcInicioFromFim(fimSalvo || hoje)
+  )
+  const [salvandoData, setSalvandoData] = useState(false)
+  const [erroData, setErroData] = useState('')
+
+  const salvarDatas = async (inicio: string, fim: string) => {
+    if (!inicio || !fim) return
+    if (inicio > fim) {
+      setErroData('A data de início não pode ser posterior à conclusão.')
+      return
+    }
+    setErroData('')
     setSalvandoData(true)
     try {
       const res = await fetch('/api/matriculas/data-inicio', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ enrollment_id: matricula._id, data_inicio: data }),
+        body: JSON.stringify({ enrollment_id: matricula._id, data_inicio: inicio, data_fim: fim }),
       })
       const result = await res.json()
-      if (result.ok) {
-        setDataFim(data)
-      }
+      if (!res.ok) setErroData(result.error || 'Erro ao salvar datas')
     } finally {
       setSalvandoData(false)
     }
@@ -59,6 +86,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
   const tentativasUsadas = resultado?.tentativas_usadas ?? matricula.tentativas_prova?.length ?? 0
   const tentativasMaximas = curso.prova_final?.tentativas_maximas || 3
   const aprovado = matricula.aprovado || resultado?.aprovado
+  const datasBloqueadas = !!aprovado
 
   const getAbaModulo = (id: number) => abaModulo[id] || 'material'
   const setAba = (id: number, aba: AbaModulo) => setAbaModulo(r => ({ ...r, [id]: aba }))
@@ -192,40 +220,65 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
         {/* ── ABA MÓDULOS ── */}
         {abaAtual === 'modulos' && (
           <div className="space-y-4">
-          {/* Card de data de inicio */}
-          <div className="bg-white rounded-2xl border border-brand-red/20 p-5">
-            <p className="text-sm font-semibold text-brand-dark mb-3">
-              📅 Data de realização do curso
+          {/* Card de datas do curso */}
+          <div className={`bg-white rounded-2xl border p-5 ${datasBloqueadas ? 'border-gray-200' : 'border-brand-red/20'}`}>
+            <p className="text-sm font-semibold text-brand-dark mb-1 flex items-center gap-2">
+              <CalendarDays className="w-4 h-4 text-brand-red" />
+              Data de realização do curso
+              {datasBloqueadas && (
+                <span className="ml-2 flex items-center gap-1 text-xs font-normal text-gray-400">
+                  <Lock className="w-3 h-3" /> Bloqueado após certificado
+                </span>
+              )}
             </p>
-            <div className="flex items-center gap-4 flex-wrap">
+            {!datasBloqueadas && (
+              <p className="text-xs text-gray-400 mb-3">
+                Informe as datas reais do treinamento. Altere a conclusão e o início será ajustado automaticamente — ou edite o início manualmente para datas retroativas.
+              </p>
+            )}
+            <div className="flex items-end gap-4 flex-wrap">
               <div>
-                <label className="text-xs text-gray-400 block mb-1">Data de conclusão</label>
+                <label className="text-xs text-gray-500 block mb-1">Data de início</label>
+                <input
+                  type="date"
+                  value={dataInicioInput}
+                  disabled={datasBloqueadas}
+                  max={dataFimInput || hoje}
+                  onChange={(e) => {
+                    const novoInicio = e.target.value
+                    setDataInicioInput(novoInicio)
+                    if (novoInicio) salvarDatas(novoInicio, dataFimInput)
+                  }}
+                  className="border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed"
+                />
+              </div>
+              <div>
+                <label className="text-xs text-gray-500 block mb-1">Data de conclusão</label>
                 <input
                   type="date"
                   value={dataFimInput}
-                  onChange={async (e) => {
-                    const data = e.target.value
-                    if (!data) return
-                    setDataFimInput(data)
-                    const res = await fetch('/api/matriculas/data-inicio', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify({ enrollment_id: matricula._id, data_fim: data }),
-                    })
-                    const result = await res.json()
-                    if (result.ok) {
-                      setDataFim(data)
+                  disabled={datasBloqueadas}
+                  max={hoje}
+                  min={dataInicioInput || undefined}
+                  onChange={(e) => {
+                    const novaFim = e.target.value
+                    setDataFimInput(novaFim)
+                    if (novaFim) {
+                      const novoInicio = calcInicioFromFim(novaFim)
+                      setDataInicioInput(novoInicio)
+                      salvarDatas(novoInicio, novaFim)
                     }
                   }}
-                  className="border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red"
-                  max={new Date().toISOString().split('T')[0]}
+                  className="border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed"
                 />
               </div>
-
-              <p className="text-xs text-blue-700 bg-blue-50 rounded-xl px-3 py-2 border border-blue-100">
-                ℹ️ O início é calculado automaticamente (40h = 5 dias úteis antes da conclusão)
-              </p>
+              {salvandoData && <Loader2 className="w-4 h-4 animate-spin text-gray-400 mb-2.5" />}
             </div>
+            {erroData && (
+              <p className="text-xs text-red-500 mt-2 flex items-center gap-1">
+                <AlertCircle className="w-3 h-3" /> {erroData}
+              </p>
+            )}
           </div>
             {curso.modulos?.map((modulo: any, idx: number) => {
               const concluido = modulosConcluidos.includes(modulo.id)
