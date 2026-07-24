@@ -32,8 +32,8 @@ export default async function CarteirinhaPage({
   const usuario = cert.usuario_id ?? {}
 
   const cpfRaw: string = dados.cpf ?? usuario.cpf ?? ''
-  const cpfMascarado = cpfRaw.length >= 11
-    ? `***.${cpfRaw.slice(3, 6)}.${cpfRaw.slice(6, 9)}-**`
+  const cpfFormatado = cpfRaw.replace(/\D/g, '').length === 11
+    ? cpfRaw.replace(/\D/g, '').replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
     : cpfRaw
 
   const dataNascimento: string = usuario.data_nascimento
@@ -67,7 +67,7 @@ export default async function CarteirinhaPage({
   return (
     <CarteirinhaView
       nome={nome}
-      cpf={cpfMascarado}
+      cpf={cpfFormatado}
       dataNascimento={dataNascimento}
       curso={curso}
       nr={nr}
