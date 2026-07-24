@@ -8,6 +8,7 @@ export interface IUser extends Document {
   telefone: string
   senha: string
   foto?: string
+  data_nascimento?: Date
   assinaturaUrl?: string
   papel: 'aluno' | 'admin'
   ativo: boolean
@@ -21,8 +22,9 @@ const UserSchema = new Schema<IUser>({
   email:    { type: String, required: true, unique: true, lowercase: true, trim: true },
   telefone: { type: String, required: true, trim: true },
   senha:    { type: String, required: true },
-  foto:     { type: String, default: '' },
-  assinaturaUrl: { type: String, default: '' },
+  foto:            { type: String, default: '' },
+  data_nascimento: { type: Date },
+  assinaturaUrl:   { type: String, default: '' },
   papel:    { type: String, enum: ['aluno', 'admin'], default: 'aluno' },
   ativo:    { type: Boolean, default: true },
   criadoEm: { type: Date, default: Date.now },

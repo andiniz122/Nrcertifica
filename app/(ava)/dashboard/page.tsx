@@ -79,9 +79,14 @@ export default async function Dashboard() {
                       <p className="font-semibold text-brand-dark text-sm">{cert.dados.titulo_curso}</p>
                       <p className="text-xs text-gray-400">Emitido em {new Date(cert.criadoEm).toLocaleDateString("pt-BR")}</p>
                     </div>
-                    <a href={"/api/certificados/" + cert.codigo} target="_blank" rel="noopener noreferrer" className="btn-outline text-sm py-2 px-4">
-                      Baixar PDF
-                    </a>
+                    <div className="flex gap-2">
+                      <Link href={"/carteirinha/" + cert.codigo} className="btn-primary text-sm py-2 px-4">
+                        Carteirinha
+                      </Link>
+                      <a href={"/api/certificados/" + cert.codigo} target="_blank" rel="noopener noreferrer" className="btn-outline text-sm py-2 px-4">
+                        PDF
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>
