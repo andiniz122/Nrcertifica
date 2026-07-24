@@ -7,7 +7,7 @@ import Certificate from "../../../models/Certificate"
 import { redirect } from "next/navigation"
 import { Header } from "../../../components/Header"
 import { CardCurso } from "../../../components/ava/CardCurso"
-import { BookOpen, Award, ShoppingBag } from "lucide-react"
+import { BookOpen, Award, ShoppingBag, CreditCard } from "lucide-react"
 import Link from "next/link"
 
 export default async function Dashboard() {
@@ -79,9 +79,14 @@ export default async function Dashboard() {
                       <p className="font-semibold text-brand-dark text-sm">{cert.dados.titulo_curso}</p>
                       <p className="text-xs text-gray-400">Emitido em {new Date(cert.criadoEm).toLocaleDateString("pt-BR")}</p>
                     </div>
-                    <a href={"/api/certificados/" + cert.codigo} target="_blank" rel="noopener noreferrer" className="btn-outline text-sm py-2 px-4">
-                      Baixar PDF
-                    </a>
+                    <div className="flex gap-2 flex-shrink-0">
+                      <Link href={"/carteirinha/" + cert.codigo} className="btn-primary text-sm py-2 px-4">
+                        <CreditCard className="w-4 h-4" /> Carteirinha
+                      </Link>
+                      <a href={"/api/certificados/" + cert.codigo} target="_blank" rel="noopener noreferrer" className="btn-outline text-sm py-2 px-4">
+                        Baixar PDF
+                      </a>
+                    </div>
                   </div>
                 ))}
               </div>
