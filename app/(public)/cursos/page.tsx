@@ -9,6 +9,7 @@ const CURSOS = [
   { slug: 'nr35', nr: 'NR-35', titulo: 'Trabalho em Altura', subtitulo: 'Para trabalhadores que atuam acima de 2 metros', horas: '8h', validade: '2 anos', preco: 67, ativo: false, href: '#', destaques: ['Riscos e prevenção', 'EPI e sistemas de ancoragem', 'Procedimentos operacionais', 'Certificado PDF automático'] },
   { slug: 'nr33', nr: 'NR-33', titulo: 'Segurança em Espaços Confinados', subtitulo: 'Vigia, Trabalhador Autorizado e Supervisor', horas: '16h / 40h', validade: '1 ano', preco: 127, ativo: false, href: '#', destaques: ['Vigia/Trabalhador: 16h', 'Supervisor: 40h', 'Atmosferas perigosas', 'Certificado PDF automático'] },
   { slug: 'nr06', nr: 'NR-06', titulo: 'Equipamentos de Proteção Individual', subtitulo: 'Seleção, uso, conservação e descarte de EPIs', horas: '4h', validade: 'Conforme uso', preco: 47, ativo: false, href: '#', destaques: ['Tipos de EPI por risco', 'Normas de uso e conservação', 'Responsabilidades legais', 'Certificado PDF automático'] },
+  { slug: 'nr12', nr: 'NR-12', titulo: 'Segurança no Trabalho em Máquinas e Equipamentos', subtitulo: 'Para operadores e mantenedores de máquinas industriais', horas: '8h', validade: '2 anos', preco: 77, ativo: true, href: '/nr12', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
 ]
 
 export default function Cursos() {
