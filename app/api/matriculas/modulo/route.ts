@@ -12,22 +12,22 @@ export async function POST(req: NextRequest) {
     await connectDB()
     const { enrollment_id, modulo_id } = await req.json()
 
-    const matricula = await Enrollment.findById(enrollment_id)
-    if (!matricula) return NextResponse.json({ error: 'Matrícula não encontrada' }, { status: 404 })
-    if (matricula.usuario_id.toString() !== session.user.id) {
-      return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
-    }
+    // Use findOneAndUpdate + $addToSet to avoid re-validating the full document
+    // (avoids 500 errors when required fields like order_id are missing on older enrollments)
+    const matricula = await Enrollment.findOneAndUpdate(
+      { _id: enrollment_id, usuario_id: session.user.id },
+      { $addToSet: { modulos_concluidos: modulo_id } },
+      { new: true, select: 'modulos_concluidos' }
+    )
 
-    if (!matricula.modulos_concluidos.includes(modulo_id)) {
-      matricula.modulos_concluidos.push(modulo_id)
-      await matricula.save()
-    }
+    if (!matricula) return NextResponse.json({ error: 'Matrícula não encontrada' }, { status: 404 })
 
     return NextResponse.json({
       modulos_concluidos: matricula.modulos_concluidos,
       ok: true,
     })
   } catch (error) {
+    console.error('[POST /api/matriculas/modulo]', error)
     return NextResponse.json({ error: 'Erro interno' }, { status: 500 })
   }
 }

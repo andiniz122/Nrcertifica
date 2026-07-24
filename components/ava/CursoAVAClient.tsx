@@ -23,6 +23,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
     matricula.modulos_concluidos || []
   )
   const [carregandoModulo, setCarregandoModulo] = useState<number | null>(null)
+  const [erroModulo, setErroModulo] = useState<string>('')
   const [dataFimInput, setDataFimInput] = useState<string>(matricula.data_fim_curso ? new Date(matricula.data_fim_curso).toISOString().split('T')[0] : new Date().toISOString().split('T')[0])
   const [dataFim, setDataFim] = useState<string>(matricula.data_fim_curso ? new Date(matricula.data_fim_curso).toISOString().split('T')[0] : '')
   const [salvandoData, setSalvandoData] = useState(false)
@@ -71,6 +72,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
   const concluirModulo = async (modulo_id: number) => {
     if (modulosConcluidos.includes(modulo_id)) return
     setCarregandoModulo(modulo_id)
+    setErroModulo('')
     try {
       const res = await fetch('/api/matriculas/modulo', {
         method: 'POST',
@@ -78,12 +80,18 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
         body: JSON.stringify({ enrollment_id: matricula._id, modulo_id }),
       })
       const data = await res.json()
+      if (!res.ok) {
+        setErroModulo(data.error || 'Erro ao salvar progresso. Tente novamente.')
+        return
+      }
       if (data.ok) {
         setModulosConcluidos(data.modulos_concluidos)
         // Abre próximo módulo automaticamente
         const proximo = modulo_id + 1
         if (proximo <= totalModulos) setModuloAberto(proximo)
       }
+    } catch {
+      setErroModulo('Erro de conexão. Verifique sua internet e tente novamente.')
     } finally {
       setCarregandoModulo(null)
     }
@@ -371,6 +379,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                             concluido={concluido}
                             onConcluir={() => concluirModulo(modulo.id)}
                             carregando={carregandoModulo === modulo.id}
+                            erro={carregandoModulo === null ? erroModulo : ''}
                           />
                         </div>
                       )}
@@ -483,7 +492,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
 }
 
 // ── Exercícios do módulo ──
-function ExerciciosModulo({ modulo, concluido, onConcluir, carregando }: any) {
+function ExerciciosModulo({ modulo, concluido, onConcluir, carregando, erro }: any) {
   const [respostas, setRespostas] = useState<Record<number, number>>({})
   const [enviado, setEnviado] = useState(false)
   const [acertos, setAcertos] = useState(0)
@@ -594,6 +603,12 @@ function ExerciciosModulo({ modulo, concluido, onConcluir, carregando }: any) {
             <button onClick={handleRefazer} className="flex items-center gap-1.5 text-gray-500 hover:text-brand-dark text-sm transition-colors">
               <RotateCcw className="w-3.5 h-3.5" /> Refazer
             </button>
+            {erro && (
+              <p className="w-full flex items-center gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-2">
+                <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                {erro}
+              </p>
+            )}
             {!concluido ? (
               <button
                 onClick={onConcluir}
