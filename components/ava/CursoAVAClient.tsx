@@ -23,6 +23,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
     matricula.modulos_concluidos || []
   )
   const [carregandoModulo, setCarregandoModulo] = useState<number | null>(null)
+  const [erroModulo, setErroModulo] = useState<string>('')
   const hoje = new Date().toISOString().split('T')[0]
 
   const inicioSalvo = matricula.data_inicio_curso
