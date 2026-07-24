@@ -15,6 +15,7 @@ export default function Perfil() {
     cpf: '',
     telefone: '',
     email: session?.user?.email || '',
+    data_nascimento: '',
     senhaAtual: '',
     novaSenha: '',
     confirmarSenha: '',
@@ -36,12 +37,15 @@ export default function Perfil() {
           if (data.usuario) {
             const cpfFormatado = data.usuario.cpf?.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') || ''
             const telFormatado = data.usuario.telefone?.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3') || ''
+            const dnBruto = data.usuario.data_nascimento
+            const dataNasc = dnBruto ? new Date(dnBruto).toISOString().slice(0, 10) : ''
             setForm(f => ({
               ...f,
               nome: data.usuario.nome || '',
               cpf: cpfFormatado,
               telefone: telFormatado,
               email: data.usuario.email || '',
+              data_nascimento: dataNasc,
             }))
             if (data.usuario.foto) setFotoPreview(data.usuario.foto)
           }
@@ -84,6 +88,7 @@ export default function Perfil() {
       formData.append('cpf', form.cpf.replace(/\D/g, ''))
       formData.append('telefone', form.telefone.replace(/\D/g, ''))
       formData.append('email', form.email)
+      if (form.data_nascimento) formData.append('data_nascimento', form.data_nascimento)
       if (form.senhaAtual) formData.append('senhaAtual', form.senhaAtual)
       if (form.novaSenha) formData.append('novaSenha', form.novaSenha)
       if (foto) formData.append('foto', foto)
@@ -195,6 +200,17 @@ export default function Perfil() {
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red"
                     placeholder="seu@email.com"
                   />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Data de nascimento</label>
+                  <input
+                    type="date"
+                    value={form.data_nascimento}
+                    onChange={e => setForm(f => ({ ...f, data_nascimento: e.target.value }))}
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red"
+                  />
+                  <p className="text-xs text-gray-400 mt-1">Aparece na carteirinha de habilitação</p>
                 </div>
               </div>
 

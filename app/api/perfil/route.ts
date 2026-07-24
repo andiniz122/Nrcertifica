@@ -27,13 +27,14 @@ export async function PUT(req: NextRequest) {
     await connectDB()
     const formData = await req.formData()
 
-    const nome     = formData.get('nome') as string
-    const cpf      = formData.get('cpf') as string
-    const telefone = formData.get('telefone') as string
-    const email    = formData.get('email') as string
-    const senhaAtual = formData.get('senhaAtual') as string
-    const novaSenha  = formData.get('novaSenha') as string
-    const foto       = formData.get('foto') as File | null
+    const nome           = formData.get('nome') as string
+    const cpf            = formData.get('cpf') as string
+    const telefone       = formData.get('telefone') as string
+    const email          = formData.get('email') as string
+    const dataNascimento = formData.get('data_nascimento') as string | null
+    const senhaAtual     = formData.get('senhaAtual') as string
+    const novaSenha      = formData.get('novaSenha') as string
+    const foto           = formData.get('foto') as File | null
 
     const usuario = await User.findById(session.user.id)
     if (!usuario) return NextResponse.json({ error: 'Usuario nao encontrado' }, { status: 404 })
@@ -78,6 +79,7 @@ export async function PUT(req: NextRequest) {
     usuario.cpf      = cpf.replace(/\D/g, '')
     usuario.telefone = telefone
     usuario.email    = email.toLowerCase().trim()
+    if (dataNascimento) usuario.data_nascimento = new Date(dataNascimento)
     if (fotoUrl) usuario.foto = fotoUrl
 
     await usuario.save()
