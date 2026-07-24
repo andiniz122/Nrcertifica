@@ -25,24 +25,49 @@ export async function POST(req: NextRequest) {
 
     if (!data_fim) return NextResponse.json({ error: 'data_fim obrigatória' }, { status: 400 })
 
-    const fim = new Date(data_fim)
+    // Carrega curso para saber a carga horária (necessário para validação e fallback)
+    const Course = (await import('../../../../models/Course')).default
+    const curso = await Course.findById(matricula.curso_id).lean() as any
+    const horasCurso = parseInt(curso?.carga_horaria?.replace('h', '') || '8')
+    const minimosDiasUteis = Math.ceil(horasCurso / 8)
+
+    const fim = new Date(data_fim + 'T12:00:00')
     let inicio: Date
 
     if (data_inicio) {
-      // Início informado manualmente pelo usuário
-      inicio = new Date(data_inicio)
+      inicio = new Date(data_inicio + 'T12:00:00')
     } else {
-      // Fallback: calcula início subtraindo dias úteis com base na carga horária
-      const curso = await (await import('../../../../models/Course')).default.findById(matricula.curso_id).lean() as any
-      const horasCurso = parseInt(curso?.carga_horaria?.replace('h', '') || '8')
-      const diasUteis = Math.ceil(horasCurso / 8)
+      // Fallback: calcula início subtraindo dias úteis
       inicio = new Date(fim)
-      let diasSubtraidos = 0
-      while (diasSubtraidos < diasUteis - 1) {
+      let subtraidos = 0
+      while (subtraidos < minimosDiasUteis - 1) {
         inicio.setDate(inicio.getDate() - 1)
         const diaSemana = inicio.getDay()
-        if (diaSemana !== 0 && diaSemana !== 6) diasSubtraidos++
+        if (diaSemana !== 0 && diaSemana !== 6) subtraidos++
       }
+    }
+
+    // Valida intervalo mínimo em dias úteis
+    const diasUteisSelecionados = (() => {
+      let count = 0
+      const d = new Date(inicio)
+      const f = new Date(fim)
+      d.setHours(12, 0, 0, 0)
+      f.setHours(12, 0, 0, 0)
+      while (d <= f) {
+        const dia = d.getDay()
+        if (dia !== 0 && dia !== 6) count++
+        d.setDate(d.getDate() + 1)
+      }
+      return count
+    })()
+
+    if (diasUteisSelecionados < minimosDiasUteis) {
+      const label = minimosDiasUteis === 1 ? '1 dia útil' : `${minimosDiasUteis} dias úteis`
+      return NextResponse.json(
+        { error: `Intervalo insuficiente: ${curso.carga_horaria} requer no mínimo ${label} (${diasUteisSelecionados} selecionado${diasUteisSelecionados !== 1 ? 's' : ''}).` },
+        { status: 400 }
+      )
     }
 
     await Enrollment.findByIdAndUpdate(enrollment_id, {

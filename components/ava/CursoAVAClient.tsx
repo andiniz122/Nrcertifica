@@ -30,18 +30,31 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
   const fimSalvo = matricula.data_fim_curso
     ? new Date(matricula.data_fim_curso).toISOString().split('T')[0] : ''
 
+  const horasCurso = parseInt(curso.carga_horaria?.replace('h', '') || '8')
+  const minimosDiasUteis = Math.ceil(horasCurso / 8)
+
   const calcInicioFromFim = (dataFimStr: string): string => {
-    const horas = parseInt(curso.carga_horaria?.replace('h', '') || '8')
-    const diasUteis = Math.ceil(horas / 8)
     const fim = new Date(dataFimStr + 'T12:00:00')
     const inicio = new Date(fim)
     let subtraidos = 0
-    while (subtraidos < diasUteis - 1) {
+    while (subtraidos < minimosDiasUteis - 1) {
       inicio.setDate(inicio.getDate() - 1)
       const dia = inicio.getDay()
       if (dia !== 0 && dia !== 6) subtraidos++
     }
     return inicio.toISOString().split('T')[0]
+  }
+
+  const contarDiasUteis = (inicioStr: string, fimStr: string): number => {
+    const d = new Date(inicioStr + 'T12:00:00')
+    const f = new Date(fimStr + 'T12:00:00')
+    let count = 0
+    while (d <= f) {
+      const dia = d.getDay()
+      if (dia !== 0 && dia !== 6) count++
+      d.setDate(d.getDate() + 1)
+    }
+    return count
   }
 
   const [dataFimInput, setDataFimInput] = useState<string>(fimSalvo || hoje)
@@ -55,6 +68,14 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
     if (!inicio || !fim) return
     if (inicio > fim) {
       setErroData('A data de início não pode ser posterior à conclusão.')
+      return
+    }
+    const diasSelecionados = contarDiasUteis(inicio, fim)
+    if (diasSelecionados < minimosDiasUteis) {
+      const label = minimosDiasUteis === 1 ? '1 dia útil' : `${minimosDiasUteis} dias úteis`
+      setErroData(
+        `Intervalo insuficiente: ${curso.carga_horaria} requer no mínimo ${label} (você selecionou ${diasSelecionados}).`
+      )
       return
     }
     setErroData('')
