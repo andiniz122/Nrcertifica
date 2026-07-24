@@ -19,12 +19,15 @@ export async function POST(req: NextRequest) {
     }
 
     if (!matricula.modulos_concluidos.includes(modulo_id)) {
-      matricula.modulos_concluidos.push(modulo_id)
-      await matricula.save()
+      await Enrollment.findByIdAndUpdate(
+        enrollment_id,
+        { $addToSet: { modulos_concluidos: modulo_id } },
+      )
     }
 
+    const atualizada = await Enrollment.findById(enrollment_id)
     return NextResponse.json({
-      modulos_concluidos: matricula.modulos_concluidos,
+      modulos_concluidos: atualizada?.modulos_concluidos ?? matricula.modulos_concluidos,
       ok: true,
     })
   } catch (error) {
