@@ -8,6 +8,7 @@ const CURSOS = [
   { slug: 'nr35', titulo: 'NR-35 Trabalho em Altura', modulos: 3 },
   { slug: 'nr10-sep', titulo: 'NR-10 SEP', modulos: 4 },
   { slug: 'nr06', titulo: 'NR-06 EPI', modulos: 2 },
+  { slug: 'nr12', titulo: 'NR-12 Máquinas e Equipamentos', modulos: 4 },
 ]
 
 export default function AdminApostilas() {

@@ -22,8 +22,9 @@ export async function POST(req: NextRequest) {
 
     if (!matricula) return NextResponse.json({ error: 'Matrícula não encontrada' }, { status: 404 })
 
+    const atualizada = await Enrollment.findById(enrollment_id)
     return NextResponse.json({
-      modulos_concluidos: matricula.modulos_concluidos,
+      modulos_concluidos: atualizada?.modulos_concluidos ?? matricula.modulos_concluidos,
       ok: true,
     })
   } catch (error) {

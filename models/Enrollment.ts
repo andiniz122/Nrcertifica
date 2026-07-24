@@ -3,7 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose'
 export interface IEnrollment extends Document {
   usuario_id: mongoose.Types.ObjectId
   curso_id: mongoose.Types.ObjectId
-  order_id: mongoose.Types.ObjectId
+  order_id?: mongoose.Types.ObjectId
   status: 'ativo' | 'concluido' | 'expirado'
   modulos_concluidos: number[]
   tentativas_prova: Array<{
@@ -23,7 +23,7 @@ export interface IEnrollment extends Document {
 const EnrollmentSchema = new Schema<IEnrollment>({
   usuario_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   curso_id:   { type: Schema.Types.ObjectId, ref: 'Course', required: true },
-  order_id:   { type: Schema.Types.ObjectId, ref: 'Order', required: true },
+  order_id:   { type: Schema.Types.ObjectId, ref: 'Order', required: false },
   status:     { type: String, enum: ['ativo', 'concluido', 'expirado'], default: 'ativo' },
   modulos_concluidos: [Number],
   tentativas_prova: [{

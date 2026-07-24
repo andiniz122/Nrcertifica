@@ -104,22 +104,29 @@ export async function POST(req: NextRequest) {
     const nota     = acertos
     const aprovado = acertos >= curso.prova_final.nota_minima
 
-    // Salva tentativa no banco
-    matricula.tentativas_prova.push({
+    // Salva tentativa e resultado atomicamente (evita validação de order_id em matrículas cortesia)
+    const novaTentativa = {
       data: new Date(),
       questoes: respostas,
       acertos,
       total,
       aprovado,
-    })
-
-    if (aprovado && !matricula.aprovado) {
-      matricula.aprovado = true
-      matricula.status = 'concluido'
-      matricula.data_conclusao = new Date()
     }
 
-    await matricula.save()
+    const updateFields: Record<string, unknown> = {}
+    if (aprovado && !matricula.aprovado) {
+      updateFields.aprovado = true
+      updateFields.status = 'concluido'
+      updateFields.data_conclusao = new Date()
+    }
+
+    await Enrollment.findByIdAndUpdate(
+      enrollment_id,
+      {
+        $push: { tentativas_prova: novaTentativa },
+        ...(Object.keys(updateFields).length ? { $set: updateFields } : {}),
+      },
+    )
 
     // Gera certificado se aprovado (primeira vez)
     let certificado_codigo = null
@@ -164,7 +171,7 @@ export async function POST(req: NextRequest) {
       nota_minima: curso.prova_final.nota_minima,
       detalhes,
       certificado_codigo,
-      tentativas_usadas: matricula.tentativas_prova.length,
+      tentativas_usadas: matricula.tentativas_prova.length + 1,
       tentativas_maximas: curso.prova_final.tentativas_maximas,
     })
   } catch (error) {

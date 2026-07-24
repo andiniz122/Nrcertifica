@@ -22,7 +22,7 @@ export default function Home() {
               <span className="text-brand-red">simples, rápida e com certificado</span>
             </h1>
             <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-              Cursos de NR-10, NR-35, NR-33, NR-06 e mais. Estude no seu ritmo,
+              Cursos de NR-10, NR-12, NR-35, NR-33, NR-06 e mais. Estude no seu ritmo,
               faça a prova online e receba o certificado em PDF imediatamente após a aprovação.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -77,20 +77,37 @@ export default function Home() {
 
               {/* Em breve */}
               {[
-                { nr: 'NR-35', titulo: 'Trabalho em Altura', horas: '8h', preco: '67' },
-                { nr: 'NR-33', titulo: 'Espaço Confinado', horas: '16h', preco: '127' },
-                { nr: 'NR-06', titulo: 'Equipamentos de Proteção', horas: '4h', preco: '47' },
+                { nr: 'NR-12', titulo: 'Máquinas e Equipamentos', horas: '8h', preco: '77', ativo: true, href: '/nr12' },
+                { nr: 'NR-35', titulo: 'Trabalho em Altura', horas: '8h', preco: '67', ativo: false, href: '#' },
+                { nr: 'NR-33', titulo: 'Espaço Confinado', horas: '16h', preco: '127', ativo: false, href: '#' },
+                { nr: 'NR-06', titulo: 'Equipamentos de Proteção', horas: '4h', preco: '47', ativo: false, href: '#' },
               ].map(c => (
-                <div key={c.nr} className="card opacity-70 border-l-4 border-gray-300 relative overflow-hidden">
-                  <div className="absolute top-3 right-3">
-                    <span className="badge bg-gray-100 text-gray-500">Em breve</span>
+                c.ativo ? (
+                  <div key={c.nr} className="card hover:shadow-md transition-shadow border-l-4 border-orange-500">
+                    <div className="flex items-start justify-between mb-3">
+                      <span className="badge bg-orange-100 text-orange-600">{c.nr}</span>
+                      <span className="font-display font-bold text-2xl text-brand-dark">R$ {c.preco}</span>
+                    </div>
+                    <h3 className="font-display font-bold text-xl text-brand-dark mb-1">
+                      {c.nr} — {c.titulo}
+                    </h3>
+                    <p className="text-gray-500 text-sm mb-4">{c.horas} · Válido por 2 anos.</p>
+                    <Link href={c.href} className="btn-primary w-full justify-center">
+                      Quero me matricular
+                    </Link>
                   </div>
-                  <span className="badge bg-gray-100 text-gray-500 mb-3">{c.nr}</span>
-                  <h3 className="font-display font-bold text-xl text-gray-500 mb-1">
-                    {c.nr} — {c.titulo}
-                  </h3>
-                  <p className="text-gray-400 text-sm">{c.horas} · A partir de R$ {c.preco}</p>
-                </div>
+                ) : (
+                  <div key={c.nr} className="card opacity-70 border-l-4 border-gray-300 relative overflow-hidden">
+                    <div className="absolute top-3 right-3">
+                      <span className="badge bg-gray-100 text-gray-500">Em breve</span>
+                    </div>
+                    <span className="badge bg-gray-100 text-gray-500 mb-3">{c.nr}</span>
+                    <h3 className="font-display font-bold text-xl text-gray-500 mb-1">
+                      {c.nr} — {c.titulo}
+                    </h3>
+                    <p className="text-gray-400 text-sm">{c.horas} · A partir de R$ {c.preco}</p>
+                  </div>
+                )
               ))}
             </div>
           </div>
