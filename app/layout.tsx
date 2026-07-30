@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: 'NR Certifica — Treinamentos NR Online',
   description: 'Plataforma de treinamentos em Normas Regulamentadoras. NR-10, NR-35, NR-33, NR-06 e mais. Certificado válido, emitido online.',
   metadataBase: new URL('https://nrcertifica.com.br'),
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
