@@ -105,7 +105,7 @@ const jsonLdHome = {
           name: 'Quais cursos NR estão disponíveis online?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Atualmente temos o curso NR-10 (Segurança em Eletricidade — 40h) disponível. Em breve: NR-12, NR-35 (Trabalho em Altura — 8h), NR-33 (Espaço Confinado — 16h) e NR-06 (EPI — 4h).',
+            text: 'Já estão disponíveis: NR-10 Básico (40h), NR-10 SEP (40h), NR-12 (8h), NR-35 (8h) e NR-06 (4h). Em breve: NR-33 — Espaço Confinado (16h).',
           },
         },
       ],
@@ -186,9 +186,10 @@ export default function Home() {
               {/* Em breve */}
               {[
                 { nr: 'NR-12', titulo: 'Máquinas e Equipamentos', horas: '8h', preco: '77', ativo: true, href: '/nr12' },
-                { nr: 'NR-35', titulo: 'Trabalho em Altura', horas: '8h', preco: '67', ativo: false, href: '#' },
+                { nr: 'NR-35', titulo: 'Trabalho em Altura', horas: '8h', preco: '67', ativo: true, href: '/nr35' },
+                { nr: 'NR-10 SEP', titulo: 'Sistema Elétrico de Potência', horas: '40h', preco: '127', ativo: true, href: '/nr10sep' },
+                { nr: 'NR-06', titulo: 'Equipamentos de Proteção', horas: '4h', preco: '47', ativo: true, href: '/nr06' },
                 { nr: 'NR-33', titulo: 'Espaço Confinado', horas: '16h', preco: '127', ativo: false, href: '#' },
-                { nr: 'NR-06', titulo: 'Equipamentos de Proteção', horas: '4h', preco: '47', ativo: false, href: '#' },
               ].map(c => (
                 c.ativo ? (
                   <div key={c.nr} className="card hover:shadow-md transition-shadow border-l-4 border-orange-500">
