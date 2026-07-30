@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { BookOpen, Mail, Shield } from 'lucide-react'
+import { HardHat, Mail, Shield } from 'lucide-react'
 
 export function Footer() {
   return (
@@ -7,10 +7,8 @@ export function Footer() {
       <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <div className="bg-brand-red rounded-lg p-1.5">
-              <BookOpen className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-display font-bold text-white">NR Certifica</span>
+            <HardHat className="w-6 h-6 text-brand-gold" />
+            <span className="font-display font-bold text-white tracking-wide">NR CERTIFICA</span>
           </div>
           <p className="text-sm leading-relaxed">
             Plataforma de treinamentos em Normas Regulamentadoras. Certificação válida,

@@ -1,8 +1,89 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
 import { BotaoComprar } from '../../../components/BotaoComprar'
+import { JsonLd } from '../../../components/JsonLd'
 import { CheckCircle2, Clock, Award, ChevronRight } from 'lucide-react'
+
+export const metadata: Metadata = {
+  title: 'Cursos NR Online com Certificado — NR-10, NR-12, NR-35, NR-33, NR-06',
+  description:
+    'Todos os cursos de Normas Regulamentadoras online com certificado válido: NR-10 Eletricidade (40h), NR-35 Trabalho em Altura (8h), NR-33 Espaço Confinado (16h), NR-06 EPI (4h). Acesso imediato e certificado PDF automático.',
+  alternates: { canonical: 'https://nrcertifica.com.br/cursos' },
+  openGraph: {
+    title: 'Cursos NR Online — NR-10, NR-35, NR-33, NR-06 com Certificado Válido',
+    description:
+      'Escolha seu curso NR online: NR-10 (40h), NR-35 (8h), NR-33 (16h), NR-06 (4h). Certificado com validade legal, acesso imediato.',
+    url: 'https://nrcertifica.com.br/cursos',
+  },
+}
+
+const jsonLdCursos = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Cursos NR Online — NR Certifica',
+  url: 'https://nrcertifica.com.br/cursos',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      item: {
+        '@type': 'Course',
+        name: 'NR-10 — Segurança em Instalações e Serviços em Eletricidade',
+        description:
+          'Curso NR-10 Básico online com 40 horas. Obrigatório para quem trabalha com instalações elétricas. Certificado válido por 2 anos.',
+        url: 'https://nrcertifica.com.br/nr10',
+        provider: { '@type': 'Organization', name: 'NR Certifica', sameAs: 'https://nrcertifica.com.br' },
+        timeRequired: 'PT40H',
+        educationalLevel: 'Profissional',
+        offers: { '@type': 'Offer', price: '97', priceCurrency: 'BRL', availability: 'https://schema.org/InStock', url: 'https://nrcertifica.com.br/nr10' },
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      item: {
+        '@type': 'Course',
+        name: 'NR-35 — Trabalho em Altura',
+        description: 'Curso NR-35 online com 8 horas. Para trabalhadores que atuam acima de 2 metros de altura. Certificado válido por 2 anos.',
+        url: 'https://nrcertifica.com.br/cursos',
+        provider: { '@type': 'Organization', name: 'NR Certifica', sameAs: 'https://nrcertifica.com.br' },
+        timeRequired: 'PT8H',
+        educationalLevel: 'Profissional',
+        offers: { '@type': 'Offer', price: '67', priceCurrency: 'BRL', availability: 'https://schema.org/PreOrder', url: 'https://nrcertifica.com.br/cursos' },
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      item: {
+        '@type': 'Course',
+        name: 'NR-33 — Segurança em Espaços Confinados',
+        description: 'Curso NR-33 online (16h Trabalhador / 40h Supervisor). Para Vigia, Trabalhador Autorizado e Supervisor em espaços confinados.',
+        url: 'https://nrcertifica.com.br/cursos',
+        provider: { '@type': 'Organization', name: 'NR Certifica', sameAs: 'https://nrcertifica.com.br' },
+        timeRequired: 'PT16H',
+        educationalLevel: 'Profissional',
+        offers: { '@type': 'Offer', price: '127', priceCurrency: 'BRL', availability: 'https://schema.org/PreOrder', url: 'https://nrcertifica.com.br/cursos' },
+      },
+    },
+    {
+      '@type': 'ListItem',
+      position: 4,
+      item: {
+        '@type': 'Course',
+        name: 'NR-06 — Equipamentos de Proteção Individual (EPI)',
+        description: 'Curso NR-06 online com 4 horas. Seleção, uso, conservação e descarte de EPIs. Certificado incluso.',
+        url: 'https://nrcertifica.com.br/cursos',
+        provider: { '@type': 'Organization', name: 'NR Certifica', sameAs: 'https://nrcertifica.com.br' },
+        timeRequired: 'PT4H',
+        educationalLevel: 'Profissional',
+        offers: { '@type': 'Offer', price: '47', priceCurrency: 'BRL', availability: 'https://schema.org/PreOrder', url: 'https://nrcertifica.com.br/cursos' },
+      },
+    },
+  ],
+}
 
 const CURSOS = [
   { slug: 'nr10-basico', nr: 'NR-10', titulo: 'Segurança em Instalações e Serviços em Eletricidade', subtitulo: 'Básico — obrigatório para quem trabalha com eletricidade', horas: '40h', validade: '2 anos', preco: 97, ativo: true, href: '/nr10', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
@@ -14,6 +95,7 @@ const CURSOS = [
 export default function Cursos() {
   return (
     <>
+      <JsonLd data={jsonLdCursos} />
       <Header />
       <main>
         <section className="bg-brand-dark text-white py-12 px-4">

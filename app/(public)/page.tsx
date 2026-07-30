@@ -1,14 +1,122 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Header } from '../../components/Header'
 import { Footer } from '../../components/Footer'
+import { JsonLd } from '../../components/JsonLd'
 import {
   ShieldCheck, Award, Clock, Users, CheckCircle2,
   ChevronRight, Zap, BookOpen, FileText
 } from 'lucide-react'
 
+const BASE = 'https://nrcertifica.com.br'
+
+export const metadata: Metadata = {
+  title: 'Cursos NR Online com Certificado Válido — NR-10, NR-12, NR-35 e mais',
+  description:
+    'Faça seu curso de NR-10, NR-12, NR-35, NR-33 ou NR-06 online. Certificado com validade legal emitido por Engenheiro responsável técnico CREA 254516/MG. Acesso imediato, prova online e certificado PDF automático.',
+  alternates: { canonical: BASE },
+  openGraph: {
+    title: 'NR Certifica — Cursos NR Online com Certificado Válido',
+    description:
+      'NR-10, NR-12, NR-35, NR-33 e NR-06 online. Certificado válido emitido por Engenheiro CREA 254516/MG. Acesso imediato após o pagamento.',
+    url: BASE,
+  },
+}
+
+const jsonLdHome = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${BASE}/#organization`,
+      name: 'NR Certifica',
+      url: BASE,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE}/logo-nrcertifica.png`,
+      },
+      description:
+        'Plataforma de treinamentos online em Normas Regulamentadoras. Certificação com validade legal, emitida por engenheiro responsável técnico.',
+      email: 'contato@nrcertifica.com.br',
+      founder: {
+        '@type': 'Person',
+        name: 'Anderson Bicalho Diniz',
+        honorificSuffix: 'CREA 254516/MG',
+        jobTitle: 'Engenheiro de Segurança do Trabalho',
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${BASE}/#website`,
+      url: BASE,
+      name: 'NR Certifica',
+      publisher: { '@id': `${BASE}/#organization` },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: { '@type': 'EntryPoint', urlTemplate: `${BASE}/cursos?q={search_term_string}` },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'O certificado do curso NR-10 online tem validade legal?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sim. Os certificados da NR Certifica têm validade legal com base na Constituição Federal (Art. 206° e 209°), Lei 9.394/96 e Norma CNE 04/99 — MEC, modalidade EAD. São assinados pelo Engenheiro responsável técnico registrado no CREA 254516/MG.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Qual a carga horária do curso NR-10 online?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'O curso NR-10 Básico online tem carga horária de 40 horas, com certificado válido por 2 anos, conforme exigência da norma regulamentadora.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Como recebo o certificado após concluir o curso?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Assim que você for aprovado na prova final (nota mínima 70%), o certificado em PDF é gerado automaticamente e fica disponível para download imediato na sua área do aluno.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Qual é a nota mínima para aprovação nos cursos NR online?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A nota mínima para aprovação é 70% na prova final. Você pode refazer a prova quantas vezes precisar dentro do período de acesso.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Posso fazer o curso NR pelo celular?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sim. A plataforma NR Certifica é 100% responsiva e funciona em smartphones, tablets e computadores. Você estuda onde e quando quiser.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Quais cursos NR estão disponíveis online?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Atualmente temos o curso NR-10 (Segurança em Eletricidade — 40h) disponível. Em breve: NR-12, NR-35 (Trabalho em Altura — 8h), NR-33 (Espaço Confinado — 16h) e NR-06 (EPI — 4h).',
+          },
+        },
+      ],
+    },
+  ],
+}
+
 export default function Home() {
   return (
     <>
+      <JsonLd data={jsonLdHome} />
       <Header />
       <main>
         {/* ── HERO ── */}
