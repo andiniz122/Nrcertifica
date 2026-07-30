@@ -13,18 +13,12 @@ const MODULOS = [
 
 const CONTEUDO = [
   'Fundamentos e campo de aplicação da NR-12 (2h)',
-  'Avaliação de riscos em máquinas e equipamentos (4h)',
-  'Perigos mecânicos: esmagamento, cisalhamento, enrolamento (4h)',
-  'Perigos não mecânicos: elétrico, térmico, ruído e vibração (2h)',
-  'Dispositivos de proteção fixos e móveis (4h)',
-  'Sistemas de intertravamento e distâncias de segurança (4h)',
-  'Paradas de emergência e dispositivos de validação (4h)',
-  'Instalação e comissionamento seguro de máquinas (2h)',
-  'Bloqueio e etiquetagem — LOTO em máquinas (4h)',
-  'Modos de operação: automático, manual e setup (4h)',
-  'EPI para operação e manutenção de máquinas (2h)',
-  'Sinalização e informações de segurança em máquinas (2h)',
-  'Capacitação de operadores e manutentores (2h)',
+  'Avaliação de riscos em máquinas e equipamentos (2h)',
+  'Perigos mecânicos e não mecânicos (2h)',
+  'Dispositivos de proteção fixos e móveis (2h)',
+  'Sistemas de intertravamento e distâncias de segurança (2h)',
+  'Bloqueio e etiquetagem — LOTO em máquinas (2h)',
+  'EPI, sinalização e capacitação (2h)',
   'Responsabilidades legais e implicações jurídicas (2h)',
 ]
 
@@ -33,7 +27,7 @@ export default function LandingNR12() {
     slug: 'nr12-basico',
     titulo: 'NR-12 — Segurança no Trabalho em Máquinas e Equipamentos',
     nr: 'NR-12',
-    carga_horaria: '40h',
+    carga_horaria: '16h',
     preco: 97,
   }
 
@@ -53,10 +47,10 @@ export default function LandingNR12() {
               </h1>
               <p className="text-gray-300 mb-6">
                 Curso obrigatório para operadores, manutentores e projetistas que trabalham com máquinas e equipamentos.
-                40 horas, modalidade EAD, com certificado válido emitido por Engenheiro responsável técnico.
+                16 horas, modalidade EAD, com certificado válido emitido por Engenheiro responsável técnico.
               </p>
               <div className="flex flex-wrap gap-4 text-sm text-gray-300 mb-8">
-                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-brand-red" /> 40 horas</span>
+                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-brand-red" /> 16 horas</span>
                 <span className="flex items-center gap-1.5"><Award className="w-4 h-4 text-brand-red" /> Validade: 2 anos</span>
                 <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-brand-red" /> CREA 254516/MG</span>
                 <span className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-brand-red" /> Acesso imediato</span>
@@ -175,7 +169,7 @@ function CardCompra({ curso }: { curso: any }) {
   return (
     <div className="bg-white rounded-2xl shadow-xl p-6 text-brand-dark">
       <div className="text-center mb-6">
-        <p className="text-gray-500 text-sm mb-1">Curso NR-12 Básico — 40h</p>
+        <p className="text-gray-500 text-sm mb-1">Curso NR-12 Básico — 16h</p>
         <p className="font-display text-4xl font-bold text-brand-dark">R$ 97,00</p>
         <p className="text-gray-400 text-sm mt-1">ou em até 3x no cartão</p>
       </div>
