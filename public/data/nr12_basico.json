@@ -1,281 +1,281 @@
 {
-  "curso": "NR-12 — Segurança no Trabalho em Máquinas e Equipamentos",
+  "curso": "NR-12 - Segurança no Trabalho em Máquinas e Equipamentos",
   "sigla": "NR-12",
-  "carga_horaria": "8h",
+  "carga_horaria": "40h",
   "validade_anos": 2,
   "aprovacao_minima": 0.70,
   "modulos": [
     {
       "id": 1,
-      "titulo": "Fundamentação Legal e Princípios Gerais",
-      "descricao": "Origem e abrangência da NR-12, princípios fundamentais, objetivos da norma e responsabilidades de empregadores e trabalhadores.",
+      "titulo": "Fundamentos da NR-12 e Avaliação de Risco",
+      "descricao": "Campo de aplicação da NR-12, metodologia de avaliação de risco, identificação de perigos e categorias de segurança em máquinas.",
       "exercicios": [
         {
           "id": "NR12-M1-Q1",
-          "enunciado": "A NR-12 aplica-se a:",
+          "enunciado": "A NR-12 se aplica a:",
           "alternativas": [
-            "Apenas equipamentos eletroeletrônicos domésticos",
-            "Máquinas e equipamentos em todas as atividades econômicas, incluindo projeto, fabricação, importação, venda, locação, instalação, operação e manutenção",
-            "Somente indústrias do setor metal-mecânico com mais de 50 empregados",
-            "Equipamentos importados que não possuem certificação INMETRO"
+            "Apenas máquinas fabricadas no Brasil após 2010",
+            "Somente equipamentos de grande porte industrial acima de 50 kW",
+            "Máquinas e equipamentos novos e usados em todas as fases: projeto, fabricação, importação, comercialização, exposição, cessão, doação, locação, instalação, operação e manutenção",
+            "Exclusivamente máquinas de metalurgia e setor automotivo"
           ],
-          "resposta_correta": 1,
-          "explicacao": "A NR-12 tem abrangência ampla, aplicando-se a máquinas e equipamentos novos e usados em todas as atividades econômicas, em todas as fases de seu ciclo de vida."
+          "resposta_correta": 2,
+          "explicacao": "A NR-12 tem abrangência ampla, cobrindo todas as fases do ciclo de vida de máquinas e equipamentos, incluindo itens usados. Aplica-se a praticamente todos os setores produtivos."
         },
         {
           "id": "NR12-M1-Q2",
-          "enunciado": "Qual é o objetivo principal da NR-12?",
+          "enunciado": "A avaliação de risco em máquinas consiste em:",
           "alternativas": [
-            "Regulamentar apenas os EPIs para operadores de máquinas",
-            "Estabelecer limites de produtividade para operadores de máquinas industriais",
-            "Definir referências técnicas, princípios fundamentais e medidas de proteção para garantir saúde e integridade física dos trabalhadores",
-            "Normatizar a importação de máquinas industriais estrangeiras"
+            "Apenas listar os acidentes que já ocorreram na empresa com aquela máquina",
+            "Processo sistemático de identificação dos perigos, estimativa e avaliação dos riscos associados a uma máquina, a fim de determinar as medidas de segurança necessárias",
+            "Verificar se a máquina possui certificado de conformidade do fabricante",
+            "Somente inspecionar os dispositivos de proteção instalados"
           ],
-          "resposta_correta": 2,
-          "explicacao": "A NR-12 define referências técnicas e princípios fundamentais para assegurar a saúde e a integridade física dos trabalhadores, estabelecendo requisitos mínimos para prevenção de acidentes."
+          "resposta_correta": 1,
+          "explicacao": "A avaliação de risco é um processo estruturado que identifica perigos, estima a probabilidade de ocorrência e a severidade do dano, permitindo definir as medidas de redução de risco adequadas antes de qualquer exposição."
         },
         {
           "id": "NR12-M1-Q3",
-          "enunciado": "São responsabilidades do empregador conforme a NR-12:",
+          "enunciado": "Risco residual em máquinas é definido como:",
           "alternativas": [
-            "Adotar medidas de proteção, manter inventário atualizado das máquinas e assegurar a capacitação dos trabalhadores",
-            "Adquirir apenas EPIs certificados pelo fornecedor da máquina",
-            "Reportar acidentes apenas quando resultarem em afastamento superior a 15 dias",
-            "Delegar ao operador toda a responsabilidade pela manutenção preventiva"
+            "O risco eliminado após a instalação dos dispositivos de proteção",
+            "O risco que permanece mesmo após a aplicação de todas as medidas de segurança previstas",
+            "Somente os riscos de natureza química presentes na máquina",
+            "O risco apenas em operações de manutenção preventiva"
           ],
-          "resposta_correta": 0,
-          "explicacao": "O empregador é responsável por adotar medidas de proteção, manter inventário atualizado, assegurar capacitação dos trabalhadores e manter documentação de segurança atualizada."
+          "resposta_correta": 1,
+          "explicacao": "Risco residual é o risco que subsiste após a aplicação de todas as medidas de segurança. Deve ser comunicado ao usuário por meio do manual de instruções, sinalização e treinamento, pois nunca é possível eliminar 100% dos riscos."
         },
         {
           "id": "NR12-M1-Q4",
-          "enunciado": "São responsabilidades do trabalhador conforme a NR-12:",
+          "enunciado": "Os principais perigos mecânicos gerados por máquinas incluem:",
           "alternativas": [
-            "Realizar manutenções corretivas sem necessidade de notificar o supervisor",
-            "Desativar dispositivos de segurança quando eles reduzem a produtividade",
-            "Aguardar instruções do fabricante antes de utilizar qualquer EPI",
-            "Cumprir as determinações de segurança, comunicar situações de risco, utilizar EPIs e participar de treinamentos"
+            "Apenas ruído e vibração excessivos",
+            "Somente riscos de incêndio por superaquecimento",
+            "Esmagamento, cisalhamento, corte, enrolamento, aprisionamento, impacto, picamento e abrasão por partes móveis",
+            "Exclusivamente risco de choque elétrico nos componentes de acionamento"
           ],
-          "resposta_correta": 3,
-          "explicacao": "O trabalhador deve cumprir as normas de segurança, usar os EPIs fornecidos, comunicar riscos ao supervisor e colaborar com os programas de segurança da empresa."
+          "resposta_correta": 2,
+          "explicacao": "Perigos mecânicos são gerados pelo movimento de partes da máquina. Esmagamento, cisalhamento, enrolamento, corte e impacto são exemplos clássicos. A NR-12 exige a identificação de todos os perigos mecânicos e não mecânicos."
         },
         {
           "id": "NR12-M1-Q5",
-          "enunciado": "A NR-12 adota como princípio fundamental que:",
+          "enunciado": "O manual de instruções fornecido pelo fabricante da máquina deve conter obrigatoriamente:",
           "alternativas": [
-            "Máquinas não precisam de proteções quando operadas por profissionais experientes",
-            "A proteção coletiva tem prioridade sobre a proteção individual",
-            "Cabe ao trabalhador decidir quais proteções são necessárias em cada tarefa",
-            "Equipamentos importados já possuem certificação suficiente e dispensam adequação"
+            "Apenas as especificações técnicas e a potência do motor",
+            "Somente o procedimento de ligação elétrica",
+            "Identificação e finalidade, riscos residuais, procedimentos de operação, manutenção e segurança, descrição dos dispositivos de proteção e EPIs necessários",
+            "Apenas o número de série e a data de fabricação"
           ],
-          "resposta_correta": 1,
-          "explicacao": "A NR-12 adota como princípio que as medidas de proteção coletiva (proteções fixas e dispositivos de segurança integrados à máquina) têm prioridade sobre EPIs e outras medidas individuais."
+          "resposta_correta": 2,
+          "explicacao": "O manual de instruções é documento obrigatório exigido pela NR-12. Deve cobrir todos os aspectos de operação segura, incluindo riscos residuais e EPIs, sendo essencial para a capacitação dos operadores e manutentores."
         }
       ]
     },
     {
       "id": 2,
-      "titulo": "Arranjo Físico, Instalações e Distâncias de Segurança",
-      "descricao": "Requisitos de layout, áreas de circulação, instalações elétricas, cálculo de distâncias de segurança e tipos de barreiras de proteção.",
+      "titulo": "Dispositivos de Proteção, Distâncias de Segurança e Paradas de Emergência",
+      "descricao": "Proteções fixas e móveis, sistemas de interlocking, cortinas de luz, tapetes de segurança, distâncias de segurança e comandos de parada de emergência.",
       "exercicios": [
         {
           "id": "NR12-M2-Q1",
-          "enunciado": "As áreas de circulação de pedestres em locais com máquinas devem ser:",
+          "enunciado": "As proteções fixas em máquinas:",
           "alternativas": [
-            "Marcadas com tinta branca e ter largura mínima de 0,60m",
-            "Claramente sinalizadas com faixas amarelas e ter largura mínima de 1,20m para fluxo de pessoas",
-            "Delimitadas apenas por barreiras físicas metálicas",
-            "Sinalizadas somente se o local for acessível a visitantes externos"
+            "Podem ser removidas pelo operador sempre que necessário para facilitar o trabalho",
+            "São opcionais quando a máquina possui outros dispositivos de segurança",
+            "Devem ser mantidas no lugar por fixadores que exijam uso de ferramentas para remoção, só sendo retiradas por pessoal autorizado para manutenção com a máquina desligada",
+            "Servem apenas para fins estéticos e de organização visual"
           ],
-          "resposta_correta": 1,
-          "explicacao": "A NR-12 exige que as vias de circulação sejam sinalizadas com faixas na cor amarela e tenham dimensionamento adequado ao fluxo, com largura mínima de 1,20m para pedestres."
+          "resposta_correta": 2,
+          "explicacao": "Proteções fixas são a medida mais confiável. Devem exigir ferramentas para serem removidas, impedindo o acesso casual de operadores às zonas de perigo. Só são retiradas por pessoal autorizado durante manutenção com a máquina desenergizada."
         },
         {
           "id": "NR12-M2-Q2",
-          "enunciado": "As instalações elétricas de máquinas devem:",
+          "enunciado": "O dispositivo de intertravamento (interlock) em uma proteção móvel funciona:",
           "alternativas": [
-            "Ser dimensionadas pelo operador conforme a necessidade de produção",
-            "Ser verificadas apenas na inspeção anual de segurança da empresa",
-            "Dispensar aterramento quando a máquina possui isolamento duplo certificado",
-            "Atender às normas técnicas vigentes, ter dispositivos de proteção contra sobrecorrente e ser protegidas contra danos mecânicos"
+            "Apenas sinalizando visualmente quando a proteção está aberta",
+            "Impedindo a partida ou provocando a parada da máquina quando a proteção é aberta, e impedindo a abertura da proteção enquanto a máquina está em movimento perigoso",
+            "Somente alertando sonoramente o operador sobre o perigo",
+            "Retardando o movimento da máquina em 5 segundos após a abertura da proteção"
           ],
-          "resposta_correta": 3,
-          "explicacao": "As instalações elétricas de máquinas devem seguir a NR-10 e normas ABNT, possuir proteções contra sobrecorrente, aterramento adequado e proteção mecânica dos condutores."
+          "resposta_correta": 1,
+          "explicacao": "O intertravamento garante que a máquina não opere com a proteção aberta e que a proteção não seja aberta enquanto partes perigosas estão em movimento. É um dos dispositivos de segurança mais utilizados em proteções móveis."
         },
         {
           "id": "NR12-M2-Q3",
-          "enunciado": "Distância de segurança é:",
+          "enunciado": "A distância de segurança entre a proteção e a zona de perigo deve ser calculada para:",
           "alternativas": [
-            "A distância mínima entre dois operadores trabalhando na mesma linha de produção",
-            "O espaço reservado entre máquinas para facilitar a manutenção preventiva",
-            "A distância mínima que deve ser mantida entre a zona de perigo e uma barreira, calculada para impedir que o operador alcance a zona perigosa antes que o movimento pare",
-            "A distância máxima que uma peça pode ser ejetada pela máquina em operação normal"
+            "Garantir apenas que o operador não veja a zona de perigo durante a operação",
+            "Ser a mínima possível para economizar espaço na instalação",
+            "Garantir que, quando uma pessoa toca a proteção ou inicia o acionamento de um dispositivo de presença, o movimento perigoso cesse antes que qualquer parte do corpo possa atingir a zona de perigo",
+            "Impedir exclusivamente o acesso de crianças à zona de perigo"
           ],
           "resposta_correta": 2,
-          "explicacao": "A distância de segurança é calculada para garantir que, ao detectar a presença do operador, a máquina complete sua parada antes que qualquer parte do corpo atinja a zona de perigo."
+          "explicacao": "Distâncias de segurança (calculadas conforme ABNT NBR 14153) garantem que o tempo de parada da máquina seja menor que o tempo necessário para uma pessoa alcançar a zona de perigo. Envolvem velocidade de aproximação e tempo de resposta do sistema."
         },
         {
           "id": "NR12-M2-Q4",
-          "enunciado": "As cortinas de luz (barreiras optoeletrônicas) atuam:",
+          "enunciado": "O dispositivo de parada de emergência (botão cogumelo vermelho) deve:",
           "alternativas": [
-            "Detectando a interrupção de feixes de infravermelho e acionando a parada da máquina antes que o operador alcance a zona de perigo",
-            "Projetando luz visível para alertar o operador da proximidade com a zona perigosa",
-            "Impedindo fisicamente o acesso à zona de perigo por meio de raios laser de alta potência",
-            "Apenas sinalizando a presença de pessoas na área, sem interação direta com a máquina"
+            "Ser instalado apenas na sala de controle principal, fora do alcance dos operadores",
+            "Funcionar como parada normal, podendo ser substituído pelo desligamento elétrico geral",
+            "Ser de acionamento manual, estar sempre acessível, ser de cor vermelha sobre fundo amarelo, e manter a condição de parada até ser manualmente rearmado",
+            "Ser substituído por um dispositivo digital de toque em interfaces modernas"
           ],
-          "resposta_correta": 0,
-          "explicacao": "Cortinas de luz são dispositivos de proteção eletrossensível (ESPE) que detectam a interrupção de feixes de infravermelho e enviam sinal de parada à máquina, devendo ser posicionadas na distância de segurança calculada."
+          "resposta_correta": 2,
+          "explicacao": "A NR-12 e a ABNT NBR ISO 13850 estabelecem que o dispositivo de parada de emergência deve ter acionamento manual simples, ser facilmente acessível, manter a condição de parada (não pode ser um simples botão de mola), e só ser reavivado conscientemente."
         },
         {
           "id": "NR12-M2-Q5",
-          "enunciado": "Barreiras de proteção fixas (resguardos fixos) devem:",
+          "enunciado": "Cortinas de luz (dispositivos optoeletrônicos) são utilizadas para:",
           "alternativas": [
-            "Ser removíveis sem ferramentas para facilitar a limpeza diária",
-            "Ser construídas de forma que sua remoção exija ferramentas específicas, impedindo o acesso à zona de perigo durante a operação normal",
-            "Ser feitas obrigatoriamente de aço inoxidável AISI 304",
-            "Ser instaladas apenas em máquinas com potência superior a 5 CV"
+            "Iluminar a zona de perigo para melhor visibilidade do operador",
+            "Detectar a presença de partes do corpo na zona de perigo e acionar a parada da máquina antes de uma lesão",
+            "Medir a velocidade de partes móveis da máquina durante a operação",
+            "Substituir completamente as proteções fixas em qualquer aplicação"
           ],
           "resposta_correta": 1,
-          "explicacao": "Resguardos fixos devem ser instalados de forma que só possam ser removidos com ferramentas, garantindo que a zona de perigo fique inacessível durante a operação da máquina."
+          "explicacao": "Cortinas de luz criam uma barreira invisível com feixes de luz infravermelha. Quando qualquer objeto interrompe o feixe, a máquina para imediatamente. São ideais quando o acesso frequente à zona de operação é necessário."
         }
       ]
     },
     {
       "id": 3,
-      "titulo": "Dispositivos de Segurança e Riscos Adicionais",
-      "descricao": "Dispositivos de partida, acionamento e parada de emergência, riscos adicionais (químicos, físicos), sistema LOTO e principais causas de acidentes com máquinas.",
+      "titulo": "Instalação, Manutenção, Modos de Operação e Procedimentos de Segurança",
+      "descricao": "Requisitos de instalação, bloqueio e etiquetagem (LOTO) em máquinas, modos de operação (automático, manual, setup) e procedimentos escritos de segurança.",
       "exercicios": [
         {
           "id": "NR12-M3-Q1",
-          "enunciado": "O dispositivo de parada de emergência (botão cogumelo) deve:",
+          "enunciado": "Antes de realizar qualquer manutenção em uma máquina, o procedimento correto é:",
           "alternativas": [
-            "Ser acionado automaticamente quando a produção do turno é concluída",
-            "Estar disponível apenas em máquinas com velocidade superior a 1000 rpm",
-            "Ser de cor vermelha, facilmente acessível, com ação de retenção (trava ao ser acionado) e exigir reinicialização manual deliberada após acionamento",
-            "Ser posicionado apenas no painel de controle principal da máquina"
+            "Reduzir a velocidade da máquina para o mínimo e trabalhar com ela em movimento lento",
+            "Avisar verbalmente os colegas próximos e iniciar o serviço rapidamente",
+            "Desenergizar e bloquear todas as fontes de energia (elétrica, pneumática, hidráulica, gravitacional), aplicar etiqueta de bloqueio e verificar a ausência de energia antes de iniciar",
+            "Apenas desligar o botão de partida da máquina e verificar se ela parou"
           ],
           "resposta_correta": 2,
-          "explicacao": "O botão de parada de emergência deve ser vermelho sobre fundo amarelo, posicionado de forma acessível, com retenção mecânica e exigir ação deliberada para ser liberado, evitando reinicializações acidentais."
+          "explicacao": "O LOTO (Lockout/Tagout) em máquinas exige o bloqueio de todas as fontes de energia, incluindo pressão residual de sistemas pneumáticos/hidráulicos e energia potencial (partes elevadas). Apenas desligar não é suficiente — a máquina pode ser religada acidentalmente."
         },
         {
           "id": "NR12-M3-Q2",
-          "enunciado": "Riscos adicionais associados a máquinas e equipamentos incluem:",
+          "enunciado": "O modo de operação 'setup' ou 'regulagem' em máquinas:",
           "alternativas": [
-            "Apenas ruído e vibrações mecânicas, regulamentados pela NR-15",
-            "Substâncias perigosas (óleos, fluidos de corte), radiações, ruído, calor, frio e vibrações — além dos riscos mecânicos intrínsecos",
-            "Somente agentes químicos em máquinas do setor de soldagem",
-            "Apenas os riscos elétricos regulamentados pela NR-10"
+            "Permite operar a máquina normalmente com todas as proteções removidas",
+            "É o modo de produção em alta velocidade para aumentar a produtividade",
+            "Permite o movimento controlado da máquina para ajuste, com velocidade reduzida, requerendo acionamento continuado (homem-morto) e presença de operador autorizado",
+            "Dispensa qualquer medida de segurança, pois é realizado apenas por engenheiros"
           ],
-          "resposta_correta": 1,
-          "explicacao": "A NR-12 reconhece que máquinas geram riscos além dos mecânicos, incluindo agentes químicos (óleos, fluidos), físicos (ruído, calor, radiação, vibração) e ergonômicos, todos devendo ser avaliados e controlados."
+          "resposta_correta": 2,
+          "explicacao": "No modo setup, partes da máquina podem precisar se mover com proteções abertas. Para isso, a NR-12 exige velocidade reduzida, acionamento por dispositivo de validação (comando de presença/homem-morto) e operador com capacitação específica."
         },
         {
           "id": "NR12-M3-Q3",
-          "enunciado": "O sistema LOTO (Lockout/Tagout — Bloqueio e Etiquetagem) é aplicado:",
+          "enunciado": "O procedimento de segurança escrito para operação de máquinas deve:",
           "alternativas": [
-            "Apenas em instalações elétricas, dispensando fontes hidráulicas e pneumáticas",
-            "Somente quando a máquina apresenta defeito grave que impede totalmente a operação",
-            "Apenas por técnicos de manutenção com certificação do CREA/CONFEA",
-            "Durante serviços de manutenção, limpeza e ajuste, bloqueando e etiquetando TODAS as fontes de energia (elétrica, hidráulica, pneumática, mecânica, gravitacional) antes de iniciar o trabalho"
+            "Ser elaborado apenas quando solicitado por auditor do Ministério do Trabalho",
+            "Existir em versão única guardada com o gerente de segurança",
+            "Ser elaborado pelo responsável técnico, estar disponível no local de trabalho, em linguagem acessível, descrever passo a passo os procedimentos seguros e incluir os EPIs necessários",
+            "Ser substituído por treinamento verbal sem necessidade de documentação escrita"
           ],
-          "resposta_correta": 3,
-          "explicacao": "O LOTO deve ser aplicado a todas as fontes de energia da máquina, garantindo estado de energia zero antes de qualquer intervenção de manutenção, limpeza ou ajuste."
+          "resposta_correta": 2,
+          "explicacao": "A NR-12 exige procedimentos escritos que descrevam de forma clara como operar, regular e manter cada máquina com segurança. Devem estar disponíveis no posto de trabalho e ser compreensíveis para os operadores."
         },
         {
           "id": "NR12-M3-Q4",
-          "enunciado": "A principal causa de acidentes com máquinas no Brasil é:",
+          "enunciado": "Durante a operação normal de uma prensa mecânica, o operador percebe que a proteção frontal está danificada. O que deve fazer?",
           "alternativas": [
-            "Ausência ou inadequação de proteções (resguardos), aliada à falta de capacitação e de procedimentos claros",
-            "Falha nos sistemas de automação e controle programável",
-            "Uso de máquinas importadas sem tradução do manual para o português",
-            "Excesso de pressão nos sistemas hidráulicos por falha de válvulas"
+            "Continuar operando com cautela e informar ao supervisor ao final do turno",
+            "Improvisar uma proteção temporária com papelão ou madeira e continuar a produção",
+            "Parar imediatamente a máquina, sinalizar com bloqueio de segurança e comunicar ao responsável para reparo antes de reativar",
+            "Aumentar a velocidade de operação para terminar o lote mais rápido antes de parar"
           ],
-          "resposta_correta": 0,
-          "explicacao": "Dados do Ministério do Trabalho apontam que a maioria dos acidentes com máquinas decorre da ausência, remoção ou inadequação de proteções, combinada com falta de capacitação dos operadores."
+          "resposta_correta": 2,
+          "explicacao": "Proteção danificada representa risco grave e iminente. A NR-12 e a CLT garantem ao trabalhador o direito de recusar trabalho em condição insegura. A máquina deve ser paralisada até o reparo da proteção."
         },
         {
           "id": "NR12-M3-Q5",
-          "enunciado": "Um scanner laser de segurança difere de uma cortina de luz porque:",
+          "enunciado": "A manutenção preventiva de máquinas e equipamentos é importante pois:",
           "alternativas": [
-            "O scanner laser é mais barato e de instalação mais simples que a cortina de luz",
-            "O scanner laser monitora uma área bidimensional configurável (campo de proteção), enquanto a cortina de luz monitora um plano linear de feixes paralelos",
-            "O scanner laser somente funciona em ambientes sem poeira e sem névoa de óleo",
-            "O scanner laser exige reinicialização manual a cada ciclo de produção"
+            "Serve apenas para prolongar a vida útil dos componentes mecânicos",
+            "É exigida apenas para fins de garantia junto ao fabricante",
+            "Mantém os dispositivos de segurança em perfeitas condições de funcionamento, reduzindo a probabilidade de falhas que podem expor trabalhadores a riscos",
+            "Dispensa a necessidade de inspeção dos dispositivos de proteção"
           ],
-          "resposta_correta": 1,
-          "explicacao": "O scanner laser define zonas de proteção em área 2D configurável, sendo mais flexível para proteger áreas de acesso irregular. A cortina de luz é ideal para abertura retangular definida com feixes paralelos."
+          "resposta_correta": 2,
+          "explicacao": "A manutenção preventiva, incluindo a verificação e teste periódico dos dispositivos de segurança, é obrigação da NR-12. Sensores de interlocking, cortinas de luz e paradas de emergência com defeito tornam a máquina perigosa mesmo aparentemente funcionando."
         }
       ]
     },
     {
       "id": 4,
-      "titulo": "Procedimentos de Trabalho e Manutenção",
-      "descricao": "Procedimentos de trabalho seguros, inspeção rotineira, checklist de máquinas, ciclo de segurança (análise de risco, projeto, manutenção) e estudo de caso prático.",
+      "titulo": "EPI, Capacitação, Sinalização e Responsabilidades Legais",
+      "descricao": "EPIs para operação e manutenção de máquinas, requisitos de capacitação de operadores e manutentores, sinalização em máquinas e responsabilidades legais.",
       "exercicios": [
         {
           "id": "NR12-M4-Q1",
-          "enunciado": "Um Procedimento de Trabalho Seguro (PTS) para operação de máquinas deve conter:",
+          "enunciado": "Para operadores de máquinas com risco de projeção de partículas (tornos, fresas, retíficas), o EPI obrigatório é:",
           "alternativas": [
-            "Identificação dos riscos, medidas de proteção, sequência segura de operação, uso de EPIs, situações de emergência e responsabilidades",
-            "Apenas a sequência de operação para maximizar a produtividade do turno",
-            "Somente informações do fabricante transcritas do manual original da máquina",
-            "Instruções de produção sem referência a riscos para não inibir o operador"
+            "Apenas capacete de proteção",
+            "Óculos de proteção contra impactos, projeção de cavacos e respingos, conforme a atividade",
+            "Apenas protetores auriculares para ruído da máquina",
+            "Luvas de couro, independentemente do tipo de operação"
           ],
-          "resposta_correta": 0,
-          "explicacao": "O PTS deve ser elaborado com participação dos trabalhadores, descrevendo passo a passo a execução segura da tarefa, incluindo identificação de perigos, controles e responsabilidades."
+          "resposta_correta": 1,
+          "explicacao": "Óculos ou protetores faciais contra impactos são essenciais em operações com projeção de cavacos e partículas. O tipo exato deve ser definido com base na avaliação de risco de cada máquina, respeitando o Certificado de Aprovação (CA) do EPI."
         },
         {
           "id": "NR12-M4-Q2",
-          "enunciado": "A inspeção rotineira (pré-operacional) de uma máquina deve verificar:",
+          "enunciado": "A capacitação exigida pela NR-12 para operadores de máquinas deve abordar:",
           "alternativas": [
-            "Exclusivamente os parâmetros elétricos por meio de multímetro",
-            "Somente os itens indicados pelo último relatório de manutenção corretiva",
-            "Condições dos resguardos, dispositivos de segurança, sistemas de controle, ausência de vazamentos e funcionamento da parada de emergência",
-            "Apenas o nível de óleo lubrificante e a temperatura de operação"
+            "Apenas o funcionamento elétrico e mecânico da máquina",
+            "Somente as normas de produtividade e qualidade da empresa",
+            "Riscos relacionados à máquina, medidas de proteção, procedimentos seguros de operação, uso de EPIs, condutas em emergências e direitos e deveres do trabalhador",
+            "Exclusivamente o uso do botão de emergência e a checagem de início de turno"
           ],
           "resposta_correta": 2,
-          "explicacao": "A inspeção pré-operacional deve cobrir todos os itens de segurança: resguardos, dispositivos de parada, sistemas de controle, lubrificação, sinais de desgaste e vazamentos."
+          "explicacao": "A capacitação prevista na NR-12 é ampla: cobre riscos, proteções, EPIs, procedimentos, emergências e aspectos legais. Deve ser ministrada antes de o trabalhador operar a máquina e renovada quando houver mudanças nas condições de trabalho."
         },
         {
           "id": "NR12-M4-Q3",
-          "enunciado": "Na análise de risco de uma máquina (conforme NR-12 e ABNT NBR ISO 12100), a sequência correta é:",
+          "enunciado": "A sinalização de segurança em máquinas deve:",
           "alternativas": [
-            "Instalar proteções → identificar perigos → avaliar o risco residual",
-            "Determinar os limites da máquina → identificar perigos → estimar e avaliar riscos → aplicar medidas de redução → verificar o risco residual",
-            "Avaliar produtividade → identificar riscos → instalar EPI nos operadores",
-            "Consultar o manual do fabricante → copiar proteções de máquinas similares → validar com o operador"
+            "Ser colocada apenas no manual de instruções, sem necessidade de afixar na máquina",
+            "Ser opcional quando a máquina possui certificação do fabricante",
+            "Identificar as zonas de perigo, advertir sobre riscos residuais, indicar os EPIs obrigatórios e ser durável, visível e estar em conformidade com as normas ABNT",
+            "Usar apenas textos escritos, sem pictogramas ou cores padronizadas"
           ],
-          "resposta_correta": 1,
-          "explicacao": "A ABNT NBR ISO 12100 define um processo iterativo: delimitar a máquina, identificar todos os perigos, estimar e avaliar riscos, aplicar medidas de redução e verificar o risco residual."
+          "resposta_correta": 2,
+          "explicacao": "A sinalização na máquina é exigida pela NR-12 e deve ser permanente e durável. Inclui alertas de risco, indicação de EPIs e zonas de acesso restrito. Pictogramas e cores padronizados garantem compreensão mesmo por trabalhadores com baixo nível de leitura."
         },
         {
           "id": "NR12-M4-Q4",
-          "enunciado": "Ao identificar que o resguardo de uma máquina está danificado, a atitude correta do operador é:",
+          "enunciado": "Em caso de acidente grave com máquina no ambiente de trabalho, o empregador é obrigado a:",
           "alternativas": [
-            "Continuar operando com cuidado redobrado e comunicar ao fim do turno",
-            "Improvisar uma proteção provisória com material disponível no local",
-            "Remover completamente o resguardo danificado para evitar interferência na produção",
-            "Paralisar imediatamente a operação, sinalizar a máquina como fora de serviço e comunicar o supervisor — só retomando após reparo e verificação"
+            "Aguardar a recuperação do trabalhador antes de tomar qualquer providência",
+            "Apenas registrar internamente o ocorrido sem comunicação a órgãos externos",
+            "Prestar socorro imediato à vítima, acionar os serviços de emergência, preservar o local para investigação, emitir a CAT, comunicar ao sindicato e à DRT quando exigido, e investigar as causas",
+            "Desligar toda a empresa por 48 horas como medida de segurança automática"
           ],
-          "resposta_correta": 3,
-          "explicacao": "Máquinas com dispositivos de segurança danificados não devem ser operadas. O trabalhador deve paralisá-la, sinalizar e comunicar imediatamente ao supervisor."
+          "resposta_correta": 2,
+          "explicacao": "Em acidente grave, o empregador tem múltiplas obrigações simultâneas: atendimento à vítima, preservação da cena, emissão da CAT e comunicação às autoridades competentes. A investigação do acidente é obrigatória para prevenir recorrências."
         },
         {
           "id": "NR12-M4-Q5",
-          "enunciado": "O ciclo de segurança de máquinas abrange:",
+          "enunciado": "O trabalhador que se recusa a operar máquina cujas proteções de segurança foram removidas ou danificadas está:",
           "alternativas": [
-            "Projeto, fabricação, comercialização, instalação, operação, manutenção e descarte — com requisitos de segurança em cada fase",
-            "Apenas a fase de operação e a manutenção preventiva anual",
-            "Somente as fases em que o operador interage diretamente com a máquina",
-            "A fase de fabricação pelo fornecedor e a fase de manutenção pelo usuário"
+            "Cometendo falta grave passível de demissão por justa causa",
+            "Agindo de forma incorreta, pois deve seguir as ordens do supervisor",
+            "Exercendo direito legalmente assegurado pela NR-12 e pela CLT, que garantem ao trabalhador o direito de recusar atividade com risco grave e iminente",
+            "Sujeito a desconto salarial proporcional ao período de recusa"
           ],
-          "resposta_correta": 0,
-          "explicacao": "A NR-12 adota abordagem de ciclo de vida completo, exigindo requisitos de segurança desde o projeto até o descarte final, com responsabilidades definidas para fabricantes, importadores e usuários."
+          "resposta_correta": 2,
+          "explicacao": "A CLT (Art. 157 e 158) e a NR-12 asseguram ao trabalhador o direito de interromper suas atividades e comunicar ao responsável quando identificar risco grave e iminente. Operar máquina sem proteção é situação inequívoca de risco grave."
         }
       ]
     }
   ],
   "prova_final": {
-    "instrucoes": "Esta prova contém 10 questões sorteadas aleatoriamente do banco. Nota mínima para aprovação: 7 acertos (70%). Você tem até 3 tentativas. Ao ser aprovado, o certificado NR-12 será gerado automaticamente em PDF.",
+    "instrucoes": "Serão sorteadas 10 questões deste banco de 20. Nota mínima para aprovação: 7/10 (70%). Máximo de 3 tentativas.",
     "tentativas_maximas": 3,
     "questoes_sorteadas": 10,
     "nota_minima": 7,
@@ -283,327 +283,262 @@
       {
         "id": "NR12-PF-01",
         "modulo": 1,
-        "enunciado": "A NR-12 estabelece que as medidas de proteção devem ser adotadas seguindo a seguinte hierarquia:",
+        "enunciado": "Qual documento técnico é obrigatório para que uma máquina seja colocada em operação conforme a NR-12?",
         "alternativas": [
-          "EPI → proteção coletiva → sinalização → treinamento",
-          "Medidas de proteção coletiva (integradas à máquina) têm prioridade sobre medidas administrativas e, por último, EPIs",
-          "Treinamento do operador é suficiente para dispensar qualquer proteção física na máquina",
-          "Sinalização de alerta substitui proteções físicas em máquinas de baixa velocidade"
+          "Apenas a nota fiscal de compra e o certificado de garantia do fabricante",
+          "Somente o projeto elétrico da instalação",
+          "Inventário de máquinas e equipamentos atualizado, avaliação de risco e prontuário da máquina com toda a documentação técnica",
+          "Apenas o laudo do INMETRO de conformidade do produto"
         ],
-        "resposta_correta": 1,
-        "explicacao": "A NR-12 adota hierarquia de controles: primeiro eliminação do perigo, depois proteção coletiva (resguardos, dispositivos integrados), depois medidas administrativas e, por último, EPIs."
+        "resposta_correta": 2,
+        "explicacao": "A NR-12 exige que as empresas mantenham inventário atualizado, avaliação de risco documentada e prontuário de cada máquina — contendo projeto, manuais, registros de manutenção e histórico de acidentes."
       },
       {
         "id": "NR12-PF-02",
-        "modulo": 2,
-        "enunciado": "Qual a diferença entre resguardo fixo e resguardo móvel intertravado?",
+        "modulo": 1,
+        "enunciado": "Perigos não mecânicos em máquinas incluem:",
         "alternativas": [
-          "O resguardo fixo é mais caro e deve ser usado apenas em máquinas de grande porte",
-          "Não há diferença prática — ambos impedem fisicamente o acesso à zona perigosa",
-          "O resguardo móvel intertravado é reservado exclusivamente para manutenção",
-          "O resguardo fixo só pode ser removido com ferramentas; o resguardo móvel intertravado, quando aberto, envia sinal de parada à máquina automaticamente"
+          "Apenas esmagamento e enrolamento por partes móveis",
+          "Somente riscos de queda de componentes sobre o operador",
+          "Riscos elétricos, térmicos, ruído, vibração, radiações, substâncias químicas perigosas e riscos ergonômicos",
+          "Exclusivamente riscos de incêndio por faíscas"
         ],
-        "resposta_correta": 3,
-        "explicacao": "O resguardo fixo exige ferramentas para remoção; o resguardo móvel intertravado possui sensor que para a máquina quando aberto, permitindo acesso seguro sem ferramentas."
+        "resposta_correta": 2,
+        "explicacao": "Além dos perigos mecânicos, a NR-12 exige identificação de perigos não mecânicos: elétrico, térmico (queimaduras), ruído, vibração, radiação (lasers, UV), substâncias perigosas e fatores ergonômicos — todos avaliados e controlados."
       },
       {
         "id": "NR12-PF-03",
-        "modulo": 2,
-        "enunciado": "A \"zona de perigo\" de uma máquina é definida como:",
+        "modulo": 1,
+        "enunciado": "A hierarquia de medidas de redução de risco em máquinas, da mais para a menos prioritária, é:",
         "alternativas": [
-          "Qualquer área dentro ou ao redor da máquina em que uma pessoa possa ser exposta a risco de lesão ou dano à saúde",
-          "A área ao redor da máquina reservada exclusivamente para circulação dos operadores",
-          "Somente a região de contato entre a ferramenta e a peça trabalhada",
-          "A área delimitada pela cerca de proteção instalada pelo fabricante"
+          "EPI → Sinalização → Proteções → Projeto seguro",
+          "Projeto inerentemente seguro → Dispositivos de proteção e medidas de segurança → Informação para uso seguro (sinalização, manual, capacitação e EPI)",
+          "Sinalização → Capacitação → EPI → Proteções fixas",
+          "Proteções móveis → EPI → Projeto → Treinamento"
         ],
-        "resposta_correta": 0,
-        "explicacao": "Zona de perigo é qualquer área dentro ou ao redor da máquina onde uma pessoa possa ser exposta a risco de lesão ou dano à saúde, conforme definição da NR-12."
+        "resposta_correta": 1,
+        "explicacao": "A NR-12 e a ISO 12100 estabelecem a hierarquia: 1º) Eliminação ou redução de riscos no projeto (intrínseco); 2º) Proteções físicas e dispositivos de segurança; 3º) Informação e treinamento. EPI é sempre o último recurso."
       },
       {
         "id": "NR12-PF-04",
-        "modulo": 1,
-        "enunciado": "O Manual de Instruções de uma máquina deve ser fornecido em língua portuguesa e deve conter:",
+        "modulo": 2,
+        "enunciado": "Um dispositivo de validação (comando de presença ou homem-morto) exige:",
         "alternativas": [
-          "Apenas as especificações técnicas de potência e dimensões da máquina",
-          "Somente as informações de garantia e assistência técnica autorizada",
-          "Informações sobre riscos, medidas de segurança, procedimentos de operação e manutenção, lista de peças de reposição e dados do fabricante",
-          "Esquemas elétricos em idioma original, podendo ser complementado por tradução parcial"
+          "Que o operador pressione o botão apenas uma vez para iniciar o movimento",
+          "Acionamento contínuo e voluntário pelo operador durante todo o movimento perigoso, parando a máquina imediatamente quando liberado ou acionado de outra forma",
+          "Que dois operadores confirmem simultaneamente o início da operação",
+          "Apenas confirmação digital por biometria antes da operação"
         ],
-        "resposta_correta": 2,
-        "explicacao": "O Manual de Instruções deve estar em português e conter informações completas sobre riscos, operação segura, manutenção e peças de reposição, conforme exigência da NR-12."
+        "resposta_correta": 1,
+        "explicacao": "O dispositivo de validação (homem-morto) requer acionamento contínuo. Se o operador liberar, cair, ou perder os sentidos, a máquina para automaticamente. É fundamental no modo setup e em situações de risco com proteções abertas."
       },
       {
         "id": "NR12-PF-05",
         "modulo": 2,
-        "enunciado": "A distância de segurança para posicionamento de uma cortina de luz é calculada considerando:",
+        "enunciado": "Tapetes de segurança (sensing mats) são utilizados para:",
         "alternativas": [
-          "Apenas a velocidade máxima de operação da máquina",
-          "A velocidade de aproximação do membro humano e o tempo de resposta total do sistema (tempo da cortina + tempo de parada da máquina), conforme ABNT NBR ISO 13855",
-          "O tempo de reação do operador treinado multiplicado pela velocidade da ferramenta",
-          "Somente a distância física entre a cortina e a ferramenta da máquina"
+          "Reduzir a vibração transmitida ao chão pela máquina",
+          "Detectar a presença de uma pessoa em uma área delimitada ao redor da máquina, acionando a parada quando o tapete é pisado",
+          "Impedir o deslizamento do operador durante o trabalho",
+          "Isolar eletricamente a base da máquina do chão da fábrica"
         ],
         "resposta_correta": 1,
-        "explicacao": "A fórmula da ABNT NBR ISO 13855 considera a velocidade de aproximação do membro humano e o tempo de resposta total do sistema de segurança para calcular a distância mínima de posicionamento da cortina."
+        "explicacao": "Tapetes de segurança são dispositivos de detecção de presença: quando alguém pisa no tapete delimitando a zona de risco, a máquina para. São usados em robôs industriais e máquinas com grande zona de perigo."
       },
       {
         "id": "NR12-PF-06",
-        "modulo": 4,
-        "enunciado": "A manutenção preventiva de uma máquina deve ser realizada:",
+        "modulo": 2,
+        "enunciado": "A categoria de segurança de um sistema de controle (conforme ABNT NBR ISO 13849) define:",
         "alternativas": [
-          "De acordo com cronograma predefinido baseado nos requisitos do fabricante e na análise de risco, com registros de todas as intervenções",
-          "Apenas quando a máquina apresentar defeito visível que comprometa a produção",
-          "Exclusivamente pelo fabricante da máquina durante visitas técnicas anuais",
-          "Somente durante as paradas de produção, independentemente de cronograma"
+          "A potência nominal do motor principal da máquina",
+          "O nível de confiabilidade e tolerância a falhas do sistema de segurança, determinando como o sistema se comporta na ocorrência de uma falha",
+          "A velocidade máxima de operação permitida para a máquina",
+          "O número máximo de operadores que podem usar a máquina simultaneamente"
         ],
-        "resposta_correta": 0,
-        "explicacao": "A manutenção preventiva deve seguir cronograma baseado nos requisitos do fabricante e na análise de risco, com registros de todas as intervenções realizadas para rastreabilidade."
+        "resposta_correta": 1,
+        "explicacao": "As categorias (B, 1, 2, 3, 4) e os Níveis de Desempenho (PL: a a e) da ABNT NBR ISO 13849 determinam quão confiável é o sistema de segurança. Riscos maiores exigem categorias/PL mais elevados — sistemas com mais redundância e tolerância a falhas."
       },
       {
         "id": "NR12-PF-07",
         "modulo": 3,
-        "enunciado": "Quando duas ou more fontes de energia alimentam uma máquina (ex: elétrica e pneumática), o procedimento LOTO exige:",
+        "enunciado": "Quando uma máquina possui fontes de energia múltiplas (elétrica, pneumática e hidráulica), o procedimento de bloqueio deve:",
         "alternativas": [
-          "Bloquear apenas a fonte de energia principal (elétrica), pois as demais são consideradas secundárias",
-          "Desligar o disjuntor geral do painel e considerar a máquina segura",
-          "Identificar, bloquear e etiquetar TODAS as fontes de energia individualmente e verificar o estado de energia zero antes de qualquer intervenção",
-          "Aplicar apenas etiquetas de aviso, sem bloqueio físico se houver supervisão contínua"
+          "Bloquear apenas a energia elétrica, pois é a mais perigosa",
+          "Bloquear apenas a fonte de maior pressão ou tensão",
+          "Bloquear e verificar a ausência de energia em TODAS as fontes antes de iniciar qualquer serviço de manutenção",
+          "Desligar o disjuntor principal e começar o trabalho imediatamente"
         ],
         "resposta_correta": 2,
-        "explicacao": "O LOTO exige bloqueio e etiquetagem de todas as fontes de energia — elétrica, pneumática, hidráulica, mecânica e gravitacional — com verificação do estado de energia zero antes de qualquer intervenção."
+        "explicacao": "Máquinas com múltiplas fontes de energia exigem bloqueio de todas elas: elétrica, pneumática (despressurização e bloqueio do ramal), hidráulica e energia potencial (fixação de partes elevadas). Uma fonte não bloqueada pode causar movimento inesperado fatal."
       },
       {
         "id": "NR12-PF-08",
-        "modulo": 2,
-        "enunciado": "A sinalização de segurança em máquinas e equipamentos deve:",
+        "modulo": 3,
+        "enunciado": "O operador de máquina deve realizar a inspeção pré-operacional (checklist) antes de cada turno para:",
         "alternativas": [
-          "Substituir as medidas de proteção técnica quando os riscos forem de baixo nível",
-          "Ser escrita apenas em inglês por ser a linguagem universal da indústria",
-          "Ser instalada somente em máquinas operadas por trabalhadores temporários",
-          "Ser clara, durável, visível e complementar as medidas de proteção técnica — não podendo substituí-las"
+          "Cumprir apenas uma formalidade burocrática da empresa",
+          "Verificar se todos os dispositivos de proteção, controles e paradas de emergência estão funcionando corretamente antes de expor-se ao risco",
+          "Calcular o rendimento da máquina para a meta de produção do dia",
+          "Registrar o número de peças produzidas no turno anterior"
         ],
-        "resposta_correta": 3,
-        "explicacao": "A sinalização de segurança é complementar às proteções físicas, nunca podendo substituí-las. Deve ser clara, durável e visível aos trabalhadores expostos aos riscos."
+        "resposta_correta": 1,
+        "explicacao": "O checklist pré-operacional é uma barreira de segurança fundamental. Permite identificar falhas em proteções e dispositivos de segurança antes de qualquer exposição ao risco. A máquina não deve ser operada se algum item estiver com defeito."
       },
       {
         "id": "NR12-PF-09",
-        "modulo": 1,
-        "enunciado": "O Programa de Gerenciamento de Riscos (PGR) de uma empresa deve incluir, em relação às máquinas:",
+        "modulo": 3,
+        "enunciado": "Em instalações onde há risco de acesso não autorizado de pessoas às zonas de perigo (visitantes, outras áreas da fábrica), a NR-12 exige:",
         "alternativas": [
-          "Apenas o custo estimado de adequação das máquinas à NR-12",
-          "Inventário das máquinas, identificação dos perigos, avaliação dos riscos, medidas de controle, cronograma de implantação e registros de treinamento",
-          "Somente os acidentes já ocorridos e as medidas corretivas adotadas após cada evento",
-          "A lista de EPIs adquiridos e a validade dos certificados de aprovação de cada EPI"
+          "Apenas um aviso verbal ao início de cada turno",
+          "Delimitação e sinalização da área, cercamento ou barreira física impedindo o acesso de pessoas não autorizadas à zona de risco da máquina",
+          "Apenas câmeras de vigilância monitorando a área continuamente",
+          "Uma sirene sonora que dispare quando alguém se aproxima"
         ],
         "resposta_correta": 1,
-        "explicacao": "O PGR deve conter inventário de máquinas, identificação e avaliação de riscos, medidas de controle, cronograma de adequação e registros de treinamento dos trabalhadores expostos."
+        "explicacao": "A NR-12 exige delimitação das áreas de risco e cercamento físico quando há possibilidade de acesso de pessoas não autorizadas. Sinalização isolada não é suficiente — barreiras físicas impedem o acesso acidental."
       },
       {
         "id": "NR12-PF-10",
         "modulo": 3,
-        "enunciado": "O relé de segurança (módulo de segurança) em circuitos de controle de máquinas tem a função de:",
+        "enunciado": "Ao detectar falha em um dispositivo de segurança durante a operação, o sistema de controle seguro deve:",
         "alternativas": [
-          "Reduzir o consumo de energia do painel de controle em horário de pico",
-          "Substituir o disjuntor termomagnetico em painéis de baixa tensão",
-          "Monitorar os dispositivos de segurança e garantir que falhas no circuito sejam detectadas, impedindo o acionamento da máquina em condição insegura",
-          "Aumentar a velocidade de resposta do operador aos sinais da máquina"
+          "Continuar a operação e registrar a falha para manutenção posterior",
+          "Reduzir a velocidade da máquina para 50% e sinalizar ao operador",
+          "Acionar a parada segura e manter a máquina parada até que a falha seja corrigida e o sistema, rearmado",
+          "Transferir automaticamente para o modo de backup sem interrupção da produção"
         ],
         "resposta_correta": 2,
-        "explicacao": "O relé de segurança monitora continuamente os dispositivos de segurança (botões de emergência, intertravamentos) e detecta falhas no circuito, impedindo operação em condição insegura."
+        "explicacao": "Princípio da falha segura (fail-safe): quando um componente de segurança falha, o sistema deve ir para o estado mais seguro possível — parada da máquina. Não pode haver produção com dispositivos de segurança defeituosos."
       },
       {
         "id": "NR12-PF-11",
-        "modulo": 2,
-        "enunciado": "Tapetes de pressão (safety mats) são utilizados para:",
+        "modulo": 4,
+        "enunciado": "A NR-12 exige que o treinamento de operadores de máquinas perigosas seja documentado e inclua:",
         "alternativas": [
-          "Detectar a presença de pessoa na área protegida por meio de sensores de pressão, enviando sinal de parada à máquina ao serem pisados",
-          "Reduzir a fadiga do operador em pé durante longas jornadas de trabalho",
-          "Absorver vibrações transmitidas pelo piso da máquina para o trabalhador",
-          "Delimitar visualmente as áreas de circulação ao redor das máquinas"
+          "Apenas a assinatura de um termo de ciência sobre os riscos",
+          "Somente treinamento prático, sem necessidade de conteúdo teórico",
+          "Conteúdo teórico e prático, com registro da carga horária, do conteúdo programático, do nome do instrutor e lista de presença com assinatura dos participantes",
+          "Apenas o preenchimento de um questionário online ao início do emprego"
         ],
-        "resposta_correta": 0,
-        "explicacao": "Tapetes de pressão são dispositivos de proteção sensível que detectam a presença humana e enviam sinal de parada à máquina, sendo posicionados na área de acesso à zona de perigo."
+        "resposta_correta": 2,
+        "explicacao": "A NR-12 exige capacitação documentada com teoria e prática. Os registros devem ser arquivados pela empresa, pois constituem prova do cumprimento das obrigações legais em caso de fiscalização ou acidente."
       },
       {
         "id": "NR12-PF-12",
-        "modulo": 1,
-        "enunciado": "Um trabalhador recebe ordem de seu supervisor para operar uma máquina sem a proteção instalada, para 'ganhar tempo'. A atitude correta é:",
+        "modulo": 4,
+        "enunciado": "Luvas de proteção não devem ser utilizadas em operações de torneamento (torno mecânico) porque:",
         "alternativas": [
-          "Obedecer à ordem do supervisor, pois ele tem autoridade hierárquica",
-          "Recusar a operação insegura, comunicar ao SESMT ou à CIPA e registrar a situação — a responsabilidade recai sobre quem removeu a proteção e quem ordenou a operação sem ela",
-          "Operar a máquina com mais cuidado e sem informar a ninguém",
-          "Aceitar a ordem, desde que haja um colega presente como apoio"
+          "Reduzem a sensibilidade tátil do operador, diminuindo a qualidade das peças",
+          "São caras e desgastam rapidamente neste tipo de operação",
+          "Podem ser agarradas pela peça ou pela ferramenta em rotação, arrastando a mão do operador para dentro da máquina e causando amputação",
+          "A norma não permite EPI de mãos em nenhuma operação com máquinas"
         ],
-        "resposta_correta": 1,
-        "explicacao": "O trabalhador tem o direito e o dever de recusar tarefas que coloquem em risco sua saúde e integridade física. Deve comunicar o fato ao SESMT, CIPA ou órgão fiscalizador."
+        "resposta_correta": 2,
+        "explicacao": "Em operações com peças em rotação (tornos, fresas), luvas são proibidas pois podem ser capturadas pelo movimento rotatório, arrastando a mão do operador. Este é um exemplo de EPI que aumenta o risco em certas situações — avaliação criteriosa é essencial."
       },
       {
         "id": "NR12-PF-13",
         "modulo": 4,
-        "enunciado": "O risco ergonômico na operação de máquinas pode incluir:",
+        "enunciado": "O fabricante ou importador de máquinas tem a obrigação de:",
         "alternativas": [
-          "Apenas lesões por esmagamento e corte causados diretamente pela máquina",
-          "Somente a exposição a substâncias químicas utilizadas para lubrificação",
-          "Riscos exclusivamente relacionados à exposição a ruídos e vibrações mecânicas",
-          "Posturas inadequadas, esforço repetitivo, ritmo de trabalho acelerado, força excessiva e projeto inadequado da interface operador-máquina"
+          "Apenas entregar a máquina funcionando, sem responsabilidade sobre segurança após a venda",
+          "Fornecer manual apenas em inglês, sendo a tradução responsabilidade do comprador",
+          "Fornecer a máquina com todos os dispositivos de proteção instalados, manual de instruções em português, declaração de conformidade e informações sobre riscos residuais",
+          "Instalar as proteções somente se o comprador pagar valor adicional por elas"
         ],
-        "resposta_correta": 3,
-        "explicacao": "Riscos ergonômicos em operação de máquinas incluem posturas inadequadas, movimentos repetitivos, força excessiva e interface inadequada do posto de trabalho, devendo ser controlados pela NR-12 e NR-17."
+        "resposta_correta": 2,
+        "explicacao": "A NR-12 responsabiliza o fabricante e o importador por fornecer máquinas seguras, com proteções instaladas de origem, manual em português, informações sobre riscos residuais e documentação técnica. Máquina sem proteções não pode ser comercializada no Brasil."
       },
       {
         "id": "NR12-PF-14",
-        "modulo": 4,
-        "enunciado": "Em relação ao treinamento de operadores de máquinas, a NR-12 exige que ele seja:",
+        "modulo": 1,
+        "enunciado": "A análise de risco de uma máquina deve ser revisada quando:",
         "alternativas": [
-          "Realizado apenas uma vez, no momento da contratação do trabalhador",
-          "Ministrado exclusivamente por instrutores certificados pelo fabricante da máquina",
-          "Limitado a 2 horas de instruções verbais pelo supervisor imediato",
-          "Teórico e prático, incluindo análise de risco da máquina específica, procedimentos de operação, situações de emergência e EPIs — com atualização sempre que houver mudança na máquina ou processo"
+          "Apenas no vencimento do prazo de 5 anos estabelecido em contrato",
+          "Somente após a ocorrência de um acidente de trabalho",
+          "Ocorrer modificação na máquina, mudança no processo, mudança no local de instalação, ocorrência de acidente ou incidente, ou identificação de novos riscos",
+          "Nunca, pois a análise inicial é suficiente para toda a vida útil da máquina"
         ],
-        "resposta_correta": 3,
-        "explicacao": "O treinamento deve ser teórico e prático, abrangendo os riscos específicos da máquina operada, com periodicidade adequada e sempre que houver mudanças no processo ou na máquina."
+        "resposta_correta": 2,
+        "explicacao": "A avaliação de risco não é documento estático — deve ser revisada sempre que houver mudanças que possam alterar o perfil de risco: modificações na máquina, no processo produtivo, no arranjo físico, após acidentes ou identificação de novos perigos."
       },
       {
         "id": "NR12-PF-15",
-        "modulo": 3,
-        "enunciado": "O 'dispositivo de validação' (enabling device / hold-to-run) é:",
+        "modulo": 2,
+        "enunciado": "A abertura máxima permitida na malha de uma proteção física (grade) instalada em uma máquina deve ser calculada em função de:",
         "alternativas": [
-          "O botão de partida padrão que aciona o ciclo normal de produção",
-          "Um dispositivo de três posições que permite o movimento da máquina apenas enquanto mantido pressionado na posição intermediária — usado em modos de manutenção e ajuste",
-          "Um sensor que valida se o operador está usando os EPIs corretos antes do acionamento",
-          "Um dispositivo que valida o certificado de conformidade da máquina junto ao INMETRO"
+          "Apenas da estética e do padrão visual da fábrica",
+          "Somente do material disponível para a fabricação da proteção",
+          "Da distância entre a grade e a zona de perigo, pois aberturas maiores requerem distâncias maiores para garantir que a mão não alcance a zona perigosa",
+          "Do nível de ruído produzido pela máquina durante a operação"
         ],
-        "resposta_correta": 1,
-        "explicacao": "O dispositivo de validação (enabling device) tem três posições: repouso, meio curso (ativa movimento) e totalmente pressionado ou solto (para o movimento). É usado em modo de ajuste/manutenção com velocidades reduzidas."
+        "resposta_correta": 2,
+        "explicacao": "Conforme ABNT NBR 14153, a abertura das proteções deve ser calculada em relação à distância até a zona de perigo. Quanto menor a distância, menor deve ser a abertura. Isso evita que dedos, mãos ou braços alcancem partes perigosas através das grades."
       },
       {
         "id": "NR12-PF-16",
-        "modulo": 4,
-        "enunciado": "A análise de risco de uma máquina deve ser refeita quando:",
+        "modulo": 2,
+        "enunciado": "Um scanner laser de segurança (area scanner) é um dispositivo que:",
         "alternativas": [
-          "Apenas após acidente grave ocorrido durante a operação da máquina",
-          "Somente quando solicitada por Auditor Fiscal do Trabalho em inspeção",
-          "Houver modificação na máquina, mudança no processo, mudança nas condições de uso, após acidente ou quando indicada por auditoria de segurança",
-          "A cada cinco anos, independentemente de qualquer mudança na máquina ou no processo"
+          "Mede a temperatura das partes móveis para detectar superaquecimento",
+          "Cria uma zona de detecção configurável no chão ao redor da máquina, acionando alarme ou parada quando detecta presença humana na zona de proteção",
+          "Verifica a qualidade das peças produzidas durante a operação",
+          "Controla automaticamente a velocidade da máquina conforme a produtividade"
         ],
-        "resposta_correta": 2,
-        "explicacao": "A análise de risco deve ser revisada sempre que houver alterações na máquina, no processo produtivo, nas condições de uso ou após qualquer acidente, não apenas em datas fixas."
+        "resposta_correta": 1,
+        "explicacao": "Scanners laser de segurança emitem feixes laser em 2D que criam zonas de detecção configuráveis. São muito usados em robôs e AGVs (veículos autônomos), pois permitem diferentes zonas: aviso e parada de emergência."
       },
       {
         "id": "NR12-PF-17",
-        "modulo": 1,
-        "enunciado": "A responsabilidade do fabricante/importador de máquinas conforme a NR-12 inclui:",
+        "modulo": 3,
+        "enunciado": "A modificação de uma máquina existente para alterar sua função ou capacidade:",
         "alternativas": [
-          "Apenas fornecer o manual de instruções no idioma do país de fabricação",
-          "Somente realizar a manutenção preventiva durante toda a vida útil da máquina",
-          "Treinar os operadores do usuário final sem custo adicional e em prazo indefinido",
-          "Fabricar/importar em conformidade com os requisitos de segurança, fornecer manual em português, declarar conformidade e não comercializar máquinas com risco grave e iminente"
+          "Pode ser feita livremente pela equipe de manutenção sem necessidade de nova documentação",
+          "Requer apenas aprovação verbal do gerente de produção",
+          "Exige nova avaliação de risco, atualização do prontuário, possível recertificação da máquina e novo treinamento dos operadores",
+          "Só é permitida se realizada pelo fabricante original da máquina"
         ],
-        "resposta_correta": 3,
-        "explicacao": "Fabricantes e importadores devem garantir conformidade dos equipamentos com a NR-12, fornecer documentação em português, emitir declaração de conformidade e não colocar no mercado máquinas com risco grave e iminente."
+        "resposta_correta": 2,
+        "explicacao": "Modificações em máquinas podem criar novos riscos ou invalidar as proteções originais. A NR-12 trata o modificador como o novo fabricante para as partes modificadas, exigindo nova avaliação de risco e atualização completa da documentação."
       },
       {
         "id": "NR12-PF-18",
         "modulo": 4,
-        "enunciado": "A manutenção corretiva em uma máquina deve ser precedida de:",
+        "enunciado": "A periodicidade da capacitação (reciclagem) dos operadores de máquinas deve ser:",
         "alternativas": [
-          "Emissão de Permissão de Trabalho (PT), aplicação do LOTO em todas as fontes de energia, sinalização da máquina e confirmação do estado de energia zero",
-          "Apenas comunicação verbal ao supervisor de turno antes de iniciar o serviço",
-          "Apenas desligamento do disjuntor principal do painel elétrico da máquina",
-          "Comunicação ao operador para que aguarde o reparo fora da área de trabalho"
+          "A cada 5 anos, conforme padrão mínimo da NR-12",
+          "Definida na avaliação de risco de cada máquina e sempre que houver mudanças nas condições de trabalho, processos, equipamentos ou retorno de afastamento prolongado",
+          "Apenas na admissão do trabalhador, sem necessidade de reciclagem",
+          "A cada 10 anos, independentemente de mudanças no processo"
         ],
-        "resposta_correta": 0,
-        "explicacao": "Toda intervenção de manutenção deve ser precedida de Permissão de Trabalho, aplicação completa do LOTO em todas as fontes de energia e verificação do estado de energia zero."
+        "resposta_correta": 1,
+        "explicacao": "A NR-12 não fixa prazo único de reciclagem — a periodicidade deve ser definida na avaliação de risco. Entretanto, sempre que houver modificação na máquina, processo, introdução de nova máquina ou retorno de afastamento, novo treinamento é obrigatório."
       },
       {
         "id": "NR12-PF-19",
-        "modulo": 1,
-        "enunciado": "O inventário de máquinas e equipamentos conforme NR-12 deve conter:",
+        "modulo": 4,
+        "enunciado": "Empresa que mantém máquina em operação sem os dispositivos de proteção exigidos pela NR-12 está sujeita a:",
         "alternativas": [
-          "Apenas o nome e a quantidade de cada máquina no setor produtivo",
-          "Somente as máquinas adquiridas após a publicação da NR-12",
-          "Identificação de cada máquina, fabricante, ano de fabricação, riscos identificados e situação de conformidade com a NR-12",
-          "Lista de peças de reposição disponíveis no almoxarifado da empresa"
+          "Apenas advertência verbal do fiscal do trabalho na primeira fiscalização",
+          "Somente ao pagamento de uma taxa administrativa de regularização",
+          "Autuação e multa pelo Ministério do Trabalho, embargo ou interdição da máquina ou do setor, e responsabilidade civil e criminal em caso de acidente com o trabalhador",
+          "Apenas à obrigação de comprar os dispositivos de proteção no prazo de 1 ano"
         ],
         "resposta_correta": 2,
-        "explicacao": "O inventário deve identificar cada máquina com dados do fabricante, ano de fabricação, riscos identificados, medidas de proteção adotadas e situação de conformidade com os requisitos da NR-12."
+        "explicacao": "Descumprimento da NR-12 gera autuação com multas graduadas pela gravidade. O fiscal pode embargar a máquina ou interditar o setor imediatamente quando identificar risco grave e iminente. Em caso de acidente, a empresa responde civil e criminalmente."
       },
       {
         "id": "NR12-PF-20",
-        "modulo": 3,
-        "enunciado": "O 'Certificado de Conformidade' de uma máquina, emitido por organismo acreditado, atesta que:",
-        "alternativas": [
-          "A máquina está em conformidade com a NR-12 para o uso específico da empresa compradora",
-          "A máquina foi projetada, fabricada e testada atendendo aos requisitos essenciais de segurança e saúde, conforme normas técnicas harmonizadas aplicáveis",
-          "O operador recebeu treinamento suficiente para operar a máquina com segurança",
-          "A máquina passou por inspeção visual pela CIPA da empresa usuária"
-        ],
-        "resposta_correta": 1,
-        "explicacao": "O Certificado de Conformidade emitido por organismo acreditado atesta que a máquina atende aos requisitos essenciais de segurança e saúde das normas técnicas harmonizadas aplicáveis."
-      },
-      {
-        "id": "NR12-PF-21",
-        "modulo": 3,
-        "enunciado": "Ao encontrar uma máquina operando sem o resguardo de proteção, um trabalhador que NÃO é o operador daquela máquina deve:",
-        "alternativas": [
-          "Ignorar, pois é responsabilidade exclusiva do operador e do setor de manutenção",
-          "Acionar diretamente o botão de emergência da máquina para pará-la imediatamente",
-          "Instalar temporariamente qualquer barreira disponível no local",
-          "Comunicar imediatamente ao supervisor responsável — qualquer trabalhador tem obrigação de comunicar condições inseguras"
-        ],
-        "resposta_correta": 3,
-        "explicacao": "Qualquer trabalhador que identifique condição insegura tem a obrigação de comunicá-la ao supervisor responsável. A segurança é responsabilidade coletiva, não apenas do operador."
-      },
-      {
-        "id": "NR12-PF-22",
-        "modulo": 2,
-        "enunciado": "O sistema de segurança de uma máquina é composto por:",
-        "alternativas": [
-          "Conjunto de resguardos, dispositivos de segurança, sistemas de controle de segurança, distâncias de segurança, sinalização e procedimentos que, combinados, reduzem os riscos a nível aceitável",
-          "Apenas os resguardos físicos (grades e proteções metálicas)",
-          "O botão de emergência e o sistema de aterramento elétrico da máquina",
-          "Os EPIs fornecidos ao operador e o treinamento recebido na admissão"
-        ],
-        "resposta_correta": 0,
-        "explicacao": "O sistema de segurança é composto pelo conjunto integrado de medidas: resguardos, dispositivos de segurança, controles de segurança, distâncias, sinalização e procedimentos operacionais."
-      },
-      {
-        "id": "NR12-PF-23",
         "modulo": 4,
-        "enunciado": "Os registros de inspeção e manutenção de máquinas devem ser:",
+        "enunciado": "A CIPA (Comissão Interna de Prevenção de Acidentes) tem papel na aplicação da NR-12 ao:",
         "alternativas": [
-          "Mantidos apenas digitalmente e por período mínimo de 6 meses",
-          "Arquivados por pelo menos 5 anos e disponibilizados à fiscalização e aos trabalhadores quando solicitado",
-          "Enviados mensalmente ao sindicato da categoria para controle coletivo",
-          "Elaborados apenas quando solicitados pelo SESMT ou pela CIPA"
-        ],
-        "resposta_correta": 1,
-        "explicacao": "Os registros de inspeção, manutenção e treinamento relacionados à NR-12 devem ser arquivados e disponibilizados à fiscalização e aos trabalhadores, servindo como evidência do cumprimento dos requisitos."
-      },
-      {
-        "id": "NR12-PF-24",
-        "modulo": 3,
-        "enunciado": "A parada de emergência de uma máquina deve ser acionada quando:",
-        "alternativas": [
-          "Apenas quando houver acidente com lesão ao operador",
-          "Somente durante testes periódicos de funcionalidade do dispositivo",
-          "Em qualquer situação de risco iminente à integridade física dos trabalhadores ou quando houver falha grave no sistema da máquina",
-          "Apenas quando solicitada pelo supervisor de turno ou pela manutenção"
+          "Ser responsável pela instalação e manutenção dos dispositivos de proteção",
+          "Substituir o SESMT na elaboração da avaliação de risco das máquinas",
+          "Participar de inspeções de segurança, identificar riscos em máquinas, propor melhorias e fiscalizar o cumprimento das normas, atuando em parceria com o SESMT",
+          "Ter autoridade para interditar máquinas sem comunicar ao empregador"
         ],
         "resposta_correta": 2,
-        "explicacao": "A parada de emergência deve ser acionada em qualquer situação de risco iminente — não apenas após acidente. É um direito e dever do trabalhador paralisar a máquina quando houver perigo."
-      },
-      {
-        "id": "NR12-PF-25",
-        "modulo": 1,
-        "enunciado": "As adequações de máquinas à NR-12 devem ser realizadas:",
-        "alternativas": [
-          "Imediatamente para todas as máquinas, sem exceção, independentemente de cronograma",
-          "Apenas nas máquinas adquiridas após a publicação da Portaria de atualização da NR-12",
-          "Somente quando determinadas por Auto de Infração emitido pelo Auditor Fiscal do Trabalho",
-          "De acordo com cronograma de adequação elaborado pela empresa, considerando os riscos identificados e medidas de proteção necessárias, respeitando os prazos estabelecidos"
-        ],
-        "resposta_correta": 3,
-        "explicacao": "A empresa deve elaborar cronograma de adequação de suas máquinas à NR-12, priorizando as situações de maior risco, com prazos definidos e documentados, podendo ser exigido pelo Auditor Fiscal."
+        "explicacao": "A CIPA é parceira estratégica na aplicação da NR-12: realiza inspeções, identifica situações de risco, propõe medidas corretivas e acompanha sua implementação. Não substitui o SESMT, mas complementa sua atuação com a visão do chão de fábrica."
       }
     ]
   }

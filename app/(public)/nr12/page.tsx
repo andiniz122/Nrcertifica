@@ -2,37 +2,39 @@ import Link from 'next/link'
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
 import { BotaoComprar } from '../../../components/BotaoComprar'
-import { CheckCircle2, Clock, Award, ShieldCheck, Zap, BookOpen, ChevronRight, Wrench } from 'lucide-react'
+import { CheckCircle2, Clock, Award, ShieldCheck, Zap, BookOpen, ChevronRight } from 'lucide-react'
 
 const MODULOS = [
-  { id: 1, titulo: 'Fundamentação Legal e Princípios Gerais', desc: 'Abrangência da NR-12, princípios fundamentais, responsabilidades do empregador e do trabalhador.' },
-  { id: 2, titulo: 'Arranjo Físico, Instalações e Distâncias de Segurança', desc: 'Layout de segurança, áreas de circulação, instalações elétricas, cálculo de distâncias e tipos de barreiras de proteção.' },
-  { id: 3, titulo: 'Dispositivos de Segurança e Riscos Adicionais', desc: 'Parada de emergência, riscos adicionais (ruído, calor, químicos), sistema LOTO e causas de acidentes com máquinas.' },
-  { id: 4, titulo: 'Procedimentos de Trabalho e Manutenção', desc: 'Procedimentos seguros padronizados, checklist pré-operacional, ciclo de segurança e estudo de caso prático.' },
+  { id: 1, titulo: 'Fundamentos da NR-12 e Avaliação de Risco', desc: 'Campo de aplicação, identificação de perigos mecânicos e não mecânicos, avaliação de risco e manual de instruções.' },
+  { id: 2, titulo: 'Dispositivos de Proteção, Distâncias de Segurança e Paradas de Emergência', desc: 'Proteções fixas e móveis, intertravamento, cortinas de luz, tapetes de segurança e comandos de parada de emergência.' },
+  { id: 3, titulo: 'Instalação, Manutenção, Modos de Operação e Procedimentos', desc: 'LOTO em máquinas, modos de operação (automático, manual, setup), checklist pré-operacional e procedimentos escritos.' },
+  { id: 4, titulo: 'EPI, Capacitação, Sinalização e Responsabilidades Legais', desc: 'EPIs para máquinas, requisitos de treinamento, sinalização de segurança e responsabilidades do empregador e do trabalhador.' },
 ]
 
 const CONTEUDO = [
-  'Fundamentação Legal e Princípios Gerais da NR-12 (2h)',
-  'Responsabilidades do Empregador e do Trabalhador (2h)',
-  'Arranjo Físico, Áreas de Circulação e Instalações Elétricas (2h)',
-  'Distâncias de Segurança e Barreiras de Proteção (2h)',
-  'Dispositivos de Partida, Acionamento e Parada de Emergência (2h)',
-  'Riscos Adicionais: Substâncias Perigosas, Ruído, Calor e Vibração (2h)',
-  'Segregação, Bloqueio e Etiquetagem — LOTO (2h)',
-  'Principais Causas de Acidentes com Máquinas (2h)',
-  'Procedimentos de Trabalho Seguros e Padronizados (2h)',
-  'Inspeção Rotineira e Checklist de Máquinas (2h)',
-  'Ciclo de Segurança de Máquinas — Análise de Risco ao Descarte (2h)',
-  'Estudo de Caso e Checklist Prático (2h)',
+  'Fundamentos e campo de aplicação da NR-12 (2h)',
+  'Avaliação de riscos em máquinas e equipamentos (4h)',
+  'Perigos mecânicos: esmagamento, cisalhamento, enrolamento (4h)',
+  'Perigos não mecânicos: elétrico, térmico, ruído e vibração (2h)',
+  'Dispositivos de proteção fixos e móveis (4h)',
+  'Sistemas de intertravamento e distâncias de segurança (4h)',
+  'Paradas de emergência e dispositivos de validação (4h)',
+  'Instalação e comissionamento seguro de máquinas (2h)',
+  'Bloqueio e etiquetagem — LOTO em máquinas (4h)',
+  'Modos de operação: automático, manual e setup (4h)',
+  'EPI para operação e manutenção de máquinas (2h)',
+  'Sinalização e informações de segurança em máquinas (2h)',
+  'Capacitação de operadores e manutentores (2h)',
+  'Responsabilidades legais e implicações jurídicas (2h)',
 ]
 
 export default function LandingNR12() {
   const curso = {
-    slug: 'nr12',
+    slug: 'nr12-basico',
     titulo: 'NR-12 — Segurança no Trabalho em Máquinas e Equipamentos',
     nr: 'NR-12',
-    carga_horaria: '8h',
-    preco: 77,
+    carga_horaria: '40h',
+    preco: 97,
   }
 
   return (
@@ -43,21 +45,21 @@ export default function LandingNR12() {
         <section className="bg-brand-dark text-white py-16 px-4">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="badge bg-orange-600/20 text-orange-400 border border-orange-600/30 mb-4">
+              <span className="badge bg-brand-red/20 text-brand-red border border-brand-red/30 mb-4">
                 ⚙️ NR-12 — Curso Online com Certificado
               </span>
               <h1 className="font-display text-3xl md:text-4xl font-bold mt-2 mb-4 leading-tight">
                 NR-12: Segurança no Trabalho em Máquinas e Equipamentos
               </h1>
               <p className="text-gray-300 mb-6">
-                Curso obrigatório para operadores, mantenedores e gestores que lidam com máquinas industriais.
-                8 horas, modalidade EAD, com certificado válido emitido por Engenheiro responsável técnico.
+                Curso obrigatório para operadores, manutentores e projetistas que trabalham com máquinas e equipamentos.
+                40 horas, modalidade EAD, com certificado válido emitido por Engenheiro responsável técnico.
               </p>
               <div className="flex flex-wrap gap-4 text-sm text-gray-300 mb-8">
-                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-orange-400" /> 8 horas</span>
-                <span className="flex items-center gap-1.5"><Award className="w-4 h-4 text-orange-400" /> Validade: 2 anos</span>
-                <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-orange-400" /> CREA 254516/MG</span>
-                <span className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-orange-400" /> Acesso imediato</span>
+                <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-brand-red" /> 40 horas</span>
+                <span className="flex items-center gap-1.5"><Award className="w-4 h-4 text-brand-red" /> Validade: 2 anos</span>
+                <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-brand-red" /> CREA 254516/MG</span>
+                <span className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-brand-red" /> Acesso imediato</span>
               </div>
               <div className="md:hidden">
                 <CardCompra curso={curso} />
@@ -95,23 +97,23 @@ export default function LandingNR12() {
             <div className="space-y-4">
               {MODULOS.map(m => (
                 <div key={m.id} className="card flex items-start gap-4">
-                  <div className="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center flex-shrink-0">
                     <BookOpen className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="text-xs text-orange-600 font-semibold mb-0.5">Módulo {m.id}</p>
+                    <p className="text-xs text-brand-red font-semibold mb-0.5">Módulo {m.id}</p>
                     <h3 className="font-semibold text-brand-dark mb-1">{m.titulo}</h3>
                     <p className="text-gray-500 text-sm">{m.desc}</p>
                   </div>
                 </div>
               ))}
               {/* Prova final */}
-              <div className="card flex items-start gap-4 border-orange-600 border-2">
-                <div className="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="card flex items-start gap-4 border-brand-gold border-2">
+                <div className="w-10 h-10 bg-brand-gold rounded-xl flex items-center justify-center flex-shrink-0">
                   <Award className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-orange-600 font-semibold mb-0.5">Avaliação Final</p>
+                  <p className="text-xs text-brand-gold font-semibold mb-0.5">Avaliação Final</p>
                   <h3 className="font-semibold text-brand-dark mb-1">Prova Final — 10 questões</h3>
                   <p className="text-gray-500 text-sm">
                     Questões sorteadas do banco. Nota mínima: 70% (7 acertos). Até 3 tentativas.
@@ -130,15 +132,14 @@ export default function LandingNR12() {
               <h2 className="font-display text-2xl font-bold text-brand-dark mb-6">Para quem é este curso?</h2>
               <ul className="space-y-3">
                 {[
-                  'Operadores de máquinas industriais (tornos, prensas, injetoras, serras)',
-                  'Técnicos e engenheiros de manutenção industrial',
-                  'Engenheiros de segurança do trabalho',
-                  'Supervisores e gestores de produção',
+                  'Operadores de máquinas e equipamentos industriais',
+                  'Técnicos e engenheiros de manutenção mecânica',
+                  'Engenheiros de segurança do trabalho e técnicos de segurança',
+                  'Projetistas e responsáveis pela instalação de máquinas',
                   'Profissionais que precisam renovar o treinamento NR-12',
-                  'Trabalhadores que atuam próximo a máquinas e equipamentos',
                 ].map(item => (
                   <li key={item} className="flex items-center gap-3 text-gray-700">
-                    <ChevronRight className="w-4 h-4 text-orange-600 flex-shrink-0" /> {item}
+                    <ChevronRight className="w-4 h-4 text-brand-red flex-shrink-0" /> {item}
                   </li>
                 ))}
               </ul>
@@ -150,7 +151,7 @@ export default function LandingNR12() {
                   Certificado emitido com base legal na Constituição Federal/88 (Art. 206° e 209°),
                   Lei 9.394/96, Decreto 5.154/2004 e Norma CNE 04/99 — MEC (Artigo 7° § 3°).
                 </p>
-                <p className="text-sm font-semibold text-orange-400">Anderson Bicalho Diniz</p>
+                <p className="text-sm font-semibold text-brand-gold">Anderson Bicalho Diniz</p>
                 <p className="text-xs text-gray-400">Engenheiro Eletricista · Engenheiro de Segurança do Trabalho</p>
                 <p className="text-xs text-gray-400">Eletricom Manutenção Especializada · CREA 254516/MG</p>
               </div>
@@ -159,10 +160,10 @@ export default function LandingNR12() {
         </section>
 
         {/* ── CTA FINAL ── */}
-        <section className="py-16 px-4 bg-orange-600 text-white text-center">
+        <section className="py-16 px-4 bg-brand-red text-white text-center">
           <h2 className="font-display text-3xl font-bold mb-4">Garanta sua vaga agora</h2>
-          <p className="text-orange-100 mb-8">Acesso imediato após o pagamento. Comece hoje mesmo.</p>
-          <BotaoComprar curso={curso} className="bg-white text-orange-600 font-bold px-8 py-4 rounded-xl hover:bg-orange-50 transition-colors inline-flex items-center gap-2 text-lg" />
+          <p className="text-red-100 mb-8">Acesso imediato após o pagamento. Comece hoje mesmo.</p>
+          <BotaoComprar curso={curso} className="bg-white text-brand-red font-bold px-8 py-4 rounded-xl hover:bg-red-50 transition-colors inline-flex items-center gap-2 text-lg" />
         </section>
       </main>
       <Footer />
@@ -174,8 +175,8 @@ function CardCompra({ curso }: { curso: any }) {
   return (
     <div className="bg-white rounded-2xl shadow-xl p-6 text-brand-dark">
       <div className="text-center mb-6">
-        <p className="text-gray-500 text-sm mb-1">Curso NR-12 — 8h</p>
-        <p className="font-display text-4xl font-bold text-brand-dark">R$ 77,00</p>
+        <p className="text-gray-500 text-sm mb-1">Curso NR-12 Básico — 40h</p>
+        <p className="font-display text-4xl font-bold text-brand-dark">R$ 97,00</p>
         <p className="text-gray-400 text-sm mt-1">ou em até 3x no cartão</p>
       </div>
       <ul className="space-y-2 mb-6">
