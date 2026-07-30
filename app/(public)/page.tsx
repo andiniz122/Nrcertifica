@@ -105,7 +105,7 @@ const jsonLdHome = {
           name: 'Quais cursos NR estão disponíveis online?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Já estão disponíveis: NR-10 Básico (40h), NR-10 SEP (40h), NR-12 (8h), NR-35 (8h) e NR-06 (4h). Em breve: NR-33 — Espaço Confinado (16h).',
+            text: 'Já estão disponíveis: NR-10 Básico (40h), NR-10 SEP (40h), NR-12 (16h), NR-35 (8h) e NR-06 (4h). Em breve: NR-33 — Espaço Confinado (16h).',
           },
         },
       ],
@@ -185,7 +185,7 @@ export default function Home() {
 
               {/* Em breve */}
               {[
-                { nr: 'NR-12', titulo: 'Máquinas e Equipamentos', horas: '8h', preco: '77', ativo: true, href: '/nr12' },
+                { nr: 'NR-12', titulo: 'Máquinas e Equipamentos', horas: '16h', preco: '77', ativo: true, href: '/nr12' },
                 { nr: 'NR-35', titulo: 'Trabalho em Altura', horas: '8h', preco: '67', ativo: true, href: '/nr35' },
                 { nr: 'NR-10 SEP', titulo: 'Sistema Elétrico de Potência', horas: '40h', preco: '127', ativo: true, href: '/nr10sep' },
                 { nr: 'NR-06', titulo: 'Equipamentos de Proteção', horas: '4h', preco: '47', ativo: true, href: '/nr06' },
