@@ -279,7 +279,6 @@ export default function Home() {
             </div>
             <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
               <Award className="w-16 h-16 text-brand-gold mx-auto mb-4" />
-              <p className="font-display font-bold text-xl mb-1 text-white">Anderson Bicalho Diniz</p>
               <p className="text-white/60 text-sm">Engenheiro Eletricista</p>
               <p className="text-white/60 text-sm">Engenheiro de Segurança do Trabalho</p>
               <p className="text-brand-gold text-sm font-semibold mt-2">CREA 254516/MG</p>
