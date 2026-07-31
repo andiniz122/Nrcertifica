@@ -277,11 +277,85 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <div className="flex-1 bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-              <Award className="w-16 h-16 text-brand-gold mx-auto mb-4" />
-              <p className="text-white/60 text-sm">Engenheiro Eletricista</p>
-              <p className="text-white/60 text-sm">Engenheiro de Segurança do Trabalho</p>
-              <p className="text-brand-gold text-sm font-semibold mt-2">CREA 254516/MG</p>
+            {/* Carteirinha ilustrativa */}
+            <div className="flex-1">
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-xs mx-auto">
+                <div className="flex">
+                  {/* Painel esquerdo escuro */}
+                  <div className="bg-brand-navy w-[42%] p-3 flex flex-col gap-3">
+                    <div className="text-center">
+                      <div className="w-10 h-5 bg-brand-gold rounded-t-full mx-auto mb-1" />
+                      <p className="text-white font-bold text-[9px] leading-tight tracking-wide">NR CERTIFICA</p>
+                      <p className="text-white/40 text-[7px] leading-tight mt-0.5">certificação que<br />protege vidas</p>
+                    </div>
+                    <div>
+                      <p className="text-white/40 text-[7px] uppercase tracking-widest mb-0.5">Situação</p>
+                      <div className="flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-success flex-shrink-0" />
+                        <span className="text-brand-success text-[9px] font-bold">APTO</span>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-white/40 text-[7px] uppercase tracking-widest mb-0.5">Modalidade</p>
+                      <p className="text-white text-[9px]">EAD • 8h</p>
+                    </div>
+                    <div className="flex flex-col items-center gap-1 mt-auto pt-2">
+                      <div className="w-12 h-12 bg-white p-0.5 rounded-sm">
+                        <div className="w-full h-full" style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',gap:'1px'}}>
+                          {[1,0,1,0,1,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,1,0,1,0].map((v, i) => (
+                            <div key={i} style={{background: v ? '#14191F' : 'white'}} />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-white/40 text-[7px] tracking-widest">VERIFICAR</p>
+                    </div>
+                  </div>
+
+                  {/* Painel direito branco */}
+                  <div className="flex-1 p-3 bg-white flex flex-col gap-2">
+                    <div className="flex justify-between items-start gap-1">
+                      <p className="text-gray-400 text-[7px] uppercase tracking-widest leading-tight">Carteira de<br />Habilitação</p>
+                      <span className="bg-brand-gold text-white text-[6px] font-bold px-1.5 py-0.5 rounded whitespace-nowrap">2ª VIA GRATUITA</span>
+                    </div>
+                    <h3 className="font-display font-bold text-brand-slate text-sm leading-tight">Profissional<br />Certificado</h3>
+                    <div>
+                      <p className="text-gray-400 text-[7px] uppercase tracking-widest mb-0.5">Nome do Profissional</p>
+                      <div className="h-2 bg-gray-200 rounded w-4/5" />
+                    </div>
+                    <div className="flex gap-2">
+                      <div className="flex-1">
+                        <p className="text-gray-400 text-[7px] uppercase tracking-widest mb-0.5">CPF</p>
+                        <div className="h-2 bg-gray-200 rounded" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-gray-400 text-[7px] uppercase tracking-widest mb-0.5">Registro</p>
+                        <div className="h-2 bg-gray-200 rounded" />
+                      </div>
+                    </div>
+                    <div className="border border-gray-200 rounded p-1.5">
+                      <p className="text-gray-400 text-[6px] uppercase tracking-widest mb-0.5">Curso Certificado</p>
+                      <p className="text-brand-slate text-[9px] font-semibold leading-tight">NR-10 SEP — Segurança em Sistemas Elétricos de Potência</p>
+                    </div>
+                    <div className="flex gap-2 mt-auto">
+                      <div>
+                        <p className="text-gray-400 text-[6px] uppercase tracking-widest">Emissão</p>
+                        <p className="text-brand-slate text-[9px] font-semibold">24/07/2026</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-[6px] uppercase tracking-widest">Valida Até</p>
+                        <p className="text-brand-gold text-[9px] font-semibold">24/07/2028</p>
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-[6px] uppercase tracking-widest">Código</p>
+                        <p className="text-brand-slate text-[9px] font-semibold">4F46CE14</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p className="text-white/40 text-xs text-center mt-3">
+                Modelo ilustrativo · dados preenchidos após a conclusão do curso
+              </p>
             </div>
           </div>
         </section>
