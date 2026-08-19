@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Sora } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
+import { WhatsAppButton } from '../components/WhatsAppButton'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const sora  = Sora({ subsets: ['latin'], variable: '--font-sora' })
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt-BR" className={`${inter.variable} ${sora.variable}`}>
       <body className="bg-brand-light font-sans antialiased">
         <Providers>{children}</Providers>
+        <WhatsAppButton />
       </body>
     </html>
   )
