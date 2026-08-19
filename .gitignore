@@ -32,3 +32,6 @@ Thumbs.db
 
 # stripe backup (se ainda existir na pasta)
 stripe_backup_code.txt
+
+# scripts de patch descartaveis
+patch_*.py
