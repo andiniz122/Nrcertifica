@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next'
-
-const BASE = 'https://www.nrcertifica.com.br'
+import { SITE } from '../lib/seo'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -23,7 +22,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: `${BASE}/sitemap.xml`,
-    host: BASE,
+    sitemap: `${SITE.url}/sitemap.xml`,
+    host: SITE.url,
   }
 }
