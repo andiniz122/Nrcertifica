@@ -3,39 +3,26 @@ import { Inter, Sora } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 import { WhatsAppButton } from '../components/WhatsAppButton'
+import { JsonLd } from '../components/JsonLd'
+import { SITE } from '../lib/seo'
+import { schemaBase } from '../lib/schemas'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const sora  = Sora({ subsets: ['latin'], variable: '--font-sora' })
 
-const BASE_URL = 'https://www.nrcertifica.com.br'
+const BASE_URL = SITE.url
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
   title: {
-    default: 'NR Certifica - Cursos NR Online com Certificado Valido',
+    default: 'NR Certifica — Cursos NR Online com Certificado',
     template: '%s | NR Certifica',
   },
 
   description:
-    'Cursos de NR-10, NR-12, NR-35, NR-33 e NR-06 online com certificado valido. Estude no seu ritmo, faca a prova e receba o certificado em PDF imediatamente apos a aprovacao. Responsavel tecnico CREA 254516/MG.',
+    'Cursos de NR-10, NR-12, NR-35 e NR-06 online com certificado. Estude no seu ritmo, faça a prova e receba o certificado em PDF imediatamente após a aprovação. Responsável técnico CREA 254516/MG.',
 
-  keywords: [
-    'curso NR-10 online',
-    'treinamento NR-10 com certificado',
-    'NR-10 seguranca eletrica online',
-    'curso NR online com certificado',
-    'curso NR-35 trabalho em altura',
-    'curso NR-33 espaco confinado',
-    'curso NR-06 EPI',
-    'capacitacao NR online',
-    'certificado NR valido',
-    'treinamento norma regulamentadora online',
-    'NR-10 eletricidade curso',
-    'curso seguranca do trabalho online',
-    'NR Certifica',
-    'certificado NR-10 eletricista',
-  ],
 
   authors: [{ name: 'NR Certifica', url: BASE_URL }],
   creator: 'NR Certifica',
@@ -63,25 +50,25 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: BASE_URL,
     siteName: 'NR Certifica',
-    title: 'NR Certifica - Cursos NR Online com Certificado Valido',
+    title: 'NR Certifica — Cursos NR Online com Certificado',
     description:
-      'Cursos de NR-10, NR-12, NR-35, NR-33 e NR-06 online com certificado valido emitido por engenheiro responsavel tecnico (CREA 254516/MG).',
+      'Cursos de NR-10, NR-12, NR-35 e NR-06 online com certificado emitido sob responsabilidade técnica de engenheiro (CREA 254516/MG).',
     images: [
       {
-        url: '/og-image.jpg',
+        url: SITE.ogImagePadrao,
         width: 1200,
         height: 630,
-        alt: 'NR Certifica - Capacitacao que protege vidas',
+        alt: 'NR Certifica — Capacitação que protege vidas',
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: 'NR Certifica - Cursos NR Online com Certificado Valido',
+    title: 'NR Certifica — Cursos NR Online com Certificado',
     description:
-      'Cursos de NR-10, NR-12, NR-35, NR-33 e NR-06 online com certificado valido.',
-    images: ['/og-image.jpg'],
+      'Cursos de NR-10, NR-12, NR-35 e NR-06 online com certificado. Responsável técnico CREA 254516/MG.',
+    images: [SITE.ogImagePadrao],
   },
 
   alternates: {
@@ -93,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${inter.variable} ${sora.variable}`}>
       <body className="bg-brand-light font-sans antialiased">
+        <JsonLd data={schemaBase} />
         <Providers>{children}</Providers>
         <WhatsAppButton />
       </body>
