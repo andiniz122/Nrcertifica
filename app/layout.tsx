@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: BASE_URL,
+    canonical: '/',
   },
 }
 

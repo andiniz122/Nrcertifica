@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     'certificado NR-10 válido',
     'NR-10 eletricidade curso online',
   ],
-  alternates: { canonical: 'https://nrcertifica.com.br/nr10' },
+  alternates: { canonical: 'https://www.nrcertifica.com.br/nr10' },
   openGraph: {
     title: 'Curso NR-10 Online 40h com Certificado Válido — R$ 97',
     description:
       'NR-10 Básico online: 40h em 4 módulos, prova online, certificado PDF imediato. Válido por 2 anos. Responsável técnico CREA 254516/MG.',
-    url: 'https://nrcertifica.com.br/nr10',
+    url: 'https://www.nrcertifica.com.br/nr10',
   },
 }
 
@@ -34,16 +34,16 @@ const jsonLdNR10 = {
   '@graph': [
     {
       '@type': 'Course',
-      '@id': 'https://nrcertifica.com.br/nr10#course',
+      '@id': 'https://www.nrcertifica.com.br/nr10#course',
       name: 'NR-10 — Segurança em Instalações e Serviços em Eletricidade (Básico)',
       description:
         'Curso NR-10 Básico online com 40 horas. Obrigatório para eletricistas e todos que trabalham com instalações elétricas. Certificado com validade legal por 2 anos, emitido por Engenheiro responsável técnico CREA 254516/MG.',
-      url: 'https://nrcertifica.com.br/nr10',
-      image: 'https://nrcertifica.com.br/logo-nrcertifica.png',
+      url: 'https://www.nrcertifica.com.br/nr10',
+      image: 'https://www.nrcertifica.com.br/logo-nrcertifica.png',
       provider: {
         '@type': 'Organization',
         name: 'NR Certifica',
-        sameAs: 'https://nrcertifica.com.br',
+        sameAs: 'https://www.nrcertifica.com.br',
       },
       educationalLevel: 'Profissional',
       teaches: [
@@ -70,7 +70,7 @@ const jsonLdNR10 = {
         price: '97',
         priceCurrency: 'BRL',
         availability: 'https://schema.org/InStock',
-        url: 'https://nrcertifica.com.br/nr10',
+        url: 'https://www.nrcertifica.com.br/nr10',
         validFrom: '2024-01-01',
         seller: { '@type': 'Organization', name: 'NR Certifica' },
       },
@@ -85,9 +85,9 @@ const jsonLdNR10 = {
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://nrcertifica.com.br' },
-        { '@type': 'ListItem', position: 2, name: 'Cursos', item: 'https://nrcertifica.com.br/cursos' },
-        { '@type': 'ListItem', position: 3, name: 'NR-10 — Segurança em Eletricidade', item: 'https://nrcertifica.com.br/nr10' },
+        { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://www.nrcertifica.com.br' },
+        { '@type': 'ListItem', position: 2, name: 'Cursos', item: 'https://www.nrcertifica.com.br/cursos' },
+        { '@type': 'ListItem', position: 3, name: 'NR-10 — Segurança em Eletricidade', item: 'https://www.nrcertifica.com.br/nr10' },
       ],
     },
   ],
