@@ -2,16 +2,20 @@ import type { Metadata } from 'next'
 import { Header } from '../../../components/Header'
 import { ValidarForm } from './ValidarForm'
 import { Shield, QrCode, FileCheck } from 'lucide-react'
+import { SITE, absUrl } from '../../../lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Validar Certificado NR — Consulta Pública | NR Certifica',
+  title: 'Validar Certificado NR — Consulta Pública',
   description:
     'Confira a autenticidade de qualquer certificado emitido pela NR Certifica. Digite o código de verificação e consulte curso, carga horária, data de emissão e validade.',
-  alternates: { canonical: 'https://www.nrcertifica.com.br/validar' },
+  alternates: { canonical: absUrl('/validar') },
   openGraph: {
     title: 'Validar Certificado NR — Consulta Pública',
     description: 'Consulte a autenticidade de um certificado NR Certifica pelo código de verificação.',
-    url: 'https://www.nrcertifica.com.br/validar',
+    url: absUrl('/validar'),
+    siteName: SITE.nome,
+    locale: SITE.locale,
+    images: [{ url: SITE.ogImagePadrao, width: 1200, height: 630, alt: 'Validar certificado NR Certifica' }],
   },
 }
 

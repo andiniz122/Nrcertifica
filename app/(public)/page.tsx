@@ -20,8 +20,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'NR Certifica — Cursos NR Online com Certificado Válido',
     description:
-      'NR-10, NR-12, NR-35, NR-33 e NR-06 online. Certificado válido emitido por Engenheiro CREA 254516/MG. Acesso imediato após o pagamento.',
+      'NR-10, NR-12, NR-35 e NR-06 online. Certificado emitido sob responsabilidade técnica de Engenheiro CREA 254516/MG. Acesso imediato após o pagamento.',
     url: BASE,
+    siteName: SITE.nome,
+    locale: SITE.locale,
+    images: [{ url: SITE.ogImagePadrao, width: 1200, height: 630, alt: 'NR Certifica — cursos NR online com certificado' }],
   },
 }
 

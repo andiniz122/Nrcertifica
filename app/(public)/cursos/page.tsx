@@ -5,7 +5,7 @@ import { Footer } from '../../../components/Footer'
 import { BotaoComprar } from '../../../components/BotaoComprar'
 import { JsonLd } from '../../../components/JsonLd'
 import { Breadcrumb } from '../../../components/Breadcrumb'
-import { absUrl } from '../../../lib/seo'
+import { SITE, absUrl } from '../../../lib/seo'
 import { schemaCatalogo } from '../../../lib/schemas'
 import { CheckCircle2, Clock, Award, ChevronRight } from 'lucide-react'
 
@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     description:
       'Escolha seu curso NR online: NR-10 (40h), NR-35 (8h), NR-33 (16h), NR-06 (4h). Certificado com validade legal, acesso imediato.',
     url: absUrl('/cursos'),
+    siteName: SITE.nome,
+    locale: SITE.locale,
+    images: [{ url: SITE.ogImagePadrao, width: 1200, height: 630, alt: 'Cursos NR online com certificado' }],
   },
 }
 

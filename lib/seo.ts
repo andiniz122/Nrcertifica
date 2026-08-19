@@ -83,6 +83,11 @@ export type Reciclagem = {
   validFor: string | null
   /** Existe landing dedicada de reciclagem? */
   temPagina: boolean
+  /**
+   * Situacoes que, alem da periodicidade, obrigam a reciclagem.
+   * Texto normativo — nao alterar sem validacao do responsavel tecnico.
+   */
+  situacoes?: string[]
 }
 
 export type Curso = {
@@ -138,6 +143,11 @@ export const CURSOS: Curso[] = [
       base: 'NR-10, item 10.8.8',
       validFor: 'P2Y',
       temPagina: true,
+      situacoes: [
+        'Troca de função ou mudança de empresa.',
+        'Retorno de afastamento do trabalho ou de inatividade por período superior a três meses.',
+        'Modificações significativas nas instalações elétricas ou troca de métodos, processos e organização do trabalho.',
+      ],
     },
   },
   {
@@ -200,6 +210,12 @@ export const CURSOS: Curso[] = [
       base: 'NR-35, item 35.3.3',
       validFor: 'P2Y',
       temPagina: true,
+      situacoes: [
+        'Mudança nos procedimentos, condições ou operações de trabalho.',
+        'Evento que indique a necessidade de novo treinamento.',
+        'Retorno de afastamento do trabalho por período superior a noventa dias.',
+        'Mudança de empresa.',
+      ],
     },
   },
   {
