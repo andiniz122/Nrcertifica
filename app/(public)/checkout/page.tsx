@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useCart } from '../../../components/CartProvider'
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
@@ -9,19 +9,31 @@ import { ShieldCheck, Loader2, BookOpen } from 'lucide-react'
 
 export default function Checkout() {
   const { itens, total, limparCarrinho } = useCart()
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState('')
 
-  if (!session) {
-    router.push('/login?redirect=/checkout')
-    return null
-  }
+  useEffect(() => {
+    if (status === 'loading') return
+    if (!session) {
+      router.replace('/login?redirect=/checkout')
+      return
+    }
+    if (itens.length === 0) {
+      router.replace('/carrinho')
+    }
+  }, [status, session, itens.length, router])
 
-  if (itens.length === 0) {
-    router.push('/carrinho')
-    return null
+  if (status === 'loading' || !session || itens.length === 0) {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen bg-brand-light py-12 px-4 flex items-center justify-center">
+          <Loader2 className="w-8 h-8 animate-spin text-brand-dark" />
+        </main>
+      </>
+    )
   }
 
   const handlePagar = async () => {
