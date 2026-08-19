@@ -2,7 +2,13 @@ import Link from 'next/link'
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
 import { BotaoComprar } from '../../../components/BotaoComprar'
+import { Breadcrumb } from '../../../components/Breadcrumb'
+import { JsonLd } from '../../../components/JsonLd'
+import { getCurso } from '../../../lib/seo'
+import { schemaLandingCurso } from '../../../lib/schemas'
 import { CheckCircle2, Clock, Award, ShieldCheck, Zap, BookOpen, ChevronRight } from 'lucide-react'
+
+const CURSO = getCurso('/nr12')
 
 const MODULOS = [
   { id: 1, titulo: 'Fundamentos da NR-12 e Avaliação de Risco', desc: 'Campo de aplicação, identificação de perigos mecânicos e não mecânicos, avaliação de risco e manual de instruções.' },
@@ -33,8 +39,16 @@ export default function LandingNR12() {
 
   return (
     <>
+      <JsonLd data={schemaLandingCurso(CURSO.rota)} />
       <Header />
       <main>
+        <Breadcrumb
+          itens={[
+            { nome: 'Início', href: '/' },
+            { nome: 'Cursos', href: '/cursos' },
+            { nome: CURSO.nomeCurto },
+          ]}
+        />
         {/* ── HERO ── */}
         <section className="bg-brand-dark text-white py-16 px-4">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">

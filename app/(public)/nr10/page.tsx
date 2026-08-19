@@ -3,95 +3,15 @@ import Link from 'next/link'
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
 import { BotaoComprar } from '../../../components/BotaoComprar'
+import { Breadcrumb } from '../../../components/Breadcrumb'
 import { JsonLd } from '../../../components/JsonLd'
+import { getCurso, metadataCurso } from '../../../lib/seo'
+import { schemaLandingCurso } from '../../../lib/schemas'
 import { CheckCircle2, Clock, Award, ShieldCheck, Zap, BookOpen, ChevronRight } from 'lucide-react'
 
-export const metadata: Metadata = {
-  title: 'Curso NR-10 Online com Certificado — Segurança em Eletricidade 40h',
-  description:
-    'Curso NR-10 online com certificado válido. 40 horas em 4 módulos, prova final online e certificado PDF imediato após aprovação. Obrigatório para eletricistas e quem trabalha com instalações elétricas. Engenheiro responsável CREA 254516/MG. R$ 97.',
-  keywords: [
-    'curso NR-10 online',
-    'NR-10 com certificado',
-    'treinamento NR-10 eletricista',
-    'NR-10 segurança elétrica online',
-    'curso NR-10 barato',
-    'NR-10 40 horas online',
-    'certificado NR-10 válido',
-    'NR-10 eletricidade curso online',
-  ],
-  alternates: { canonical: 'https://www.nrcertifica.com.br/nr10' },
-  openGraph: {
-    title: 'Curso NR-10 Online 40h com Certificado Válido — R$ 97',
-    description:
-      'NR-10 Básico online: 40h em 4 módulos, prova online, certificado PDF imediato. Válido por 2 anos. Responsável técnico CREA 254516/MG.',
-    url: 'https://www.nrcertifica.com.br/nr10',
-  },
-}
+const CURSO = getCurso('/nr10')
 
-const jsonLdNR10 = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Course',
-      '@id': 'https://www.nrcertifica.com.br/nr10#course',
-      name: 'NR-10 — Segurança em Instalações e Serviços em Eletricidade (Básico)',
-      description:
-        'Curso NR-10 Básico online com 40 horas. Obrigatório para eletricistas e todos que trabalham com instalações elétricas. Certificado com validade legal por 2 anos, emitido por Engenheiro responsável técnico CREA 254516/MG.',
-      url: 'https://www.nrcertifica.com.br/nr10',
-      image: 'https://www.nrcertifica.com.br/logo-nrcertifica.png',
-      provider: {
-        '@type': 'Organization',
-        name: 'NR Certifica',
-        sameAs: 'https://www.nrcertifica.com.br',
-      },
-      educationalLevel: 'Profissional',
-      teaches: [
-        'Legislação e Riscos Elétricos',
-        'Medidas de Controle e Aterramento',
-        'EPI e Desenergização (LOTO)',
-        'Primeiros Socorros e Combate a Incêndio',
-      ],
-      timeRequired: 'PT40H',
-      numberOfCredits: 40,
-      hasCourseInstance: {
-        '@type': 'CourseInstance',
-        courseMode: 'Online',
-        courseWorkload: 'PT40H',
-        instructor: {
-          '@type': 'Person',
-          name: 'Anderson Bicalho Diniz',
-          jobTitle: 'Engenheiro de Segurança do Trabalho',
-          honorificSuffix: 'CREA 254516/MG',
-        },
-      },
-      offers: {
-        '@type': 'Offer',
-        price: '97',
-        priceCurrency: 'BRL',
-        availability: 'https://schema.org/InStock',
-        url: 'https://www.nrcertifica.com.br/nr10',
-        validFrom: '2024-01-01',
-        seller: { '@type': 'Organization', name: 'NR Certifica' },
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.9',
-        reviewCount: '47',
-        bestRating: '5',
-        worstRating: '1',
-      },
-    },
-    {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://www.nrcertifica.com.br' },
-        { '@type': 'ListItem', position: 2, name: 'Cursos', item: 'https://www.nrcertifica.com.br/cursos' },
-        { '@type': 'ListItem', position: 3, name: 'NR-10 — Segurança em Eletricidade', item: 'https://www.nrcertifica.com.br/nr10' },
-      ],
-    },
-  ],
-}
+export const metadata: Metadata = metadataCurso(CURSO.rota)
 
 const MODULOS = [
   { id: 1, titulo: 'Legislação, Riscos Elétricos e o Corpo Humano', desc: 'Fundamentos legais da NR-10, como a eletricidade age no corpo humano e os principais riscos.' },
@@ -128,9 +48,16 @@ export default function LandingNR10() {
 
   return (
     <>
-      <JsonLd data={jsonLdNR10} />
+      <JsonLd data={schemaLandingCurso(CURSO.rota)} />
       <Header />
       <main>
+        <Breadcrumb
+          itens={[
+            { nome: 'Início', href: '/' },
+            { nome: 'Cursos', href: '/cursos' },
+            { nome: CURSO.nomeCurto },
+          ]}
+        />
         {/* ── HERO ── */}
         <section className="bg-brand-dark text-white py-16 px-4">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">

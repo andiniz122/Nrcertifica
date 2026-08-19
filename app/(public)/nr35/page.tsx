@@ -2,7 +2,13 @@ import Link from 'next/link'
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
 import { BotaoComprar } from '../../../components/BotaoComprar'
+import { Breadcrumb } from '../../../components/Breadcrumb'
+import { JsonLd } from '../../../components/JsonLd'
+import { getCurso } from '../../../lib/seo'
+import { schemaLandingCurso } from '../../../lib/schemas'
 import { CheckCircle2, Clock, Award, ShieldCheck, Zap, BookOpen, ChevronRight } from 'lucide-react'
+
+const CURSO = getCurso('/nr35')
 
 const MODULOS = [
   { id: 1, titulo: 'Legislação, Riscos e Medidas Preventivas em Trabalho em Altura', desc: 'Fundamentos legais da NR-35, riscos de queda, Análise de Risco (AR) e Permissão de Trabalho (PT).' },
@@ -35,8 +41,16 @@ export default function LandingNR35() {
 
   return (
     <>
+      <JsonLd data={schemaLandingCurso(CURSO.rota)} />
       <Header />
       <main>
+        <Breadcrumb
+          itens={[
+            { nome: 'Início', href: '/' },
+            { nome: 'Cursos', href: '/cursos' },
+            { nome: CURSO.nomeCurto },
+          ]}
+        />
         {/* ── HERO ── */}
         <section className="bg-brand-dark text-white py-16 px-4">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
