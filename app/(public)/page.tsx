@@ -6,6 +6,7 @@ import { JsonLd } from '../../components/JsonLd'
 import { CursoCard } from '../../components/CursoCard'
 import { HeroArte } from '../../components/HeroArte'
 import { SITE, CURSOS, CURSOS_ATIVOS, RESPONSAVEL } from '../../lib/seo'
+import { fotoCurso, fotoHero } from '../../lib/imagens'
 import { schemaBreadcrumb } from '../../lib/schemas'
 import {
   ShieldCheck, Award, Clock, Users, CheckCircle2, ChevronRight, Zap, BookOpen,
@@ -89,6 +90,8 @@ const BENEFICIOS = [
   { icon: Headset, titulo: 'Suporte especializado', desc: 'Tire suas dúvidas com nossa equipe sempre que precisar.' },
 ]
 
+const FOTO_HERO = fotoHero()
+
 export default function Home() {
   return (
     <>
@@ -135,7 +138,16 @@ export default function Home() {
 
             {/* Ilustração */}
             <div className="hidden xl:block xl:col-span-4">
-              <HeroArte className="w-full h-auto rounded-2xl" />
+              {FOTO_HERO ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={FOTO_HERO}
+                  alt="Profissional em treinamento de Norma Regulamentadora"
+                  className="w-full h-[340px] object-cover rounded-2xl border border-white/10"
+                />
+              ) : (
+                <HeroArte className="w-full h-auto rounded-2xl" />
+              )}
             </div>
 
             {/* Cartões de destaque */}
@@ -194,6 +206,7 @@ export default function Home() {
                   preco={curso.preco}
                   href={curso.rota}
                   destaque={i === 0}
+                  foto={fotoCurso(curso.nr)}
                 />
               ))}
             </div>

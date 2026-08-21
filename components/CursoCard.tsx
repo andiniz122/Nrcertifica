@@ -28,9 +28,11 @@ export type CursoCardProps = {
   preco: number
   href: string
   destaque?: boolean
+  /** Foto do curso (public/cursos). Sem foto, o topo fica no gradiente + ícone. */
+  foto?: string | null
 }
 
-export function CursoCard({ nr, titulo, horas, validade = '2 anos', preco, href, destaque }: CursoCardProps) {
+export function CursoCard({ nr, titulo, horas, validade = '2 anos', preco, href, destaque, foto }: CursoCardProps) {
   const { gradiente, selo, icone: Icone } = VISUAL[nr] ?? VISUAL_PADRAO
   const [reais, centavos] = preco.toFixed(2).split('.')
 
@@ -38,13 +40,21 @@ export function CursoCard({ nr, titulo, horas, validade = '2 anos', preco, href,
     <div className="group bg-white rounded-xl border border-brand-border shadow-card overflow-hidden flex flex-col hover:shadow-float transition-shadow">
       {/* Topo ilustrado */}
       <div className={`relative h-32 bg-gradient-to-br ${gradiente}`}>
-        <div
-          className="absolute inset-0 opacity-25"
-          style={{
-            backgroundImage:
-              'repeating-linear-gradient(135deg, rgba(255,255,255,.16) 0 2px, transparent 2px 12px)',
-          }}
-        />
+        {foto ? (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={foto} alt={`Curso ${nr}`} className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+            <span className="absolute inset-0 bg-brand-dark/45" />
+          </>
+        ) : (
+          <div
+            className="absolute inset-0 opacity-25"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(135deg, rgba(255,255,255,.16) 0 2px, transparent 2px 12px)',
+            }}
+          />
+        )}
         {destaque && (
           <span className="absolute top-0 left-0 bg-brand-dark text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-br-lg">
             Mais procurado
