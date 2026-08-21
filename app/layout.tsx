@@ -58,7 +58,7 @@ export const metadata: Metadata = {
         url: SITE.ogImagePadrao,
         width: 1200,
         height: 630,
-        alt: 'NR Certifica — Capacitação que protege vidas',
+        alt: 'NR Certifica — Aprenda. Desenvolva. Avance.',
       },
     ],
   },

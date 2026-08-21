@@ -67,7 +67,7 @@ export default function ResponsavelTecnico() {
             <div className="mx-auto md:mx-0">
               <div className="w-44 h-44 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
                 <Image
-                  src="/logo-nrcertifica.png"
+                  src="/logo-branco-2x.png"
                   alt={`${RESPONSAVEL.nome} — ${RESPONSAVEL.crea}`}
                   width={176}
                   height={176}

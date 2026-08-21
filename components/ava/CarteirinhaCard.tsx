@@ -73,7 +73,7 @@ export function CarteirinhaCard({ codigo, nome, cpf, tituloCurso, nr, dataEmissa
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-          <img src="/logo-nrcertifica.png" alt="NR Certifica" style={{ height: '26px', width: 'auto' }} />
+          <img src="/logo-branco-2x.png" alt="NR Certifica" style={{ height: '26px', width: 'auto' }} />
           <div style={{ textAlign: 'right' }}>
             <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '8px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
               Carteira de Habilitação

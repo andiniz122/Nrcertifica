@@ -34,7 +34,7 @@ export default async function VerificarCarteirinha({ params }: Props) {
         <div className="max-w-lg mx-auto">
           {/* Logo / título */}
           <div className="text-center mb-8">
-            <img src="/logo-nrcertifica.png" alt="NR Certifica" className="h-10 mx-auto mb-3" />
+            <img src="/logo-escuro-2x.png" alt="NR Certifica" className="h-10 mx-auto mb-3" />
             <p className="text-sm text-gray-500">Sistema de verificação de carteirinha digital</p>
           </div>
 

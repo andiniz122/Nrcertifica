@@ -295,10 +295,17 @@ export default function Home() {
                 Certificado com validade legal
               </h2>
               <span className="block h-1 w-16 rounded-full bg-brand-red mb-6" />
-              <p className="text-white/65 mb-6">
-                Nossos certificados são emitidos com base legal na Constituição Federal/88
-                (Art. 206° e 209°), Lei 9.394/96 e Norma CNE 04/99 — MEC, modalidade EAD.
-                Assinados pelo Engenheiro responsável técnico registrado no CREA.
+              <p className="text-white/65 mb-4">
+                Os certificados atendem aos requisitos de capacitação previstos na Norma
+                Regulamentadora de cada curso — carga horária, conteúdo programático e
+                avaliação de aprendizagem —, observadas as disposições gerais da NR-01.
+                O conteúdo é elaborado e assinado por Engenheiro de Segurança do Trabalho
+                registrado no CREA, responsável técnico pela capacitação.
+              </p>
+              <p className="text-white/45 text-sm mb-6">
+                A capacitação é ofertada na modalidade EAD e contempla a parte teórica.
+                Quando a norma exigir prática supervisionada, ela deve ser complementada
+                pelo empregador.
               </p>
               <ul className="space-y-3">
                 {[
@@ -314,78 +321,56 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            {/* Carteirinha ilustrativa */}
-            <div className="flex-1">
-              <div className="bg-white rounded-2xl shadow-float overflow-hidden max-w-xs mx-auto">
-                <div className="flex">
-                  {/* Painel esquerdo escuro */}
-                  <div className="bg-brand-navy w-[42%] p-3 flex flex-col gap-3">
-                    <div className="text-center">
-                      <div className="w-10 h-5 bg-brand-red rounded-t-full mx-auto mb-1" />
-                      <p className="text-white font-bold text-[9px] leading-tight tracking-wide">NR CERTIFICA</p>
-                      <p className="text-white/40 text-[7px] leading-tight mt-0.5">certificação que<br />protege vidas</p>
-                    </div>
-                    <div>
-                      <p className="text-white/40 text-[7px] uppercase tracking-widest mb-0.5">Situação</p>
-                      <div className="flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-success flex-shrink-0" />
-                        <span className="text-brand-success text-[9px] font-bold">APTO</span>
+            {/* Certificado ilustrativo */}
+            <div className="flex-1 w-full">
+              <div className="bg-white rounded-2xl shadow-float overflow-hidden max-w-md mx-auto border-t-4 border-brand-red">
+                <div className="p-5 sm:p-6">
+                  {/* Cabecalho */}
+                  <div className="flex items-center justify-between gap-3 pb-3 border-b border-brand-border">
+                    <div className="flex items-center gap-2">
+                      <img src="/logo-nrcertifica.svg" alt="NR Certifica" className="w-9 h-9 flex-shrink-0" />
+                      <div>
+                        <p className="font-display font-bold text-brand-slate text-[11px] leading-none tracking-wide">NR CERTIFICA</p>
+                        <p className="text-brand-muted text-[7px] leading-none mt-0.5">aprenda. desenvolva. avance.</p>
                       </div>
                     </div>
-                    <div>
-                      <p className="text-white/40 text-[7px] uppercase tracking-widest mb-0.5">Modalidade</p>
-                      <p className="text-white text-[9px]">EAD • 8h</p>
+                    <p className="text-brand-muted text-[7px] uppercase tracking-widest text-right leading-tight">Certificado de<br />Capacitação</p>
+                  </div>
+
+                  {/* Corpo */}
+                  <div className="text-center pt-5">
+                    <h3 className="font-display font-extrabold text-brand-slate text-xl tracking-[0.18em] uppercase">Certificado</h3>
+                    <span className="block h-[3px] w-12 bg-brand-red rounded-full mx-auto mt-2 mb-4" />
+                    <p className="text-brand-muted text-[9px] uppercase tracking-widest mb-2">Certificamos que</p>
+                    <div className="h-3 bg-gray-200 rounded w-3/5 mx-auto" />
+                    <div className="flex justify-center gap-3 mt-2 mb-4">
+                      <div className="h-2 bg-gray-100 rounded w-20" />
+                      <div className="h-2 bg-gray-100 rounded w-20" />
                     </div>
-                    <div className="flex flex-col items-center gap-1 mt-auto pt-2">
-                      <div className="w-12 h-12 bg-white p-0.5 rounded-sm">
+                    <p className="text-brand-slate text-[10px] leading-relaxed px-2">
+                      concluiu com aproveitamento o curso
+                      <span className="font-semibold"> NR-10 SEP — Segurança no Sistema Elétrico de Potência</span>,
+                      com carga horária de <span className="font-semibold">40 horas</span>, na modalidade EAD.
+                    </p>
+                  </div>
+
+                  {/* Rodape */}
+                  <div className="flex items-end justify-between gap-3 mt-6 pt-4 border-t border-brand-border">
+                    <div className="flex-1">
+                      <div className="h-px bg-brand-slate/40 w-full mb-1" />
+                      <p className="text-brand-slate text-[8px] font-semibold leading-tight">{RESPONSAVEL.nome}</p>
+                      <p className="text-brand-muted text-[7px] leading-tight">Engenheiro de Segurança do Trabalho</p>
+                      <p className="text-brand-muted text-[7px] leading-tight">{RESPONSAVEL.crea}</p>
+                    </div>
+                    <div className="text-center flex-shrink-0">
+                      <div className="w-11 h-11 bg-white p-0.5 border border-brand-border rounded-sm">
                         <div className="w-full h-full" style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',gap:'1px'}}>
                           {[1,0,1,0,1,0,1,0,1,1,0,0,1,0,1,1,0,1,0,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,0,0,1,0,1,1,0,1,1,0,1,0].map((v, i) => (
                             <div key={i} style={{background: v ? '#091320' : 'white'}} />
                           ))}
                         </div>
                       </div>
-                      <p className="text-white/40 text-[7px] tracking-widest">VERIFICAR</p>
-                    </div>
-                  </div>
-
-                  {/* Painel direito branco */}
-                  <div className="flex-1 p-3 bg-white flex flex-col gap-2">
-                    <div className="flex justify-between items-start gap-1">
-                      <p className="text-gray-400 text-[7px] uppercase tracking-widest leading-tight">Carteira de<br />Habilitação</p>
-                      <span className="bg-brand-red text-white text-[6px] font-bold px-1.5 py-0.5 rounded whitespace-nowrap">2ª VIA GRATUITA</span>
-                    </div>
-                    <h3 className="font-display font-bold text-brand-slate text-sm leading-tight">Profissional<br />Certificado</h3>
-                    <div>
-                      <p className="text-gray-400 text-[7px] uppercase tracking-widest mb-0.5">Nome do Profissional</p>
-                      <div className="h-2 bg-gray-200 rounded w-4/5" />
-                    </div>
-                    <div className="flex gap-2">
-                      <div className="flex-1">
-                        <p className="text-gray-400 text-[7px] uppercase tracking-widest mb-0.5">CPF</p>
-                        <div className="h-2 bg-gray-200 rounded" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-gray-400 text-[7px] uppercase tracking-widest mb-0.5">Registro</p>
-                        <div className="h-2 bg-gray-200 rounded" />
-                      </div>
-                    </div>
-                    <div className="border border-brand-border rounded p-1.5">
-                      <p className="text-gray-400 text-[6px] uppercase tracking-widest mb-0.5">Curso Certificado</p>
-                      <p className="text-brand-slate text-[9px] font-semibold leading-tight">NR-10 SEP — Segurança em Sistemas Elétricos de Potência</p>
-                    </div>
-                    <div className="flex gap-2 mt-auto">
-                      <div>
-                        <p className="text-gray-400 text-[6px] uppercase tracking-widest">Emissão</p>
-                        <p className="text-brand-slate text-[9px] font-semibold">24/07/2026</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-[6px] uppercase tracking-widest">Valida Até</p>
-                        <p className="text-brand-red text-[9px] font-semibold">24/07/2028</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-[6px] uppercase tracking-widest">Código</p>
-                        <p className="text-brand-slate text-[9px] font-semibold">4F46CE14</p>
-                      </div>
+                      <p className="text-brand-muted text-[6px] tracking-widest mt-1">VERIFICAR</p>
                     </div>
                   </div>
                 </div>

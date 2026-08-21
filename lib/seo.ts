@@ -10,7 +10,7 @@
 export const SITE = {
   url: 'https://www.nrcertifica.com.br',
   nome: 'NR Certifica',
-  slogan: 'Capacitação que protege vidas',
+  slogan: 'Aprenda. Desenvolva. Avance.',
   descricao:
     'Plataforma de treinamentos online em Normas Regulamentadoras. Certificado emitido sob responsabilidade técnica de Engenheiro de Segurança do Trabalho registrado no CREA.',
   email: 'contato@nrcertifica.com.br',

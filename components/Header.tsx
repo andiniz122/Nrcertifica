@@ -75,7 +75,6 @@ export function Header() {
           <Link href="/#como-funciona" className={linkNav}>Como funciona</Link>
           <Link href="/#empresas" className={linkNav}>Para empresas</Link>
           <Link href="/validar" className={linkNav}>Validar certificado</Link>
-          <Link href="/responsavel-tecnico" className={linkNav}>Responsável técnico</Link>
           <Link href="/#contato" className={linkNav}>Contato</Link>
           {isAdmin && (
             <Link href="/admin" className="flex items-center gap-1.5 text-brand-gold hover:text-white text-sm transition-colors font-semibold">
@@ -190,7 +189,6 @@ export function Header() {
             <Link href="/#como-funciona" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Como funciona</Link>
             <Link href="/#empresas" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Para empresas</Link>
             <Link href="/validar" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Validar certificado</Link>
-            <Link href="/responsavel-tecnico" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Responsável técnico</Link>
             <Link href="/#contato" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Contato</Link>
             {isAdmin && (
               <Link href="/admin" className="text-brand-gold font-semibold text-sm flex items-center gap-1.5" onClick={() => setMenuAberto(false)}>

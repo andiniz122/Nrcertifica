@@ -1,0 +1,56 @@
+import Link from 'next/link'
+
+/**
+ * Marca do NR Certifica: escudo laranja com "NR" + assinatura.
+ * `tema` controla o contraste — 'escuro' para fundos navy, 'claro' para fundo branco.
+ */
+export function Logo({
+  tema = 'escuro',
+  comSlogan = true,
+}: {
+  tema?: 'escuro' | 'claro'
+  comSlogan?: boolean
+}) {
+  const corTexto = tema === 'escuro' ? 'text-white' : 'text-brand-slate'
+  const corSlogan = tema === 'escuro' ? 'text-white/50' : 'text-brand-muted'
+
+  return (
+    <Link href="/" className="flex items-center gap-3" aria-label="NR Certifica — página inicial">
+      <span className="flex-shrink-0">
+        <svg width="38" height="42" viewBox="0 0 38 42" fill="none" aria-hidden="true">
+          <path
+            d="M19 1.5 35.5 7v14.6c0 8.9-6.4 16.4-16.5 19.4C8.9 38 2.5 30.5 2.5 21.6V7L19 1.5Z"
+            fill="#E97824"
+            stroke="#FFB067"
+            strokeWidth="1.6"
+          />
+          <path
+            d="M19 6 31 10v11.4c0 6.7-4.8 12.4-12 14.8-7.2-2.4-12-8.1-12-14.8V10L19 6Z"
+            fill="#0E1B2B"
+            fillOpacity=".16"
+          />
+          <text
+            x="19"
+            y="26.5"
+            textAnchor="middle"
+            fontFamily="Sora, Inter, sans-serif"
+            fontSize="14"
+            fontWeight="700"
+            fill="#FFFFFF"
+            letterSpacing="0.5"
+          >
+            NR
+          </text>
+        </svg>
+      </span>
+      <span className="leading-none">
+        <span className={`font-display font-bold text-xl tracking-tight ${corTexto}`}>
+          NR <span className="font-normal">CERTIFICA</span>
+        </span>
+        {comSlogan && (
+          <p className={`text-[10px] mt-1 tracking-wide ${corSlogan}`}>Aprenda. Desenvolva. Avance.</p>
+        )}
+      </span>
+    </Link>
+  )
+}
