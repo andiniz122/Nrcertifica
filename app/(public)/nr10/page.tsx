@@ -125,12 +125,12 @@ export default function LandingNR10() {
                 </div>
               ))}
               {/* Prova final */}
-              <div className="card flex items-start gap-4 border-brand-gold border-2">
-                <div className="w-10 h-10 bg-brand-gold rounded-xl flex items-center justify-center flex-shrink-0">
+              <div className="card flex items-start gap-4 border-brand-red border-2">
+                <div className="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center flex-shrink-0">
                   <Award className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <p className="text-xs text-brand-gold font-semibold mb-0.5">Avaliação Final</p>
+                  <p className="text-xs text-brand-red font-semibold mb-0.5">Avaliação Final</p>
                   <h3 className="font-semibold text-brand-dark mb-1">Prova Final — 10 questões</h3>
                   <p className="text-gray-500 text-sm">
                     Questões sorteadas do banco. Nota mínima: 70% (7 acertos). Até 3 tentativas.
@@ -168,7 +168,7 @@ export default function LandingNR10() {
                   Certificado emitido com base legal na Constituição Federal/88 (Art. 206° e 209°),
                   Lei 9.394/96, Decreto 5.154/2004 e Norma CNE 04/99 — MEC (Artigo 7° § 3°).
                 </p>
-                <p className="text-sm font-semibold text-brand-gold">Anderson Bicalho Diniz</p>
+                <p className="text-sm font-semibold text-brand-red">Anderson Bicalho Diniz</p>
                 <p className="text-xs text-gray-400">Engenheiro Eletricista · Engenheiro de Segurança do Trabalho</p>
                 <p className="text-xs text-gray-400">Eletricom Manutenção Especializada · CREA 254516/MG</p>
               </div>
@@ -179,7 +179,7 @@ export default function LandingNR10() {
         {/* ── CTA FINAL ── */}
         <section className="py-16 px-4 bg-brand-red text-white text-center">
           <h2 className="font-display text-3xl font-bold mb-4">Garanta sua vaga agora</h2>
-          <p className="text-red-100 mb-8">Acesso imediato após o pagamento. Comece hoje mesmo.</p>
+          <p className="text-white/80 mb-8">Acesso imediato após o pagamento. Comece hoje mesmo.</p>
           <BotaoComprar curso={curso} className="bg-white text-brand-red font-bold px-8 py-4 rounded-xl hover:bg-red-50 transition-colors inline-flex items-center gap-2 text-lg" />
         </section>
       </main>

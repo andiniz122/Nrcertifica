@@ -479,16 +479,16 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
               return (
                 <div className={`rounded-2xl border-2 p-5 flex items-center gap-4 transition-all ${
                   provaLiberada
-                    ? 'border-brand-gold bg-yellow-50 cursor-pointer hover:shadow-md'
+                    ? 'border-brand-red bg-yellow-50 cursor-pointer hover:shadow-md'
                     : 'border-gray-200 bg-white opacity-50'
                 }`}
                   onClick={() => provaLiberada && setAbaAtual('prova')}
                 >
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                    provaLiberada ? 'bg-brand-gold/20' : 'bg-gray-100'
+                    provaLiberada ? 'bg-brand-soft' : 'bg-gray-100'
                   }`}>
                     {provaLiberada
-                      ? <Award className="w-6 h-6 text-brand-gold" />
+                      ? <Award className="w-6 h-6 text-brand-red" />
                       : <Lock className="w-6 h-6 text-gray-300" />
                     }
                   </div>
@@ -503,7 +503,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                       }
                     </p>
                   </div>
-                  {provaLiberada && <ChevronRight className="w-5 h-5 text-brand-gold" />}
+                  {provaLiberada && <ChevronRight className="w-5 h-5 text-brand-red" />}
                 </div>
               )
             })()}

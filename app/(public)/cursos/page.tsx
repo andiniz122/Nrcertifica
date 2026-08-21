@@ -50,10 +50,10 @@ export default function Cursos() {
         <section className="py-14 px-4 bg-brand-light">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
             {CURSOS.map(curso => (
-              <div key={curso.slug} className={`card border-l-4 ${curso.ativo ? 'border-brand-red hover:shadow-md transition-shadow' : 'border-gray-200 opacity-60'}`}>
+              <div key={curso.slug} className={`card border-l-4 ${curso.ativo ? 'border-l-brand-red hover:shadow-md transition-shadow' : 'border-l-brand-border opacity-60'}`}>
                 {!curso.ativo && <div className="flex justify-end mb-2"><span className="badge bg-gray-100 text-gray-500">Em breve</span></div>}
                 <div className="flex items-start justify-between mb-3">
-                  <span className={`badge ${curso.ativo ? 'bg-red-100 text-brand-red' : 'bg-gray-100 text-gray-500'}`}>{curso.nr}</span>
+                  <span className={`badge ${curso.ativo ? 'bg-brand-soft text-brand-red' : 'bg-gray-100 text-gray-500'}`}>{curso.nr}</span>
                   <span className="font-display font-bold text-2xl text-brand-dark">R$ {curso.preco}</span>
                 </div>
                 <h3 className="font-display font-bold text-xl text-brand-dark mb-1">{curso.nr} — {curso.titulo}</h3>

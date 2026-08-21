@@ -134,7 +134,7 @@ export default function ResponsavelTecnico() {
               <FileSignature className="w-6 h-6 text-brand-red" />
               Declaração de responsabilidade técnica
             </h2>
-            <div className="card border-l-4 border-brand-red space-y-4 text-gray-600 leading-relaxed">
+            <div className="card border-l-4 border-l-brand-red space-y-4 text-gray-600 leading-relaxed">
               <p>
                 Declaro, na condição de Engenheiro de Segurança do Trabalho registrado sob o{' '}
                 {RESPONSAVEL.crea}, ser o responsável técnico pelo conteúdo programático dos

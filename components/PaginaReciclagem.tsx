@@ -114,7 +114,7 @@ export function PaginaReciclagem({ rota }: { rota: string }) {
             <h2 className="font-display text-2xl font-bold text-brand-dark mb-5">
               De quanto em quanto tempo a {curso.nr} precisa ser reciclada?
             </h2>
-            <div className="card border-l-4 border-brand-red space-y-4 text-gray-600 leading-relaxed">
+            <div className="card border-l-4 border-l-brand-red space-y-4 text-gray-600 leading-relaxed">
               <p>
                 A periodicidade é <strong>{reciclagem.periodicidade?.toLowerCase()}</strong>,
                 conforme o item <strong>{reciclagem.base}</strong>.
@@ -156,7 +156,7 @@ export function PaginaReciclagem({ rota }: { rota: string }) {
         {/* ── PARTE PRÁTICA ── */}
         <section className="py-16 px-4 bg-brand-light">
           <div className="max-w-3xl mx-auto">
-            <div className="card border-l-4 border-brand-gold text-gray-600 leading-relaxed space-y-3">
+            <div className="card border-l-4 border-l-brand-red text-gray-600 leading-relaxed space-y-3">
               <p className="font-semibold text-brand-dark">Sobre a parte prática</p>
               <p>
                 Este curso cobre a <strong>parte teórica</strong> da reciclagem, cumprida em EAD.

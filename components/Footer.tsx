@@ -1,15 +1,15 @@
 import Link from 'next/link'
-import { HardHat, Mail, Shield, MessageCircle, BadgeCheck } from 'lucide-react'
+import { Mail, Shield, MessageCircle, BadgeCheck } from 'lucide-react'
+import { Logo } from './Logo'
 import { CURSOS, SITE, RESPONSAVEL } from '../lib/seo'
 
 export function Footer() {
   return (
-    <footer className="bg-brand-dark text-gray-400 py-12 px-4">
+    <footer className="bg-brand-navy text-gray-400 py-12 px-4">
       <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
         <div>
-          <div className="flex items-center gap-2 mb-3">
-            <HardHat className="w-6 h-6 text-brand-gold" />
-            <span className="font-display font-bold text-white tracking-wide">NR CERTIFICA</span>
+          <div className="mb-4">
+            <Logo comSlogan={false} />
           </div>
           <p className="text-sm leading-relaxed">
             Plataforma de treinamentos em Normas Regulamentadoras. Certificado emitido sob

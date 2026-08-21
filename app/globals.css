@@ -4,22 +4,40 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
-  body { @apply text-gray-800; }
+  body { @apply text-brand-slate; }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-brand-red text-white font-semibold px-6 py-3 rounded-xl
-           hover:bg-orange-700 transition-colors duration-200 inline-flex items-center gap-2;
+    @apply bg-brand-red text-white font-semibold px-6 py-3 rounded-lg
+           hover:bg-brand-redDark transition-colors duration-200 inline-flex items-center gap-2;
   }
   .btn-outline {
-    @apply border-2 border-brand-red text-brand-red font-semibold px-6 py-3 rounded-xl
+    @apply border-2 border-brand-red text-brand-red font-semibold px-6 py-3 rounded-lg
            hover:bg-brand-red hover:text-white transition-colors duration-200 inline-flex items-center gap-2;
   }
+  /* CTA em caixa alta usado nos blocos de destaque (hero, cards de curso). */
+  .btn-cta {
+    @apply bg-brand-red text-white font-bold uppercase tracking-wide text-[12px]
+           px-6 py-3.5 rounded-lg hover:bg-brand-redDark transition-colors duration-200
+           inline-flex items-center justify-center gap-2;
+  }
+  .btn-cta-ghost {
+    @apply border-2 border-brand-red text-white font-bold uppercase tracking-wide text-[13px]
+           px-6 py-3.5 rounded-lg hover:bg-brand-red transition-colors duration-200
+           inline-flex items-center justify-center gap-2;
+  }
   .card {
-    @apply bg-white rounded-2xl shadow-sm border border-gray-100 p-6;
+    @apply bg-white rounded-xl shadow-card border border-brand-border p-6;
   }
   .badge {
     @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  /* Título de seção com o traço laranja embaixo (padrão visual do site). */
+  .section-title {
+    @apply font-display text-2xl md:text-3xl font-bold text-brand-slate uppercase tracking-tight;
+  }
+  .section-rule {
+    @apply block h-1 w-16 rounded-full bg-brand-red mx-auto mt-3;
   }
 }

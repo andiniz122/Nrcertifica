@@ -12,7 +12,7 @@ export function CardCurso({ matricula }: Props) {
   const progresso = Math.round((concluidos / totalModulos) * 100)
 
   return (
-    <div className="card hover:shadow-md transition-shadow border-l-4 border-brand-red">
+    <div className="card hover:shadow-md transition-shadow border-l-4 border-l-brand-red">
       <div className="flex items-start gap-3 mb-4">
         <div className="w-10 h-10 bg-brand-red/10 rounded-xl flex items-center justify-center flex-shrink-0">
           <BookOpen className="w-5 h-5 text-brand-red" />
@@ -25,7 +25,7 @@ export function CardCurso({ matricula }: Props) {
           <p className="text-xs text-gray-400">{curso.carga_horaria}</p>
         </div>
         {matricula.aprovado && (
-          <Award className="w-5 h-5 text-brand-gold flex-shrink-0" />
+          <Award className="w-5 h-5 text-brand-red flex-shrink-0" />
         )}
       </div>
 
