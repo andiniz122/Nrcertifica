@@ -9,8 +9,14 @@ Coloque aqui a foto de cada curso usando exatamente estes nomes:
 | NR-35      | `nr35.jpg`               |
 | NR-12      | `nr12.jpg`               |
 | NR-06      | `nr06.jpg`               |
+| Elétrica Predial   | `eletrica.jpg`     |
+| Comandos Elétricos | `comandos.jpg`     |
+| Arduino    | `arduino.jpg`            |
 
 Extensões aceitas: `.jpg`, `.jpeg`, `.png`, `.webp`.
+
+O nome do arquivo sai de `slugFoto(nr)` em `lib/imagens.ts`: o campo `nr` do
+curso sem acentos, minúsculo e sem caracteres especiais.
 
 Recomendação: recorte horizontal (proporção ~16:9 ou 3:2), no mínimo 800 px de
 largura. O card mostra a faixa superior da imagem com um escurecimento por cima,
