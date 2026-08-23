@@ -26,16 +26,51 @@ export const metadata: Metadata = {
 }
 
 const CURSOS = [
-  { slug: 'nr10-basico', nr: 'NR-10', titulo: 'Segurança em Instalações e Serviços em Eletricidade', subtitulo: 'Básico — obrigatório para quem trabalha com eletricidade', horas: '40h', validade: '2 anos', preco: 97, ativo: true, href: '/nr10', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
-  { slug: 'eletrica-predial-120h', nr: 'ELÉTRICA', titulo: 'Instalações Elétricas Prediais', subtitulo: 'Formação completa em elétrica residencial e predial, do padrão de entrada ao projeto', horas: '120h', validade: 'Sem validade', preco: 297, ativo: true, href: '/eletrica-predial', destaques: ['8 módulos online', 'Projeto pela NBR 5410', 'Aterramento e luminotécnica', 'Prova final com 20 questões'] },
-  { slug: 'comandos-eletricos-40h', nr: 'COMANDOS', titulo: 'Comandos Elétricos e Acionamento de Motores', subtitulo: 'Do motor de indução à montagem do painel de comando', horas: '40h', validade: 'Sem validade', preco: 147, ativo: true, href: '/comandos-eletricos', destaques: ['4 módulos online', 'Diagramas de comando e força', 'Partidas direta, reversora e Y-Δ', 'Prova final com 10 questões'] },
-  { slug: 'arduino-automacao-40h', nr: 'ARDUINO', titulo: 'Arduino, Sensores e Automação com CLP', subtitulo: 'Da eletrônica digital ao CLP em Ladder, com sensores e atuadores', horas: '40h', validade: 'Sem validade', preco: 147, ativo: true, href: '/arduino', destaques: ['4 módulos online', 'Entradas, saídas, PWM e I2C', 'CLP em Ladder e inversores', 'Prova final com 10 questões'] },
-  { slug: 'nr35', nr: 'NR-35', titulo: 'Trabalho em Altura', subtitulo: 'Para trabalhadores que atuam acima de 2 metros', horas: '8h', validade: '2 anos', preco: 67, ativo: true, href: '/nr35', destaques: ['3 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
-  { slug: 'nr10-sep', nr: 'NR-10 SEP', titulo: 'Segurança em Sistemas Elétricos de Potência', subtitulo: 'Complemento obrigatório para quem trabalha em alta tensão', horas: '40h', validade: '2 anos', preco: 127, ativo: true, href: '/nr10sep', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
-  { slug: 'nr06', nr: 'NR-06', titulo: 'Equipamentos de Proteção Individual', subtitulo: 'Seleção, uso, conservação e descarte de EPIs', horas: '4h', validade: '2 anos', preco: 47, ativo: true, href: '/nr06', destaques: ['2 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
-  { slug: 'nr33', nr: 'NR-33', titulo: 'Segurança em Espaços Confinados', subtitulo: 'Vigia, Trabalhador Autorizado e Supervisor', horas: '16h / 40h', validade: '1 ano', preco: 127, ativo: false, href: '#', destaques: ['Vigia/Trabalhador: 16h', 'Supervisor: 40h', 'Atmosferas perigosas', 'Certificado PDF automático'] },
-  { slug: 'nr12-basico', nr: 'NR-12', titulo: 'Segurança no Trabalho em Máquinas e Equipamentos', subtitulo: 'Para operadores e mantenedores de máquinas industriais', horas: '16h', validade: '2 anos', preco: 97, ativo: true, href: '/nr12', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
+  { tipo: 'nr', slug: 'nr10-basico', nr: 'NR-10', titulo: 'Segurança em Instalações e Serviços em Eletricidade', subtitulo: 'Básico — obrigatório para quem trabalha com eletricidade', horas: '40h', validade: '2 anos', preco: 97, ativo: true, href: '/nr10', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
+  { tipo: 'livre', slug: 'eletrica-predial-120h', nr: 'ELÉTRICA', titulo: 'Instalações Elétricas Prediais', subtitulo: 'Formação completa em elétrica residencial e predial, do padrão de entrada ao projeto', horas: '120h', validade: 'Sem validade', preco: 297, ativo: true, href: '/eletrica-predial', destaques: ['8 módulos online', 'Projeto pela NBR 5410', 'Aterramento e luminotécnica', 'Prova final com 20 questões'] },
+  { tipo: 'livre', slug: 'comandos-eletricos-40h', nr: 'COMANDOS', titulo: 'Comandos Elétricos e Acionamento de Motores', subtitulo: 'Do motor de indução à montagem do painel de comando', horas: '40h', validade: 'Sem validade', preco: 147, ativo: true, href: '/comandos-eletricos', destaques: ['4 módulos online', 'Diagramas de comando e força', 'Partidas direta, reversora e Y-Δ', 'Prova final com 10 questões'] },
+  { tipo: 'livre', slug: 'arduino-automacao-40h', nr: 'ARDUINO', titulo: 'Arduino, Sensores e Automação com CLP', subtitulo: 'Da eletrônica digital ao CLP em Ladder, com sensores e atuadores', horas: '40h', validade: 'Sem validade', preco: 147, ativo: true, href: '/arduino', destaques: ['4 módulos online', 'Entradas, saídas, PWM e I2C', 'CLP em Ladder e inversores', 'Prova final com 10 questões'] },
+  { tipo: 'nr', slug: 'nr35', nr: 'NR-35', titulo: 'Trabalho em Altura', subtitulo: 'Para trabalhadores que atuam acima de 2 metros', horas: '8h', validade: '2 anos', preco: 67, ativo: true, href: '/nr35', destaques: ['3 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
+  { tipo: 'nr', slug: 'nr10-sep', nr: 'NR-10 SEP', titulo: 'Segurança em Sistemas Elétricos de Potência', subtitulo: 'Complemento obrigatório para quem trabalha em alta tensão', horas: '40h', validade: '2 anos', preco: 127, ativo: true, href: '/nr10sep', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
+  { tipo: 'nr', slug: 'nr06', nr: 'NR-06', titulo: 'Equipamentos de Proteção Individual', subtitulo: 'Seleção, uso, conservação e descarte de EPIs', horas: '4h', validade: '2 anos', preco: 47, ativo: true, href: '/nr06', destaques: ['2 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
+  { tipo: 'nr', slug: 'nr33', nr: 'NR-33', titulo: 'Segurança em Espaços Confinados', subtitulo: 'Vigia, Trabalhador Autorizado e Supervisor', horas: '16h / 40h', validade: '1 ano', preco: 127, ativo: false, href: '#', destaques: ['Vigia/Trabalhador: 16h', 'Supervisor: 40h', 'Atmosferas perigosas', 'Certificado PDF automático'] },
+  { tipo: 'nr', slug: 'nr12-basico', nr: 'NR-12', titulo: 'Segurança no Trabalho em Máquinas e Equipamentos', subtitulo: 'Para operadores e mantenedores de máquinas industriais', horas: '16h', validade: '2 anos', preco: 97, ativo: true, href: '/nr12', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
 ]
+
+function CardCurso({ curso }: { curso: typeof CURSOS[number] }) {
+  return (
+    <div className={`card border-l-4 ${curso.ativo ? 'border-l-brand-red hover:shadow-md transition-shadow' : 'border-l-brand-border opacity-60'}`}>
+      {!curso.ativo && <div className="flex justify-end mb-2"><span className="badge bg-gray-100 text-gray-500">Em breve</span></div>}
+      <div className="flex items-start justify-between mb-3">
+        <span className={`badge ${curso.ativo ? 'bg-brand-soft text-brand-red' : 'bg-gray-100 text-gray-500'}`}>{curso.nr}</span>
+        <span className="font-display font-bold text-2xl text-brand-dark">R$ {curso.preco}</span>
+      </div>
+      <h3 className="font-display font-bold text-xl text-brand-dark mb-1">
+        {curso.nr.startsWith('NR') ? `${curso.nr} — ${curso.titulo}` : curso.titulo}
+      </h3>
+      <p className="text-gray-500 text-sm mb-3">{curso.subtitulo}</p>
+      <div className="flex gap-4 text-xs text-gray-400 mb-4">
+        <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {curso.horas}</span>
+        <span className="flex items-center gap-1"><Award className="w-3.5 h-3.5" /> {curso.tipo === 'livre' ? 'Certificado sem validade' : `Validade: ${curso.validade}`}</span>
+      </div>
+      <ul className="space-y-1.5 mb-5">
+        {curso.destaques.map(item => (
+          <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
+            <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" /> {item}
+          </li>
+        ))}
+      </ul>
+      {curso.ativo ? (
+        <div className="flex gap-3">
+          <Link href={curso.href} className="btn-outline flex-1 justify-center text-sm py-2.5">Ver detalhes</Link>
+          <BotaoComprar curso={{ slug: curso.slug, titulo: curso.nr.startsWith('NR') ? `${curso.nr} — ${curso.titulo}` : curso.titulo, nr: curso.nr, carga_horaria: curso.horas, preco: curso.preco }} className="btn-primary flex-1 justify-center text-sm py-2.5" />
+        </div>
+      ) : (
+        <button disabled className="w-full bg-gray-100 text-gray-400 font-semibold px-6 py-3 rounded-xl cursor-not-allowed">Em breve</button>
+      )}
+    </div>
+  )
+}
 
 export default function Cursos() {
   return (
@@ -51,39 +86,36 @@ export default function Cursos() {
           </div>
         </section>
         <section className="py-14 px-4 bg-brand-light">
-          <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-            {CURSOS.map(curso => (
-              <div key={curso.slug} className={`card border-l-4 ${curso.ativo ? 'border-l-brand-red hover:shadow-md transition-shadow' : 'border-l-brand-border opacity-60'}`}>
-                {!curso.ativo && <div className="flex justify-end mb-2"><span className="badge bg-gray-100 text-gray-500">Em breve</span></div>}
-                <div className="flex items-start justify-between mb-3">
-                  <span className={`badge ${curso.ativo ? 'bg-brand-soft text-brand-red' : 'bg-gray-100 text-gray-500'}`}>{curso.nr}</span>
-                  <span className="font-display font-bold text-2xl text-brand-dark">R$ {curso.preco}</span>
-                </div>
-                <h3 className="font-display font-bold text-xl text-brand-dark mb-1">
-                  {curso.nr.startsWith('NR') ? `${curso.nr} — ${curso.titulo}` : curso.titulo}
-                </h3>
-                <p className="text-gray-500 text-sm mb-3">{curso.subtitulo}</p>
-                <div className="flex gap-4 text-xs text-gray-400 mb-4">
-                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {curso.horas}</span>
-                  <span className="flex items-center gap-1"><Award className="w-3.5 h-3.5" /> Validade: {curso.validade}</span>
-                </div>
-                <ul className="space-y-1.5 mb-5">
-                  {curso.destaques.map(item => (
-                    <li key={item} className="flex items-center gap-2 text-sm text-gray-600">
-                      <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" /> {item}
-                    </li>
-                  ))}
-                </ul>
-                {curso.ativo ? (
-                  <div className="flex gap-3">
-                    <Link href={curso.href} className="btn-outline flex-1 justify-center text-sm py-2.5">Ver detalhes</Link>
-                    <BotaoComprar curso={{ slug: curso.slug, titulo: curso.nr.startsWith('NR') ? `${curso.nr} — ${curso.titulo}` : curso.titulo, nr: curso.nr, carga_horaria: curso.horas, preco: curso.preco }} className="btn-primary flex-1 justify-center text-sm py-2.5" />
-                  </div>
-                ) : (
-                  <button disabled className="w-full bg-gray-100 text-gray-400 font-semibold px-6 py-3 rounded-xl cursor-not-allowed">Em breve</button>
-                )}
-              </div>
-            ))}
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-6">
+              <h2 className="font-display text-2xl font-bold text-brand-dark">Treinamentos em Normas Regulamentadoras</h2>
+              <p className="text-gray-500 text-sm mt-1">
+                Treinamentos obrigatórios previstos em NR, com carga horária normativa, validade definida e
+                certificado emitido sob responsabilidade técnica.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {CURSOS.filter(c => c.tipo === 'nr').map(curso => (
+                <CardCurso key={curso.slug} curso={curso} />
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="py-14 px-4 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <div className="mb-6">
+              <h2 className="font-display text-2xl font-bold text-brand-dark">Cursos livres de capacitação técnica</h2>
+              <p className="text-gray-500 text-sm mt-1">
+                Formação inicial e continuada (Lei 9.394/96, art. 39, § 2º). Certificado sem prazo de validade.
+                Não substituem os treinamentos exigidos pelas Normas Regulamentadoras nem conferem a condição de
+                trabalhador qualificado prevista no item 10.8.1 da NR-10.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {CURSOS.filter(c => c.tipo === 'livre').map(curso => (
+                <CardCurso key={curso.slug} curso={curso} />
+              ))}
+            </div>
           </div>
         </section>
         <section className="py-12 px-4 bg-white text-center">

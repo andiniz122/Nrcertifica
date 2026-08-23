@@ -175,9 +175,9 @@ export function PaginaCursoLivre({
               <h2 className="font-display text-2xl font-bold text-brand-dark mb-6">Sobre o certificado</h2>
               <div className="bg-brand-dark text-white rounded-2xl p-6">
                 <p className="text-sm text-gray-300 mb-4">
-                  Certificado de curso livre de capacitação profissional, com base legal na
-                  Constituição Federal/88 (Art. 205 e 214), na Lei 9.394/96 (LDB) e no
-                  Decreto 5.154/2004. Por não ser Norma Regulamentadora, o certificado é
+                  Certificado de curso livre de capacitação profissional (formação inicial e
+                  continuada), com base legal na Constituição Federal/88 (Art. 205 e 214)
+                  e no art. 39, § 2º, da Lei 9.394/96 (LDB). Por não ser Norma Regulamentadora, o certificado é
                   emitido <span className="font-semibold text-white">sem prazo de validade</span> e
                   não exige reciclagem periódica.
                 </p>
@@ -191,6 +191,14 @@ export function PaginaCursoLivre({
                   não substitui o treinamento de segurança em instalações e serviços em eletricidade
                   exigido pela NR-10 — obrigatório para trabalhar em instalações elétricas
                   energizadas ou em suas proximidades.
+                </p>
+                <p className="text-sm text-brand-muted mt-3">
+                  Também não confere a condição de <strong className="text-brand-slate">trabalhador
+                  qualificado</strong> definida no item 10.8.1 da NR-10, que exige comprovação de
+                  conclusão de curso específico na área elétrica reconhecido pelo Sistema Oficial de
+                  Ensino. Cursos livres (formação inicial e continuada) não atendem a esse requisito.
+                  A autorização para intervenção em instalações elétricas é ato do empregador,
+                  conforme o item 10.8.4.
                 </p>
                 <Link href="/nr10" className="btn-outline mt-4 text-sm py-2.5">
                   Conhecer o curso NR-10 <ChevronRight className="w-4 h-4" />
