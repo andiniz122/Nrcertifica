@@ -71,6 +71,10 @@ export const EMPRESA: {
  * NAO tem prazo fixo: a NR-12 define condicoes de reciclagem (modificacoes
  * significativas em instalacoes, maquinas, metodos, processos ou organizacao
  * do trabalho que impliquem novos riscos), nao periodicidade.
+ *
+ * Cursos livres (fora do escopo das NRs, como o de Eletrica Industrial 120h)
+ * tambem entram aqui com `periodicaFixa: false` — nao ha reciclagem nem
+ * validade a publicar, e o certificado sai sem data de vencimento.
  */
 export type Reciclagem = {
   /** Existe periodicidade fixa na norma? */
@@ -98,6 +102,8 @@ export type Curso = {
   nr: string
   nome: string
   nomeCurto: string
+  /** Nome da credencial no JSON-LD. Default: `Certificado de treinamento ${nr}`. */
+  credencial?: string
   tituloSeo: string
   descricaoSeo: string
   /** Descricao curta para OG/Twitter. */
@@ -107,6 +113,11 @@ export type Curso = {
   /** ISO-8601 para courseWorkload/timeRequired. */
   workload: string
   preco: number
+  /**
+   * Validade do certificado em anos, espelhando `courses.validade_anos` no
+   * MongoDB. 0 = curso livre, certificado sem vencimento. Default: 2.
+   */
+  validadeAnos?: number
   keywords: string[]
   ativo: boolean
   reciclagem: Reciclagem
@@ -280,6 +291,45 @@ export const CURSOS: Curso[] = [
     },
   },
   {
+    rota: '/eletrica',
+    slugBanco: 'eletrica-industrial-120h',
+    // Nao e Norma Regulamentadora: curso livre de capacitacao profissional.
+    // O campo `nr` e reaproveitado como etiqueta do curso na vitrine e no card.
+    nr: 'ELÉTRICA',
+    nome: 'Elétrica Industrial, Eletrônica e Automação com Arduino',
+    nomeCurto: 'Elétrica Industrial e Automação — 120h',
+    credencial:
+      'Certificado de capacitação profissional em Elétrica Industrial, Eletrônica e Automação',
+    tituloSeo: 'Curso de Elétrica Industrial 120h Online — Eletrônica, Comandos e Arduino',
+    descricaoSeo:
+      'Curso de elétrica industrial online, 120 horas EAD em 8 módulos: eletricidade básica, eletrônica, instalações e proteção, motores, comandos elétricos, Arduino, CLP e inversores. Prova online e certificado PDF imediato, emitido sob responsabilidade técnica de Engenheiro Eletricista CREA 254516/MG. R$ 297.',
+    descricaoOg:
+      'Elétrica Industrial 120h online: eletrônica, comandos elétricos, Arduino e CLP. Certificado PDF imediato. Responsável técnico CREA 254516/MG.',
+    cargaHoraria: '120h',
+    cargaHoras: 120,
+    workload: 'PT120H',
+    preco: 297,
+    validadeAnos: 0,
+    keywords: [
+      'curso de elétrica online',
+      'curso de elétrica industrial 120 horas',
+      'curso de comandos elétricos online',
+      'curso de eletrônica básica com certificado',
+      'curso de Arduino online',
+      'curso de automação industrial EAD',
+      'curso de eletricista industrial com certificado',
+    ],
+    ativo: true,
+    reciclagem: {
+      periodicaFixa: false,
+      periodicidade: null,
+      base:
+        'Curso livre de capacitação profissional (Lei 9.394/96 e Decreto 5.154/2004). Não é Norma Regulamentadora: não há reciclagem obrigatória nem prazo de validade normativo para o certificado.',
+      validFor: null,
+      temPagina: false,
+    },
+  },
+  {
     rota: '/nr33',
     slugBanco: null,
     nr: 'NR-33',
@@ -311,6 +361,11 @@ export function getCurso(rota: string): Curso {
   const curso = CURSOS.find((c) => c.rota === rota)
   if (!curso) throw new Error(`Curso nao encontrado em lib/seo.ts para a rota "${rota}"`)
   return curso
+}
+
+/** Texto de validade do certificado exibido na vitrine e nas landings. */
+export function textoValidade(curso: Curso): string {
+  return (curso.validadeAnos ?? 2) === 0 ? 'Sem validade' : `${curso.validadeAnos ?? 2} anos`
 }
 
 /** URL absoluta canonica a partir de um path relativo. */

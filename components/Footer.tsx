@@ -12,8 +12,8 @@ export function Footer() {
             <Logo comSlogan={false} />
           </div>
           <p className="text-sm leading-relaxed">
-            Plataforma de treinamentos em Normas Regulamentadoras. Certificado emitido sob
-            responsabilidade técnica de Engenheiro de Segurança do Trabalho.
+            Plataforma de treinamentos em Normas Regulamentadoras e em elétrica industrial.
+            Certificado emitido sob responsabilidade técnica de Engenheiro de Segurança do Trabalho.
           </p>
           <Link
             href={RESPONSAVEL.rota}

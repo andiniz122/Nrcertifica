@@ -1,0 +1,1073 @@
+{
+  "curso": "Elétrica Industrial, Eletrônica e Automação com Arduino",
+  "sigla": "ELÉTRICA",
+  "carga_horaria": "120h",
+  "validade_anos": 0,
+  "aprovacao_minima": 0.7,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Fundamentos de Eletricidade — Corrente Contínua e Alternada (20h)",
+      "descricao": "Grandezas elétricas, Lei de Ohm, associação de resistores, potência e energia, circuitos em corrente contínua e alternada, sistema trifásico, fator de potência e uso do multímetro e do alicate amperímetro.",
+      "exercicios": [
+        {
+          "id": "ELE-M1-Q1",
+          "enunciado": "Um chuveiro elétrico de 5.500 W é ligado em 220 V. A corrente nominal e a resistência do resistor na posição inverno são, respectivamente:",
+          "alternativas": [
+            "12,5 A e 17,6 Ω",
+            "25 A e 8,8 Ω",
+            "25 A e 17,6 Ω",
+            "12,5 A e 8,8 Ω"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Da potência em corrente contínua/resistiva, I = P/V = 5.500/220 = 25 A. Pela Lei de Ohm, R = V/I = 220/25 = 8,8 Ω. Também pode ser obtido por R = V²/P = 48.400/5.500 = 8,8 Ω. Esse cálculo é o que define a seção do condutor e o disjuntor do circuito."
+        },
+        {
+          "id": "ELE-M1-Q2",
+          "enunciado": "Três resistores de 30 Ω são associados em paralelo. A resistência equivalente do conjunto é:",
+          "alternativas": [
+            "90 Ω",
+            "30 Ω",
+            "10 Ω",
+            "3,33 Ω"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Para resistores iguais em paralelo, Req = R/n = 30/3 = 10 Ω. Em paralelo a resistência equivalente é sempre MENOR que o menor resistor do conjunto, porque se abrem novos caminhos para a corrente."
+        },
+        {
+          "id": "ELE-M1-Q3",
+          "enunciado": "Em um sistema trifásico equilibrado ligado em estrela (Y), a relação entre a tensão de linha e a tensão de fase é:",
+          "alternativas": [
+            "V_linha = V_fase (são iguais)",
+            "V_linha = 3 × V_fase, e a corrente de linha é o triplo da de fase",
+            "V_linha = V_fase / √3, e a corrente de linha é √3 vezes a de fase",
+            "V_linha = √3 × V_fase, e a corrente de linha é igual à corrente de fase"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Na ligação estrela, V_linha = √3 × V_fase (por isso 380 V entre fases resulta em 220 V entre fase e neutro) e a corrente de linha é a mesma da fase. Na ligação triângulo ocorre o inverso: V_linha = V_fase e I_linha = √3 × I_fase."
+        },
+        {
+          "id": "ELE-M1-Q4",
+          "enunciado": "Uma instalação industrial apresenta fator de potência de 0,75 indutivo. A consequência direta disso é:",
+          "alternativas": [
+            "Circula mais corrente para entregar a mesma potência ativa, sobrecarregando condutores e sujeitando a unidade à cobrança de reativo excedente",
+            "Não há efeito prático, pois a concessionária só mede potência ativa",
+            "A tensão da instalação sobe automaticamente, danificando os equipamentos",
+            "A potência ativa consumida aumenta 25%, elevando o consumo em kWh"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Como S = P/cosφ, um fator de potência baixo aumenta a potência aparente e, portanto, a corrente para a mesma potência ativa útil. Isso gera mais perdas por efeito Joule, queda de tensão e faturamento de energia reativa excedente (limite regulatório de 0,92). A correção é feita normalmente com banco de capacitores."
+        },
+        {
+          "id": "ELE-M1-Q5",
+          "enunciado": "Para medir a corrente de um motor em funcionamento sem interromper o circuito, o instrumento adequado e a forma correta de uso são:",
+          "alternativas": [
+            "Alicate amperímetro, abraçando os três condutores do circuito de uma só vez",
+            "Alicate amperímetro, abraçando apenas um condutor de fase por vez",
+            "Multímetro na escala de corrente, ligado em paralelo com o motor",
+            "Multímetro na escala de tensão, com as pontas nos terminais do motor"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O alicate amperímetro mede pelo campo magnético gerado pelo condutor, sem abrir o circuito. Deve envolver UM condutor por vez: abraçando dois ou três, os campos se cancelam e a leitura tende a zero em sistema equilibrado. Multímetro na escala de corrente exige abrir o circuito e ligar em série — e ligá-lo em paralelo provoca curto-circuito."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Eletrônica Analógica Básica (12h)",
+      "descricao": "Semicondutores, diodos e retificação, fontes de alimentação lineares e chaveadas, transistor bipolar como chave e amplificador, capacitores, indutores, divisores de tensão e leitura de esquemas eletrônicos.",
+      "exercicios": [
+        {
+          "id": "ELE-M2-Q1",
+          "enunciado": "Em uma fonte com retificador de onda completa em ponte alimentada por um transformador de 12 V eficazes, a tensão de pico aproximada na saída do retificador, já descontando as quedas dos diodos de silício, é de:",
+          "alternativas": [
+            "cerca de 24 V",
+            "12 V",
+            "cerca de 15,6 V",
+            "cerca de 8,5 V"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Vpico = 12 × √2 ≈ 16,97 V. Na ponte retificadora, dois diodos conduzem por semiciclo, descontando cerca de 0,7 V cada: 16,97 − 1,4 ≈ 15,6 V. É por isso que uma fonte 'de 12 V' sem regulação entrega perto de 15 V a vazio — detalhe crítico ao alimentar módulos de 12 V."
+        },
+        {
+          "id": "ELE-M2-Q2",
+          "enunciado": "A função do capacitor eletrolítico ligado após a ponte retificadora em uma fonte linear é:",
+          "alternativas": [
+            "Limitar a corrente de partida do circuito",
+            "Elevar a tensão de saída ao dobro do valor de pico",
+            "Transformar a corrente contínua novamente em alternada",
+            "Filtrar a tensão pulsante, armazenando carga nos picos e fornecendo-a nos vales, reduzindo o ripple"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O capacitor de filtro carrega no pico de cada semiciclo e descarrega lentamente na carga, achatando a ondulação (ripple). Quanto maior a capacitância e menor a corrente drenada, menor o ripple. Atenção à polaridade: eletrolítico invertido explode."
+        },
+        {
+          "id": "ELE-M2-Q3",
+          "enunciado": "Um transistor bipolar NPN usado como chave para acionar um relé a partir de uma saída digital deve operar:",
+          "alternativas": [
+            "Entre corte e saturação, garantindo corrente de base suficiente para saturar (tipicamente Ib ≥ Ic/10)",
+            "Na região de ruptura, aproveitando o efeito avalanche",
+            "Na região ativa, para dissipar menos potência",
+            "Com a base ligada diretamente ao emissor"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Como chave, o transistor deve estar totalmente cortado (desligado) ou totalmente saturado (ligado, com Vce ≈ 0,2 V). Na região ativa ele dissiparia muito calor. Garante-se a saturação sobre-excitando a base — daí a regra prática Ib ≥ Ic/10 — e usa-se sempre um diodo de roda livre em antiparalelo com a bobina do relé."
+        },
+        {
+          "id": "ELE-M2-Q4",
+          "enunciado": "Um divisor de tensão com R1 = 10 kΩ (ligado ao +5 V) e R2 = 10 kΩ (ligado ao GND) tem sua saída no ponto entre os dois resistores. A tensão nesse ponto, sem carga, é:",
+          "alternativas": [
+            "5 V",
+            "2,5 V",
+            "1,25 V",
+            "0 V"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Vsaída = Vin × R2/(R1+R2) = 5 × 10k/20k = 2,5 V. O divisor só mantém esse valor se a carga tiver impedância muito maior que R2 — por isso, ao ligar um divisor a uma entrada analógica, escolhem-se resistores na faixa de kΩ."
+        },
+        {
+          "id": "ELE-M2-Q5",
+          "enunciado": "Ao substituir uma fonte linear por uma fonte chaveada de mesma tensão e corrente em um painel, a principal vantagem e o principal cuidado adicional são, respectivamente:",
+          "alternativas": [
+            "Saída sempre isolada; porém não suporta cargas indutivas",
+            "Menor custo de aquisição; porém não aceita variação da tensão de entrada",
+            "Maior rendimento e menor peso; porém exige atenção à emissão de interferência eletromagnética e ao aterramento",
+            "Ausência total de ruído; porém rendimento inferior ao da fonte linear"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A fonte chaveada opera em alta frequência, o que reduz drasticamente o volume do transformador e eleva o rendimento (tipicamente acima de 85%). Em contrapartida, o chaveamento gera ruído conduzido e irradiado — daí a importância de filtros de entrada, cabos blindados e aterramento correto do painel."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Eletrônica Digital e Semicondutores de Potência (8h)",
+      "descricao": "Sistemas de numeração, portas lógicas, álgebra de Boole aplicada ao comando, níveis TTL e CMOS, tiristores, TRIAC, MOSFET e IGBT, optoacopladores e circuitos de interface entre eletrônica e potência.",
+      "exercicios": [
+        {
+          "id": "ELE-M3-Q1",
+          "enunciado": "O número binário 1011 0110 corresponde, em decimal e hexadecimal, respectivamente, a:",
+          "alternativas": [
+            "186 e BA",
+            "180 e B4",
+            "172 e AC",
+            "182 e B6"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "1011 0110 = 128+32+16+4+2 = 182. Agrupando em nibbles: 1011 = B e 0110 = 6, resultando em B6h. A conversão por nibbles é a forma mais rápida de ler registradores em CLPs e microcontroladores."
+        },
+        {
+          "id": "ELE-M3-Q2",
+          "enunciado": "Em lógica de comando, o intertravamento clássico de dois contatores (um impedindo o outro de ligar) corresponde, em álgebra de Boole, a:",
+          "alternativas": [
+            "K1 = A · /K2 e K2 = B · /K1 (cada saída condicionada à negação da outra)",
+            "K1 = A · B e K2 = A · B (função E em ambos)",
+            "K1 = A + K2 e K2 = B + K1 (função OU)",
+            "K1 = /A e K2 = /B (apenas inversores)"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O intertravamento é implementado com um contato NF do contator oposto em série com a bobina: K1 só energiza se K2 estiver desenergizado e vice-versa. Isso é exatamente K1 = A · /K2 e K2 = B · /K1 — a base do comando de reversão de motores, que evita curto-circuito entre fases."
+        },
+        {
+          "id": "ELE-M3-Q3",
+          "enunciado": "Um TRIAC é utilizado no controle de potência em corrente alternada porque:",
+          "alternativas": [
+            "Conduz apenas no semiciclo positivo, como um diodo comum",
+            "Conduz nos dois semiciclos após o disparo no gatilho, permitindo controle por ângulo de fase",
+            "Funciona apenas em corrente contínua acima de 100 V",
+            "É um dispositivo puramente resistivo, sem necessidade de gatilho"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O TRIAC é bidirecional: uma vez disparado pelo gate, conduz até a corrente cair abaixo do valor de manutenção, o que ocorre naturalmente na passagem por zero da CA. Variando o instante do disparo dentro do semiciclo (ângulo de fase) controla-se a potência entregue — princípio dos dimmers e dos controles de temperatura."
+        },
+        {
+          "id": "ELE-M3-Q4",
+          "enunciado": "A principal razão para usar um optoacoplador entre a saída de um microcontrolador e um circuito de potência é:",
+          "alternativas": [
+            "Amplificar o sinal digital para 24 V",
+            "Converter o sinal digital em analógico",
+            "Fornecer isolação galvânica, separando eletricamente os terras e protegendo o microcontrolador contra surtos e ruído do lado de potência",
+            "Reduzir o consumo de corrente do microcontrolador"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "No optoacoplador o sinal atravessa por luz, não por condução elétrica. Isso rompe o caminho de terra entre comando e potência, impedindo que picos de tensão, ruído de chaveamento ou uma falha no lado de força destruam o microcontrolador. É requisito de projeto em qualquer interface com cargas em 127/220 V."
+        },
+        {
+          "id": "ELE-M3-Q5",
+          "enunciado": "Comparando MOSFET e IGBT em aplicações de potência, é correto afirmar que:",
+          "alternativas": [
+            "O MOSFET suporta tensões muito maiores que o IGBT em qualquer aplicação",
+            "O IGBT só funciona em corrente contínua e o MOSFET só em corrente alternada",
+            "Ambos são acionados por corrente de base, como o transistor bipolar",
+            "O MOSFET leva vantagem em altas frequências de chaveamento e tensões menores; o IGBT se destaca em tensões e correntes elevadas com frequências moderadas"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O MOSFET tem comutação muito rápida e baixa Rds(on) em baixa tensão, sendo usado em fontes chaveadas e PWM de alta frequência. O IGBT combina entrada por tensão (como o MOSFET) com baixa queda em condução sob alta corrente (como o bipolar), dominando inversores de frequência e acionamentos industriais. Ambos são acionados por TENSÃO no gate, não por corrente."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Instalações Elétricas, Dimensionamento e Proteção (15h)",
+      "descricao": "Critérios da NBR 5410, dimensionamento de condutores por capacidade de condução e queda de tensão, disjuntores e curvas de atuação, DR e DPS, esquemas de aterramento, seletividade e leitura de diagramas unifilares.",
+      "exercicios": [
+        {
+          "id": "ELE-M4-Q1",
+          "enunciado": "Segundo a NBR 5410, a seção mínima de condutor de cobre admitida para circuitos de força (tomadas de uso geral) em instalações fixas é de:",
+          "alternativas": [
+            "2,5 mm²",
+            "1,5 mm²",
+            "1,0 mm²",
+            "4,0 mm²"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "A norma fixa 1,5 mm² como seção mínima para circuitos de iluminação e 2,5 mm² para circuitos de força/tomadas. Esses são pisos normativos: o valor final ainda precisa ser verificado pela capacidade de condução de corrente, pela queda de tensão admissível e pela proteção contra curto-circuito."
+        },
+        {
+          "id": "ELE-M4-Q2",
+          "enunciado": "O dimensionamento de um condutor deve considerar, no mínimo, três critérios. São eles:",
+          "alternativas": [
+            "Cor da isolação, comprimento do eletroduto e marca do fabricante",
+            "Capacidade de condução de corrente, queda de tensão admissível e proteção contra curtos-circuitos (solicitação térmica)",
+            "Apenas a corrente nominal da carga",
+            "Tensão nominal, temperatura ambiente e cor do eletroduto"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Os três critérios se aplicam simultaneamente e prevalece o que exigir maior seção. A capacidade de condução ainda sofre fatores de correção por temperatura ambiente e por agrupamento de circuitos — ignorar o agrupamento é uma das causas mais comuns de sobreaquecimento em eletrodutos."
+        },
+        {
+          "id": "ELE-M4-Q3",
+          "enunciado": "Um motor cuja corrente de partida direta atinge sete vezes a nominal está protegido por disjuntor. A curva mais adequada e a razão são:",
+          "alternativas": [
+            "Curva B, porque atua entre 3 e 5 vezes In, protegendo mais rápido",
+            "Curva B, porque motores exigem sempre a atuação mais sensível possível",
+            "Curva C ou D, porque a atuação magnética ocorre em múltiplos mais altos da corrente nominal, suportando a corrente de partida sem desarme indevido",
+            "Qualquer curva, pois a curva não influencia a partida de motores"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A curva B atua magneticamente entre 3 e 5 In (cargas resistivas), a C entre 5 e 10 In (cargas indutivas moderadas) e a D entre 10 e 20 In (transformadores e motores de partida pesada). Escolher curva B para um motor com pico de 7 In provoca desarme a cada partida — e a solução NUNCA é aumentar a corrente nominal do disjuntor, o que desprotegeria o condutor."
+        },
+        {
+          "id": "ELE-M4-Q4",
+          "enunciado": "O dispositivo diferencial residual (DR) de 30 mA protege principalmente contra:",
+          "alternativas": [
+            "Sobrecarga nos condutores",
+            "Curto-circuito entre fase e neutro",
+            "Sobretensões de origem atmosférica",
+            "Choque elétrico por contato direto e indireto, detectando a corrente de fuga à terra"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O DR compara a soma das correntes que entram e saem do circuito; qualquer diferença indica fuga para a terra — por exemplo, através do corpo humano — e provoca o desligamento. Sobrecarga e curto-circuito são função do disjuntor; surtos atmosféricos são função do DPS. São proteções complementares, não substitutas."
+        },
+        {
+          "id": "ELE-M4-Q5",
+          "enunciado": "No esquema de aterramento TN-S, a característica essencial é:",
+          "alternativas": [
+            "O neutro e o condutor de proteção (PE) são separados em toda a instalação, a partir da origem",
+            "O condutor neutro e o condutor de proteção são o mesmo cabo em toda a instalação",
+            "Não existe condutor de proteção, apenas o neutro",
+            "As massas são aterradas em eletrodo próprio, independente do aterramento da fonte"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "No TN-S, neutro e PE seguem separados desde a origem. No TN-C eles são combinados no condutor PEN, e no TN-C-S há um trecho combinado e outro separado. A separação do TN-S é o que permite o uso de DR e evita corrente de carga circulando pelo condutor de proteção. No TT, as massas têm eletrodo de aterramento independente do da fonte."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Motores Elétricos e Acionamentos (10h)",
+      "descricao": "Motor de indução trifásico, leitura da placa de identificação, ligação estrela-triângulo e dupla tensão, escorregamento e rotação síncrona, motores monofásicos, categorias de conjugado, regimes de serviço e seleção de motores.",
+      "exercicios": [
+        {
+          "id": "ELE-M5-Q1",
+          "enunciado": "Um motor de indução trifásico de 4 polos alimentado em 60 Hz apresenta rotação nominal de 1.720 rpm na placa. A rotação síncrona e o escorregamento são, respectivamente:",
+          "alternativas": [
+            "1.800 rpm e aproximadamente 8,8%",
+            "1.800 rpm e aproximadamente 4,4%",
+            "3.600 rpm e aproximadamente 52%",
+            "1.720 rpm e escorregamento nulo"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "ns = 120 × f / p = 120 × 60 / 4 = 1.800 rpm. O escorregamento é s = (ns − n)/ns = (1.800 − 1.720)/1.800 ≈ 4,4%. O motor de indução SEMPRE gira abaixo do síncrono — é justamente essa diferença que induz corrente no rotor e produz conjugado."
+        },
+        {
+          "id": "ELE-M5-Q2",
+          "enunciado": "Um motor com placa 220/380 V está sendo instalado em uma rede 380 V entre fases. A ligação correta dos enrolamentos e o motivo são:",
+          "alternativas": [
+            "Triângulo, porque cada bobina receberia 380 V, sua tensão nominal",
+            "Triângulo, porque a corrente de linha fica menor",
+            "Estrela, porque assim cada bobina recebe 380/√3 ≈ 220 V, que é sua tensão nominal",
+            "Tanto faz, desde que o disjuntor seja adequado"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A indicação 220/380 V significa: bobina de 220 V, ligada em triângulo para rede de 220 V e em estrela para rede de 380 V. Em estrela, cada bobina fica submetida à tensão de fase (380/√3 ≈ 220 V). Ligar em triângulo numa rede de 380 V aplicaria 380 V em bobinas de 220 V, queimando o motor em segundos."
+        },
+        {
+          "id": "ELE-M5-Q3",
+          "enunciado": "A partida estrela-triângulo é usada para reduzir a corrente de partida. Nessa modalidade, a corrente e o conjugado de partida ficam, aproximadamente:",
+          "alternativas": [
+            "Reduzidos à metade, tanto a corrente quanto o conjugado",
+            "Reduzidos a 1/3 na corrente, mas o conjugado permanece integral",
+            "Reduzidos a 1/√3, tanto a corrente quanto o conjugado",
+            "Reduzidos a 1/3 dos valores da partida direta, tanto a corrente quanto o conjugado"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Na configuração estrela, cada bobina recebe 1/√3 da tensão nominal; como conjugado e corrente variam com o quadrado da tensão, ambos caem a cerca de 1/3. Por isso a partida estrela-triângulo só é aplicável em cargas que partem praticamente a vazio — bombas centrífugas, ventiladores — e exige motor com seis terminais acessíveis."
+        },
+        {
+          "id": "ELE-M5-Q4",
+          "enunciado": "O fator de serviço (FS) indicado na placa de um motor significa:",
+          "alternativas": [
+            "A sobrecarga contínua admissível em condições nominais, sem prejuízo à vida útil do motor",
+            "O fator de potência do motor em vazio",
+            "O número de partidas por hora permitido",
+            "O rendimento percentual do motor em carga nominal"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Um FS de 1,15 indica que o motor pode operar continuamente com 15% acima da potência nominal, em condições normais de tensão, frequência e temperatura ambiente. Não é margem de projeto para uso rotineiro: operar permanentemente no FS eleva a temperatura, reduz o rendimento e encurta a vida do isolamento."
+        },
+        {
+          "id": "ELE-M5-Q5",
+          "enunciado": "Para inverter o sentido de giro de um motor de indução trifásico, o procedimento correto é:",
+          "alternativas": [
+            "Inverter a polaridade da alimentação, trocando fase por neutro",
+            "Permutar duas das três fases de alimentação entre si",
+            "Inverter as três fases simultaneamente",
+            "Reduzir a frequência abaixo de 30 Hz"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A troca de duas fases quaisquer inverte a sequência de fases e, com ela, o sentido do campo girante. Inverter as três fases não altera a sequência e o motor continua girando no mesmo sentido. Em comando por contatores, essa permuta é feita pelo contator de reversão — que precisa obrigatoriamente de intertravamento elétrico e mecânico com o contator direto."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "titulo": "Comandos Elétricos — Dispositivos, Diagramas e Aplicações (25h)",
+      "descricao": "Contatores, relés de sobrecarga, botoeiras e sinaleiros, chaves fim de curso, relés temporizadores, diagramas de comando e força, selo, intertravamento, partidas direta, reversora, estrela-triângulo e compensadora, e prática de montagem de painéis.",
+      "exercicios": [
+        {
+          "id": "ELE-M6-Q1",
+          "enunciado": "No comando de partida direta, o contato auxiliar NA do contator ligado em paralelo com a botoeira de liga (S1) tem a função de:",
+          "alternativas": [
+            "Proteger o motor contra sobrecarga",
+            "Intertravar o contator com o de reversão",
+            "Realizar o selo (retenção), mantendo a bobina energizada após o operador soltar a botoeira",
+            "Sinalizar a falha do relé térmico"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A botoeira de partida é pulsante. O contato NA do próprio contator, em paralelo com ela, cria um caminho alternativo para a corrente da bobina assim que o contator fecha — é o selo ou retenção. Ao pressionar a botoeira de desliga (NF, em série), o caminho é interrompido e o contator abre, desfazendo o selo."
+        },
+        {
+          "id": "ELE-M6-Q2",
+          "enunciado": "Na numeração de bornes de contatores conforme a IEC, os contatos auxiliares com terminais 13-14 e 21-22 são, respectivamente:",
+          "alternativas": [
+            "NF e NA",
+            "Ambos de potência (principais)",
+            "Ambos NA",
+            "NA (normalmente aberto) e NF (normalmente fechado)"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O segundo dígito identifica a função: terminações 3-4 indicam contato NA e terminações 1-2 indicam contato NF. O primeiro dígito é apenas o número de ordem do contato. Assim, 13-14 é NA e 21-22 é NF. Os contatos principais de potência usam a numeração 1-2, 3-4, 5-6 (ou L1/T1, L2/T2, L3/T3)."
+        },
+        {
+          "id": "ELE-M6-Q3",
+          "enunciado": "O relé de sobrecarga (relé térmico) instalado após o contator protege o motor contra:",
+          "alternativas": [
+            "Sobrecorrentes moderadas e prolongadas, incluindo falta de fase e rotor bloqueado, atuando por efeito térmico",
+            "Sobretensões da rede",
+            "Curto-circuito franco entre fases, atuando em milissegundos",
+            "Fuga de corrente para a terra"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O relé térmico usa lâminas bimetálicas que se deformam com o aquecimento provocado pela corrente, atuando com retardo proporcional à sobrecarga. Isso permite tolerar o pico de partida e desarmar em sobrecargas sustentadas. Curto-circuito é atribuição do fusível ou do disjuntor-motor; fuga à terra, do DR."
+        },
+        {
+          "id": "ELE-M6-Q4",
+          "enunciado": "Em uma partida estrela-triângulo automática, a sequência correta de acionamento dos contatores é:",
+          "alternativas": [
+            "Apenas K3 (estrela) funciona; K1 e K2 são reservas",
+            "K1 (rede) e K3 (estrela) juntos; após a temporização, K3 abre e, com um breve intervalo, K2 (triângulo) fecha",
+            "Os três contatores fecham simultaneamente e permanecem fechados",
+            "K2 (triângulo) primeiro e depois K3 (estrela), sem temporização"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Parte-se em estrela (K1 + K3) com tensão reduzida na bobina; decorrido o tempo ajustado no temporizador, K3 desenergiza e só então K2 fecha, comutando para triângulo. O breve intervalo entre a abertura de K3 e o fechamento de K2 é essencial: o fechamento simultâneo de estrela e triângulo provoca curto-circuito entre fases. K3 e K2 devem ainda ser intertravados eletricamente."
+        },
+        {
+          "id": "ELE-M6-Q5",
+          "enunciado": "Sobre a diferença entre o diagrama de comando e o diagrama de força (potência), é correto afirmar:",
+          "alternativas": [
+            "O diagrama de comando mostra o motor e o de força mostra as botoeiras",
+            "São o mesmo documento, apenas com escalas diferentes",
+            "O diagrama de força representa o circuito que alimenta a carga (fases, contatos principais, relé térmico, motor); o de comando representa a lógica que energiza as bobinas (botoeiras, contatos auxiliares, temporizadores)",
+            "O diagrama de comando só é usado em circuitos de corrente contínua"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A separação é o alicerce da leitura de esquemas industriais: no circuito de força circula a corrente do motor, com condutores dimensionados para ela; no circuito de comando circulam apenas miliampères para energizar bobinas e sinaleiros, normalmente em tensão reduzida (24 V, 110 V ou 220 V). A referência cruzada entre os dois diagramas é feita pela identificação dos dispositivos (K1, F1, S1)."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "titulo": "Arduino — Programação e Interfaceamento (20h)",
+      "descricao": "Plataforma Arduino, entradas e saídas digitais e analógicas, PWM, estrutura da linguagem, sensores e atuadores, acionamento de cargas por relé e driver, comunicação serial e I2C, e projetos práticos de automação.",
+      "exercicios": [
+        {
+          "id": "ELE-M7-Q1",
+          "enunciado": "Em um sketch do Arduino, as funções setup() e loop() têm, respectivamente, as seguintes características:",
+          "alternativas": [
+            "setup() é opcional e loop() executa apenas uma vez",
+            "Ambas executam repetidamente enquanto a placa estiver ligada",
+            "setup() executa a cada segundo; loop() só executa quando há interrupção",
+            "setup() executa uma única vez ao energizar ou resetar a placa; loop() executa repetidamente e sem fim depois disso"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "setup() é o lugar das configurações iniciais — pinMode, Serial.begin, inicialização de bibliotecas — e roda uma só vez. loop() contém a lógica cíclica do programa. Ambas são obrigatórias em qualquer sketch, mesmo que vazias."
+        },
+        {
+          "id": "ELE-M7-Q2",
+          "enunciado": "O conversor analógico-digital de um Arduino Uno tem 10 bits e referência de 5 V. A resolução de leitura de analogRead() e o valor retornado para uma entrada de 2,5 V são, respectivamente:",
+          "alternativas": [
+            "Aproximadamente 4,9 mV por passo e valor 512",
+            "Aproximadamente 4,9 mV por passo e valor 1023",
+            "Aproximadamente 19,5 mV por passo e valor 256",
+            "Exatamente 1 mV por passo e valor 2500"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Com 10 bits há 1024 níveis (0 a 1023). A resolução é 5 V / 1024 ≈ 4,88 mV. Para 2,5 V, analogRead() retorna aproximadamente 512, ou seja, metade da escala. Ler tensões acima de 5 V exige divisor resistivo — aplicar tensão maior diretamente destrói o pino."
+        },
+        {
+          "id": "ELE-M7-Q3",
+          "enunciado": "A instrução analogWrite(9, 128) em um Arduino Uno produz:",
+          "alternativas": [
+            "Uma tensão analógica verdadeira de 2,5 V gerada por um DAC interno",
+            "Um sinal PWM com ciclo de trabalho de aproximadamente 50% no pino 9, cujo valor médio equivale a cerca de 2,5 V",
+            "Um pulso único de 128 microssegundos",
+            "Nível lógico alto permanente no pino 9"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O Uno não possui DAC. analogWrite() gera PWM: o pino comuta entre 0 e 5 V numa frequência fixa, e o parâmetro (0 a 255) define o ciclo de trabalho. 128 corresponde a cerca de 50%, cujo valor MÉDIO é ~2,5 V — suficiente para variar brilho de LED ou velocidade de motor, mas não é tensão contínua real. Só os pinos marcados com ~ suportam PWM."
+        },
+        {
+          "id": "ELE-M7-Q4",
+          "enunciado": "Ao acionar uma lâmpada de 220 V a partir de uma saída digital do Arduino usando módulo relé, o cuidado indispensável é:",
+          "alternativas": [
+            "Ligar a lâmpada diretamente ao pino digital, pois o relé é dispensável",
+            "Alimentar o módulo relé pelo próprio pino digital, sem fonte externa",
+            "Manter isolação entre o circuito de comando (5 V) e o de potência (220 V), alimentar a bobina do relé por fonte externa e nunca compartilhar o mesmo borne entre baixa e alta tensão",
+            "Usar sempre um resistor de 220 Ω em série com a rede de 220 V"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Um pino digital fornece cerca de 20 mA em 5 V — nada perto do necessário para uma bobina de relé, e absolutamente incompatível com 220 V. O módulo relé com optoacoplador isola os dois mundos; a bobina deve ser alimentada por fonte dedicada e a fiação de potência deve ser separada fisicamente da de comando, respeitando distâncias de isolação."
+        },
+        {
+          "id": "ELE-M7-Q5",
+          "enunciado": "Um botão ligado entre um pino digital e o GND, configurado com pinMode(pino, INPUT_PULLUP), apresenta o seguinte comportamento na leitura:",
+          "alternativas": [
+            "Exige obrigatoriamente um resistor externo de pull-down",
+            "Retorna HIGH quando pressionado e LOW quando solto",
+            "Retorna sempre HIGH, independentemente do botão",
+            "Retorna LOW quando pressionado e HIGH quando solto, pois o resistor interno mantém o pino em nível alto"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O INPUT_PULLUP habilita um resistor interno ligado ao 5 V, que mantém o pino em HIGH quando o botão está aberto. Ao pressionar, o pino é levado ao GND e a leitura vai a LOW — lógica invertida. Isso dispensa resistor externo e evita entrada flutuante, causa clássica de leituras erráticas. Ainda é recomendável tratar o repique (debounce) por software."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "titulo": "Automação Integrada: CLP, Inversores e Projeto Final (10h)",
+      "descricao": "Arquitetura do CLP e ciclo de varredura, linguagem Ladder, entradas e saídas digitais e analógicas, inversores de frequência e controle V/f, sensores industriais, integração comando convencional com automação e desenvolvimento do projeto final.",
+      "exercicios": [
+        {
+          "id": "ELE-M8-Q1",
+          "enunciado": "O ciclo de varredura (scan) de um CLP ocorre na seguinte ordem:",
+          "alternativas": [
+            "Lê as entradas e as armazena na memória imagem, executa o programa do usuário e depois atualiza as saídas",
+            "Executa o programa, depois lê as entradas e por último atualiza as saídas",
+            "Atualiza as saídas, executa o programa e só então lê as entradas",
+            "Lê e escreve entradas e saídas simultaneamente, de forma contínua e assíncrona"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O CLP trabalha com memória imagem: no início do ciclo fotografa o estado das entradas, executa toda a lógica sobre essa fotografia e só no fim escreve as saídas. Por isso uma entrada que muda no meio da execução só é percebida no ciclo seguinte — conceito essencial para entender o tempo de resposta e evitar armadilhas de programação."
+        },
+        {
+          "id": "ELE-M8-Q2",
+          "enunciado": "Em linguagem Ladder, o selo de partida de um motor equivale, no comando convencional, a:",
+          "alternativas": [
+            "Um contato NF da saída em série com a botoeira de liga",
+            "Um contato NA da própria saída em paralelo com o contato da botoeira de liga",
+            "Uma bobina de retenção (SET) sem qualquer contato associado",
+            "Um temporizador ligado em série com a bobina"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A lógica é idêntica à do comando por contatores: um contato NA endereçado à própria saída, em paralelo com o contato da botoeira pulsante, mantém a linha energizada após a soltura do botão. Em série ficam a botoeira de desliga (NF) e o contato do relé térmico, que rompem o selo. Alternativamente usam-se as instruções SET/RESET."
+        },
+        {
+          "id": "ELE-M8-Q3",
+          "enunciado": "Em um inversor de frequência com controle escalar (V/f), a relação tensão/frequência é mantida constante porque:",
+          "alternativas": [
+            "Isso reduz o consumo de energia em qualquer rotação",
+            "Aumenta a rotação síncrona do motor acima do valor de placa",
+            "Mantém o fluxo magnético e, portanto, o conjugado aproximadamente constante ao longo da faixa de velocidade, evitando saturação em baixa frequência",
+            "É exigência da NBR 5410 para qualquer acionamento"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O fluxo no entreferro é proporcional a V/f. Reduzir a frequência sem reduzir a tensão saturaria o núcleo e provocaria sobrecorrente; reduzir a tensão na mesma proporção preserva o fluxo e o conjugado. Acima da frequência nominal a tensão não pode mais subir, e o motor passa a operar em enfraquecimento de campo, com perda de conjugado."
+        },
+        {
+          "id": "ELE-M8-Q4",
+          "enunciado": "A diferença fundamental entre um sensor indutivo e um sensor capacitivo de proximidade é:",
+          "alternativas": [
+            "Ambos detectam os mesmos materiais, variando apenas o preço",
+            "O indutivo funciona apenas em corrente contínua e o capacitivo apenas em alternada",
+            "O capacitivo detecta somente metais ferrosos e o indutivo somente alumínio",
+            "O indutivo detecta apenas materiais metálicos; o capacitivo detecta metais e também não metálicos, como líquidos, plásticos e grãos"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O sensor indutivo gera um campo eletromagnético de alta frequência e detecta a variação causada por materiais metálicos. O capacitivo detecta variação da constante dielétrica e por isso enxerga também plásticos, madeira, água e grãos — útil em detecção de nível através da parede do recipiente, embora seja mais sensível a umidade e sujeira."
+        },
+        {
+          "id": "ELE-M8-Q5",
+          "enunciado": "Ao integrar um inversor de frequência a um comando convencional, o acionamento e a parada do motor devem ser feitos:",
+          "alternativas": [
+            "Pelas entradas digitais de comando do inversor (ou por sua interface de comunicação), mantendo o circuito de potência permanentemente conectado ao motor",
+            "Por um contator instalado entre o inversor e o motor, abrindo e fechando a cada partida",
+            "Desligando a alimentação de entrada do inversor a cada parada",
+            "Alterando manualmente os parâmetros do inversor a cada operação"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Chavear a saída do inversor com contator sob carga danifica os IGBTs e gera falhas por sobrecorrente; ligar e desligar a entrada a cada partida castiga o circuito de pré-carga do barramento CC. O correto é comandar por entradas digitais parametrizadas (partida, reversão, multivelocidade) ou por rede. Contator de saída, quando existir, só deve manobrar com o inversor desabilitado — e a parada de emergência segue requisitos próprios de segurança."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 20 questões deste banco de 40, cobrindo todos os 8 módulos. Nota mínima para aprovação: 14/20 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 20,
+    "nota_minima": 14,
+    "banco": [
+      {
+        "id": "ELE-PF-01",
+        "modulo": 1,
+        "enunciado": "Um circuito resistivo em corrente contínua tem 24 V aplicados sobre 6 Ω. A corrente e a potência dissipada são:",
+        "alternativas": [
+          "4 A e 96 W",
+          "4 A e 144 W",
+          "0,25 A e 6 W",
+          "144 A e 24 W"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "I = V/R = 24/6 = 4 A. P = V × I = 24 × 4 = 96 W (ou P = R × I² = 6 × 16 = 96 W)."
+      },
+      {
+        "id": "ELE-PF-02",
+        "modulo": 1,
+        "enunciado": "Dois resistores de 12 Ω e 6 Ω são associados em série. A resistência equivalente é:",
+        "alternativas": [
+          "4 Ω",
+          "18 Ω",
+          "6 Ω",
+          "72 Ω"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Em série as resistências se somam: 12 + 6 = 18 Ω. Em série a corrente é a mesma em todos os elementos e a tensão se divide proporcionalmente às resistências."
+      },
+      {
+        "id": "ELE-PF-03",
+        "modulo": 1,
+        "enunciado": "O valor eficaz (RMS) de uma tensão alternada senoidal com 311 V de pico é aproximadamente:",
+        "alternativas": [
+          "440 V",
+          "311 V",
+          "220 V",
+          "155 V"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Vrms = Vpico/√2 = 311/1,414 ≈ 220 V. O valor eficaz é aquele que produz o mesmo efeito térmico de uma tensão contínua equivalente — é o que os instrumentos indicam e o que consta nas placas dos equipamentos."
+      },
+      {
+        "id": "ELE-PF-04",
+        "modulo": 1,
+        "enunciado": "Uma instalação com fator de potência 0,92 indutivo consome 46 kW de potência ativa. A potência aparente é:",
+        "alternativas": [
+          "42,3 kVA",
+          "100 kVA",
+          "46 kVA",
+          "50 kVA"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "S = P/cosφ = 46/0,92 = 50 kVA. A potência aparente é a que dimensiona transformador, condutores e proteções — por isso um fator de potência baixo obriga a superdimensionar toda a instalação."
+      },
+      {
+        "id": "ELE-PF-05",
+        "modulo": 1,
+        "enunciado": "Antes de medir resistência de um componente com o multímetro, é indispensável:",
+        "alternativas": [
+          "Desenergizar o circuito e, se possível, isolar o componente, pois o ohmímetro injeta sua própria corrente de teste",
+          "Manter o circuito energizado para obter leitura sob condição real",
+          "Selecionar a escala de tensão alternada",
+          "Curto-circuitar as pontas de prova sobre o componente"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O ohmímetro mede aplicando uma pequena tensão própria. Com o circuito energizado a leitura é inválida e o instrumento pode ser danificado. Além disso, componentes em paralelo falseiam o valor — daí a necessidade de isolar pelo menos um terminal."
+      },
+      {
+        "id": "ELE-PF-06",
+        "modulo": 2,
+        "enunciado": "A queda de tensão direta típica de um diodo retificador de silício em condução é de aproximadamente:",
+        "alternativas": [
+          "0,2 V",
+          "0,7 V",
+          "1,4 V",
+          "5 V"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O diodo de silício conduz a partir de cerca de 0,7 V (germânio, cerca de 0,3 V; Schottky, cerca de 0,3 a 0,4 V). Essa queda precisa ser considerada no cálculo da tensão de saída de fontes e no dimensionamento térmico do componente."
+      },
+      {
+        "id": "ELE-PF-07",
+        "modulo": 2,
+        "enunciado": "O diodo de roda livre (freewheeling) ligado em antiparalelo com a bobina de um relé serve para:",
+        "alternativas": [
+          "Aumentar a corrente na bobina e acelerar o acionamento",
+          "Retificar a tensão alternada aplicada à bobina",
+          "Oferecer caminho para a corrente indutiva no desligamento, evitando o pico de tensão reverso que destruiria o transistor de comando",
+          "Reduzir o consumo do relé em regime permanente"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A corrente em um indutor não pode cessar instantaneamente; ao desligar, a bobina gera uma tensão reversa de centenas de volts. O diodo em antiparalelo (catodo no positivo) fecha o caminho para essa corrente e a dissipa com segurança."
+      },
+      {
+        "id": "ELE-PF-08",
+        "modulo": 2,
+        "enunciado": "A reatância capacitiva de um capacitor em corrente alternada:",
+        "alternativas": [
+          "Aumenta com o aumento da frequência",
+          "É igual à resistência ôhmica do dielétrico",
+          "É constante em qualquer frequência",
+          "Diminui com o aumento da frequência, segundo Xc = 1/(2πfC)"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Xc = 1/(2πfC): quanto maior a frequência, menor a oposição. Por isso o capacitor bloqueia a componente contínua e deixa passar os sinais de frequência mais alta — princípio dos filtros e dos capacitores de desacoplamento."
+      },
+      {
+        "id": "ELE-PF-09",
+        "modulo": 2,
+        "enunciado": "Um resistor de 220 Ω em série com um LED alimentado por 5 V, considerando queda de 2 V no LED, resulta em corrente de aproximadamente:",
+        "alternativas": [
+          "13,6 mA",
+          "22,7 mA",
+          "31,8 mA",
+          "5 mA"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A tensão sobre o resistor é 5 − 2 = 3 V. I = 3/220 ≈ 13,6 mA, valor adequado tanto para o LED quanto para a capacidade de um pino de microcontrolador. O LED nunca deve ser ligado sem resistor limitador."
+      },
+      {
+        "id": "ELE-PF-10",
+        "modulo": 2,
+        "enunciado": "Ao instalar um capacitor eletrolítico em uma placa, o erro que provoca falha imediata e risco de explosão é:",
+        "alternativas": [
+          "Usar capacitância maior que a especificada",
+          "Inverter a polaridade dos terminais",
+          "Usar tensão de isolação maior que a do projeto",
+          "Montá-lo distante do dissipador de calor"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O eletrolítico é polarizado: invertê-lo degrada a camada de óxido, provoca aquecimento e ruptura do invólucro. Capacitância maior e tensão de isolação superior costumam ser aceitáveis; polaridade invertida, nunca."
+      },
+      {
+        "id": "ELE-PF-11",
+        "modulo": 3,
+        "enunciado": "A tabela verdade de uma porta lógica E (AND) de duas entradas resulta em saída alta:",
+        "alternativas": [
+          "Somente quando as duas entradas estão em nível baixo",
+          "Quando pelo menos uma das entradas está em nível alto",
+          "Somente quando ambas as entradas estão em nível alto",
+          "Quando as entradas têm níveis diferentes entre si"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A porta E exige todas as condições simultaneamente — equivalente a contatos em série no comando elétrico. A porta OU corresponde a contatos em paralelo, e a XOR (OU exclusivo) resulta em saída alta quando as entradas diferem."
+      },
+      {
+        "id": "ELE-PF-12",
+        "modulo": 3,
+        "enunciado": "Um SCR (retificador controlado de silício), depois de disparado pelo gate em um circuito de corrente contínua, deixa de conduzir quando:",
+        "alternativas": [
+          "O sinal de gate é retirado",
+          "A tensão de gate é invertida",
+          "A temperatura da junção diminui",
+          "A corrente principal cai abaixo da corrente de manutenção"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "O SCR trava em condução após o disparo; remover o gate não o desliga. Só a redução da corrente abaixo da corrente de manutenção (holding) o bloqueia — o que ocorre naturalmente na passagem por zero em CA, mas exige circuito de comutação forçada em CC."
+      },
+      {
+        "id": "ELE-PF-13",
+        "modulo": 3,
+        "enunciado": "Sobre a interface entre um circuito de comando de 24 Vcc e uma carga em 220 Vca, a solução tecnicamente correta é:",
+        "alternativas": [
+          "Usar relé eletromecânico ou relé de estado sólido com isolação, dimensionados para a corrente e o tipo de carga",
+          "Ligar a carga diretamente à saída de 24 V, pois a potência é a mesma",
+          "Aterrar o comum do comando junto à fase da carga",
+          "Instalar apenas um fusível entre os dois circuitos"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A interface exige isolação galvânica e capacidade de manobra compatível. O relé de estado sólido é indicado para chaveamento frequente e silencioso; o eletromecânico, para correntes maiores e separação física dos contatos. Em ambos os casos, observa-se o fator de correção para cargas indutivas."
+      },
+      {
+        "id": "ELE-PF-14",
+        "modulo": 3,
+        "enunciado": "Em famílias lógicas TTL alimentadas em 5 V, uma entrada deixada flutuante (sem conexão) tende a:",
+        "alternativas": [
+          "Ser interpretada como nível baixo estável",
+          "Assumir estado indefinido e sensível a ruído, causando comportamento errático",
+          "Desligar automaticamente o circuito integrado",
+          "Ser interpretada como nível alto sempre, sem qualquer risco"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Entrada flutuante funciona como antena e oscila com o ruído do ambiente. A prática correta é sempre definir o nível com resistor de pull-up ou pull-down — a mesma razão pela qual se usa INPUT_PULLUP em microcontroladores."
+      },
+      {
+        "id": "ELE-PF-15",
+        "modulo": 3,
+        "enunciado": "O IGBT é o semicondutor predominante em inversores de frequência industriais porque:",
+        "alternativas": [
+          "É o componente mais barato disponível",
+          "Funciona sem necessidade de dissipador de calor",
+          "Combina acionamento por tensão no gate com baixa queda em condução sob alta corrente e tensão",
+          "Só conduz em corrente contínua de baixa tensão"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O IGBT reúne a facilidade de acionamento do MOSFET (por tensão, com baixo consumo de driver) e a robustez do bipolar em condução. Essa combinação o torna ideal para os barramentos de centenas de volts e dezenas de ampères dos acionamentos industriais — sempre com dissipador e proteção térmica."
+      },
+      {
+        "id": "ELE-PF-16",
+        "modulo": 4,
+        "enunciado": "A finalidade do DPS (dispositivo de proteção contra surtos) em um quadro de distribuição é:",
+        "alternativas": [
+          "Proteger contra sobrecarga dos condutores",
+          "Corrigir o fator de potência da instalação",
+          "Substituir o dispositivo diferencial residual",
+          "Limitar sobretensões transitórias, de origem atmosférica ou de manobra, escoando a corrente de surto para a terra"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "O DPS atua apenas em transitórios de curtíssima duração, grampeando a tensão e desviando a energia do surto para o barramento de terra. Depende de aterramento eficiente e de condutores de conexão curtos. Não protege contra sobrecarga, curto-circuito nem choque elétrico."
+      },
+      {
+        "id": "ELE-PF-17",
+        "modulo": 4,
+        "enunciado": "A queda de tensão máxima admitida pela NBR 5410 entre a origem da instalação e qualquer ponto de utilização, no caso mais comum de instalações alimentadas em baixa tensão pela concessionária, é da ordem de:",
+        "alternativas": [
+          "4%",
+          "1%",
+          "15%",
+          "25%"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A norma limita a queda a 4% para instalações alimentadas diretamente em baixa tensão a partir da rede pública, com limites específicos por trecho. Queda excessiva provoca perda de conjugado em motores, aquecimento e mau funcionamento de equipamentos eletrônicos."
+      },
+      {
+        "id": "ELE-PF-18",
+        "modulo": 4,
+        "enunciado": "Ao agrupar vários circuitos no mesmo eletroduto, o efeito sobre a capacidade de condução de corrente dos condutores é:",
+        "alternativas": [
+          "Aumenta, pois os condutores se apoiam mutuamente",
+          "Reduz-se, exigindo a aplicação de fator de correção por agrupamento, devido à dificuldade de dissipar calor",
+          "Permanece inalterada, pois o fator só depende da tensão",
+          "Reduz-se apenas se os circuitos forem de tensões diferentes"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Condutores agrupados aquecem uns aos outros e dissipam calor com mais dificuldade. A NBR 5410 traz fatores de correção por número de circuitos agrupados e por temperatura ambiente, ambos multiplicativos sobre a capacidade tabelada. Desprezá-los é causa recorrente de isolação degradada."
+      },
+      {
+        "id": "ELE-PF-19",
+        "modulo": 4,
+        "enunciado": "Sobre as cores de identificação dos condutores segundo a NBR 5410, é correto afirmar:",
+        "alternativas": [
+          "Não há qualquer padronização de cores",
+          "O neutro deve ser preto e o PE, vermelho",
+          "O condutor de proteção (PE) é verde ou verde-amarelo e o neutro é azul-claro, cores de uso exclusivo",
+          "O condutor de fase deve ser obrigatoriamente azul-claro"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Verde ou verde-amarelo é reservado exclusivamente ao condutor de proteção e azul-claro ao neutro. As fases usam as demais cores (preto, vermelho, branco, cinza, marrom). Reaproveitar essas cores para outra função compromete a segurança de qualquer intervenção futura."
+      },
+      {
+        "id": "ELE-PF-20",
+        "modulo": 4,
+        "enunciado": "Seletividade entre dispositivos de proteção significa que:",
+        "alternativas": [
+          "Todos os disjuntores devem desarmar simultaneamente diante de qualquer falta",
+          "A proteção deve ser instalada somente no quadro geral",
+          "O disjuntor geral deve ter corrente nominal menor que a dos ramais",
+          "Diante de uma falta, atua apenas o dispositivo imediatamente a montante do defeito, preservando o restante da instalação em operação"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "A seletividade limita a área desligada ao trecho defeituoso. Obtém-se coordenando correntes nominais, curvas e tempos de atuação de forma crescente no sentido da carga para a fonte. Um geral com corrente menor que a dos ramais inverteria a lógica e desligaria a instalação inteira a cada falta."
+      },
+      {
+        "id": "ELE-PF-21",
+        "modulo": 5,
+        "enunciado": "A rotação síncrona de um motor de indução de 2 polos alimentado em 60 Hz é:",
+        "alternativas": [
+          "3.600 rpm",
+          "1.800 rpm",
+          "900 rpm",
+          "7.200 rpm"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "ns = 120 × f / p = 120 × 60 / 2 = 3.600 rpm. Quanto menor o número de polos, maior a rotação: 2 polos → 3.600 rpm, 4 polos → 1.800 rpm, 6 polos → 1.200 rpm, sempre em 60 Hz e sempre acima da rotação real do motor."
+      },
+      {
+        "id": "ELE-PF-22",
+        "modulo": 5,
+        "enunciado": "Um motor de indução trifásico que perde uma das fases durante a operação tende a:",
+        "alternativas": [
+          "Parar imediatamente sem qualquer consequência",
+          "Continuar girando com conjugado reduzido, elevando fortemente a corrente nas fases remanescentes e aquecendo até queimar",
+          "Aumentar sua rotação acima do valor síncrono",
+          "Inverter automaticamente o sentido de giro"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Com carga acoplada, o motor segue girando de forma desequilibrada e as duas fases restantes assumem a corrente da terceira, com sobreaquecimento rápido. É exatamente essa condição que o relé de sobrecarga com proteção de falta de fase (ou relé de sequência de fase) deve detectar."
+      },
+      {
+        "id": "ELE-PF-23",
+        "modulo": 5,
+        "enunciado": "O grau de proteção IP55 indicado na carcaça de um motor significa:",
+        "alternativas": [
+          "Sem proteção contra corpos sólidos, apenas contra respingos",
+          "Totalmente estanque, podendo ser submerso permanentemente",
+          "Protegido contra poeira (proteção parcial) e contra jatos de água em qualquer direção",
+          "Protegido apenas contra contato acidental com os dedos"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "No código IP, o primeiro dígito trata de sólidos e o segundo, de água. O 5 inicial indica proteção contra poeira em quantidade que não prejudique o funcionamento; o segundo 5 indica proteção contra jatos d'água. Submersão exigiria IPX7 ou superior."
+      },
+      {
+        "id": "ELE-PF-24",
+        "modulo": 5,
+        "enunciado": "A classe de isolamento B, F ou H de um motor está relacionada a:",
+        "alternativas": [
+          "Tensão nominal de operação do motor",
+          "Tipo de rolamento utilizado",
+          "Nível de ruído acústico emitido",
+          "Temperatura máxima que o material isolante do enrolamento suporta em regime contínuo"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "As classes definem o limite térmico do isolamento: B até 130 °C, F até 155 °C e H até 180 °C, considerando temperatura ambiente de referência e elevação admissível. Operar acima da classe reduz drasticamente a vida útil — cada 10 °C excedentes tendem a reduzir a vida do isolamento pela metade."
+      },
+      {
+        "id": "ELE-PF-25",
+        "modulo": 5,
+        "enunciado": "Um motor monofásico de indução com capacitor de partida utiliza esse capacitor para:",
+        "alternativas": [
+          "Criar defasagem entre as correntes dos enrolamentos principal e auxiliar, produzindo campo girante e conjugado de partida",
+          "Corrigir o fator de potência da instalação",
+          "Reduzir a tensão aplicada ao motor durante a partida",
+          "Armazenar energia para operar durante quedas de energia"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O motor monofásico não gera campo girante por si só. O capacitor em série com o enrolamento auxiliar defasa a corrente e cria o campo necessário à partida. Atingida certa rotação, uma chave centrífuga (ou relé) desliga o enrolamento auxiliar — se ela falhar, o enrolamento queima."
+      },
+      {
+        "id": "ELE-PF-26",
+        "modulo": 6,
+        "enunciado": "No diagrama de comando de uma partida direta, a botoeira de desliga (S0) deve ser:",
+        "alternativas": [
+          "Contato NA em paralelo com a bobina",
+          "Contato NF em série no circuito de comando, de modo que a falha do cabo também desligue o motor",
+          "Contato NA em série com a botoeira de liga",
+          "Contato NF em paralelo com o selo"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A botoeira de parada é sempre NF em série. Além de interromper o selo ao ser pressionada, essa configuração é intrinsecamente segura: o rompimento do cabo ou a soltura de um borne também abre o circuito e para o motor — princípio da falha segura, obrigatório em parada de emergência."
+      },
+      {
+        "id": "ELE-PF-27",
+        "modulo": 6,
+        "enunciado": "Em uma partida reversora, o intertravamento entre os contatores de sentido direto e reverso é indispensável para:",
+        "alternativas": [
+          "Reduzir a corrente de partida do motor",
+          "Melhorar o fator de potência da instalação",
+          "Impedir o fechamento simultâneo dos dois contatores, que provocaria curto-circuito entre fases",
+          "Permitir a partida do motor com tensão reduzida"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Como o contator reverso permuta duas fases, o fechamento simultâneo dos dois curto-circuitaria a rede. O intertravamento é feito em duas camadas: elétrico (contato NF de cada contator em série com a bobina do outro) e mecânico (trava física entre os contatores)."
+      },
+      {
+        "id": "ELE-PF-28",
+        "modulo": 6,
+        "enunciado": "A categoria de emprego AC-3 de um contator refere-se a:",
+        "alternativas": [
+          "Cargas puramente resistivas, como fornos e aquecedores",
+          "Manobra de transformadores a vazio",
+          "Circuitos de corrente contínua exclusivamente",
+          "Motores de indução com rotor em gaiola, com desligamento em regime (partida e parada normais)"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "AC-1 é para cargas resistivas ou pouco indutivas; AC-3 é a categoria típica de motores de gaiola com desligamento em regime; AC-4 cobre manobras severas, com partidas por impulsos, reversões e frenagens, exigindo contator bem maior para a mesma potência de motor."
+      },
+      {
+        "id": "ELE-PF-29",
+        "modulo": 6,
+        "enunciado": "O ajuste da corrente do relé de sobrecarga que protege um motor deve ser feito com base:",
+        "alternativas": [
+          "Na corrente nominal do motor indicada na placa, considerando o fator de serviço",
+          "Na corrente nominal do disjuntor geral do quadro",
+          "Sempre no valor máximo da faixa de ajuste, para evitar desarmes",
+          "Na corrente de partida do motor"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O relé protege o MOTOR, portanto o ajuste parte da corrente nominal de placa (corrigida pelo fator de serviço e pela ligação usada). Ajustar no máximo da faixa para 'não desarmar' anula a proteção e é uma das causas mais frequentes de queima de motores."
+      },
+      {
+        "id": "ELE-PF-30",
+        "modulo": 6,
+        "enunciado": "Em um painel de comando, as cores normalizadas de botoeiras e sinaleiros para parada/emergência e para condição normal de funcionamento são, respectivamente:",
+        "alternativas": [
+          "Verde para parada e vermelho para funcionamento",
+          "Vermelho para parada/emergência e verde para condição normal de funcionamento",
+          "Amarelo para parada e azul para funcionamento",
+          "Branco para ambas as funções"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Vermelho é reservado a parada e emergência (no botão de emergência, tipo soco, com fundo amarelo); verde indica condição normal/máquina em operação; amarelo sinaliza anormalidade ou advertência; azul, ação obrigatória; branco, informação sem significado específico. Essa padronização é o que permite a qualquer operador reagir corretamente diante de um painel desconhecido."
+      },
+      {
+        "id": "ELE-PF-31",
+        "modulo": 7,
+        "enunciado": "Para configurar o pino 8 do Arduino como saída digital, a instrução correta e o local adequado são:",
+        "alternativas": [
+          "digitalWrite(8, OUTPUT), dentro do loop()",
+          "analogWrite(8, OUTPUT), dentro do setup()",
+          "pinMode(8, OUTPUT), dentro do setup()",
+          "Serial.begin(8), dentro do loop()"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "pinMode() define a direção do pino e pertence ao setup(), que roda uma única vez. digitalWrite() escreve o nível lógico (HIGH ou LOW) e é usado no loop(). Trocar as duas funções é um dos erros mais comuns de quem começa."
+      },
+      {
+        "id": "ELE-PF-32",
+        "modulo": 7,
+        "enunciado": "A corrente máxima recomendada por pino de entrada/saída digital em um Arduino Uno é da ordem de:",
+        "alternativas": [
+          "5 A",
+          "200 mA",
+          "1 A",
+          "20 mA"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "O limite recomendado é cerca de 20 mA por pino (absoluto de 40 mA), com teto para o conjunto dos pinos. Qualquer carga acima disso — relé, motor, tira de LEDs — exige transistor, driver ou módulo relé com alimentação externa."
+      },
+      {
+        "id": "ELE-PF-33",
+        "modulo": 7,
+        "enunciado": "O uso de delay(1000) dentro do loop() tem como principal desvantagem:",
+        "alternativas": [
+          "Bloquear a execução, impedindo o programa de ler entradas ou responder a eventos durante o intervalo",
+          "Consumir muita memória de programa",
+          "Desligar as saídas digitais durante a pausa",
+          "Impedir o uso da comunicação serial em qualquer situação"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "delay() é bloqueante: durante o intervalo nada mais é executado no fluxo principal. Em aplicações que precisam ler botões, sensores ou responder a comandos, a prática correta é usar millis() para temporização não bloqueante, ou interrupções para eventos críticos."
+      },
+      {
+        "id": "ELE-PF-34",
+        "modulo": 7,
+        "enunciado": "Ao ligar dois dispositivos no barramento I2C do Arduino, é necessário:",
+        "alternativas": [
+          "Um par de pinos digitais exclusivo para cada dispositivo",
+          "Compartilhar as linhas SDA e SCL, garantindo endereços distintos e resistores de pull-up no barramento",
+          "Converter os sinais para analógico antes da leitura",
+          "Alimentar cada dispositivo com tensão diferente"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O I2C é um barramento a dois fios em que todos os dispositivos compartilham SDA e SCL, sendo distinguidos por endereço. As linhas são de dreno aberto e exigem resistores de pull-up (muitas vezes já presentes nos módulos). Endereços repetidos causam conflito e leitura inválida."
+      },
+      {
+        "id": "ELE-PF-35",
+        "modulo": 7,
+        "enunciado": "Ao montar um sistema com Arduino em ambiente industrial, uma medida essencial para a confiabilidade é:",
+        "alternativas": [
+          "Deixar as entradas não utilizadas flutuantes para economizar componentes",
+          "Alimentar o Arduino diretamente da rede de 220 V pelo pino Vin",
+          "Separar fisicamente a fiação de comando da de potência, usar isolação nas interfaces e alimentar o circuito por fonte estabilizada e filtrada",
+          "Usar sempre o cabo USB como fonte definitiva de alimentação"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Ruído de chaveamento, transitórios de partida de motores e acoplamento capacitivo entre cabos são as principais causas de travamento de microcontroladores em painéis. A separação da fiação, o uso de optoacopladores/relés isolados e a alimentação por fonte adequada resolvem a maior parte dos problemas. O pino Vin aceita apenas tensão contínua de baixo valor."
+      },
+      {
+        "id": "ELE-PF-36",
+        "modulo": 8,
+        "enunciado": "Uma entrada digital de CLP do tipo sink/source em 24 Vcc é usada tipicamente para conectar:",
+        "alternativas": [
+          "Um motor trifásico diretamente",
+          "A alimentação principal do painel",
+          "Um transdutor de pressão com saída 4-20 mA",
+          "Sensores discretos, botoeiras e chaves fim de curso, que informam estados liga/desliga"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Entradas digitais leem apenas dois estados. Sinais contínuos e proporcionais, como 4-20 mA ou 0-10 V de transdutores, exigem módulo de entrada analógica. Cargas de potência jamais se conectam diretamente às entradas ou saídas do CLP sem interface adequada."
+      },
+      {
+        "id": "ELE-PF-37",
+        "modulo": 8,
+        "enunciado": "O sinal padrão 4-20 mA é preferido em instrumentação industrial principalmente porque:",
+        "alternativas": [
+          "É imune à queda de tensão nos cabos longos e permite detectar rompimento do circuito, já que 0 mA indica falha e não valor mínimo",
+          "É mais barato que o sinal em tensão",
+          "Dispensa qualquer tipo de blindagem ou aterramento",
+          "Transmite dados digitais com maior velocidade"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "Como a corrente é a mesma em toda a malha, a queda nos condutores não altera a informação — vantagem decisiva em distâncias longas. E porque a faixa útil começa em 4 mA, a leitura de 0 mA identifica cabo rompido ou transmissor desalimentado, o chamado zero vivo."
+      },
+      {
+        "id": "ELE-PF-38",
+        "modulo": 8,
+        "enunciado": "Em um inversor de frequência, a rampa de aceleração ajustada em um valor muito curto para a carga acionada tende a provocar:",
+        "alternativas": [
+          "Aumento do fator de potência da instalação",
+          "Falha por sobrecorrente do inversor, por exigir conjugado acima do disponível",
+          "Redução da corrente de partida a valores próximos de zero",
+          "Inversão automática do sentido de rotação"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Acelerar uma inércia elevada em tempo insuficiente exige conjugado — e, portanto, corrente — acima do limite do inversor, que atua sua proteção. O ajuste correto equilibra o tempo de rampa com a inércia da carga; em desacelerações rápidas, o excedente de energia devolvido ao barramento CC pode exigir resistor de frenagem."
+      },
+      {
+        "id": "ELE-PF-39",
+        "modulo": 8,
+        "enunciado": "Sobre a substituição de um comando convencional por CLP em uma máquina existente, é correto afirmar:",
+        "alternativas": [
+          "O CLP dispensa os dispositivos de proteção do circuito de força, como disjuntores e relés de sobrecarga",
+          "Todos os contatores podem ser eliminados, ligando o motor às saídas do CLP",
+          "As funções de segurança, como parada de emergência, devem permanecer em circuito dedicado e independente da lógica programável, conforme os requisitos de segurança aplicáveis",
+          "A lógica Ladder torna desnecessária a documentação do diagrama de força"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O CLP substitui a LÓGICA de comando, não a proteção nem a segurança. Parada de emergência e funções de segurança seguem em circuito próprio (relés de segurança ou CLP de segurança certificado), porque não podem depender de software comum. O circuito de força continua com seus dispositivos de manobra e proteção."
+      },
+      {
+        "id": "ELE-PF-40",
+        "modulo": 8,
+        "enunciado": "Antes de qualquer intervenção em um painel elétrico energizado ou passível de energização, o procedimento correto é:",
+        "alternativas": [
+          "Trabalhar com atenção redobrada, mantendo o painel energizado para agilizar os testes",
+          "Solicitar autorização verbal ao operador e prosseguir",
+          "Apenas desligar o disjuntor geral e iniciar o serviço",
+          "Desenergizar, bloquear e sinalizar (bloqueio e etiquetagem), verificar a ausência de tensão e só então instalar o aterramento temporário quando aplicável"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "A sequência de desenergização é normativa: seccionar, impedir a reenergização (bloqueio e etiquetagem), constatar a ausência de tensão com instrumento adequado e testado, instalar aterramento temporário quando aplicável, proteger elementos energizados na zona controlada e sinalizar. Ela deve ser desfeita na ordem inversa. Este curso é de capacitação técnica e não substitui o treinamento de segurança exigido pela NR-10."
+      }
+    ]
+  }
+}

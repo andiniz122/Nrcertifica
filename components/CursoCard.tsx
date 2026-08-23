@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Clock, BadgeCheck, Zap, UtilityPole, PersonStanding, Cog, HardHat } from 'lucide-react'
+import { Clock, BadgeCheck, Zap, UtilityPole, PersonStanding, Cog, HardHat, CircuitBoard } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 /**
@@ -12,6 +12,7 @@ const VISUAL: Record<string, { gradiente: string; selo: string; icone: LucideIco
   'NR-35':     { gradiente: 'from-[#0E4E6B] via-[#1C7BA4] to-[#43AFD2]', selo: 'bg-[#1C9E6B] text-white',      icone: PersonStanding },
   'NR-12':     { gradiente: 'from-[#5C3410] via-[#9A5716] to-[#D98A2B]', selo: 'bg-brand-red text-white',      icone: Cog },
   'NR-06':     { gradiente: 'from-[#14304B] via-[#245C88] to-[#3E8FC4]', selo: 'bg-[#1F6FB2] text-white',      icone: HardHat },
+  'ELÉTRICA':  { gradiente: 'from-[#0B3B2E] via-[#12694F] to-[#1FA97C]', selo: 'bg-[#12694F] text-white',      icone: CircuitBoard },
 }
 
 const VISUAL_PADRAO = {

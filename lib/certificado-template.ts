@@ -19,7 +19,7 @@ export interface DadosCertificado {
   creaInstrutor?: string;
   assinaturaInstrutorUrl?: string;
   conteudoProgramatico?: string[];
-  validadeAnos?: number;
+  validadeAnos?: number; // 0 = curso livre: certificado emitido sem prazo de validade
   accentColor?: string; // cor de destaque do certificado (por curso)
 }
 
@@ -28,6 +28,7 @@ export function getAccentColorPorNr(nr: string): string {
     'NR-35': '#d97706',      // âmbar — trabalho em altura
     'NR-10 SEP': '#1d4ed8',  // azul — sistemas elétricos de potência
     'NR-06': '#16a34a',      // verde — proteção individual
+    'ELÉTRICA': '#0f766e',   // verde-petróleo — elétrica industrial e automação
   }
   return mapa[nr] ?? '#b8860b' // dourado padrão (NR-10 Básico e demais)
 }
@@ -495,7 +496,9 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
   </div>
 
   <div class="verify">Nº VERIFICAÇÃO: ${codigo}</div>
-  <div class="validade-line">Validade do treinamento: ${validadeAnos} ano${validadeAnos === 1 ? '' : 's'}.</div>
+  <div class="validade-line">${validadeAnos > 0
+    ? `Validade do treinamento: ${validadeAnos} ano${validadeAnos === 1 ? '' : 's'}.`
+    : 'Curso livre de capacitação profissional — certificado sem prazo de validade.'}</div>
 </div>
 
 </body>
