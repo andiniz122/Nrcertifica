@@ -82,7 +82,7 @@ export async function GET(
       codigoVerificacao: cert.codigo || "",
       assinaturaInstrutorUrl,
       conteudoProgramatico: cert.curso_id?.conteudo_programatico || [],
-      validadeAnos: cert.curso_id?.validade_anos || 2,
+      validadeAnos: cert.curso_id?.validade_anos ?? 2, // 0 = curso livre, sem vencimento
       accentColor: getAccentColorPorNr(cert.curso_id?.nr || ""),
     })
     await page.setContent(html, { waitUntil: 'networkidle0' })

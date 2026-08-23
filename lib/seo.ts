@@ -71,6 +71,11 @@ export const EMPRESA: {
  * NAO tem prazo fixo: a NR-12 define condicoes de reciclagem (modificacoes
  * significativas em instalacoes, maquinas, metodos, processos ou organizacao
  * do trabalho que impliquem novos riscos), nao periodicidade.
+ *
+ * Cursos livres (fora do escopo das NRs, como os de elétrica predial,
+ * comandos eletricos e Arduino)
+ * tambem entram aqui com `periodicaFixa: false` — nao ha reciclagem nem
+ * validade a publicar, e o certificado sai sem data de vencimento.
  */
 export type Reciclagem = {
   /** Existe periodicidade fixa na norma? */
@@ -98,6 +103,8 @@ export type Curso = {
   nr: string
   nome: string
   nomeCurto: string
+  /** Nome da credencial no JSON-LD. Default: `Certificado de treinamento ${nr}`. */
+  credencial?: string
   tituloSeo: string
   descricaoSeo: string
   /** Descricao curta para OG/Twitter. */
@@ -107,6 +114,11 @@ export type Curso = {
   /** ISO-8601 para courseWorkload/timeRequired. */
   workload: string
   preco: number
+  /**
+   * Validade do certificado em anos, espelhando `courses.validade_anos` no
+   * MongoDB. 0 = curso livre, certificado sem vencimento. Default: 2.
+   */
+  validadeAnos?: number
   keywords: string[]
   ativo: boolean
   reciclagem: Reciclagem
@@ -280,6 +292,111 @@ export const CURSOS: Curso[] = [
     },
   },
   {
+    rota: '/eletrica-predial',
+    slugBanco: 'eletrica-predial-120h',
+    // Nao sao Normas Regulamentadoras: sao cursos livres de capacitacao
+    // profissional. O campo `nr` e reaproveitado como etiqueta na vitrine.
+    nr: 'ELÉTRICA',
+    nome: 'Instalações Elétricas Prediais',
+    nomeCurto: 'Elétrica Predial — 120h',
+    credencial: 'Certificado de capacitação profissional em Instalações Elétricas Prediais',
+    tituloSeo: 'Curso de Elétrica Predial 120h Online com Certificado — Instalações Residenciais',
+    descricaoSeo:
+      'Curso de elétrica predial online, 120 horas EAD em 8 módulos: eletricidade básica, eletrônica aplicada, padrão de entrada, projeto pela NBR 5410, dimensionamento e proteção, aterramento e SPDA, luminotécnica e manutenção predial. Prova online e certificado PDF imediato, sob responsabilidade técnica de Engenheiro Eletricista CREA 254516/MG. R$ 297.',
+    descricaoOg:
+      'Elétrica Predial 120h online: projeto pela NBR 5410, dimensionamento, aterramento e luminotécnica. Certificado PDF imediato. CREA 254516/MG.',
+    cargaHoraria: '120h',
+    cargaHoras: 120,
+    workload: 'PT120H',
+    preco: 297,
+    validadeAnos: 0,
+    keywords: [
+      'curso de elétrica predial online',
+      'curso de eletricista residencial com certificado',
+      'curso de instalações elétricas 120 horas',
+      'curso NBR 5410 online',
+      'curso de elétrica residencial EAD',
+      'curso de eletricista predial com certificado',
+    ],
+    ativo: true,
+    reciclagem: {
+      periodicaFixa: false,
+      periodicidade: null,
+      base:
+        'Curso livre de capacitação profissional (Lei 9.394/96 e Decreto 5.154/2004). Não é Norma Regulamentadora: não há reciclagem obrigatória nem prazo de validade normativo para o certificado.',
+      validFor: null,
+      temPagina: false,
+    },
+  },
+  {
+    rota: '/comandos-eletricos',
+    slugBanco: 'comandos-eletricos-40h',
+    nr: 'COMANDOS',
+    nome: 'Comandos Elétricos e Acionamento de Motores',
+    nomeCurto: 'Comandos Elétricos — 40h',
+    credencial: 'Certificado de capacitação profissional em Comandos Elétricos',
+    tituloSeo: 'Curso de Comandos Elétricos 40h Online com Certificado',
+    descricaoSeo:
+      'Curso de comandos elétricos online, 40 horas EAD em 4 módulos: motores de indução, contatores e relés de sobrecarga, diagramas de comando e força, partida direta, reversora e estrela-triângulo, soft-starter, inversores e montagem de painéis. Certificado PDF imediato, CREA 254516/MG. R$ 147.',
+    descricaoOg:
+      'Comandos Elétricos 40h online: contatores, diagramas, partidas e painéis. Certificado PDF imediato. CREA 254516/MG.',
+    cargaHoraria: '40h',
+    cargaHoras: 40,
+    workload: 'PT40H',
+    preco: 147,
+    validadeAnos: 0,
+    keywords: [
+      'curso de comandos elétricos online',
+      'curso de comandos elétricos com certificado',
+      'partida estrela-triângulo curso',
+      'curso de acionamento de motores EAD',
+      'curso de montagem de painéis elétricos',
+    ],
+    ativo: true,
+    reciclagem: {
+      periodicaFixa: false,
+      periodicidade: null,
+      base:
+        'Curso livre de capacitação profissional (Lei 9.394/96 e Decreto 5.154/2004). Não é Norma Regulamentadora: não há reciclagem obrigatória nem prazo de validade normativo para o certificado.',
+      validFor: null,
+      temPagina: false,
+    },
+  },
+  {
+    rota: '/arduino',
+    slugBanco: 'arduino-automacao-40h',
+    nr: 'ARDUINO',
+    nome: 'Arduino, Sensores e Automação com CLP',
+    nomeCurto: 'Arduino e Automação — 40h',
+    credencial: 'Certificado de capacitação profissional em Arduino e Automação',
+    tituloSeo: 'Curso de Arduino e Automação 40h Online com Certificado',
+    descricaoSeo:
+      'Curso de Arduino online, 40 horas EAD em 4 módulos: eletrônica digital e interfaceamento de potência, entradas e saídas digitais e analógicas, PWM, sensores e atuadores, comunicação serial e I2C, CLP em Ladder e inversores. Certificado PDF imediato, CREA 254516/MG. R$ 147.',
+    descricaoOg:
+      'Arduino e Automação 40h online: sensores, atuadores, PWM, I2C e CLP em Ladder. Certificado PDF imediato. CREA 254516/MG.',
+    cargaHoraria: '40h',
+    cargaHoras: 40,
+    workload: 'PT40H',
+    preco: 147,
+    validadeAnos: 0,
+    keywords: [
+      'curso de Arduino online',
+      'curso de Arduino com certificado',
+      'curso de automação industrial EAD',
+      'curso de CLP e Ladder online',
+      'curso de sensores e atuadores Arduino',
+    ],
+    ativo: true,
+    reciclagem: {
+      periodicaFixa: false,
+      periodicidade: null,
+      base:
+        'Curso livre de capacitação profissional (Lei 9.394/96 e Decreto 5.154/2004). Não é Norma Regulamentadora: não há reciclagem obrigatória nem prazo de validade normativo para o certificado.',
+      validFor: null,
+      temPagina: false,
+    },
+  },
+  {
     rota: '/nr33',
     slugBanco: null,
     nr: 'NR-33',
@@ -311,6 +428,11 @@ export function getCurso(rota: string): Curso {
   const curso = CURSOS.find((c) => c.rota === rota)
   if (!curso) throw new Error(`Curso nao encontrado em lib/seo.ts para a rota "${rota}"`)
   return curso
+}
+
+/** Texto de validade do certificado exibido na vitrine e nas landings. */
+export function textoValidade(curso: Curso): string {
+  return (curso.validadeAnos ?? 2) === 0 ? 'Sem validade' : `${curso.validadeAnos ?? 2} anos`
 }
 
 /** URL absoluta canonica a partir de um path relativo. */

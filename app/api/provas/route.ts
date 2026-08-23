@@ -135,8 +135,14 @@ export async function POST(req: NextRequest) {
       if (!certExistente) {
         const User = (await import('../../../models/User')).default
         const usuario = await User.findById(session.user.id)
-        const dataValidade = new Date()
-        dataValidade.setFullYear(dataValidade.getFullYear() + curso.validade_anos)
+        // Cursos livres (validade_anos = 0) nao vencem: o certificado sai sem
+        // data de validade, em vez de nascer vencido no dia da emissao.
+        const validadeAnos = Number(curso.validade_anos) || 0
+        let dataValidade: Date | null = null
+        if (validadeAnos > 0) {
+          dataValidade = new Date()
+          dataValidade.setFullYear(dataValidade.getFullYear() + validadeAnos)
+        }
 
         const cert = await Certificate.create({
           enrollment_id: matricula._id,
@@ -152,7 +158,7 @@ export async function POST(req: NextRequest) {
             conteudo_programatico: curso.conteudo_programatico,
             data_inicio: (matricula as any).data_inicio_curso || matricula.criadoEm,
             data_conclusao: (matricula as any).data_fim_curso || new Date(),
-            data_validade: dataValidade,
+            ...(dataValidade ? { data_validade: dataValidade } : {}),
             nota_final: acertos,
           },
           url_pdf: '', // será gerado pelo Puppeteer depois

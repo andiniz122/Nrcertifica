@@ -123,7 +123,7 @@ export function schemaCurso(
   const credencial: Json = {
     '@type': 'EducationalOccupationalCredential',
     credentialCategory: 'Certificado de treinamento',
-    name: `Certificado de treinamento ${c.nr}`,
+    name: c.credencial ?? `Certificado de treinamento ${c.nr}`,
     // validFor so quando a norma fixa periodicidade de reciclagem.
     ...(c.reciclagem.validFor ? { validFor: c.reciclagem.validFor } : {}),
   }
@@ -180,7 +180,7 @@ export const schemaCatalogo: Json = {
   '@graph': [
     {
       '@type': 'ItemList',
-      name: 'Cursos NR online — NR Certifica',
+      name: 'Cursos online — NR Certifica',
       url: absUrl('/cursos'),
       numberOfItems: CURSOS_ATIVOS.length,
       itemListElement: CURSOS_ATIVOS.map((c, i) => ({

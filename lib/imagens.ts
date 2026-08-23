@@ -8,16 +8,25 @@ import path from 'node:path'
  * Para publicar uma foto, basta commitar o arquivo com o nome esperado:
  *   public/cursos/nr10.jpg      public/cursos/nr10sep.jpg
  *   public/cursos/nr35.jpg      public/cursos/nr12.jpg
- *   public/cursos/nr06.jpg      public/hero/hero.jpg
+ *   public/cursos/nr06.jpg      public/cursos/eletrica.jpg
+ *   public/hero/hero.jpg
  * Extensoes aceitas: .jpg, .jpeg, .png, .webp (nessa ordem de preferencia).
  */
 
 const PASTA_PUBLIC = path.join(process.cwd(), 'public')
 const EXTENSOES = ['jpg', 'jpeg', 'png', 'webp'] as const
 
-/** Slug do arquivo de foto a partir do `nr` do curso ("NR-10 SEP" -> "nr10sep"). */
+/**
+ * Slug do arquivo de foto a partir do `nr` do curso.
+ * "NR-10 SEP" -> "nr10sep"; "ELÉTRICA" -> "eletrica" (acentos sao normalizados
+ * antes do corte, senao o E acentuado sumiria e sobraria "eltrica").
+ */
 export function slugFoto(nr: string): string {
-  return nr.toLowerCase().replace(/[^a-z0-9]/g, '')
+  return nr
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '')
 }
 
 function primeiroExistente(dir: string, base: string): string | null {

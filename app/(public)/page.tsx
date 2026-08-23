@@ -5,7 +5,7 @@ import { Footer } from '../../components/Footer'
 import { JsonLd } from '../../components/JsonLd'
 import { CursoCard } from '../../components/CursoCard'
 import { HeroArte } from '../../components/HeroArte'
-import { SITE, CURSOS, CURSOS_ATIVOS, RESPONSAVEL } from '../../lib/seo'
+import { SITE, CURSOS, CURSOS_ATIVOS, RESPONSAVEL, textoValidade } from '../../lib/seo'
 import { fotoCurso, fotoHero } from '../../lib/imagens'
 import { schemaBreadcrumb } from '../../lib/schemas'
 import {
@@ -16,14 +16,14 @@ import {
 const BASE = SITE.url
 
 export const metadata: Metadata = {
-  title: 'Cursos NR Online com Certificado Válido — NR-10, NR-12, NR-35 e mais',
+  title: 'Cursos NR e de Elétrica Online com Certificado — NR-10, Elétrica Predial, Comandos e Arduino',
   description:
-    'Faça seu curso de NR-10, NR-12, NR-35, NR-33 ou NR-06 online. Certificado com validade legal emitido por Engenheiro responsável técnico CREA 254516/MG. Acesso imediato, prova online e certificado PDF automático.',
+    'Faça seu curso de NR-10, NR-12, NR-35 ou NR-06 online, ou as formações técnicas em Elétrica Predial (120h), Comandos Elétricos (40h) e Arduino e Automação (40h). Certificado emitido por Engenheiro responsável técnico CREA 254516/MG.',
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'NR Certifica — Cursos NR Online com Certificado Válido',
+    title: 'NR Certifica — Cursos NR e Elétrica Online com Certificado Válido',
     description:
-      'NR-10, NR-12, NR-35 e NR-06 online. Certificado emitido sob responsabilidade técnica de Engenheiro CREA 254516/MG. Acesso imediato após o pagamento.',
+      'NR-10, NR-12, NR-35, NR-06, Elétrica Predial, Comandos Elétricos e Arduino online. Certificado emitido sob responsabilidade técnica de Engenheiro CREA 254516/MG. Acesso imediato após o pagamento.',
     url: BASE,
     siteName: SITE.nome,
     locale: SITE.locale,
@@ -41,7 +41,7 @@ const jsonLdHome = {
       '@type': 'CollectionPage',
       '@id': `${BASE}/#webpage`,
       url: BASE,
-      name: 'NR Certifica — Cursos NR online com certificado',
+      name: 'NR Certifica — Cursos NR e de elétrica online com certificado',
       inLanguage: SITE.lang,
       isPartOf: { '@id': `${BASE}/#website` },
       about: { '@id': `${BASE}/#organization` },
@@ -49,7 +49,7 @@ const jsonLdHome = {
     },
     {
       '@type': 'ItemList',
-      name: 'Cursos NR online disponíveis',
+      name: 'Cursos online disponíveis',
       numberOfItems: CURSOS_ATIVOS.length,
       itemListElement: CURSOS_ATIVOS.map((curso, i) => ({
         '@type': 'ListItem',
@@ -63,7 +63,7 @@ const jsonLdHome = {
 }
 
 /** Ordem de exibição na vitrine — o primeiro leva o selo "mais procurado". */
-const VITRINE = ['NR-10', 'NR-10 SEP', 'NR-35', 'NR-12', 'NR-06']
+const VITRINE = ['NR-10', 'ELÉTRICA', 'COMANDOS', 'ARDUINO', 'NR-10 SEP', 'NR-35', 'NR-12', 'NR-06']
   .map(nr => CURSOS.find(c => c.nr === nr))
   .filter((c): c is (typeof CURSOS)[number] => Boolean(c && c.ativo))
 
@@ -74,6 +74,9 @@ const RESUMO: Record<string, string> = {
   'NR-35': 'Trabalho em Altura',
   'NR-12': 'Máquinas e Equipamentos',
   'NR-06': 'Equipamentos de Proteção Individual',
+  'ELÉTRICA': 'Instalações Elétricas Prediais',
+  'COMANDOS': 'Comandos Elétricos e Motores',
+  'ARDUINO': 'Arduino, Sensores e CLP',
 }
 
 const DESTAQUES_HERO = [
@@ -120,7 +123,8 @@ export default function Home() {
                 <span className="block text-brand-gold">estar preparado.</span>
               </h1>
               <p className="text-white text-lg mb-3">
-                {CURSOS_ATIVOS.map(c => c.nr).join(' • ')} e mais
+                {CURSOS_ATIVOS.filter(c => c.nr.startsWith('NR')).map(c => c.nr).join(' • ')}
+                {' '}· Elétrica Predial · Comandos · Arduino
               </p>
               <p className="text-white/65 text-base leading-relaxed mb-8 max-w-md">
                 Estude online, faça sua avaliação e receba seu certificado digital
@@ -196,13 +200,14 @@ export default function Home() {
               <h2 className="section-title">Cursos mais procurados</h2>
               <span className="section-rule" />
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {VITRINE.map((curso, i) => (
                 <CursoCard
                   key={curso.rota}
                   nr={curso.nr}
                   titulo={RESUMO[curso.nr] ?? curso.nomeCurto}
                   horas={`${curso.cargaHoras} horas`}
+                  validade={textoValidade(curso)}
                   preco={curso.preco}
                   href={curso.rota}
                   destaque={i === 0}

@@ -1,5 +1,7 @@
 import { connectDB } from '../../../../lib/db'
 import Certificate from '../../../../models/Certificate'
+// Import necessario para registrar o model usado no populate('curso_id').
+import Course from '../../../../models/Course'
 import { Header } from '../../../../components/Header'
 import { CheckCircle2, XCircle, Shield, Calendar, User, BookOpen } from 'lucide-react'
 
@@ -12,12 +14,24 @@ export const dynamic = 'force-dynamic'
 export default async function VerificarCarteirinha({ params }: Props) {
   await connectDB()
 
-  const cert = await Certificate.findOne({ codigo: params.codigo }).lean() as any
+  const cert = await Certificate.findOne({ codigo: params.codigo })
+    .populate('curso_id', 'validade_anos')
+    .lean() as any
 
-  // Validade: 2 anos a partir da emissão
   const emissao = cert ? new Date(cert.criadoEm) : null
-  const validade = emissao ? new Date(new Date(emissao).setFullYear(emissao.getFullYear() + 2)) : null
-  const valida = validade ? validade > new Date() : false
+
+  // Curso livre (validade_anos = 0) nao vence — nao ha data a exibir nem a cobrar.
+  const semValidade = cert ? Number(cert.curso_id?.validade_anos ?? 2) === 0 : false
+
+  // Prioriza a data gravada no certificado; o fallback de 2 anos cobre os
+  // certificados antigos, emitidos antes de gravarmos data_validade.
+  const validade = semValidade || !emissao
+    ? null
+    : cert.dados?.data_validade
+      ? new Date(cert.dados.data_validade)
+      : new Date(new Date(emissao).setFullYear(emissao.getFullYear() + 2))
+
+  const valida = semValidade ? true : validade ? validade > new Date() : false
 
   const fmt = (d: Date) => d.toLocaleDateString('pt-BR')
 
@@ -55,7 +69,11 @@ export default async function VerificarCarteirinha({ params }: Props) {
                   <>
                     <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-3" />
                     <h2 className="font-display text-xl font-bold text-green-700 mb-1">Carteirinha Válida</h2>
-                    <p className="text-green-600 text-sm">Este profissional está apto a realizar as atividades do curso certificado.</p>
+                    <p className="text-green-600 text-sm">
+                      {semValidade
+                        ? 'Certificado de curso livre de capacitação profissional, emitido sem prazo de validade.'
+                        : 'Este profissional está apto a realizar as atividades do curso certificado.'}
+                    </p>
                   </>
                 ) : (
                   <>
@@ -108,7 +126,9 @@ export default async function VerificarCarteirinha({ params }: Props) {
                     <Calendar className="w-4 h-4 text-brand-red mt-0.5 flex-shrink-0" />
                     <div>
                       <p className="text-xs text-gray-400 mb-0.5">Válida até</p>
-                      <p className={`font-semibold text-sm ${valida ? 'text-green-600' : 'text-red-500'}`}>{fmt(validade!)}</p>
+                      <p className={`font-semibold text-sm ${valida ? 'text-green-600' : 'text-red-500'}`}>
+                        {validade ? fmt(validade) : 'Sem prazo de validade'}
+                      </p>
                     </div>
                   </div>
                 </div>
