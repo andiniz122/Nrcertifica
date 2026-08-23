@@ -1,0 +1,545 @@
+{
+  "curso": "Comandos Elétricos e Acionamento de Motores",
+  "sigla": "COMANDOS",
+  "carga_horaria": "40h",
+  "validade_anos": 0,
+  "aprovacao_minima": 0.7,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Motores Elétricos e Acionamentos (10h)",
+      "descricao": "Motor de indução trifásico, leitura da placa de identificação, ligação estrela-triângulo e dupla tensão, escorregamento e rotação síncrona, motores monofásicos, fator de serviço, classe de isolamento e inversão de sentido de giro.",
+      "exercicios": [
+        {
+          "id": "CMD-M1-Q1",
+          "enunciado": "Um motor de indução trifásico de 4 polos alimentado em 60 Hz apresenta rotação nominal de 1.720 rpm na placa. A rotação síncrona e o escorregamento são, respectivamente:",
+          "alternativas": [
+            "1.800 rpm e aproximadamente 8,8%",
+            "1.800 rpm e aproximadamente 4,4%",
+            "3.600 rpm e aproximadamente 52%",
+            "1.720 rpm e escorregamento nulo"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "ns = 120 × f / p = 120 × 60 / 4 = 1.800 rpm. O escorregamento é s = (ns − n)/ns = (1.800 − 1.720)/1.800 ≈ 4,4%. O motor de indução SEMPRE gira abaixo do síncrono — é justamente essa diferença que induz corrente no rotor e produz conjugado."
+        },
+        {
+          "id": "CMD-M1-Q2",
+          "enunciado": "Um motor com placa 220/380 V está sendo instalado em uma rede 380 V entre fases. A ligação correta dos enrolamentos e o motivo são:",
+          "alternativas": [
+            "Triângulo, porque cada bobina receberia 380 V, sua tensão nominal",
+            "Triângulo, porque a corrente de linha fica menor",
+            "Estrela, porque assim cada bobina recebe 380/√3 ≈ 220 V, que é sua tensão nominal",
+            "Tanto faz, desde que o disjuntor seja adequado"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A indicação 220/380 V significa: bobina de 220 V, ligada em triângulo para rede de 220 V e em estrela para rede de 380 V. Em estrela, cada bobina fica submetida à tensão de fase (380/√3 ≈ 220 V). Ligar em triângulo numa rede de 380 V aplicaria 380 V em bobinas de 220 V, queimando o motor em segundos."
+        },
+        {
+          "id": "CMD-M1-Q3",
+          "enunciado": "A partida estrela-triângulo é usada para reduzir a corrente de partida. Nessa modalidade, a corrente e o conjugado de partida ficam, aproximadamente:",
+          "alternativas": [
+            "Reduzidos à metade, tanto a corrente quanto o conjugado",
+            "Reduzidos a 1/3 na corrente, mas o conjugado permanece integral",
+            "Reduzidos a 1/√3, tanto a corrente quanto o conjugado",
+            "Reduzidos a 1/3 dos valores da partida direta, tanto a corrente quanto o conjugado"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Na configuração estrela, cada bobina recebe 1/√3 da tensão nominal; como conjugado e corrente variam com o quadrado da tensão, ambos caem a cerca de 1/3. Por isso a partida estrela-triângulo só é aplicável em cargas que partem praticamente a vazio — bombas centrífugas, ventiladores — e exige motor com seis terminais acessíveis."
+        },
+        {
+          "id": "CMD-M1-Q4",
+          "enunciado": "O fator de serviço (FS) indicado na placa de um motor significa:",
+          "alternativas": [
+            "A sobrecarga contínua admissível em condições nominais, sem prejuízo à vida útil do motor",
+            "O fator de potência do motor em vazio",
+            "O número de partidas por hora permitido",
+            "O rendimento percentual do motor em carga nominal"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Um FS de 1,15 indica que o motor pode operar continuamente com 15% acima da potência nominal, em condições normais de tensão, frequência e temperatura ambiente. Não é margem de projeto para uso rotineiro: operar permanentemente no FS eleva a temperatura, reduz o rendimento e encurta a vida do isolamento."
+        },
+        {
+          "id": "CMD-M1-Q5",
+          "enunciado": "Para inverter o sentido de giro de um motor de indução trifásico, o procedimento correto é:",
+          "alternativas": [
+            "Inverter a polaridade da alimentação, trocando fase por neutro",
+            "Permutar duas das três fases de alimentação entre si",
+            "Inverter as três fases simultaneamente",
+            "Reduzir a frequência abaixo de 30 Hz"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A troca de duas fases quaisquer inverte a sequência de fases e, com ela, o sentido do campo girante. Inverter as três fases não altera a sequência e o motor continua girando no mesmo sentido. Em comando por contatores, essa permuta é feita pelo contator de reversão — que precisa obrigatoriamente de intertravamento elétrico e mecânico com o contator direto."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Dispositivos de Comando e Proteção (10h)",
+      "descricao": "Contatores e categorias de emprego, relés de sobrecarga, disjuntor-motor, transformador de comando, botoeiras e sinaleiros, relés temporizadores e chaves fim de curso.",
+      "exercicios": [
+        {
+          "id": "CMD-M2-Q1",
+          "enunciado": "Um contator é essencialmente um dispositivo de manobra cujo funcionamento se baseia em:",
+          "alternativas": [
+            "Um bimetal que se deforma com o calor da corrente",
+            "Um elemento fusível que se rompe na sobrecorrente",
+            "Uma bobina que, energizada, cria campo magnético e fecha os contatos principais e auxiliares",
+            "Um circuito eletrônico que retifica a tensão de comando"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Energizada a bobina, o núcleo móvel é atraído e fecha simultaneamente os contatos principais (potência) e os auxiliares (comando). Desenergizada, as molas devolvem tudo à posição de repouso. É esse princípio que permite manobrar dezenas de ampères com uma botoeira de poucos miliampères."
+        },
+        {
+          "id": "CMD-M2-Q2",
+          "enunciado": "A tensão da bobina de um contator (por exemplo, 24 V, 110 V ou 220 V) deve ser escolhida com base:",
+          "alternativas": [
+            "Na tensão do circuito de força que alimenta o motor",
+            "Na potência do motor em cv",
+            "Na corrente nominal do motor",
+            "Na tensão do circuito de comando adotado no painel"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Circuito de força e circuito de comando podem operar em tensões distintas — é comum força em 380 V e comando em 24 V ou 220 V, obtidos por transformador de comando. A bobina segue a tensão do comando; alimentá-la com a tensão errada a queima ou impede o fechamento."
+        },
+        {
+          "id": "CMD-M2-Q3",
+          "enunciado": "O disjuntor-motor (disjuntor com proteção magnética e térmica ajustável) reúne, em um único dispositivo:",
+          "alternativas": [
+            "Proteção contra curto-circuito e contra sobrecarga, além do seccionamento do circuito",
+            "Proteção contra choque elétrico e correção de fator de potência",
+            "Apenas a função de partida suave do motor",
+            "Medição de energia e proteção contra surtos"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O disparo magnético atua em milissegundos no curto-circuito; o térmico, com retardo, na sobrecarga, e é ajustável à corrente nominal do motor. Substitui o conjunto fusível + relé térmico, reduzindo o espaço no painel e simplificando a coordenação."
+        },
+        {
+          "id": "CMD-M2-Q4",
+          "enunciado": "Um relé temporizador com retardo na energização (on delay) tem o seguinte comportamento:",
+          "alternativas": [
+            "Comuta os contatos imediatamente ao ser energizado e os devolve após o tempo ajustado",
+            "Ao ser energizado, aguarda o tempo ajustado para comutar os contatos, e volta ao repouso assim que é desenergizado",
+            "Comuta os contatos apenas quando ocorre falta de fase",
+            "Mantém os contatos comutados permanentemente após a primeira energização"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "É o temporizador usado na partida estrela-triângulo para definir o instante da comutação. O retardo na desenergização (off delay) faz o oposto: comuta na hora e retorna após o tempo. Confundir os dois é causa frequente de sequência de partida errada."
+        },
+        {
+          "id": "CMD-M2-Q5",
+          "enunciado": "Uma chave fim de curso instalada em uma máquina tem a função de:",
+          "alternativas": [
+            "Medir a velocidade de rotação do eixo do motor",
+            "Proteger o motor contra sobrecarga térmica",
+            "Informar ao circuito de comando que uma parte móvel atingiu determinada posição, permitindo parar, inverter ou seguir a sequência",
+            "Corrigir o fator de potência do acionamento"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "É um sensor de posição por contato mecânico, com contatos NA e NF. Em portões, talhas, esteiras e prensas define os limites do movimento. Quando exerce função de segurança, exige contato de abertura positiva e circuito dedicado, não podendo depender apenas da lógica comum."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Diagramas de Comando e Força — Partida Direta, Reversora e Estrela-Triângulo (12h)",
+      "descricao": "Leitura e execução de diagramas de comando e força, numeração de bornes conforme a IEC, selo de retenção, intertravamento elétrico e mecânico, partida direta, reversão e comutação estrela-triângulo.",
+      "exercicios": [
+        {
+          "id": "CMD-M3-Q1",
+          "enunciado": "No comando de partida direta, o contato auxiliar NA do contator ligado em paralelo com a botoeira de liga (S1) tem a função de:",
+          "alternativas": [
+            "Proteger o motor contra sobrecarga",
+            "Intertravar o contator com o de reversão",
+            "Sinalizar a falha do relé térmico",
+            "Realizar o selo (retenção), mantendo a bobina energizada após o operador soltar a botoeira"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "A botoeira de partida é pulsante. O contato NA do próprio contator, em paralelo com ela, cria um caminho alternativo para a corrente da bobina assim que o contator fecha — é o selo ou retenção. Ao pressionar a botoeira de desliga (NF, em série), o caminho é interrompido e o contator abre, desfazendo o selo."
+        },
+        {
+          "id": "CMD-M3-Q2",
+          "enunciado": "Na numeração de bornes de contatores conforme a IEC, os contatos auxiliares com terminais 13-14 e 21-22 são, respectivamente:",
+          "alternativas": [
+            "NA (normalmente aberto) e NF (normalmente fechado)",
+            "Ambos de potência (principais)",
+            "Ambos NA",
+            "NF e NA"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O segundo dígito identifica a função: terminações 3-4 indicam contato NA e terminações 1-2 indicam contato NF. O primeiro dígito é apenas o número de ordem do contato. Assim, 13-14 é NA e 21-22 é NF. Os contatos principais de potência usam a numeração 1-2, 3-4, 5-6 (ou L1/T1, L2/T2, L3/T3)."
+        },
+        {
+          "id": "CMD-M3-Q3",
+          "enunciado": "O relé de sobrecarga (relé térmico) instalado após o contator protege o motor contra:",
+          "alternativas": [
+            "Sobretensões da rede",
+            "Sobrecorrentes moderadas e prolongadas, incluindo falta de fase e rotor bloqueado, atuando por efeito térmico",
+            "Curto-circuito franco entre fases, atuando em milissegundos",
+            "Fuga de corrente para a terra"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O relé térmico usa lâminas bimetálicas que se deformam com o aquecimento provocado pela corrente, atuando com retardo proporcional à sobrecarga. Isso permite tolerar o pico de partida e desarmar em sobrecargas sustentadas. Curto-circuito é atribuição do fusível ou do disjuntor-motor; fuga à terra, do DR."
+        },
+        {
+          "id": "CMD-M3-Q4",
+          "enunciado": "Em uma partida estrela-triângulo automática, a sequência correta de acionamento dos contatores é:",
+          "alternativas": [
+            "Apenas K3 (estrela) funciona; K1 e K2 são reservas",
+            "Os três contatores fecham simultaneamente e permanecem fechados",
+            "K1 (rede) e K3 (estrela) juntos; após a temporização, K3 abre e, com um breve intervalo, K2 (triângulo) fecha",
+            "K2 (triângulo) primeiro e depois K3 (estrela), sem temporização"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Parte-se em estrela (K1 + K3) com tensão reduzida na bobina; decorrido o tempo ajustado no temporizador, K3 desenergiza e só então K2 fecha, comutando para triângulo. O breve intervalo entre a abertura de K3 e o fechamento de K2 é essencial: o fechamento simultâneo de estrela e triângulo provoca curto-circuito entre fases. K3 e K2 devem ainda ser intertravados eletricamente."
+        },
+        {
+          "id": "CMD-M3-Q5",
+          "enunciado": "Sobre a diferença entre o diagrama de comando e o diagrama de força (potência), é correto afirmar:",
+          "alternativas": [
+            "O diagrama de comando mostra o motor e o de força mostra as botoeiras",
+            "São o mesmo documento, apenas com escalas diferentes",
+            "O diagrama de comando só é usado em circuitos de corrente contínua",
+            "O diagrama de força representa o circuito que alimenta a carga (fases, contatos principais, relé térmico, motor); o de comando representa a lógica que energiza as bobinas (botoeiras, contatos auxiliares, temporizadores)"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "A separação é o alicerce da leitura de esquemas industriais: no circuito de força circula a corrente do motor, com condutores dimensionados para ela; no circuito de comando circulam apenas miliampères para energizar bobinas e sinaleiros, normalmente em tensão reduzida (24 V, 110 V ou 220 V). A referência cruzada entre os dois diagramas é feita pela identificação dos dispositivos (K1, F1, S1)."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Partidas com Tensão Reduzida, Inversores e Montagem de Painéis (8h)",
+      "descricao": "Chave compensadora, soft-starter e inversor de frequência, frenagem, parada de emergência, grau de proteção do invólucro, separação e dimensionamento da fiação e identificação de painéis.",
+      "exercicios": [
+        {
+          "id": "CMD-M4-Q1",
+          "enunciado": "A chave compensadora (autotransformador de partida) reduz a corrente de partida do motor porque:",
+          "alternativas": [
+            "Aplica ao motor uma tensão reduzida por meio de derivações do autotransformador, tipicamente 65% ou 80% da nominal",
+            "Aumenta a frequência aplicada ao motor durante a partida",
+            "Insere resistores em série com o rotor em gaiola",
+            "Inverte a sequência de fases durante os primeiros segundos"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Como corrente e conjugado variam com o quadrado da tensão, a derivação de 80% entrega cerca de 64% do conjugado e da corrente. A vantagem sobre a estrela-triângulo é poder escolher o tape conforme a carga; a desvantagem é o custo e o volume do autotransformador."
+        },
+        {
+          "id": "CMD-M4-Q2",
+          "enunciado": "Um soft-starter difere de um inversor de frequência porque:",
+          "alternativas": [
+            "O soft-starter só funciona em motores monofásicos",
+            "O soft-starter controla a tensão aplicada na partida e na parada, mas não varia a velocidade em regime; o inversor controla tensão e frequência, variando a velocidade continuamente",
+            "O inversor não permite partida suave",
+            "Ambos são idênticos, mudando apenas o fabricante"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O soft-starter usa tiristores para rampas de tensão na partida e na parada, reduzindo o pico de corrente e o choque mecânico — mas o motor gira na rotação da rede. O inversor gera uma nova senoide de frequência variável e por isso controla a velocidade em regime, além da partida."
+        },
+        {
+          "id": "CMD-M4-Q3",
+          "enunciado": "Na montagem de um painel de comando, a separação física entre a fiação de comando e a de potência serve para:",
+          "alternativas": [
+            "Facilitar apenas a estética da montagem",
+            "Diminuir o comprimento total de cabo utilizado",
+            "Reduzir o acoplamento de ruído e interferência sobre os sinais de comando e evitar contato acidental entre circuitos de tensões diferentes",
+            "Permitir o uso de condutores de menor seção na potência"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Cabos de potência com correntes elevadas e chaveamento induzem tensões nos condutores de comando que passam ao lado, provocando acionamentos espúrios — problema que se agrava com inversores. A separação em canaletas distintas, ou o uso de cabo blindado, é boa prática consolidada e também barreira contra falhas de isolação entre tensões diferentes."
+        },
+        {
+          "id": "CMD-M4-Q4",
+          "enunciado": "Em um circuito de comando, a botoeira de emergência tipo soco com trava deve:",
+          "alternativas": [
+            "Ser um contato NA, ligado em paralelo com a botoeira de partida",
+            "Acionar apenas uma sinaleira de advertência, sem interromper o circuito",
+            "Ser instalada dentro do painel, protegida contra acionamento acidental",
+            "Ser um contato NF de abertura positiva, ligado em série no comando, permanecendo travada até o rearme manual deliberado"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "A parada de emergência precisa ser intrinsecamente segura: contato NF de abertura positiva em série garante que o rompimento do cabo ou a falha do contato também pare a máquina. A trava impede o religamento automático e o rearme só ocorre por ação deliberada, após a causa ser removida. Deve ficar em local visível e de fácil alcance."
+        },
+        {
+          "id": "CMD-M4-Q5",
+          "enunciado": "A identificação de bornes, cabos e dispositivos em um painel de comando, conforme o diagrama, é importante porque:",
+          "alternativas": [
+            "Permite localizar rapidamente o ponto de falha na manutenção e garante que a intervenção futura siga o projeto, reduzindo tempo de parada e risco de erro",
+            "É exigência apenas estética das normas de qualidade",
+            "Substitui a necessidade de diagramas de comando e força",
+            "Só é necessária em painéis de alta tensão"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Painel sem identificação obriga o mantenedor a rastrear cabo por cabo com a máquina parada. A referência cruzada entre a etiqueta física e o diagrama é o que permite diagnóstico rápido e seguro — e é o que diferencia um painel profissional de uma montagem improvisada."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 10 questões deste banco de 20, cobrindo os 4 módulos. Nota mínima para aprovação: 7/10 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 10,
+    "nota_minima": 7,
+    "banco": [
+      {
+        "id": "CMD-PF-01",
+        "modulo": 1,
+        "enunciado": "A rotação síncrona de um motor de indução de 2 polos alimentado em 60 Hz é:",
+        "alternativas": [
+          "3.600 rpm",
+          "1.800 rpm",
+          "900 rpm",
+          "7.200 rpm"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "ns = 120 × f / p = 120 × 60 / 2 = 3.600 rpm. Quanto menor o número de polos, maior a rotação: 2 polos → 3.600 rpm, 4 polos → 1.800 rpm, 6 polos → 1.200 rpm, sempre em 60 Hz e sempre acima da rotação real do motor."
+      },
+      {
+        "id": "CMD-PF-02",
+        "modulo": 1,
+        "enunciado": "Um motor de indução trifásico que perde uma das fases durante a operação tende a:",
+        "alternativas": [
+          "Parar imediatamente sem qualquer consequência",
+          "Continuar girando com conjugado reduzido, elevando fortemente a corrente nas fases remanescentes e aquecendo até queimar",
+          "Aumentar sua rotação acima do valor síncrono",
+          "Inverter automaticamente o sentido de giro"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Com carga acoplada, o motor segue girando de forma desequilibrada e as duas fases restantes assumem a corrente da terceira, com sobreaquecimento rápido. É exatamente essa condição que o relé de sobrecarga com proteção de falta de fase (ou relé de sequência de fase) deve detectar."
+      },
+      {
+        "id": "CMD-PF-03",
+        "modulo": 1,
+        "enunciado": "O grau de proteção IP55 indicado na carcaça de um motor significa:",
+        "alternativas": [
+          "Sem proteção contra corpos sólidos, apenas contra respingos",
+          "Totalmente estanque, podendo ser submerso permanentemente",
+          "Protegido contra poeira (proteção parcial) e contra jatos de água em qualquer direção",
+          "Protegido apenas contra contato acidental com os dedos"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "No código IP, o primeiro dígito trata de sólidos e o segundo, de água. O 5 inicial indica proteção contra poeira em quantidade que não prejudique o funcionamento; o segundo 5 indica proteção contra jatos d'água. Submersão exigiria IPX7 ou superior."
+      },
+      {
+        "id": "CMD-PF-04",
+        "modulo": 1,
+        "enunciado": "A classe de isolamento B, F ou H de um motor está relacionada a:",
+        "alternativas": [
+          "Tensão nominal de operação do motor",
+          "Tipo de rolamento utilizado",
+          "Nível de ruído acústico emitido",
+          "Temperatura máxima que o material isolante do enrolamento suporta em regime contínuo"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "As classes definem o limite térmico do isolamento: B até 130 °C, F até 155 °C e H até 180 °C, considerando temperatura ambiente de referência e elevação admissível. Operar acima da classe reduz drasticamente a vida útil — cada 10 °C excedentes tendem a reduzir a vida do isolamento pela metade."
+      },
+      {
+        "id": "CMD-PF-05",
+        "modulo": 1,
+        "enunciado": "Um motor monofásico de indução com capacitor de partida utiliza esse capacitor para:",
+        "alternativas": [
+          "Criar defasagem entre as correntes dos enrolamentos principal e auxiliar, produzindo campo girante e conjugado de partida",
+          "Corrigir o fator de potência da instalação",
+          "Reduzir a tensão aplicada ao motor durante a partida",
+          "Armazenar energia para operar durante quedas de energia"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O motor monofásico não gera campo girante por si só. O capacitor em série com o enrolamento auxiliar defasa a corrente e cria o campo necessário à partida. Atingida certa rotação, uma chave centrífuga (ou relé) desliga o enrolamento auxiliar — se ela falhar, o enrolamento queima."
+      },
+      {
+        "modulo": 2,
+        "enunciado": "Os contatos principais de um contator, destinados ao circuito de potência, são identificados pela numeração:",
+        "alternativas": [
+          "13-14 e 21-22",
+          "1-2, 3-4 e 5-6 (ou L1/T1, L2/T2, L3/T3)",
+          "A1 e A2",
+          "95-96 e 97-98"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A1 e A2 são os terminais da bobina; 13-14 e 21-22 são contatos auxiliares NA e NF; 95-96 e 97-98 pertencem ao relé de sobrecarga. Os principais usam numeração simples de um dígito ou a notação L/T.",
+        "id": "CMD-PF-06"
+      },
+      {
+        "modulo": 2,
+        "enunciado": "No relé de sobrecarga, os contatos 95-96 e 97-98 correspondem, respectivamente, a:",
+        "alternativas": [
+          "Contatos principais de potência",
+          "Dois contatos NA de sinalização",
+          "Contato NF, usado para interromper o comando, e contato NA, usado para sinalizar a falha",
+          "Terminais da bobina de acionamento"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O 95-96 é NF e entra em série no circuito de comando: ao atuar, abre e desliga o contator. O 97-98 é NA e fecha na atuação, acionando sinaleira ou alarme de falha. Ligar o comando no contato errado faz a proteção não desligar o motor.",
+        "id": "CMD-PF-07"
+      },
+      {
+        "modulo": 2,
+        "enunciado": "O transformador de comando instalado em um painel serve para:",
+        "alternativas": [
+          "Elevar a tensão do motor durante a partida",
+          "Converter corrente alternada em contínua para as bobinas",
+          "Corrigir o fator de potência do painel",
+          "Fornecer ao circuito de comando uma tensão reduzida e isolada da rede de força, aumentando a segurança do operador"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Comando em 24 V ou 110 V reduz o risco em botoeiras e sinaleiros acessíveis ao operador e limita a energia disponível em caso de falha na fiação de comando. A isolação galvânica ainda impede que uma falta no comando se propague para a força.",
+        "id": "CMD-PF-08"
+      },
+      {
+        "modulo": 2,
+        "enunciado": "Um sinaleiro luminoso verde em um painel de comando indica convencionalmente:",
+        "alternativas": [
+          "Máquina em condição normal de funcionamento",
+          "Condição de emergência ativa",
+          "Falha do relé de sobrecarga",
+          "Painel desenergizado"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "Verde é condição normal ou máquina em operação; vermelho, emergência ou parada; amarelo, advertência ou anormalidade (típico da sinalização de atuação do relé térmico); azul, ação obrigatória; branco, informação neutra. A padronização permite ao operador reagir corretamente diante de qualquer painel.",
+        "id": "CMD-PF-09"
+      },
+      {
+        "modulo": 2,
+        "enunciado": "A escolha de um contator para acionar um motor deve considerar, além da corrente:",
+        "alternativas": [
+          "Apenas a cor do invólucro e o fabricante",
+          "A categoria de emprego (AC-1, AC-3, AC-4) e a frequência de manobras previstas",
+          "Somente a tensão da bobina",
+          "Exclusivamente o espaço disponível no trilho DIN"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Um contator dimensionado como AC-3 para um serviço que na prática é AC-4 (partidas por impulsos, reversões, frenagens) tem os contatos destruídos em pouco tempo pelo arco elétrico. A categoria e o número de manobras por hora definem o modelo tanto quanto a corrente.",
+        "id": "CMD-PF-10"
+      },
+      {
+        "id": "CMD-PF-11",
+        "modulo": 3,
+        "enunciado": "No diagrama de comando de uma partida direta, a botoeira de desliga (S0) deve ser:",
+        "alternativas": [
+          "Contato NA em paralelo com a bobina",
+          "Contato NA em série com a botoeira de liga",
+          "Contato NF em série no circuito de comando, de modo que a falha do cabo também desligue o motor",
+          "Contato NF em paralelo com o selo"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A botoeira de parada é sempre NF em série. Além de interromper o selo ao ser pressionada, essa configuração é intrinsecamente segura: o rompimento do cabo ou a soltura de um borne também abre o circuito e para o motor — princípio da falha segura, obrigatório em parada de emergência."
+      },
+      {
+        "id": "CMD-PF-12",
+        "modulo": 3,
+        "enunciado": "Em uma partida reversora, o intertravamento entre os contatores de sentido direto e reverso é indispensável para:",
+        "alternativas": [
+          "Reduzir a corrente de partida do motor",
+          "Melhorar o fator de potência da instalação",
+          "Permitir a partida do motor com tensão reduzida",
+          "Impedir o fechamento simultâneo dos dois contatores, que provocaria curto-circuito entre fases"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Como o contator reverso permuta duas fases, o fechamento simultâneo dos dois curto-circuitaria a rede. O intertravamento é feito em duas camadas: elétrico (contato NF de cada contator em série com a bobina do outro) e mecânico (trava física entre os contatores)."
+      },
+      {
+        "id": "CMD-PF-13",
+        "modulo": 3,
+        "enunciado": "A categoria de emprego AC-3 de um contator refere-se a:",
+        "alternativas": [
+          "Motores de indução com rotor em gaiola, com desligamento em regime (partida e parada normais)",
+          "Manobra de transformadores a vazio",
+          "Circuitos de corrente contínua exclusivamente",
+          "Cargas puramente resistivas, como fornos e aquecedores"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "AC-1 é para cargas resistivas ou pouco indutivas; AC-3 é a categoria típica de motores de gaiola com desligamento em regime; AC-4 cobre manobras severas, com partidas por impulsos, reversões e frenagens, exigindo contator bem maior para a mesma potência de motor."
+      },
+      {
+        "id": "CMD-PF-14",
+        "modulo": 3,
+        "enunciado": "O ajuste da corrente do relé de sobrecarga que protege um motor deve ser feito com base:",
+        "alternativas": [
+          "Na corrente nominal do disjuntor geral do quadro",
+          "Na corrente nominal do motor indicada na placa, considerando o fator de serviço",
+          "Sempre no valor máximo da faixa de ajuste, para evitar desarmes",
+          "Na corrente de partida do motor"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O relé protege o MOTOR, portanto o ajuste parte da corrente nominal de placa (corrigida pelo fator de serviço e pela ligação usada). Ajustar no máximo da faixa para 'não desarmar' anula a proteção e é uma das causas mais frequentes de queima de motores."
+      },
+      {
+        "id": "CMD-PF-15",
+        "modulo": 3,
+        "enunciado": "Em um painel de comando, as cores normalizadas de botoeiras e sinaleiros para parada/emergência e para condição normal de funcionamento são, respectivamente:",
+        "alternativas": [
+          "Verde para parada e vermelho para funcionamento",
+          "Amarelo para parada e azul para funcionamento",
+          "Vermelho para parada/emergência e verde para condição normal de funcionamento",
+          "Branco para ambas as funções"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Vermelho é reservado a parada e emergência (no botão de emergência, tipo soco, com fundo amarelo); verde indica condição normal/máquina em operação; amarelo sinaliza anormalidade ou advertência; azul, ação obrigatória; branco, informação sem significado específico. Essa padronização é o que permite a qualquer operador reagir corretamente diante de um painel desconhecido."
+      },
+      {
+        "modulo": 4,
+        "enunciado": "Em uma partida com autotransformador na derivação de 80% da tensão nominal, o conjugado de partida fica em torno de:",
+        "alternativas": [
+          "80% do conjugado de partida direta",
+          "20% do conjugado de partida direta",
+          "100% do conjugado de partida direta",
+          "64% do conjugado de partida direta"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Conjugado varia com o quadrado da tensão: 0,8² = 0,64. Esse é o cálculo que define se a carga consegue partir — abaixo do conjugado resistente, o motor não acelera e o relé de sobrecarga acaba atuando.",
+        "id": "CMD-PF-16"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "Ao acionar um motor por inversor de frequência, o comando de partida e parada deve ser feito:",
+        "alternativas": [
+          "Pelas entradas digitais parametrizadas do inversor ou por sua interface de comunicação",
+          "Abrindo e fechando um contator entre o inversor e o motor a cada manobra",
+          "Desligando a alimentação de entrada do inversor a cada parada",
+          "Retirando o cabo de comando do painel"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "Chavear a saída sob carga danifica os IGBTs, e ligar e desligar a entrada castiga o circuito de pré-carga do barramento CC. O comando correto é pelas entradas digitais (partida, reversão, multivelocidade) ou por rede. Contator de saída, se existir, só manobra com o inversor desabilitado.",
+        "id": "CMD-PF-17"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "A função de frenagem por injeção de corrente contínua em um motor de indução consiste em:",
+        "alternativas": [
+          "Inverter duas fases bruscamente, invertendo o sentido de giro",
+          "Aplicar corrente contínua ao estator após o desligamento, criando campo fixo que freia o rotor",
+          "Aumentar a frequência acima da nominal",
+          "Interromper apenas uma das fases de alimentação"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O campo estacionário produzido pela corrente contínua induz correntes no rotor em movimento, gerando conjugado de frenagem. É mais controlado que a frenagem por contracorrente (inversão de fases), que provoca picos de corrente e esforço mecânico severo. O tempo e a intensidade da injeção são parametrizados.",
+        "id": "CMD-PF-18"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "Em um painel de comando, o grau de proteção IP54 do invólucro indica que ele é:",
+        "alternativas": [
+          "Totalmente estanque e submersível",
+          "Sem qualquer proteção contra corpos sólidos",
+          "Protegido contra poeira em quantidade que não prejudique o funcionamento e contra respingos de água de qualquer direção",
+          "Protegido apenas contra contato com os dedos"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "No código IP o primeiro dígito trata de sólidos e o segundo, de água. O 5 indica proteção parcial contra poeira e o 4, contra respingos. Ambientes com lavagem por jato exigem IP65 ou superior — especificar abaixo do necessário leva a falhas por umidade e contaminação nos contatos.",
+        "id": "CMD-PF-19"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "O dimensionamento da fiação de comando de um painel, em relação à de potência, caracteriza-se por:",
+        "alternativas": [
+          "Seções maiores, pois o comando conduz a corrente do motor",
+          "Ausência de condutor de proteção no painel",
+          "Seção idêntica à da potência, por exigência normativa",
+          "Seções menores, pois circulam apenas as correntes das bobinas e sinaleiros, tipicamente na faixa de miliampères a poucos ampères"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "A fiação de comando costuma usar seções pequenas, definidas mais por resistência mecânica e queda de tensão que por corrente. A de potência segue a corrente do motor e os fatores de correção. Confundir as duas na montagem gera desde superdimensionamento inútil até cabo de comando incapaz de suportar um curto.",
+        "id": "CMD-PF-20"
+      }
+    ]
+  }
+}

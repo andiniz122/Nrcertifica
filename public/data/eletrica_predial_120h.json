@@ -1,0 +1,1073 @@
+{
+  "curso": "Instalações Elétricas Prediais",
+  "sigla": "ELÉTRICA",
+  "carga_horaria": "120h",
+  "validade_anos": 0,
+  "aprovacao_minima": 0.7,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Fundamentos de Eletricidade — Corrente Contínua e Alternada (20h)",
+      "descricao": "Grandezas elétricas, Lei de Ohm, associação de resistores, potência e energia, circuitos em corrente contínua e alternada, valor eficaz, sistema monofásico e trifásico, cálculo de consumo e uso do multímetro e do alicate amperímetro.",
+      "exercicios": [
+        {
+          "id": "PRE-M1-Q1",
+          "enunciado": "Um chuveiro elétrico de 5.500 W é ligado em 220 V. A corrente nominal e a resistência do resistor na posição inverno são, respectivamente:",
+          "alternativas": [
+            "12,5 A e 17,6 Ω",
+            "25 A e 8,8 Ω",
+            "25 A e 17,6 Ω",
+            "12,5 A e 8,8 Ω"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Da potência em corrente contínua/resistiva, I = P/V = 5.500/220 = 25 A. Pela Lei de Ohm, R = V/I = 220/25 = 8,8 Ω. Também pode ser obtido por R = V²/P = 48.400/5.500 = 8,8 Ω. Esse cálculo é o que define a seção do condutor e o disjuntor do circuito."
+        },
+        {
+          "id": "PRE-M1-Q2",
+          "enunciado": "Três resistores de 30 Ω são associados em paralelo. A resistência equivalente do conjunto é:",
+          "alternativas": [
+            "90 Ω",
+            "30 Ω",
+            "10 Ω",
+            "3,33 Ω"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Para resistores iguais em paralelo, Req = R/n = 30/3 = 10 Ω. Em paralelo a resistência equivalente é sempre MENOR que o menor resistor do conjunto, porque se abrem novos caminhos para a corrente."
+        },
+        {
+          "id": "PRE-M1-Q3",
+          "enunciado": "Em um sistema trifásico equilibrado ligado em estrela (Y), a relação entre a tensão de linha e a tensão de fase é:",
+          "alternativas": [
+            "V_linha = V_fase (são iguais)",
+            "V_linha = 3 × V_fase, e a corrente de linha é o triplo da de fase",
+            "V_linha = V_fase / √3, e a corrente de linha é √3 vezes a de fase",
+            "V_linha = √3 × V_fase, e a corrente de linha é igual à corrente de fase"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Na ligação estrela, V_linha = √3 × V_fase (por isso 380 V entre fases resulta em 220 V entre fase e neutro) e a corrente de linha é a mesma da fase. Na ligação triângulo ocorre o inverso: V_linha = V_fase e I_linha = √3 × I_fase."
+        },
+        {
+          "id": "PRE-M1-Q4",
+          "enunciado": "Uma residência consome 250 kWh no mês. Com a tarifa a R$ 0,85 por kWh, o valor da energia consumida é de:",
+          "alternativas": [
+            "R$ 212,50",
+            "R$ 21,25",
+            "R$ 294,00",
+            "R$ 2.125,00"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "250 kWh × R$ 0,85 = R$ 212,50, referente apenas à energia consumida — a fatura ainda soma tributos, bandeira tarifária e custo de disponibilidade. Saber converter potência e tempo em kWh é o que permite explicar ao cliente de onde vem o consumo."
+        },
+        {
+          "id": "PRE-M1-Q5",
+          "enunciado": "Para medir a corrente de um motor em funcionamento sem interromper o circuito, o instrumento adequado e a forma correta de uso são:",
+          "alternativas": [
+            "Alicate amperímetro, abraçando os três condutores do circuito de uma só vez",
+            "Alicate amperímetro, abraçando apenas um condutor de fase por vez",
+            "Multímetro na escala de corrente, ligado em paralelo com o motor",
+            "Multímetro na escala de tensão, com as pontas nos terminais do motor"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O alicate amperímetro mede pelo campo magnético gerado pelo condutor, sem abrir o circuito. Deve envolver UM condutor por vez: abraçando dois ou três, os campos se cancelam e a leitura tende a zero em sistema equilibrado. Multímetro na escala de corrente exige abrir o circuito e ligar em série — e ligá-lo em paralelo provoca curto-circuito."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Eletrônica Básica Aplicada às Instalações (12h)",
+      "descricao": "Semicondutores, diodos e retificação, fontes lineares e chaveadas, transistor como chave, capacitores, indutores, divisores de tensão e leitura de esquemas — a base para entender drivers de LED, fontes de portão e módulos de automação.",
+      "exercicios": [
+        {
+          "id": "PRE-M2-Q1",
+          "enunciado": "Em uma fonte com retificador de onda completa em ponte alimentada por um transformador de 12 V eficazes, a tensão de pico aproximada na saída do retificador, já descontando as quedas dos diodos de silício, é de:",
+          "alternativas": [
+            "cerca de 24 V",
+            "12 V",
+            "cerca de 15,6 V",
+            "cerca de 8,5 V"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Vpico = 12 × √2 ≈ 16,97 V. Na ponte retificadora, dois diodos conduzem por semiciclo, descontando cerca de 0,7 V cada: 16,97 − 1,4 ≈ 15,6 V. É por isso que uma fonte 'de 12 V' sem regulação entrega perto de 15 V a vazio — detalhe crítico ao alimentar módulos de 12 V."
+        },
+        {
+          "id": "PRE-M2-Q2",
+          "enunciado": "A função do capacitor eletrolítico ligado após a ponte retificadora em uma fonte linear é:",
+          "alternativas": [
+            "Limitar a corrente de partida do circuito",
+            "Elevar a tensão de saída ao dobro do valor de pico",
+            "Transformar a corrente contínua novamente em alternada",
+            "Filtrar a tensão pulsante, armazenando carga nos picos e fornecendo-a nos vales, reduzindo o ripple"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O capacitor de filtro carrega no pico de cada semiciclo e descarrega lentamente na carga, achatando a ondulação (ripple). Quanto maior a capacitância e menor a corrente drenada, menor o ripple. Atenção à polaridade: eletrolítico invertido explode."
+        },
+        {
+          "id": "PRE-M2-Q3",
+          "enunciado": "Um transistor bipolar NPN usado como chave para acionar um relé a partir de uma saída digital deve operar:",
+          "alternativas": [
+            "Entre corte e saturação, garantindo corrente de base suficiente para saturar (tipicamente Ib ≥ Ic/10)",
+            "Na região de ruptura, aproveitando o efeito avalanche",
+            "Na região ativa, para dissipar menos potência",
+            "Com a base ligada diretamente ao emissor"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Como chave, o transistor deve estar totalmente cortado (desligado) ou totalmente saturado (ligado, com Vce ≈ 0,2 V). Na região ativa ele dissiparia muito calor. Garante-se a saturação sobre-excitando a base — daí a regra prática Ib ≥ Ic/10 — e usa-se sempre um diodo de roda livre em antiparalelo com a bobina do relé."
+        },
+        {
+          "id": "PRE-M2-Q4",
+          "enunciado": "Um divisor de tensão com R1 = 10 kΩ (ligado ao +5 V) e R2 = 10 kΩ (ligado ao GND) tem sua saída no ponto entre os dois resistores. A tensão nesse ponto, sem carga, é:",
+          "alternativas": [
+            "5 V",
+            "2,5 V",
+            "1,25 V",
+            "0 V"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Vsaída = Vin × R2/(R1+R2) = 5 × 10k/20k = 2,5 V. O divisor só mantém esse valor se a carga tiver impedância muito maior que R2 — por isso, ao ligar um divisor a uma entrada analógica, escolhem-se resistores na faixa de kΩ."
+        },
+        {
+          "id": "PRE-M2-Q5",
+          "enunciado": "Ao substituir uma fonte linear por uma fonte chaveada de mesma tensão e corrente em um painel, a principal vantagem e o principal cuidado adicional são, respectivamente:",
+          "alternativas": [
+            "Saída sempre isolada; porém não suporta cargas indutivas",
+            "Menor custo de aquisição; porém não aceita variação da tensão de entrada",
+            "Maior rendimento e menor peso; porém exige atenção à emissão de interferência eletromagnética e ao aterramento",
+            "Ausência total de ruído; porém rendimento inferior ao da fonte linear"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A fonte chaveada opera em alta frequência, o que reduz drasticamente o volume do transformador e eleva o rendimento (tipicamente acima de 85%). Em contrapartida, o chaveamento gera ruído conduzido e irradiado — daí a importância de filtros de entrada, cabos blindados e aterramento correto do painel."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Entrada de Energia, Medição e Padrão da Concessionária (10h)",
+      "descricao": "Ramal de ligação e de entrada, ponto de entrega, tipos de fornecimento (monofásico, bifásico e trifásico), caixa de medição, disjuntor geral, carga instalada e cálculo de demanda conforme a norma da distribuidora.",
+      "exercicios": [
+        {
+          "id": "PRE-M3-Q1",
+          "enunciado": "Em uma residência com carga instalada de 12 kW, a concessionária costuma definir o tipo de fornecimento com base:",
+          "alternativas": [
+            "No número de cômodos da residência",
+            "Na quantidade de moradores declarada pelo cliente",
+            "Exclusivamente na área construída em metros quadrados",
+            "Na carga instalada e na demanda calculada, que determinam se o padrão será monofásico, bifásico ou trifásico"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "A norma de fornecimento de cada distribuidora fixa faixas de carga instalada e demanda para cada tipo de ligação. Ultrapassada a faixa monofásica, a unidade passa a bifásica e, depois, a trifásica — o que muda o padrão de entrada, o ramal, o medidor e o disjuntor geral."
+        },
+        {
+          "id": "PRE-M3-Q2",
+          "enunciado": "O ramal de entrada de uma unidade consumidora é definido como:",
+          "alternativas": [
+            "O trecho de condutores entre o ponto de entrega da concessionária e a proteção geral da unidade consumidora",
+            "O trecho de condutores entre o quadro de distribuição e as tomadas",
+            "O cabo que interliga o poste da rua ao transformador",
+            "A fiação interna dos circuitos de iluminação"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O ramal de ligação vai da rede da distribuidora até o ponto de entrega; do ponto de entrega até a proteção geral (medição e disjuntor) está o ramal de entrada, cuja execução e manutenção são de responsabilidade do consumidor."
+        },
+        {
+          "id": "PRE-M3-Q3",
+          "enunciado": "O disjuntor geral instalado na caixa de medição tem como função principal:",
+          "alternativas": [
+            "Corrigir o fator de potência da instalação",
+            "Proteger o ramal de entrada e limitar a corrente à faixa contratada, além de permitir o seccionamento geral da unidade",
+            "Medir o consumo de energia em kWh",
+            "Substituir o dispositivo diferencial residual dos circuitos internos"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O disjuntor geral é dimensionado pela distribuidora conforme o tipo de fornecimento. Ele protege os condutores do ramal de entrada, define o limite da ligação contratada e permite desenergizar toda a unidade. Não faz medição nem substitui o DR e os disjuntores dos circuitos terminais."
+        },
+        {
+          "id": "PRE-M3-Q4",
+          "enunciado": "Sobre o aterramento do padrão de entrada em uma instalação predial, é correto afirmar:",
+          "alternativas": [
+            "É dispensável quando a instalação possui DR",
+            "O neutro nunca deve ser aterrado, sob risco de choque",
+            "O neutro deve ser aterrado no padrão de entrada, e a partir do quadro de distribuição neutro e condutor de proteção seguem separados",
+            "O aterramento só é exigido em instalações industriais"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O padrão de entrada recebe o aterramento do neutro (esquema TN-C-S típico das instalações prediais brasileiras). Do quadro de distribuição em diante, neutro e PE seguem separados — condição indispensável para o DR funcionar e para evitar corrente de carga circulando pelo condutor de proteção."
+        },
+        {
+          "id": "PRE-M3-Q5",
+          "enunciado": "Ao dimensionar o padrão de entrada, a diferença entre carga instalada e demanda é que:",
+          "alternativas": [
+            "São sinônimos: ambas somam a potência de todos os equipamentos",
+            "Carga instalada considera apenas os circuitos de iluminação",
+            "Demanda é sempre maior que a carga instalada",
+            "Carga instalada é a soma das potências de todos os equipamentos; demanda é a parcela dessa carga que se espera efetivamente em uso simultâneo, obtida com fatores de demanda"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Nem todos os equipamentos funcionam ao mesmo tempo. Por isso as normas de fornecimento aplicam fatores de demanda por tipo de carga (iluminação e tomadas, chuveiro, ar-condicionado, motores), resultando numa demanda menor que a carga instalada — é ela que define o padrão de entrada e o ramal."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Projeto Elétrico Predial e NBR 5410 (20h)",
+      "descricao": "Previsão de cargas, pontos mínimos de tomada e iluminação, divisão e independência de circuitos, circuitos exclusivos, simbologia, diagrama unifilar, quadro de distribuição, eletrodutos e taxa de ocupação.",
+      "exercicios": [
+        {
+          "id": "PRE-M4-Q1",
+          "enunciado": "Segundo a NBR 5410, em um dormitório com 12 m² e perímetro de 14 m, a quantidade mínima de pontos de tomada de uso geral é:",
+          "alternativas": [
+            "3 pontos",
+            "1 ponto",
+            "5 pontos",
+            "7 pontos"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Para dormitórios e salas, o critério é de no mínimo um ponto de tomada a cada 5 m (ou fração) de perímetro. Com 14 m de perímetro: 14/5 = 2,8, arredondando para 3 pontos. Cozinhas, copas e áreas de serviço seguem critério mais exigente, de um ponto a cada 3,5 m."
+        },
+        {
+          "id": "PRE-M4-Q2",
+          "enunciado": "A NBR 5410 determina que os circuitos de iluminação e os de tomadas sejam:",
+          "alternativas": [
+            "Reunidos em um único circuito por pavimento, para economizar condutores",
+            "Independentes entre si, de modo que a falha em um não deixe o ambiente sem iluminação",
+            "Ligados obrigatoriamente ao mesmo disjuntor, desde que bipolar",
+            "Executados sempre com a mesma seção de condutor"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A separação entre iluminação e tomadas é requisito normativo de segurança e de manutenção: um curto em uma tomada não pode apagar as luzes do ambiente, o que criaria risco durante a intervenção. Cargas de corrente elevada, como chuveiro e ar-condicionado, exigem ainda circuitos exclusivos."
+        },
+        {
+          "id": "PRE-M4-Q3",
+          "enunciado": "Um chuveiro elétrico de 7.500 W em 220 V deve ser ligado:",
+          "alternativas": [
+            "Em circuito compartilhado com as tomadas do banheiro, para economizar cabo",
+            "Diretamente no disjuntor geral do padrão de entrada",
+            "Em circuito exclusivo, com condutores e disjuntor dimensionados para a sua corrente e seccionamento próprio",
+            "Em circuito de iluminação, desde que o disjuntor seja de 40 A"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Cargas acima de 10 A exigem circuito exclusivo pela NBR 5410. O chuveiro de 7.500 W em 220 V puxa cerca de 34 A — corrente que, somada a outras cargas no mesmo circuito, sobreaqueceria o condutor. O circuito exclusivo ainda permite desligar o chuveiro sem interromper o restante da instalação."
+        },
+        {
+          "id": "PRE-M4-Q4",
+          "enunciado": "Na representação de um projeto elétrico predial, o diagrama unifilar tem como característica:",
+          "alternativas": [
+            "Representar cada condutor do circuito por uma linha própria, com todos os detalhes construtivos",
+            "Ser usado exclusivamente em instalações industriais de alta tensão",
+            "Mostrar apenas o posicionamento físico das tomadas na planta baixa",
+            "Representar o circuito de forma simplificada por uma única linha, com traços indicando a quantidade de condutores"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O unifilar condensa o circuito em uma linha, com traços transversais indicando quantos condutores passam no eletroduto (fase, neutro, retorno, proteção). É a representação padrão da planta elétrica predial, pois mantém o desenho legível. O multifilar detalha condutor por condutor e é usado em trechos específicos."
+        },
+        {
+          "id": "PRE-M4-Q5",
+          "enunciado": "Sobre a taxa de ocupação dos eletrodutos, a NBR 5410 estabelece que a soma das áreas dos condutores não deve ultrapassar:",
+          "alternativas": [
+            "53% para um condutor, 31% para dois e 40% para três ou mais",
+            "20% da área útil do eletroduto, em qualquer situação",
+            "100% da área útil, desde que os cabos sejam de cobre",
+            "75% da área útil, independentemente da quantidade de cabos"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Os limites existem para permitir o puxamento dos cabos sem danificar a isolação e para não prejudicar a dissipação de calor. Eletroduto lotado significa condutor aquecido, isolação degradada e enfiação impossível numa futura manutenção."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Dimensionamento de Condutores e Dispositivos de Proteção (18h)",
+      "descricao": "Capacidade de condução e fatores de correção, queda de tensão, seções mínimas, coordenação entre condutor e proteção, disjuntores e curvas de atuação, dispositivo diferencial residual e seletividade.",
+      "exercicios": [
+        {
+          "id": "PRE-M5-Q1",
+          "enunciado": "Segundo a NBR 5410, a seção mínima de condutor de cobre admitida para circuitos de força (tomadas de uso geral) em instalações fixas é de:",
+          "alternativas": [
+            "1,5 mm²",
+            "2,5 mm²",
+            "1,0 mm²",
+            "4,0 mm²"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A norma fixa 1,5 mm² como seção mínima para circuitos de iluminação e 2,5 mm² para circuitos de força/tomadas. Esses são pisos normativos: o valor final ainda precisa ser verificado pela capacidade de condução de corrente, pela queda de tensão admissível e pela proteção contra curto-circuito."
+        },
+        {
+          "id": "PRE-M5-Q2",
+          "enunciado": "O dimensionamento de um condutor deve considerar, no mínimo, três critérios. São eles:",
+          "alternativas": [
+            "Cor da isolação, comprimento do eletroduto e marca do fabricante",
+            "Apenas a corrente nominal da carga",
+            "Capacidade de condução de corrente, queda de tensão admissível e proteção contra curtos-circuitos (solicitação térmica)",
+            "Tensão nominal, temperatura ambiente e cor do eletroduto"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Os três critérios se aplicam simultaneamente e prevalece o que exigir maior seção. A capacidade de condução ainda sofre fatores de correção por temperatura ambiente e por agrupamento de circuitos — ignorar o agrupamento é uma das causas mais comuns de sobreaquecimento em eletrodutos."
+        },
+        {
+          "id": "PRE-M5-Q3",
+          "enunciado": "Um motor cuja corrente de partida direta atinge sete vezes a nominal está protegido por disjuntor. A curva mais adequada e a razão são:",
+          "alternativas": [
+            "Curva B, porque atua entre 3 e 5 vezes In, protegendo mais rápido",
+            "Curva B, porque motores exigem sempre a atuação mais sensível possível",
+            "Qualquer curva, pois a curva não influencia a partida de motores",
+            "Curva C ou D, porque a atuação magnética ocorre em múltiplos mais altos da corrente nominal, suportando a corrente de partida sem desarme indevido"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "A curva B atua magneticamente entre 3 e 5 In (cargas resistivas), a C entre 5 e 10 In (cargas indutivas moderadas) e a D entre 10 e 20 In (transformadores e motores de partida pesada). Escolher curva B para um motor com pico de 7 In provoca desarme a cada partida — e a solução NUNCA é aumentar a corrente nominal do disjuntor, o que desprotegeria o condutor."
+        },
+        {
+          "id": "PRE-M5-Q4",
+          "enunciado": "O dispositivo diferencial residual (DR) de 30 mA protege principalmente contra:",
+          "alternativas": [
+            "Choque elétrico por contato direto e indireto, detectando a corrente de fuga à terra",
+            "Curto-circuito entre fase e neutro",
+            "Sobretensões de origem atmosférica",
+            "Sobrecarga nos condutores"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O DR compara a soma das correntes que entram e saem do circuito; qualquer diferença indica fuga para a terra — por exemplo, através do corpo humano — e provoca o desligamento. Sobrecarga e curto-circuito são função do disjuntor; surtos atmosféricos são função do DPS. São proteções complementares, não substitutas."
+        },
+        {
+          "id": "PRE-M5-Q5",
+          "enunciado": "Um circuito de tomadas com condutor de 2,5 mm² protegido por disjuntor de 20 A, em que o cabo suporta 21 A na condição de instalação adotada, está:",
+          "alternativas": [
+            "Incorreto, porque o disjuntor deveria ser sempre maior que a capacidade do cabo",
+            "Corretamente coordenado, pois a corrente do disjuntor é menor que a capacidade do condutor",
+            "Incorreto, porque circuitos de tomada não admitem disjuntor acima de 10 A",
+            "Indefinido, pois a coordenação não depende da capacidade do condutor"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A regra de coordenação é corrente de projeto ≤ corrente nominal da proteção ≤ capacidade de condução do condutor. Com 20 A de disjuntor e 21 A de capacidade, o cabo está protegido. O erro clássico é o inverso: elevar o disjuntor acima da capacidade do condutor para parar os desarmes, deixando o cabo desprotegido."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "titulo": "Aterramento, Equipotencialização e SPDA (12h)",
+      "descricao": "Esquemas de aterramento, barramento de equipotencialização principal, condutor de proteção, eletrodos e resistência de aterramento, ligação equipotencial suplementar, DPS e sistema de proteção contra descargas atmosféricas.",
+      "exercicios": [
+        {
+          "id": "PRE-M6-Q1",
+          "enunciado": "No esquema de aterramento TN-S, a característica essencial é:",
+          "alternativas": [
+            "Não existe condutor de proteção, apenas o neutro",
+            "O condutor neutro e o condutor de proteção são o mesmo cabo em toda a instalação",
+            "O neutro e o condutor de proteção (PE) são separados em toda a instalação, a partir da origem",
+            "As massas são aterradas em eletrodo próprio, independente do aterramento da fonte"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "No TN-S, neutro e PE seguem separados desde a origem. No TN-C eles são combinados no condutor PEN, e no TN-C-S há um trecho combinado e outro separado. A separação do TN-S é o que permite o uso de DR e evita corrente de carga circulando pelo condutor de proteção. No TT, as massas têm eletrodo de aterramento independente do da fonte."
+        },
+        {
+          "id": "PRE-M6-Q2",
+          "enunciado": "O barramento de equipotencialização principal (BEP) de uma edificação tem a função de:",
+          "alternativas": [
+            "Substituir o condutor neutro dos circuitos terminais",
+            "Servir apenas como ponto de fixação mecânica dos cabos",
+            "Medir a resistência de aterramento de forma contínua",
+            "Interligar em um mesmo potencial o eletrodo de aterramento, as tubulações metálicas, as estruturas e os condutores de proteção, eliminando diferenças de potencial perigosas"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O choque elétrico decorre da diferença de potencial entre dois pontos tocados simultaneamente. Ao trazer todas as massas e elementos condutivos ao mesmo potencial, o BEP elimina essa diferença. É exigência da NBR 5410 e condição para o funcionamento correto das proteções."
+        },
+        {
+          "id": "PRE-M6-Q3",
+          "enunciado": "Sobre a resistência de aterramento em instalações prediais, é correto afirmar:",
+          "alternativas": [
+            "Busca-se o menor valor possível, e a equipotencialização é tão importante quanto o valor medido para a segurança das pessoas",
+            "Quanto maior o valor em ohms, melhor a proteção",
+            "O valor não influencia em nada, bastando existir uma haste cravada",
+            "Um valor acima de 100 Ω é considerado ideal para residências"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Resistência baixa favorece o escoamento das correntes de falta e de surto. Mas o fator decisivo para a segurança das pessoas é a equipotencialização: mesmo com resistência não ideal, se todas as massas estão no mesmo potencial, não há tensão de contato perigosa."
+        },
+        {
+          "id": "PRE-M6-Q4",
+          "enunciado": "Um SPDA (Sistema de Proteção contra Descargas Atmosféricas) é composto essencialmente por:",
+          "alternativas": [
+            "Apenas o para-raios instalado no ponto mais alto da edificação",
+            "Subsistema de captação, subsistema de descidas e subsistema de aterramento, interligados e equipotencializados",
+            "Somente o aterramento do padrão de entrada",
+            "Um conjunto de DPS instalados no quadro de distribuição"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O SPDA capta a descarga (captores), conduz a corrente até o solo por caminhos de baixa impedância (descidas) e a dissipa (malha de aterramento). Os três subsistemas devem estar interligados e equipotencializados com a instalação elétrica. O DPS é proteção complementar interna, contra os surtos que chegam pela fiação — não substitui o SPDA."
+        },
+        {
+          "id": "PRE-M6-Q5",
+          "enunciado": "O condutor de proteção (PE) de um circuito terminal:",
+          "alternativas": [
+            "Pode ser substituído pelo condutor neutro na tomada, ligando-se um ao outro no ponto de uso",
+            "É opcional em circuitos protegidos por DR",
+            "Deve ser levado até cada ponto de tomada e até as massas dos equipamentos, sem jamais ser interligado ao neutro após o quadro",
+            "Deve ter sempre a mesma seção do condutor fase, em qualquer bitola"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Interligar PE e neutro na tomada — a chamada gambiarra do neutro aterrado — faz corrente de carga circular pelo condutor de proteção, energiza a carcaça dos equipamentos se o neutro se romper e impede o DR de atuar. O PE tem seção mínima definida em tabela, nem sempre igual à do fase."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "titulo": "Luminotécnica e Circuitos de Iluminação (14h)",
+      "descricao": "Fluxo luminoso, iluminância e eficiência luminosa, temperatura de cor e IRC, cálculo de luminárias pelo método dos lumens, circuitos simples, paralelo (three-way) e intermediário, retorno, dimmers e lâmpadas LED.",
+      "exercicios": [
+        {
+          "id": "PRE-M7-Q1",
+          "enunciado": "Na comparação entre uma lâmpada LED de 9 W e uma incandescente de 60 W que produzem fluxo luminoso semelhante, a grandeza que explica a diferença é:",
+          "alternativas": [
+            "A temperatura de cor, medida em kelvin",
+            "O fator de potência da lâmpada",
+            "O índice de reprodução de cor (IRC)",
+            "A eficiência luminosa, medida em lúmens por watt"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Eficiência luminosa é o fluxo luminoso (lm) entregue por watt consumido. A incandescente fica em torno de 12 lm/W, dissipando quase tudo em calor; o LED passa de 90 lm/W. Temperatura de cor descreve a tonalidade da luz e o IRC, a fidelidade das cores — nenhum dos dois mede consumo."
+        },
+        {
+          "id": "PRE-M7-Q2",
+          "enunciado": "Um circuito three-way (paralelo) permite acionar uma mesma lâmpada de dois pontos distintos. Ele é executado com:",
+          "alternativas": [
+            "Dois interruptores de três terminais (paralelos), interligados por dois condutores de retorno",
+            "Dois interruptores simples ligados em série",
+            "Um interruptor simples e uma tomada intermediária",
+            "Dois interruptores simples com o neutro em comum"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Cada interruptor paralelo comuta a fase entre dois caminhos de retorno. Como o circuito só fecha quando ambos selecionam o mesmo caminho, qualquer um dos dois pontos inverte o estado da lâmpada. Para três ou mais pontos, acrescenta-se um interruptor intermediário (four-way) entre os dois paralelos."
+        },
+        {
+          "id": "PRE-M7-Q3",
+          "enunciado": "Em um circuito de iluminação, o interruptor deve interromper:",
+          "alternativas": [
+            "O condutor neutro, mantendo a fase permanentemente ligada ao ponto de luz",
+            "O condutor fase, de modo que a luminária fique sem tensão quando desligada",
+            "O condutor de proteção, isolando a luminária da terra",
+            "Fase e neutro simultaneamente, sempre"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Interromper o neutro deixa a fase presente no soquete mesmo com o interruptor desligado — risco grave de choque na troca de uma lâmpada. O interruptor sempre secciona a fase, e o condutor que sai dele para a luminária é o retorno."
+        },
+        {
+          "id": "PRE-M7-Q4",
+          "enunciado": "Para calcular a quantidade de luminárias de um ambiente pelo método dos lumens, é necessário conhecer:",
+          "alternativas": [
+            "Apenas a área do ambiente em metros quadrados",
+            "Somente a potência total disponível no circuito",
+            "A iluminância exigida pela atividade (lux), a área, o fluxo luminoso de cada luminária e os fatores de utilização e de manutenção",
+            "A cor das paredes e nada mais"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O fluxo total necessário é a iluminância desejada multiplicada pela área e dividida pelos fatores de utilização (que considera refletâncias e geometria do ambiente) e de manutenção (que antecipa a perda por sujeira e envelhecimento). Dividindo pelo fluxo de cada luminária, chega-se à quantidade. As iluminâncias por tipo de atividade constam da NBR 8995-1."
+        },
+        {
+          "id": "PRE-M7-Q5",
+          "enunciado": "A instalação de um dimmer em um circuito com lâmpadas LED comuns costuma falhar porque:",
+          "alternativas": [
+            "O dimmer só funciona em corrente contínua",
+            "Dimmers exigem obrigatoriamente circuito trifásico",
+            "A potência do LED é sempre superior à do dimmer",
+            "Boa parte dos LEDs de uso residencial não é dimerizável: o driver interno não acompanha o corte de fase, causando piscadas, ruído ou não acendimento"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O dimmer convencional controla a potência recortando parte do semiciclo da senoide. A lâmpada incandescente, puramente resistiva, responde bem; o LED depende de um driver eletrônico que precisa ser projetado para isso. Só lâmpadas identificadas como dimerizáveis, com dimmer compatível, funcionam corretamente."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "titulo": "Cargas Especiais, Manutenção Predial e Eficiência Energética (14h)",
+      "descricao": "Chuveiro, ar-condicionado, bomba d'água e portão automático, diagnóstico de falhas, desarmes de disjuntor e DR, ensaio de isolamento, inspeção térmica de quadros, medição de consumo e eficiência energética.",
+      "exercicios": [
+        {
+          "id": "PRE-M8-Q1",
+          "enunciado": "Um disjuntor que desarma repetidamente sempre que o ar-condicionado é ligado, sem que haja curto-circuito, indica mais provavelmente:",
+          "alternativas": [
+            "Sobrecarga do circuito ou disjuntor com curva inadequada para a corrente de partida do compressor — o que exige verificar a carga real e a seção do condutor antes de qualquer troca",
+            "Que o disjuntor deve ser trocado por outro de corrente nominal maior, sem qualquer outra verificação",
+            "Falha do medidor da concessionária",
+            "Que a instalação está sem aterramento"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Aumentar a corrente nominal do disjuntor sem verificar o condutor é o erro mais perigoso da manutenção predial: o disjuntor protege o CABO, e um disjuntor maior deixa o cabo aquecer até a falha. O diagnóstico correto mede a corrente real, confere a seção instalada e só então decide entre corrigir a curva, redistribuir a carga ou refazer o circuito."
+        },
+        {
+          "id": "PRE-M8-Q2",
+          "enunciado": "Um DR que desarma sem carga aparente ligada, mesmo com todos os disjuntores dos circuitos fechados, sugere:",
+          "alternativas": [
+            "Defeito obrigatório do próprio DR, que deve ser removido do quadro",
+            "Corrente de fuga à terra em algum circuito — por umidade, isolação danificada ou neutro indevidamente interligado ao PE após o quadro",
+            "Excesso de carga instalada na residência",
+            "Falta de fase na rede da concessionária"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O DR compara a corrente que entra com a que retorna. Fugas por infiltração, cabos com isolação comprometida ou uma ligação errada entre neutro e PE criam esse desequilíbrio. O diagnóstico é feito desligando os circuitos um a um e medindo a isolação com megôhmetro. Remover ou fazer ponte no DR é eliminar a proteção contra choque — nunca é solução."
+        },
+        {
+          "id": "PRE-M8-Q3",
+          "enunciado": "O aquecimento e o escurecimento observados em um borne de disjuntor no quadro de distribuição indicam:",
+          "alternativas": [
+            "Comportamento normal de qualquer disjuntor em operação",
+            "Que o condutor está superdimensionado",
+            "Mau contato ou aperto insuficiente, que eleva a resistência do ponto e gera calor — risco de falha e de incêndio",
+            "Excesso de aterramento no circuito"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Pela Lei de Joule, resistência de contato elevada gera calor proporcional ao quadrado da corrente. O ponto quente degrada a isolação, oxida o cobre e realimenta o problema. A inspeção periódica com reaperto dos bornes — com a instalação desenergizada e no torque indicado — é item básico de manutenção predial preventiva."
+        },
+        {
+          "id": "PRE-M8-Q4",
+          "enunciado": "Em uma residência, a instalação de um motor de portão automático ou de uma bomba d'água exige atenção especial porque:",
+          "alternativas": [
+            "Motores não podem ser ligados em instalações residenciais",
+            "Toda carga motriz exige alimentação trifásica",
+            "Motores dispensam condutor de proteção",
+            "A corrente de partida é várias vezes a nominal, o que pede circuito exclusivo, condutor e proteção dimensionados para essa condição"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O pico de partida provoca desarmes indevidos com disjuntores de curva sensível e queda de tensão perceptível nos demais circuitos. A solução é circuito exclusivo, curva adequada e condutor dimensionado — nunca elevar o disjuntor além do que o cabo suporta. O aterramento da carcaça é obrigatório."
+        },
+        {
+          "id": "PRE-M8-Q5",
+          "enunciado": "Sobre a medição de consumo, um equipamento de 1.500 W que funciona 3 horas por dia consome, em 30 dias:",
+          "alternativas": [
+            "135 kWh",
+            "45 kWh",
+            "4,5 kWh",
+            "1.350 kWh"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Energia = potência × tempo: 1,5 kW × 3 h = 4,5 kWh por dia; em 30 dias, 135 kWh. Esse é o cálculo que permite estimar o peso de cada equipamento na conta e orientar decisões de eficiência energética — trocar iluminação, rever o uso do chuveiro, ajustar o ar-condicionado."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 20 questões deste banco de 40, cobrindo todos os 8 módulos. Nota mínima para aprovação: 14/20 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 20,
+    "nota_minima": 14,
+    "banco": [
+      {
+        "id": "PRE-PF-01",
+        "modulo": 1,
+        "enunciado": "Um circuito resistivo em corrente contínua tem 24 V aplicados sobre 6 Ω. A corrente e a potência dissipada são:",
+        "alternativas": [
+          "4 A e 96 W",
+          "4 A e 144 W",
+          "0,25 A e 6 W",
+          "144 A e 24 W"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "I = V/R = 24/6 = 4 A. P = V × I = 24 × 4 = 96 W (ou P = R × I² = 6 × 16 = 96 W)."
+      },
+      {
+        "id": "PRE-PF-02",
+        "modulo": 1,
+        "enunciado": "Dois resistores de 12 Ω e 6 Ω são associados em série. A resistência equivalente é:",
+        "alternativas": [
+          "4 Ω",
+          "18 Ω",
+          "6 Ω",
+          "72 Ω"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Em série as resistências se somam: 12 + 6 = 18 Ω. Em série a corrente é a mesma em todos os elementos e a tensão se divide proporcionalmente às resistências."
+      },
+      {
+        "id": "PRE-PF-03",
+        "modulo": 1,
+        "enunciado": "O valor eficaz (RMS) de uma tensão alternada senoidal com 311 V de pico é aproximadamente:",
+        "alternativas": [
+          "440 V",
+          "311 V",
+          "220 V",
+          "155 V"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Vrms = Vpico/√2 = 311/1,414 ≈ 220 V. O valor eficaz é aquele que produz o mesmo efeito térmico de uma tensão contínua equivalente — é o que os instrumentos indicam e o que consta nas placas dos equipamentos."
+      },
+      {
+        "id": "PRE-PF-04",
+        "modulo": 1,
+        "enunciado": "Antes de medir resistência de um componente com o multímetro, é indispensável:",
+        "alternativas": [
+          "Curto-circuitar as pontas de prova sobre o componente",
+          "Manter o circuito energizado para obter leitura sob condição real",
+          "Selecionar a escala de tensão alternada",
+          "Desenergizar o circuito e, se possível, isolar o componente, pois o ohmímetro injeta sua própria corrente de teste"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "O ohmímetro mede aplicando uma pequena tensão própria. Com o circuito energizado a leitura é inválida e o instrumento pode ser danificado. Além disso, componentes em paralelo falseiam o valor — daí a necessidade de isolar pelo menos um terminal."
+      },
+      {
+        "modulo": 1,
+        "enunciado": "Um ferro de passar de 1.200 W ligado em 127 V solicita da rede uma corrente de aproximadamente:",
+        "alternativas": [
+          "9,4 A",
+          "5,5 A",
+          "15,2 A",
+          "1.200 A"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "I = P/V = 1.200/127 ≈ 9,4 A. O mesmo aparelho em 220 V puxaria cerca de 5,5 A — por isso instalações em 220 V exigem condutores de menor seção para a mesma potência.",
+        "id": "PRE-PF-05"
+      },
+      {
+        "id": "PRE-PF-06",
+        "modulo": 2,
+        "enunciado": "A queda de tensão direta típica de um diodo retificador de silício em condução é de aproximadamente:",
+        "alternativas": [
+          "0,2 V",
+          "0,7 V",
+          "1,4 V",
+          "5 V"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O diodo de silício conduz a partir de cerca de 0,7 V (germânio, cerca de 0,3 V; Schottky, cerca de 0,3 a 0,4 V). Essa queda precisa ser considerada no cálculo da tensão de saída de fontes e no dimensionamento térmico do componente."
+      },
+      {
+        "id": "PRE-PF-07",
+        "modulo": 2,
+        "enunciado": "O diodo de roda livre (freewheeling) ligado em antiparalelo com a bobina de um relé serve para:",
+        "alternativas": [
+          "Aumentar a corrente na bobina e acelerar o acionamento",
+          "Retificar a tensão alternada aplicada à bobina",
+          "Oferecer caminho para a corrente indutiva no desligamento, evitando o pico de tensão reverso que destruiria o transistor de comando",
+          "Reduzir o consumo do relé em regime permanente"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A corrente em um indutor não pode cessar instantaneamente; ao desligar, a bobina gera uma tensão reversa de centenas de volts. O diodo em antiparalelo (catodo no positivo) fecha o caminho para essa corrente e a dissipa com segurança."
+      },
+      {
+        "id": "PRE-PF-08",
+        "modulo": 2,
+        "enunciado": "A reatância capacitiva de um capacitor em corrente alternada:",
+        "alternativas": [
+          "Aumenta com o aumento da frequência",
+          "É igual à resistência ôhmica do dielétrico",
+          "É constante em qualquer frequência",
+          "Diminui com o aumento da frequência, segundo Xc = 1/(2πfC)"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Xc = 1/(2πfC): quanto maior a frequência, menor a oposição. Por isso o capacitor bloqueia a componente contínua e deixa passar os sinais de frequência mais alta — princípio dos filtros e dos capacitores de desacoplamento."
+      },
+      {
+        "id": "PRE-PF-09",
+        "modulo": 2,
+        "enunciado": "Um resistor de 220 Ω em série com um LED alimentado por 5 V, considerando queda de 2 V no LED, resulta em corrente de aproximadamente:",
+        "alternativas": [
+          "13,6 mA",
+          "22,7 mA",
+          "31,8 mA",
+          "5 mA"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A tensão sobre o resistor é 5 − 2 = 3 V. I = 3/220 ≈ 13,6 mA, valor adequado tanto para o LED quanto para a capacidade de um pino de microcontrolador. O LED nunca deve ser ligado sem resistor limitador."
+      },
+      {
+        "id": "PRE-PF-10",
+        "modulo": 2,
+        "enunciado": "Ao instalar um capacitor eletrolítico em uma placa, o erro que provoca falha imediata e risco de explosão é:",
+        "alternativas": [
+          "Usar capacitância maior que a especificada",
+          "Inverter a polaridade dos terminais",
+          "Usar tensão de isolação maior que a do projeto",
+          "Montá-lo distante do dissipador de calor"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O eletrolítico é polarizado: invertê-lo degrada a camada de óxido, provoca aquecimento e ruptura do invólucro. Capacitância maior e tensão de isolação superior costumam ser aceitáveis; polaridade invertida, nunca."
+      },
+      {
+        "modulo": 3,
+        "enunciado": "O ponto de entrega de energia é o local onde:",
+        "alternativas": [
+          "O medidor registra o consumo mensal",
+          "O condutor de proteção encontra a malha de aterramento",
+          "Termina a responsabilidade da distribuidora e começa a do consumidor sobre a instalação",
+          "Ficam instalados os disjuntores dos circuitos terminais"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A partir do ponto de entrega, a execução, a manutenção e a conformidade da instalação são responsabilidade do consumidor. Conhecer essa fronteira evita acionar a distribuidora por problemas internos e vice-versa.",
+        "id": "PRE-PF-11"
+      },
+      {
+        "modulo": 3,
+        "enunciado": "Em um fornecimento monofásico a dois condutores, a unidade consumidora recebe:",
+        "alternativas": [
+          "Duas fases e um neutro",
+          "Duas fases, sem neutro",
+          "Três fases e um neutro",
+          "Uma fase e um neutro"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Monofásico a dois condutores é fase + neutro. O bifásico traz duas fases e neutro (três condutores) e o trifásico, três fases e neutro (quatro condutores). O tipo de fornecimento decorre da carga instalada e da demanda calculada.",
+        "id": "PRE-PF-12"
+      },
+      {
+        "modulo": 3,
+        "enunciado": "A caixa de medição do padrão de entrada deve ser instalada:",
+        "alternativas": [
+          "No limite da propriedade, em local de livre e permanente acesso para leitura e manutenção pela distribuidora",
+          "No interior da residência, junto ao quadro de distribuição",
+          "No ponto mais alto da edificação",
+          "Em qualquer local, desde que protegida de chuva"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "As normas de fornecimento exigem acesso livre e permanente à medição, com altura e afastamentos definidos. Caixa em local trancado ou de difícil acesso costuma ser motivo de reprovação na vistoria da ligação.",
+        "id": "PRE-PF-13"
+      },
+      {
+        "modulo": 3,
+        "enunciado": "Ao calcular a demanda de uma residência, o fator de demanda aplicado à iluminação e às tomadas de uso geral serve para:",
+        "alternativas": [
+          "Aumentar a carga considerada, por segurança",
+          "Reduzir a carga considerada, reconhecendo que nem todos os pontos operam simultaneamente e em plena potência",
+          "Converter potência aparente em potência ativa",
+          "Corrigir o fator de potência da instalação"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Os fatores de demanda das normas de fornecimento traduzem estatisticamente o uso real. Sem eles, o padrão de entrada seria dimensionado para uma simultaneidade que nunca ocorre, encarecendo a obra sem ganho de segurança.",
+        "id": "PRE-PF-14"
+      },
+      {
+        "modulo": 3,
+        "enunciado": "Em uma unidade consumidora trifásica, o equilíbrio de fases na distribuição dos circuitos importa porque:",
+        "alternativas": [
+          "É apenas uma questão estética na montagem do quadro",
+          "O desequilíbrio aumenta o consumo registrado pelo medidor em kWh",
+          "Fases desequilibradas provocam corrente elevada no neutro, sobreaquecimento e variação de tensão entre os circuitos",
+          "O equilíbrio só é exigido em instalações industriais"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Em sistema equilibrado, as correntes das três fases se cancelam no neutro. O desequilíbrio faz circular corrente no neutro, aquece o condutor e desloca o ponto neutro, causando sobretensão em uma fase e subtensão em outra. Distribuir as cargas entre as fases é etapa obrigatória do projeto do quadro.",
+        "id": "PRE-PF-15"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "Segundo a NBR 5410, em cozinhas, copas e áreas de serviço, o número mínimo de pontos de tomada é de um ponto a cada:",
+        "alternativas": [
+          "5 m de perímetro",
+          "1 m de perímetro",
+          "10 m de perímetro",
+          "3,5 m de perímetro"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Esses ambientes concentram eletrodomésticos de potência elevada, daí o critério mais exigente de 3,5 m (contra 5 m em salas e dormitórios). Acima da bancada, exige-se ainda no mínimo um ponto a cada 60 cm de bancada.",
+        "id": "PRE-PF-16"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "A potência mínima a ser prevista por ponto de tomada de uso geral em cozinhas e áreas de serviço, nos três primeiros pontos, é de:",
+        "alternativas": [
+          "600 VA",
+          "100 VA",
+          "1.500 VA",
+          "5.000 VA"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A NBR 5410 prevê 600 VA para os três primeiros pontos desses ambientes e 100 VA para os excedentes; nos demais cômodos, 100 VA por ponto. Essa previsão alimenta o cálculo de carga instalada e a divisão dos circuitos.",
+        "id": "PRE-PF-17"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "Um circuito terminal cuja corrente de projeto supera 10 A deve, segundo a NBR 5410:",
+        "alternativas": [
+          "Ser dividido entre dois disjuntores em paralelo",
+          "Ser exclusivo do equipamento que alimenta",
+          "Utilizar obrigatoriamente condutor de 6 mm²",
+          "Dispensar o condutor de proteção"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Chuveiro, torneira elétrica, ar-condicionado, forno e máquina de lavar entram nessa condição. O circuito exclusivo evita sobrecarga do condutor compartilhado e permite manutenção sem desligar o restante da instalação. Disjuntores em paralelo não são admitidos.",
+        "id": "PRE-PF-18"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "Na simbologia de projeto elétrico predial, um traço transversal a mais sobre a linha de um eletroduto indica:",
+        "alternativas": [
+          "Aumento da bitola do eletroduto",
+          "Uma emenda obrigatória",
+          "Um condutor adicional passando naquele trecho",
+          "Mudança de circuito"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "No diagrama unifilar cada traço representa um condutor: fase, neutro, retorno e proteção. Contar os traços é o que permite ao instalador saber quantos cabos puxar em cada trecho sem consultar o multifilar.",
+        "id": "PRE-PF-19"
+      },
+      {
+        "modulo": 4,
+        "enunciado": "A altura usual de instalação de uma tomada baixa em um dormitório, medida do piso acabado, é de aproximadamente:",
+        "alternativas": [
+          "Cerca de 220 cm",
+          "Cerca de 110 cm",
+          "Cerca de 160 cm",
+          "Cerca de 30 cm"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Tomadas baixas ficam em torno de 30 cm do piso; as médias, acima de bancadas, próximas a 110 cm; e as altas, para ar-condicionado, perto de 200 cm. Interruptores ficam por volta de 110 a 130 cm. São referências de projeto e de acessibilidade, não valores normativos rígidos.",
+        "id": "PRE-PF-20"
+      },
+      {
+        "id": "PRE-PF-21",
+        "modulo": 5,
+        "enunciado": "A queda de tensão máxima admitida pela NBR 5410 entre a origem da instalação e qualquer ponto de utilização, no caso mais comum de instalações alimentadas em baixa tensão pela concessionária, é da ordem de:",
+        "alternativas": [
+          "4%",
+          "1%",
+          "15%",
+          "25%"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A norma limita a queda a 4% para instalações alimentadas diretamente em baixa tensão a partir da rede pública, com limites específicos por trecho. Queda excessiva provoca perda de conjugado em motores, aquecimento e mau funcionamento de equipamentos eletrônicos."
+      },
+      {
+        "id": "PRE-PF-22",
+        "modulo": 5,
+        "enunciado": "Ao agrupar vários circuitos no mesmo eletroduto, o efeito sobre a capacidade de condução de corrente dos condutores é:",
+        "alternativas": [
+          "Aumenta, pois os condutores se apoiam mutuamente",
+          "Reduz-se, exigindo a aplicação de fator de correção por agrupamento, devido à dificuldade de dissipar calor",
+          "Permanece inalterada, pois o fator só depende da tensão",
+          "Reduz-se apenas se os circuitos forem de tensões diferentes"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Condutores agrupados aquecem uns aos outros e dissipam calor com mais dificuldade. A NBR 5410 traz fatores de correção por número de circuitos agrupados e por temperatura ambiente, ambos multiplicativos sobre a capacidade tabelada. Desprezá-los é causa recorrente de isolação degradada."
+      },
+      {
+        "id": "PRE-PF-23",
+        "modulo": 5,
+        "enunciado": "Sobre as cores de identificação dos condutores segundo a NBR 5410, é correto afirmar:",
+        "alternativas": [
+          "Não há qualquer padronização de cores",
+          "O neutro deve ser preto e o PE, vermelho",
+          "O condutor de proteção (PE) é verde ou verde-amarelo e o neutro é azul-claro, cores de uso exclusivo",
+          "O condutor de fase deve ser obrigatoriamente azul-claro"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Verde ou verde-amarelo é reservado exclusivamente ao condutor de proteção e azul-claro ao neutro. As fases usam as demais cores (preto, vermelho, branco, cinza, marrom). Reaproveitar essas cores para outra função compromete a segurança de qualquer intervenção futura."
+      },
+      {
+        "id": "PRE-PF-24",
+        "modulo": 5,
+        "enunciado": "Seletividade entre dispositivos de proteção significa que:",
+        "alternativas": [
+          "Todos os disjuntores devem desarmar simultaneamente diante de qualquer falta",
+          "A proteção deve ser instalada somente no quadro geral",
+          "O disjuntor geral deve ter corrente nominal menor que a dos ramais",
+          "Diante de uma falta, atua apenas o dispositivo imediatamente a montante do defeito, preservando o restante da instalação em operação"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "A seletividade limita a área desligada ao trecho defeituoso. Obtém-se coordenando correntes nominais, curvas e tempos de atuação de forma crescente no sentido da carga para a fonte. Um geral com corrente menor que a dos ramais inverteria a lógica e desligaria a instalação inteira a cada falta."
+      },
+      {
+        "modulo": 5,
+        "enunciado": "A regra de coordenação entre condutor e dispositivo de proteção contra sobrecarga estabelece que:",
+        "alternativas": [
+          "A corrente de projeto deve ser menor ou igual à nominal da proteção, que por sua vez deve ser menor ou igual à capacidade de condução do condutor",
+          "A corrente nominal da proteção deve ser sempre maior que a capacidade de condução do condutor",
+          "A proteção independe da seção do condutor instalado",
+          "O condutor deve ser dimensionado apenas pela potência do equipamento"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "Ib ≤ In ≤ Iz é a condição básica da NBR 5410. Ela garante que o disjuntor atue antes de o cabo ser danificado termicamente. Elevar o disjuntor para acabar com desarmes, sem trocar o cabo, quebra essa coordenação e transforma o cabo em fusível.",
+        "id": "PRE-PF-25"
+      },
+      {
+        "id": "PRE-PF-26",
+        "modulo": 6,
+        "enunciado": "A finalidade do DPS (dispositivo de proteção contra surtos) em um quadro de distribuição é:",
+        "alternativas": [
+          "Proteger contra sobrecarga dos condutores",
+          "Limitar sobretensões transitórias, de origem atmosférica ou de manobra, escoando a corrente de surto para a terra",
+          "Substituir o dispositivo diferencial residual",
+          "Corrigir o fator de potência da instalação"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O DPS atua apenas em transitórios de curtíssima duração, grampeando a tensão e desviando a energia do surto para o barramento de terra. Depende de aterramento eficiente e de condutores de conexão curtos. Não protege contra sobrecarga, curto-circuito nem choque elétrico."
+      },
+      {
+        "modulo": 6,
+        "enunciado": "Em uma instalação predial no esquema TN-C-S, a separação entre neutro e condutor de proteção ocorre:",
+        "alternativas": [
+          "Em cada tomada da instalação",
+          "Somente no eletrodo de aterramento",
+          "No quadro de distribuição principal, a partir do qual seguem separados até os pontos de utilização",
+          "Nunca: neutro e PE permanecem combinados em toda a instalação"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O trecho combinado (PEN) vai da rede até o quadro; dali em diante, neutro e PE são condutores distintos. Refazer essa ligação depois do ponto de separação — unindo neutro e PE em uma tomada, por exemplo — anula a proteção do DR e energiza carcaças em caso de rompimento do neutro.",
+        "id": "PRE-PF-27"
+      },
+      {
+        "modulo": 6,
+        "enunciado": "A haste de aterramento tipo cantoneira ou copperweld cravada no solo tem sua eficácia influenciada principalmente por:",
+        "alternativas": [
+          "A cor da pintura da haste",
+          "A marca do disjuntor geral instalado",
+          "O comprimento do cabo do quadro até a haste, apenas",
+          "A resistividade do solo, a profundidade de cravação e a umidade do terreno"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Solo arenoso e seco tem resistividade alta e exige mais hastes, interligadas e espaçadas, ou tratamento do solo. A medição com terrômetro é o que comprova o resultado — estimar por inspeção visual não substitui o ensaio.",
+        "id": "PRE-PF-28"
+      },
+      {
+        "modulo": 6,
+        "enunciado": "Um DPS classe II instalado no quadro de distribuição de uma residência protege:",
+        "alternativas": [
+          "Os equipamentos contra sobretensões transitórias que chegam pela rede, grampeando a tensão e desviando o surto para o barramento de terra",
+          "Contra choque elétrico por contato direto",
+          "Contra sobrecarga dos circuitos de tomadas",
+          "Contra falta de fase na alimentação"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O DPS depende de aterramento eficiente e de conexões curtas para funcionar. Protege eletrônicos contra surtos de manobra e descargas atmosféricas indiretas, mas não substitui disjuntor, DR nem SPDA — cada um cobre um risco diferente.",
+        "id": "PRE-PF-29"
+      },
+      {
+        "modulo": 6,
+        "enunciado": "A ligação equipotencial suplementar em um banheiro tem por objetivo:",
+        "alternativas": [
+          "Aumentar a potência disponível no chuveiro",
+          "Interligar as massas e os elementos condutivos da área (tubulações, estrutura, carcaças) ao condutor de proteção, reduzindo a tensão de contato em caso de falta",
+          "Substituir o DR do circuito do chuveiro",
+          "Permitir a instalação de tomadas dentro do box"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Banheiro reúne umidade, pele molhada e elementos metálicos — combinação que reduz drasticamente a resistência do corpo. A equipotencialização suplementar impede que surja diferença de potencial entre a torneira e o ralo, por exemplo. É requisito da NBR 5410 e complementa o DR, sem substituí-lo.",
+        "id": "PRE-PF-30"
+      },
+      {
+        "modulo": 7,
+        "enunciado": "A grandeza medida em lux corresponde a:",
+        "alternativas": [
+          "O fluxo luminoso total emitido pela lâmpada",
+          "A potência elétrica consumida pela luminária",
+          "A iluminância, isto é, o fluxo luminoso incidente por unidade de área",
+          "A temperatura de cor da luz emitida"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Lúmen (lm) mede o fluxo total emitido; lux (lm/m²) mede quanto desse fluxo chega ao plano de trabalho. Por isso a mesma lâmpada produz iluminâncias diferentes conforme a altura, a distribuição e as refletâncias do ambiente.",
+        "id": "PRE-PF-31"
+      },
+      {
+        "modulo": 7,
+        "enunciado": "Uma lâmpada com temperatura de cor de 2.700 K produz luz:",
+        "alternativas": [
+          "Invisível ao olho humano",
+          "Branca azulada (fria), indicada para áreas de trabalho detalhado",
+          "Verde, própria para sinalização",
+          "Branca amarelada (quente), indicada para ambientes de descanso"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Valores baixos de temperatura de cor correspondem a luz quente e amarelada (2.700 a 3.000 K); valores altos, a luz fria e azulada (5.000 a 6.500 K). Vale lembrar que temperatura de cor não tem relação com o calor dissipado nem com o consumo da lâmpada.",
+        "id": "PRE-PF-32"
+      },
+      {
+        "modulo": 7,
+        "enunciado": "No circuito de um interruptor simples com uma lâmpada, o condutor que sai do interruptor em direção à luminária é chamado de:",
+        "alternativas": [
+          "Retorno",
+          "Neutro",
+          "Condutor de proteção",
+          "Fase direta"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A fase chega ao interruptor e sai dele como retorno até a luminária; o neutro vai direto da caixa ao ponto de luz. Identificar corretamente fase, retorno e neutro é o que evita deixar a luminária energizada com o interruptor desligado.",
+        "id": "PRE-PF-33"
+      },
+      {
+        "modulo": 7,
+        "enunciado": "O índice de reprodução de cor (IRC) de uma lâmpada indica:",
+        "alternativas": [
+          "Quantos lúmens ela entrega por watt consumido",
+          "O quanto as cores dos objetos iluminados se aproximam da aparência que teriam sob luz natural, em escala de 0 a 100",
+          "A vida útil estimada em horas",
+          "A tonalidade da luz, em kelvin"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "IRC acima de 80 é recomendado para ambientes residenciais e comerciais; acima de 90, para tarefas que dependem de fidelidade de cor. Lâmpadas de IRC baixo distorcem tons de pele e de tecidos, mesmo entregando iluminância adequada.",
+        "id": "PRE-PF-34"
+      },
+      {
+        "modulo": 7,
+        "enunciado": "A instalação de luminárias em circuito de iluminação com muitos pontos exige atenção à queda de tensão porque:",
+        "alternativas": [
+          "A queda de tensão aumenta o consumo registrado no medidor",
+          "A queda de tensão inverte a polaridade do circuito",
+          "Tensão reduzida no fim do circuito diminui o desempenho luminoso e pode causar cintilação e falha prematura dos drivers",
+          "Circuitos de iluminação não são afetados por queda de tensão"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A NBR 5410 limita a queda de tensão acumulada, e circuitos longos de iluminação são candidatos naturais a extrapolá-la. O efeito aparece como luz mais fraca nos últimos pontos, cintilação e redução da vida útil dos drivers de LED. A correção passa por aumentar a seção do condutor ou dividir o circuito.",
+        "id": "PRE-PF-35"
+      },
+      {
+        "modulo": 8,
+        "enunciado": "Antes de intervir em um quadro de distribuição residencial, o procedimento correto é:",
+        "alternativas": [
+          "Desligar apenas o disjuntor do circuito e confiar na etiqueta do quadro",
+          "Solicitar o desligamento à distribuidora em todos os casos",
+          "Trabalhar energizado usando apenas luvas de borracha comuns",
+          "Desligar o disjuntor geral, sinalizar a intervenção e confirmar a ausência de tensão com instrumento adequado antes de tocar em qualquer condutor"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Etiquetas de quadro erram com frequência e circuitos podem ter alimentação por mais de um caminho. Constatar a ausência de tensão com instrumento testado antes e depois da medição é o passo que fecha o procedimento. Trabalho em instalação energizada exige capacitação específica prevista na NR-10.",
+        "id": "PRE-PF-36"
+      },
+      {
+        "modulo": 8,
+        "enunciado": "O megôhmetro é o instrumento utilizado em manutenção predial para:",
+        "alternativas": [
+          "Medir a resistência de isolamento dos condutores, aplicando tensão de ensaio elevada com o circuito desenergizado",
+          "Medir a corrente de carga dos circuitos em operação",
+          "Medir a resistência de aterramento da malha",
+          "Registrar o consumo em kWh"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O ensaio de isolamento revela cabos com isolação degradada por umidade, calor ou dano mecânico antes que virem fuga ou curto. O circuito precisa estar desenergizado e os equipamentos eletrônicos, desconectados — a tensão de ensaio os danificaria. Resistência de aterramento é medida com terrômetro.",
+        "id": "PRE-PF-37"
+      },
+      {
+        "modulo": 8,
+        "enunciado": "Em uma inspeção termográfica de quadro elétrico, um ponto com temperatura significativamente acima dos demais no mesmo circuito indica tipicamente:",
+        "alternativas": [
+          "Operação normal sob carga nominal",
+          "Mau contato, aperto insuficiente ou condutor subdimensionado naquele ponto",
+          "Excesso de aterramento",
+          "Erro do instrumento, que deve ser ignorado"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A termografia compara pontos de mesma função sob mesma carga: a assimetria térmica é o indicador. Conexões frouxas ou oxidadas elevam a resistência de contato e aquecem — causa recorrente de incêndio em quadros. A correção é reaperto no torque especificado, com o quadro desenergizado.",
+        "id": "PRE-PF-38"
+      },
+      {
+        "modulo": 8,
+        "enunciado": "Em relação à eficiência energética de uma residência, a substituição de lâmpadas incandescentes por LED tende a:",
+        "alternativas": [
+          "Aumentar o consumo, pois o LED exige driver eletrônico",
+          "Não alterar o consumo, apenas a cor da luz",
+          "Reduzir o consumo em iluminação em cerca de 80%, mantendo o mesmo nível de iluminância",
+          "Exigir a troca de toda a fiação da residência"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A eficiência luminosa do LED é várias vezes a da incandescente, o que reduz a potência necessária para o mesmo fluxo. A troca não exige refazer a instalação, mas convém verificar compatibilidade com dimmers e a qualidade do produto — driver ruim gera cintilação e vida útil bem abaixo da anunciada.",
+        "id": "PRE-PF-39"
+      },
+      {
+        "modulo": 8,
+        "enunciado": "Ao entregar uma instalação predial concluída, a documentação técnica mínima que deve ser fornecida ao cliente inclui:",
+        "alternativas": [
+          "Apenas a nota fiscal dos materiais empregados",
+          "Apenas a planta de arquitetura da edificação",
+          "Somente a garantia verbal do executante",
+          "Os diagramas atualizados conforme executado, a identificação dos circuitos no quadro e os resultados das verificações finais"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "A NBR 5410 prevê inspeção e ensaios antes da entrega — continuidade dos condutores de proteção, resistência de isolamento e funcionamento dos DRs — além de documentação que permita a manutenção futura. Quadro sem identificação de circuitos é uma das não conformidades mais comuns e mais perigosas.",
+        "id": "PRE-PF-40"
+      }
+    ]
+  }
+}

@@ -16,14 +16,14 @@ import {
 const BASE = SITE.url
 
 export const metadata: Metadata = {
-  title: 'Cursos NR e Elétrica Online com Certificado — NR-10, NR-12, NR-35 e Elétrica 120h',
+  title: 'Cursos NR e de Elétrica Online com Certificado — NR-10, Elétrica Predial, Comandos e Arduino',
   description:
-    'Faça seu curso de NR-10, NR-12, NR-35 ou NR-06 online, ou a formação em Elétrica Industrial 120h com eletrônica, comandos elétricos e Arduino. Certificado com validade legal emitido por Engenheiro responsável técnico CREA 254516/MG.',
+    'Faça seu curso de NR-10, NR-12, NR-35 ou NR-06 online, ou as formações técnicas em Elétrica Predial (120h), Comandos Elétricos (40h) e Arduino e Automação (40h). Certificado emitido por Engenheiro responsável técnico CREA 254516/MG.',
   alternates: { canonical: '/' },
   openGraph: {
     title: 'NR Certifica — Cursos NR e Elétrica Online com Certificado Válido',
     description:
-      'NR-10, NR-12, NR-35, NR-06 e Elétrica Industrial 120h online. Certificado emitido sob responsabilidade técnica de Engenheiro CREA 254516/MG. Acesso imediato após o pagamento.',
+      'NR-10, NR-12, NR-35, NR-06, Elétrica Predial, Comandos Elétricos e Arduino online. Certificado emitido sob responsabilidade técnica de Engenheiro CREA 254516/MG. Acesso imediato após o pagamento.',
     url: BASE,
     siteName: SITE.nome,
     locale: SITE.locale,
@@ -63,7 +63,7 @@ const jsonLdHome = {
 }
 
 /** Ordem de exibição na vitrine — o primeiro leva o selo "mais procurado". */
-const VITRINE = ['NR-10', 'ELÉTRICA', 'NR-10 SEP', 'NR-35', 'NR-12', 'NR-06']
+const VITRINE = ['NR-10', 'ELÉTRICA', 'COMANDOS', 'ARDUINO', 'NR-10 SEP', 'NR-35', 'NR-12', 'NR-06']
   .map(nr => CURSOS.find(c => c.nr === nr))
   .filter((c): c is (typeof CURSOS)[number] => Boolean(c && c.ativo))
 
@@ -74,7 +74,9 @@ const RESUMO: Record<string, string> = {
   'NR-35': 'Trabalho em Altura',
   'NR-12': 'Máquinas e Equipamentos',
   'NR-06': 'Equipamentos de Proteção Individual',
-  'ELÉTRICA': 'Elétrica Industrial, Eletrônica e Arduino',
+  'ELÉTRICA': 'Instalações Elétricas Prediais',
+  'COMANDOS': 'Comandos Elétricos e Motores',
+  'ARDUINO': 'Arduino, Sensores e CLP',
 }
 
 const DESTAQUES_HERO = [
@@ -122,7 +124,7 @@ export default function Home() {
               </h1>
               <p className="text-white text-lg mb-3">
                 {CURSOS_ATIVOS.filter(c => c.nr.startsWith('NR')).map(c => c.nr).join(' • ')}
-                {' '}e Elétrica Industrial 120h
+                {' '}· Elétrica Predial · Comandos · Arduino
               </p>
               <p className="text-white/65 text-base leading-relaxed mb-8 max-w-md">
                 Estude online, faça sua avaliação e receba seu certificado digital

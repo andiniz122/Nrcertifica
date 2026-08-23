@@ -10,14 +10,14 @@ import { schemaCatalogo } from '../../../lib/schemas'
 import { CheckCircle2, Clock, Award, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Cursos Online com Certificado — NR-10, NR-12, NR-35, NR-06 e Elétrica 120h',
+  title: 'Cursos Online com Certificado — NR-10, NR-35, Elétrica Predial, Comandos e Arduino',
   description:
-    'Todos os cursos online com certificado válido: NR-10 Eletricidade (40h), NR-10 SEP (40h), NR-35 Trabalho em Altura (8h), NR-12 Máquinas (16h), NR-06 EPI (4h) e Elétrica Industrial, Eletrônica e Arduino (120h). Acesso imediato e certificado PDF automático.',
+    'Todos os cursos online com certificado válido: NR-10 (40h), NR-10 SEP (40h), NR-35 (8h), NR-12 (16h), NR-06 (4h), Elétrica Predial (120h), Comandos Elétricos (40h) e Arduino e Automação (40h). Acesso imediato e certificado PDF automático.',
   alternates: { canonical: absUrl('/cursos') },
   openGraph: {
-    title: 'Cursos Online — NR-10, NR-35, NR-06 e Elétrica Industrial com Certificado',
+    title: 'Cursos Online — NR-10, NR-35, Elétrica Predial, Comandos e Arduino',
     description:
-      'Escolha seu curso online: NR-10 (40h), NR-35 (8h), NR-12 (16h), NR-06 (4h) ou Elétrica Industrial com Arduino (120h). Certificado com validade legal, acesso imediato.',
+      'Escolha seu curso online: NR-10 (40h), NR-35 (8h), NR-12 (16h), NR-06 (4h), Elétrica Predial (120h), Comandos Elétricos (40h) ou Arduino (40h). Acesso imediato e certificado.',
     url: absUrl('/cursos'),
     siteName: SITE.nome,
     locale: SITE.locale,
@@ -27,7 +27,9 @@ export const metadata: Metadata = {
 
 const CURSOS = [
   { slug: 'nr10-basico', nr: 'NR-10', titulo: 'Segurança em Instalações e Serviços em Eletricidade', subtitulo: 'Básico — obrigatório para quem trabalha com eletricidade', horas: '40h', validade: '2 anos', preco: 97, ativo: true, href: '/nr10', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
-  { slug: 'eletrica-industrial-120h', nr: 'ELÉTRICA', titulo: 'Elétrica Industrial, Eletrônica e Automação com Arduino', subtitulo: 'Formação completa: da eletricidade básica ao CLP, passando por comandos e Arduino', horas: '120h', validade: 'Sem validade', preco: 297, ativo: true, href: '/eletrica', destaques: ['8 módulos online', 'Eletrônica básica e Arduino', 'Comandos elétricos e CLP', 'Prova final com 20 questões'] },
+  { slug: 'eletrica-predial-120h', nr: 'ELÉTRICA', titulo: 'Instalações Elétricas Prediais', subtitulo: 'Formação completa em elétrica residencial e predial, do padrão de entrada ao projeto', horas: '120h', validade: 'Sem validade', preco: 297, ativo: true, href: '/eletrica-predial', destaques: ['8 módulos online', 'Projeto pela NBR 5410', 'Aterramento e luminotécnica', 'Prova final com 20 questões'] },
+  { slug: 'comandos-eletricos-40h', nr: 'COMANDOS', titulo: 'Comandos Elétricos e Acionamento de Motores', subtitulo: 'Do motor de indução à montagem do painel de comando', horas: '40h', validade: 'Sem validade', preco: 147, ativo: true, href: '/comandos-eletricos', destaques: ['4 módulos online', 'Diagramas de comando e força', 'Partidas direta, reversora e Y-Δ', 'Prova final com 10 questões'] },
+  { slug: 'arduino-automacao-40h', nr: 'ARDUINO', titulo: 'Arduino, Sensores e Automação com CLP', subtitulo: 'Da eletrônica digital ao CLP em Ladder, com sensores e atuadores', horas: '40h', validade: 'Sem validade', preco: 147, ativo: true, href: '/arduino', destaques: ['4 módulos online', 'Entradas, saídas, PWM e I2C', 'CLP em Ladder e inversores', 'Prova final com 10 questões'] },
   { slug: 'nr35', nr: 'NR-35', titulo: 'Trabalho em Altura', subtitulo: 'Para trabalhadores que atuam acima de 2 metros', horas: '8h', validade: '2 anos', preco: 67, ativo: true, href: '/nr35', destaques: ['3 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
   { slug: 'nr10-sep', nr: 'NR-10 SEP', titulo: 'Segurança em Sistemas Elétricos de Potência', subtitulo: 'Complemento obrigatório para quem trabalha em alta tensão', horas: '40h', validade: '2 anos', preco: 127, ativo: true, href: '/nr10sep', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
   { slug: 'nr06', nr: 'NR-06', titulo: 'Equipamentos de Proteção Individual', subtitulo: 'Seleção, uso, conservação e descarte de EPIs', horas: '4h', validade: '2 anos', preco: 47, ativo: true, href: '/nr06', destaques: ['2 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
@@ -45,7 +47,7 @@ export default function Cursos() {
         <section className="bg-brand-dark text-white py-12 px-4">
           <div className="max-w-5xl mx-auto text-center">
             <h1 className="font-display text-3xl md:text-4xl font-bold mb-3">Cursos disponíveis</h1>
-            <p className="text-gray-300 text-lg">Capacitações em Normas Regulamentadoras e em elétrica industrial, com certificado válido</p>
+            <p className="text-gray-300 text-lg">Treinamentos em Normas Regulamentadoras e formações técnicas em elétrica, com certificado</p>
           </div>
         </section>
         <section className="py-14 px-4 bg-brand-light">

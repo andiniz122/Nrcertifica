@@ -1,0 +1,545 @@
+{
+  "curso": "Arduino, Sensores e Automação com CLP",
+  "sigla": "ARDUINO",
+  "carga_horaria": "40h",
+  "validade_anos": 0,
+  "aprovacao_minima": 0.7,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Eletrônica Digital e Interfaceamento de Potência (8h)",
+      "descricao": "Sistemas de numeração, portas lógicas e álgebra de Boole, níveis TTL e CMOS, tiristores, TRIAC, MOSFET e IGBT, optoacopladores e circuitos de interface entre o microcontrolador e cargas de potência.",
+      "exercicios": [
+        {
+          "id": "ARD-M1-Q1",
+          "enunciado": "O número binário 1011 0110 corresponde, em decimal e hexadecimal, respectivamente, a:",
+          "alternativas": [
+            "186 e BA",
+            "182 e B6",
+            "172 e AC",
+            "180 e B4"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "1011 0110 = 128+32+16+4+2 = 182. Agrupando em nibbles: 1011 = B e 0110 = 6, resultando em B6h. A conversão por nibbles é a forma mais rápida de ler registradores em CLPs e microcontroladores."
+        },
+        {
+          "id": "ARD-M1-Q2",
+          "enunciado": "Em lógica de comando, o intertravamento clássico de dois contatores (um impedindo o outro de ligar) corresponde, em álgebra de Boole, a:",
+          "alternativas": [
+            "K1 = A + K2 e K2 = B + K1 (função OU)",
+            "K1 = A · B e K2 = A · B (função E em ambos)",
+            "K1 = A · /K2 e K2 = B · /K1 (cada saída condicionada à negação da outra)",
+            "K1 = /A e K2 = /B (apenas inversores)"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O intertravamento é implementado com um contato NF do contator oposto em série com a bobina: K1 só energiza se K2 estiver desenergizado e vice-versa. Isso é exatamente K1 = A · /K2 e K2 = B · /K1 — a base do comando de reversão de motores, que evita curto-circuito entre fases."
+        },
+        {
+          "id": "ARD-M1-Q3",
+          "enunciado": "Um TRIAC é utilizado no controle de potência em corrente alternada porque:",
+          "alternativas": [
+            "Conduz apenas no semiciclo positivo, como um diodo comum",
+            "É um dispositivo puramente resistivo, sem necessidade de gatilho",
+            "Funciona apenas em corrente contínua acima de 100 V",
+            "Conduz nos dois semiciclos após o disparo no gatilho, permitindo controle por ângulo de fase"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O TRIAC é bidirecional: uma vez disparado pelo gate, conduz até a corrente cair abaixo do valor de manutenção, o que ocorre naturalmente na passagem por zero da CA. Variando o instante do disparo dentro do semiciclo (ângulo de fase) controla-se a potência entregue — princípio dos dimmers e dos controles de temperatura."
+        },
+        {
+          "id": "ARD-M1-Q4",
+          "enunciado": "A principal razão para usar um optoacoplador entre a saída de um microcontrolador e um circuito de potência é:",
+          "alternativas": [
+            "Fornecer isolação galvânica, separando eletricamente os terras e protegendo o microcontrolador contra surtos e ruído do lado de potência",
+            "Converter o sinal digital em analógico",
+            "Amplificar o sinal digital para 24 V",
+            "Reduzir o consumo de corrente do microcontrolador"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "No optoacoplador o sinal atravessa por luz, não por condução elétrica. Isso rompe o caminho de terra entre comando e potência, impedindo que picos de tensão, ruído de chaveamento ou uma falha no lado de força destruam o microcontrolador. É requisito de projeto em qualquer interface com cargas em 127/220 V."
+        },
+        {
+          "id": "ARD-M1-Q5",
+          "enunciado": "Comparando MOSFET e IGBT em aplicações de potência, é correto afirmar que:",
+          "alternativas": [
+            "O MOSFET suporta tensões muito maiores que o IGBT em qualquer aplicação",
+            "O MOSFET leva vantagem em altas frequências de chaveamento e tensões menores; o IGBT se destaca em tensões e correntes elevadas com frequências moderadas",
+            "Ambos são acionados por corrente de base, como o transistor bipolar",
+            "O IGBT só funciona em corrente contínua e o MOSFET só em corrente alternada"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O MOSFET tem comutação muito rápida e baixa Rds(on) em baixa tensão, sendo usado em fontes chaveadas e PWM de alta frequência. O IGBT combina entrada por tensão (como o MOSFET) com baixa queda em condução sob alta corrente (como o bipolar), dominando inversores de frequência e acionamentos industriais. Ambos são acionados por TENSÃO no gate, não por corrente."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Arduino — Fundamentos, Entradas e Saídas (12h)",
+      "descricao": "Plataforma e IDE, estrutura do sketch, pinMode e digitalWrite, entradas com pull-up e tratamento de repique, leitura analógica e resolução do conversor, PWM e temporização não bloqueante com millis().",
+      "exercicios": [
+        {
+          "id": "ARD-M2-Q1",
+          "enunciado": "Em um sketch do Arduino, as funções setup() e loop() têm, respectivamente, as seguintes características:",
+          "alternativas": [
+            "setup() é opcional e loop() executa apenas uma vez",
+            "Ambas executam repetidamente enquanto a placa estiver ligada",
+            "setup() executa uma única vez ao energizar ou resetar a placa; loop() executa repetidamente e sem fim depois disso",
+            "setup() executa a cada segundo; loop() só executa quando há interrupção"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "setup() é o lugar das configurações iniciais — pinMode, Serial.begin, inicialização de bibliotecas — e roda uma só vez. loop() contém a lógica cíclica do programa. Ambas são obrigatórias em qualquer sketch, mesmo que vazias."
+        },
+        {
+          "id": "ARD-M2-Q2",
+          "enunciado": "O conversor analógico-digital de um Arduino Uno tem 10 bits e referência de 5 V. A resolução de leitura de analogRead() e o valor retornado para uma entrada de 2,5 V são, respectivamente:",
+          "alternativas": [
+            "Exatamente 1 mV por passo e valor 2500",
+            "Aproximadamente 4,9 mV por passo e valor 1023",
+            "Aproximadamente 19,5 mV por passo e valor 256",
+            "Aproximadamente 4,9 mV por passo e valor 512"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Com 10 bits há 1024 níveis (0 a 1023). A resolução é 5 V / 1024 ≈ 4,88 mV. Para 2,5 V, analogRead() retorna aproximadamente 512, ou seja, metade da escala. Ler tensões acima de 5 V exige divisor resistivo — aplicar tensão maior diretamente destrói o pino."
+        },
+        {
+          "id": "ARD-M2-Q3",
+          "enunciado": "A instrução analogWrite(9, 128) em um Arduino Uno produz:",
+          "alternativas": [
+            "Um sinal PWM com ciclo de trabalho de aproximadamente 50% no pino 9, cujo valor médio equivale a cerca de 2,5 V",
+            "Uma tensão analógica verdadeira de 2,5 V gerada por um DAC interno",
+            "Um pulso único de 128 microssegundos",
+            "Nível lógico alto permanente no pino 9"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O Uno não possui DAC. analogWrite() gera PWM: o pino comuta entre 0 e 5 V numa frequência fixa, e o parâmetro (0 a 255) define o ciclo de trabalho. 128 corresponde a cerca de 50%, cujo valor MÉDIO é ~2,5 V — suficiente para variar brilho de LED ou velocidade de motor, mas não é tensão contínua real. Só os pinos marcados com ~ suportam PWM."
+        },
+        {
+          "id": "ARD-M2-Q4",
+          "enunciado": "Um botão ligado entre um pino digital e o GND, configurado com pinMode(pino, INPUT_PULLUP), apresenta o seguinte comportamento na leitura:",
+          "alternativas": [
+            "Exige obrigatoriamente um resistor externo de pull-down",
+            "Retorna LOW quando pressionado e HIGH quando solto, pois o resistor interno mantém o pino em nível alto",
+            "Retorna sempre HIGH, independentemente do botão",
+            "Retorna HIGH quando pressionado e LOW quando solto"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O INPUT_PULLUP habilita um resistor interno ligado ao 5 V, que mantém o pino em HIGH quando o botão está aberto. Ao pressionar, o pino é levado ao GND e a leitura vai a LOW — lógica invertida. Isso dispensa resistor externo e evita entrada flutuante, causa clássica de leituras erráticas. Ainda é recomendável tratar o repique (debounce) por software."
+        },
+        {
+          "id": "ARD-M2-Q5",
+          "enunciado": "A diferença entre as funções millis() e delay() em um sketch do Arduino é que:",
+          "alternativas": [
+            "Ambas bloqueiam a execução, mudando apenas a unidade de tempo",
+            "millis() é usada somente com sensores analógicos",
+            "millis() apenas retorna o tempo decorrido desde a inicialização, permitindo temporizar sem bloquear o programa, enquanto delay() suspende a execução",
+            "delay() é mais precisa e por isso preferível em qualquer caso"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "Com millis() o programa compara o instante atual com o instante do último evento e segue lendo botões e sensores no intervalo. Com delay() nada mais é executado. Toda aplicação que precisa reagir a eventos enquanto conta tempo usa millis() — é a base para múltiplas tarefas concorrentes num único loop."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Sensores, Atuadores e Comunicação (10h)",
+      "descricao": "Sensores analógicos e digitais, ultrassônico, PIR e temperatura, acionamento de relés, drivers e servomotores, alimentação externa e terra comum, comunicação serial e barramento I2C.",
+      "exercicios": [
+        {
+          "id": "ARD-M3-Q1",
+          "enunciado": "Ao acionar uma lâmpada de 220 V a partir de uma saída digital do Arduino usando módulo relé, o cuidado indispensável é:",
+          "alternativas": [
+            "Ligar a lâmpada diretamente ao pino digital, pois o relé é dispensável",
+            "Alimentar o módulo relé pelo próprio pino digital, sem fonte externa",
+            "Usar sempre um resistor de 220 Ω em série com a rede de 220 V",
+            "Manter isolação entre o circuito de comando (5 V) e o de potência (220 V), alimentar a bobina do relé por fonte externa e nunca compartilhar o mesmo borne entre baixa e alta tensão"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Um pino digital fornece cerca de 20 mA em 5 V — nada perto do necessário para uma bobina de relé, e absolutamente incompatível com 220 V. O módulo relé com optoacoplador isola os dois mundos; a bobina deve ser alimentada por fonte dedicada e a fiação de potência deve ser separada fisicamente da de comando, respeitando distâncias de isolação."
+        },
+        {
+          "id": "ARD-M3-Q2",
+          "enunciado": "Um sensor de temperatura LM35 entrega 10 mV por grau Celsius. Ligado a uma entrada analógica de um Arduino Uno (referência de 5 V e 10 bits), a leitura de 205 corresponde a aproximadamente:",
+          "alternativas": [
+            "100 °C",
+            "20,5 °C",
+            "205 °C",
+            "2,05 °C"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "A leitura precisa primeiro virar tensão: 205 × (5/1024) ≈ 1,0 V. Como o LM35 entrega 10 mV por grau, 1,0 V / 0,01 V por °C = 100 °C. Aplicar a sensibilidade do sensor direto sobre o valor bruto do conversor, sem converter em tensão antes, é o erro mais comum na leitura de sensores analógicos."
+        },
+        {
+          "id": "ARD-M3-Q3",
+          "enunciado": "Um sensor ultrassônico HC-SR04 mede distância a partir do:",
+          "alternativas": [
+            "Nível de tensão proporcional à distância em sua saída analógica",
+            "Tempo entre a emissão do pulso e o retorno do eco, convertido em distância pela velocidade do som",
+            "Valor de resistência que varia com a proximidade do objeto",
+            "Código digital enviado pelo barramento I2C"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Um pulso no pino Trig dispara a emissão; o pino Echo permanece em nível alto pelo tempo de ida e volta do som. Com velocidade de aproximadamente 340 m/s, a distância é (tempo × 0,034)/2 em centímetros — divide-se por dois porque o som percorre o caminho duas vezes."
+        },
+        {
+          "id": "ARD-M3-Q4",
+          "enunciado": "Ao acionar um servomotor com o Arduino, o controle da posição é feito por:",
+          "alternativas": [
+            "Variação da tensão de alimentação do servo",
+            "Inversão da polaridade dos terminais do motor",
+            "Um sinal PWM cuja largura de pulso determina o ângulo do eixo",
+            "Comunicação serial em 9600 bps"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O servo interpreta a largura do pulso (tipicamente de 1 a 2 ms, em período de 20 ms) como posição angular. A biblioteca Servo abstrai isso na função write(). Servos com carga devem ser alimentados por fonte externa, com os terras interligados — a saída de 5 V da placa não sustenta a corrente de pico."
+        },
+        {
+          "id": "ARD-M3-Q5",
+          "enunciado": "Na comunicação serial entre o Arduino e um computador, a taxa configurada em Serial.begin(9600) precisa:",
+          "alternativas": [
+            "Ser sempre 9600, valor fixo do protocolo",
+            "Ser ajustada apenas no monitor serial, não no código",
+            "Ser maior no transmissor do que no receptor",
+            "Coincidir com a taxa configurada no receptor, sob pena de os dados chegarem corrompidos"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "A serial assíncrona não transmite clock: emissor e receptor precisam concordar previamente sobre a velocidade. Taxas diferentes produzem aquele texto de caracteres aleatórios no monitor. Valores maiores, como 115200, transmitem mais rápido, mas ficam mais sensíveis a cabos longos e ruído."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Automação Aplicada: CLP, Ladder e Projeto Final (10h)",
+      "descricao": "Arquitetura do CLP e ciclo de varredura, linguagem Ladder e equivalência com o comando convencional, entradas e saídas digitais e analógicas, sinal 4-20 mA, inversores, sensores industriais e projeto final.",
+      "exercicios": [
+        {
+          "id": "ARD-M4-Q1",
+          "enunciado": "O ciclo de varredura (scan) de um CLP ocorre na seguinte ordem:",
+          "alternativas": [
+            "Lê as entradas e as armazena na memória imagem, executa o programa do usuário e depois atualiza as saídas",
+            "Executa o programa, depois lê as entradas e por último atualiza as saídas",
+            "Atualiza as saídas, executa o programa e só então lê as entradas",
+            "Lê e escreve entradas e saídas simultaneamente, de forma contínua e assíncrona"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "O CLP trabalha com memória imagem: no início do ciclo fotografa o estado das entradas, executa toda a lógica sobre essa fotografia e só no fim escreve as saídas. Por isso uma entrada que muda no meio da execução só é percebida no ciclo seguinte — conceito essencial para entender o tempo de resposta e evitar armadilhas de programação."
+        },
+        {
+          "id": "ARD-M4-Q2",
+          "enunciado": "Em linguagem Ladder, o selo de partida de um motor equivale, no comando convencional, a:",
+          "alternativas": [
+            "Um contato NF da saída em série com a botoeira de liga",
+            "Um contato NA da própria saída em paralelo com o contato da botoeira de liga",
+            "Uma bobina de retenção (SET) sem qualquer contato associado",
+            "Um temporizador ligado em série com a bobina"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A lógica é idêntica à do comando por contatores: um contato NA endereçado à própria saída, em paralelo com o contato da botoeira pulsante, mantém a linha energizada após a soltura do botão. Em série ficam a botoeira de desliga (NF) e o contato do relé térmico, que rompem o selo. Alternativamente usam-se as instruções SET/RESET."
+        },
+        {
+          "id": "ARD-M4-Q3",
+          "enunciado": "Em um inversor de frequência com controle escalar (V/f), a relação tensão/frequência é mantida constante porque:",
+          "alternativas": [
+            "Isso reduz o consumo de energia em qualquer rotação",
+            "Aumenta a rotação síncrona do motor acima do valor de placa",
+            "Mantém o fluxo magnético e, portanto, o conjugado aproximadamente constante ao longo da faixa de velocidade, evitando saturação em baixa frequência",
+            "É exigência da NBR 5410 para qualquer acionamento"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O fluxo no entreferro é proporcional a V/f. Reduzir a frequência sem reduzir a tensão saturaria o núcleo e provocaria sobrecorrente; reduzir a tensão na mesma proporção preserva o fluxo e o conjugado. Acima da frequência nominal a tensão não pode mais subir, e o motor passa a operar em enfraquecimento de campo, com perda de conjugado."
+        },
+        {
+          "id": "ARD-M4-Q4",
+          "enunciado": "A diferença fundamental entre um sensor indutivo e um sensor capacitivo de proximidade é:",
+          "alternativas": [
+            "Ambos detectam os mesmos materiais, variando apenas o preço",
+            "O indutivo funciona apenas em corrente contínua e o capacitivo apenas em alternada",
+            "O capacitivo detecta somente metais ferrosos e o indutivo somente alumínio",
+            "O indutivo detecta apenas materiais metálicos; o capacitivo detecta metais e também não metálicos, como líquidos, plásticos e grãos"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "O sensor indutivo gera um campo eletromagnético de alta frequência e detecta a variação causada por materiais metálicos. O capacitivo detecta variação da constante dielétrica e por isso enxerga também plásticos, madeira, água e grãos — útil em detecção de nível através da parede do recipiente, embora seja mais sensível a umidade e sujeira."
+        },
+        {
+          "id": "ARD-M4-Q5",
+          "enunciado": "Ao integrar um inversor de frequência a um comando convencional, o acionamento e a parada do motor devem ser feitos:",
+          "alternativas": [
+            "Pelas entradas digitais de comando do inversor (ou por sua interface de comunicação), mantendo o circuito de potência permanentemente conectado ao motor",
+            "Por um contator instalado entre o inversor e o motor, abrindo e fechando a cada partida",
+            "Desligando a alimentação de entrada do inversor a cada parada",
+            "Alterando manualmente os parâmetros do inversor a cada operação"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Chavear a saída do inversor com contator sob carga danifica os IGBTs e gera falhas por sobrecorrente; ligar e desligar a entrada a cada partida castiga o circuito de pré-carga do barramento CC. O correto é comandar por entradas digitais parametrizadas (partida, reversão, multivelocidade) ou por rede. Contator de saída, quando existir, só deve manobrar com o inversor desabilitado — e a parada de emergência segue requisitos próprios de segurança."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 10 questões deste banco de 20, cobrindo os 4 módulos. Nota mínima para aprovação: 7/10 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 10,
+    "nota_minima": 7,
+    "banco": [
+      {
+        "id": "ARD-PF-01",
+        "modulo": 1,
+        "enunciado": "A tabela verdade de uma porta lógica E (AND) de duas entradas resulta em saída alta:",
+        "alternativas": [
+          "Somente quando ambas as entradas estão em nível alto",
+          "Quando pelo menos uma das entradas está em nível alto",
+          "Somente quando as duas entradas estão em nível baixo",
+          "Quando as entradas têm níveis diferentes entre si"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A porta E exige todas as condições simultaneamente — equivalente a contatos em série no comando elétrico. A porta OU corresponde a contatos em paralelo, e a XOR (OU exclusivo) resulta em saída alta quando as entradas diferem."
+      },
+      {
+        "id": "ARD-PF-02",
+        "modulo": 1,
+        "enunciado": "Um SCR (retificador controlado de silício), depois de disparado pelo gate em um circuito de corrente contínua, deixa de conduzir quando:",
+        "alternativas": [
+          "O sinal de gate é retirado",
+          "A corrente principal cai abaixo da corrente de manutenção",
+          "A temperatura da junção diminui",
+          "A tensão de gate é invertida"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O SCR trava em condução após o disparo; remover o gate não o desliga. Só a redução da corrente abaixo da corrente de manutenção (holding) o bloqueia — o que ocorre naturalmente na passagem por zero em CA, mas exige circuito de comutação forçada em CC."
+      },
+      {
+        "id": "ARD-PF-03",
+        "modulo": 1,
+        "enunciado": "Sobre a interface entre um circuito de comando de 24 Vcc e uma carga em 220 Vca, a solução tecnicamente correta é:",
+        "alternativas": [
+          "Aterrar o comum do comando junto à fase da carga",
+          "Ligar a carga diretamente à saída de 24 V, pois a potência é a mesma",
+          "Usar relé eletromecânico ou relé de estado sólido com isolação, dimensionados para a corrente e o tipo de carga",
+          "Instalar apenas um fusível entre os dois circuitos"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "A interface exige isolação galvânica e capacidade de manobra compatível. O relé de estado sólido é indicado para chaveamento frequente e silencioso; o eletromecânico, para correntes maiores e separação física dos contatos. Em ambos os casos, observa-se o fator de correção para cargas indutivas."
+      },
+      {
+        "id": "ARD-PF-04",
+        "modulo": 1,
+        "enunciado": "Em famílias lógicas TTL alimentadas em 5 V, uma entrada deixada flutuante (sem conexão) tende a:",
+        "alternativas": [
+          "Ser interpretada como nível baixo estável",
+          "Ser interpretada como nível alto sempre, sem qualquer risco",
+          "Desligar automaticamente o circuito integrado",
+          "Assumir estado indefinido e sensível a ruído, causando comportamento errático"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Entrada flutuante funciona como antena e oscila com o ruído do ambiente. A prática correta é sempre definir o nível com resistor de pull-up ou pull-down — a mesma razão pela qual se usa INPUT_PULLUP em microcontroladores."
+      },
+      {
+        "id": "ARD-PF-05",
+        "modulo": 1,
+        "enunciado": "O IGBT é o semicondutor predominante em inversores de frequência industriais porque:",
+        "alternativas": [
+          "Combina acionamento por tensão no gate com baixa queda em condução sob alta corrente e tensão",
+          "Funciona sem necessidade de dissipador de calor",
+          "É o componente mais barato disponível",
+          "Só conduz em corrente contínua de baixa tensão"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O IGBT reúne a facilidade de acionamento do MOSFET (por tensão, com baixo consumo de driver) e a robustez do bipolar em condução. Essa combinação o torna ideal para os barramentos de centenas de volts e dezenas de ampères dos acionamentos industriais — sempre com dissipador e proteção térmica."
+      },
+      {
+        "id": "ARD-PF-06",
+        "modulo": 2,
+        "enunciado": "Para configurar o pino 8 do Arduino como saída digital, a instrução correta e o local adequado são:",
+        "alternativas": [
+          "digitalWrite(8, OUTPUT), dentro do loop()",
+          "pinMode(8, OUTPUT), dentro do setup()",
+          "analogWrite(8, OUTPUT), dentro do setup()",
+          "Serial.begin(8), dentro do loop()"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "pinMode() define a direção do pino e pertence ao setup(), que roda uma única vez. digitalWrite() escreve o nível lógico (HIGH ou LOW) e é usado no loop(). Trocar as duas funções é um dos erros mais comuns de quem começa."
+      },
+      {
+        "id": "ARD-PF-07",
+        "modulo": 2,
+        "enunciado": "A corrente máxima recomendada por pino de entrada/saída digital em um Arduino Uno é da ordem de:",
+        "alternativas": [
+          "5 A",
+          "200 mA",
+          "20 mA",
+          "1 A"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O limite recomendado é cerca de 20 mA por pino (absoluto de 40 mA), com teto para o conjunto dos pinos. Qualquer carga acima disso — relé, motor, tira de LEDs — exige transistor, driver ou módulo relé com alimentação externa."
+      },
+      {
+        "id": "ARD-PF-08",
+        "modulo": 2,
+        "enunciado": "O uso de delay(1000) dentro do loop() tem como principal desvantagem:",
+        "alternativas": [
+          "Impedir o uso da comunicação serial em qualquer situação",
+          "Consumir muita memória de programa",
+          "Desligar as saídas digitais durante a pausa",
+          "Bloquear a execução, impedindo o programa de ler entradas ou responder a eventos durante o intervalo"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "delay() é bloqueante: durante o intervalo nada mais é executado no fluxo principal. Em aplicações que precisam ler botões, sensores ou responder a comandos, a prática correta é usar millis() para temporização não bloqueante, ou interrupções para eventos críticos."
+      },
+      {
+        "modulo": 2,
+        "enunciado": "A leitura de um botão sem tratamento de repique (debounce) pode registrar vários acionamentos em um único toque porque:",
+        "alternativas": [
+          "Os contatos mecânicos vibram por alguns milissegundos ao fechar, gerando múltiplas transições que o microcontrolador lê individualmente",
+          "A tensão de alimentação oscila durante o toque",
+          "O pino digital não suporta a corrente do botão",
+          "O compilador otimiza incorretamente o laço de leitura"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O microcontrolador lê em microssegundos, enquanto o repique dura milissegundos. O tratamento pode ser por software — ignorar novas transições dentro de uma janela de tempo com millis() — ou por hardware, com filtro RC. Sem isso, um contador incrementa vários passos por toque.",
+        "id": "ARD-PF-09"
+      },
+      {
+        "modulo": 2,
+        "enunciado": "Uma variável declarada como int em um Arduino Uno ocupa 2 bytes e armazena valores entre:",
+        "alternativas": [
+          "0 e 255",
+          "-32.768 e 32.767",
+          "0 e 1.023",
+          "-128 e 127"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "int com sinal em 16 bits vai de -32.768 a 32.767. byte cobre 0 a 255 e long, 4 bytes. Escolher o tipo errado causa estouro silencioso: somar milissegundos em um int, por exemplo, transborda em cerca de 33 segundos — daí millis() retornar unsigned long.",
+        "id": "ARD-PF-10"
+      },
+      {
+        "id": "ARD-PF-11",
+        "modulo": 3,
+        "enunciado": "Ao ligar dois dispositivos no barramento I2C do Arduino, é necessário:",
+        "alternativas": [
+          "Um par de pinos digitais exclusivo para cada dispositivo",
+          "Converter os sinais para analógico antes da leitura",
+          "Compartilhar as linhas SDA e SCL, garantindo endereços distintos e resistores de pull-up no barramento",
+          "Alimentar cada dispositivo com tensão diferente"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O I2C é um barramento a dois fios em que todos os dispositivos compartilham SDA e SCL, sendo distinguidos por endereço. As linhas são de dreno aberto e exigem resistores de pull-up (muitas vezes já presentes nos módulos). Endereços repetidos causam conflito e leitura inválida."
+      },
+      {
+        "id": "ARD-PF-12",
+        "modulo": 3,
+        "enunciado": "Ao montar um sistema com Arduino em ambiente industrial, uma medida essencial para a confiabilidade é:",
+        "alternativas": [
+          "Deixar as entradas não utilizadas flutuantes para economizar componentes",
+          "Alimentar o Arduino diretamente da rede de 220 V pelo pino Vin",
+          "Usar sempre o cabo USB como fonte definitiva de alimentação",
+          "Separar fisicamente a fiação de comando da de potência, usar isolação nas interfaces e alimentar o circuito por fonte estabilizada e filtrada"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Ruído de chaveamento, transitórios de partida de motores e acoplamento capacitivo entre cabos são as principais causas de travamento de microcontroladores em painéis. A separação da fiação, o uso de optoacopladores/relés isolados e a alimentação por fonte adequada resolvem a maior parte dos problemas. O pino Vin aceita apenas tensão contínua de baixo valor."
+      },
+      {
+        "modulo": 3,
+        "enunciado": "Um sensor digital de presença PIR conectado a uma entrada do Arduino fornece:",
+        "alternativas": [
+          "Um nível lógico alto enquanto detecta movimento e baixo em repouso",
+          "Um valor analógico proporcional à distância do objeto",
+          "Dados seriais no formato JSON",
+          "Uma resistência variável que exige divisor de tensão"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O PIR detecta variação de radiação infravermelha e entrega saída digital, lida com digitalRead(). Os potenciômetros da placa ajustam sensibilidade e tempo de retenção. Por depender de variação térmica, não detecta objeto parado nem funciona bem através de vidro.",
+        "id": "ARD-PF-13"
+      },
+      {
+        "modulo": 3,
+        "enunciado": "Ao alimentar uma fita de LED endereçável ou vários servos junto ao Arduino, a prática correta é:",
+        "alternativas": [
+          "Alimentar tudo pela porta USB, que fornece corrente suficiente",
+          "Usar fonte externa dimensionada para a carga, interligando o GND da fonte ao GND do Arduino para haver referência comum",
+          "Alimentar a carga pelo pino de 3,3 V da placa",
+          "Manter os terras separados para evitar interferência"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A USB entrega cerca de 500 mA — insuficiente para essas cargas, e forçá-la provoca reset e travamento. Com fonte externa, o GND comum é obrigatório: sem referência compartilhada, o sinal de dados não tem contra o que ser comparado e o comando simplesmente não funciona.",
+        "id": "ARD-PF-14"
+      },
+      {
+        "modulo": 3,
+        "enunciado": "O protocolo I2C se caracteriza por utilizar:",
+        "alternativas": [
+          "Um par de fios por dispositivo, sem endereçamento",
+          "Uma única linha bidirecional sem clock",
+          "Duas linhas compartilhadas (SDA e SCL) com endereçamento individual de cada dispositivo",
+          "Quatro linhas obrigatórias por dispositivo"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Displays, sensores e módulos de relógio compartilham o mesmo barramento de dois fios, distinguidos por endereço. Dispositivos com endereço idêntico entram em conflito — muitos módulos permitem alterá-lo por jumper. As linhas são de dreno aberto e exigem pull-up.",
+        "id": "ARD-PF-15"
+      },
+      {
+        "id": "ARD-PF-16",
+        "modulo": 4,
+        "enunciado": "Uma entrada digital de CLP do tipo sink/source em 24 Vcc é usada tipicamente para conectar:",
+        "alternativas": [
+          "Um motor trifásico diretamente",
+          "A alimentação principal do painel",
+          "Um transdutor de pressão com saída 4-20 mA",
+          "Sensores discretos, botoeiras e chaves fim de curso, que informam estados liga/desliga"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Entradas digitais leem apenas dois estados. Sinais contínuos e proporcionais, como 4-20 mA ou 0-10 V de transdutores, exigem módulo de entrada analógica. Cargas de potência jamais se conectam diretamente às entradas ou saídas do CLP sem interface adequada."
+      },
+      {
+        "id": "ARD-PF-17",
+        "modulo": 4,
+        "enunciado": "O sinal padrão 4-20 mA é preferido em instrumentação industrial principalmente porque:",
+        "alternativas": [
+          "É imune à queda de tensão nos cabos longos e permite detectar rompimento do circuito, já que 0 mA indica falha e não valor mínimo",
+          "É mais barato que o sinal em tensão",
+          "Dispensa qualquer tipo de blindagem ou aterramento",
+          "Transmite dados digitais com maior velocidade"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "Como a corrente é a mesma em toda a malha, a queda nos condutores não altera a informação — vantagem decisiva em distâncias longas. E porque a faixa útil começa em 4 mA, a leitura de 0 mA identifica cabo rompido ou transmissor desalimentado, o chamado zero vivo."
+      },
+      {
+        "id": "ARD-PF-18",
+        "modulo": 4,
+        "enunciado": "Em um inversor de frequência, a rampa de aceleração ajustada em um valor muito curto para a carga acionada tende a provocar:",
+        "alternativas": [
+          "Aumento do fator de potência da instalação",
+          "Falha por sobrecorrente do inversor, por exigir conjugado acima do disponível",
+          "Redução da corrente de partida a valores próximos de zero",
+          "Inversão automática do sentido de rotação"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Acelerar uma inércia elevada em tempo insuficiente exige conjugado — e, portanto, corrente — acima do limite do inversor, que atua sua proteção. O ajuste correto equilibra o tempo de rampa com a inércia da carga; em desacelerações rápidas, o excedente de energia devolvido ao barramento CC pode exigir resistor de frenagem."
+      },
+      {
+        "id": "ARD-PF-19",
+        "modulo": 4,
+        "enunciado": "Sobre a substituição de um comando convencional por CLP em uma máquina existente, é correto afirmar:",
+        "alternativas": [
+          "O CLP dispensa os dispositivos de proteção do circuito de força, como disjuntores e relés de sobrecarga",
+          "Todos os contatores podem ser eliminados, ligando o motor às saídas do CLP",
+          "As funções de segurança, como parada de emergência, devem permanecer em circuito dedicado e independente da lógica programável, conforme os requisitos de segurança aplicáveis",
+          "A lógica Ladder torna desnecessária a documentação do diagrama de força"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O CLP substitui a LÓGICA de comando, não a proteção nem a segurança. Parada de emergência e funções de segurança seguem em circuito próprio (relés de segurança ou CLP de segurança certificado), porque não podem depender de software comum. O circuito de força continua com seus dispositivos de manobra e proteção."
+      },
+      {
+        "id": "ARD-PF-20",
+        "modulo": 4,
+        "enunciado": "Antes de qualquer intervenção em um painel elétrico energizado ou passível de energização, o procedimento correto é:",
+        "alternativas": [
+          "Trabalhar com atenção redobrada, mantendo o painel energizado para agilizar os testes",
+          "Solicitar autorização verbal ao operador e prosseguir",
+          "Apenas desligar o disjuntor geral e iniciar o serviço",
+          "Desenergizar, bloquear e sinalizar (bloqueio e etiquetagem), verificar a ausência de tensão e só então instalar o aterramento temporário quando aplicável"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "A sequência de desenergização é normativa: seccionar, impedir a reenergização (bloqueio e etiquetagem), constatar a ausência de tensão com instrumento adequado e testado, instalar aterramento temporário quando aplicável, proteger elementos energizados na zona controlada e sinalizar. Ela deve ser desfeita na ordem inversa. Este curso é de capacitação técnica e não substitui o treinamento de segurança exigido pela NR-10."
+      }
+    ]
+  }
+}

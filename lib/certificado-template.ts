@@ -28,7 +28,9 @@ export function getAccentColorPorNr(nr: string): string {
     'NR-35': '#d97706',      // âmbar — trabalho em altura
     'NR-10 SEP': '#1d4ed8',  // azul — sistemas elétricos de potência
     'NR-06': '#16a34a',      // verde — proteção individual
-    'ELÉTRICA': '#0f766e',   // verde-petróleo — elétrica industrial e automação
+    'ELÉTRICA': '#12694F',   // verde — instalações elétricas prediais
+    'COMANDOS': '#7A5510',   // ocre — comandos elétricos
+    'ARDUINO': '#0E5C58',    // teal — Arduino e automação
   }
   return mapa[nr] ?? '#b8860b' // dourado padrão (NR-10 Básico e demais)
 }
