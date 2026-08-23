@@ -202,7 +202,7 @@
             "O diagrama de força representa o circuito que alimenta a carga (fases, contatos principais, relé térmico, motor); o de comando representa a lógica que energiza as bobinas (botoeiras, contatos auxiliares, temporizadores)"
           ],
           "resposta_correta": 3,
-          "explicacao": "A separação é o alicerce da leitura de esquemas industriais: no circuito de força circula a corrente do motor, com condutores dimensionados para ela; no circuito de comando circulam apenas miliampères para energizar bobinas e sinaleiros, normalmente em tensão reduzida (24 V, 110 V ou 220 V). A referência cruzada entre os dois diagramas é feita pela identificação dos dispositivos (K1, F1, S1)."
+          "explicacao": "A separação é o alicerce da leitura de esquemas industriais: no circuito de força circula a corrente do motor, com condutores dimensionados para ela; no circuito de comando circulam correntes muito menores — tipicamente de dezenas a centenas de miliampères em regime de selo, com pico de partida várias vezes maior — para energizar bobinas e sinaleiros, normalmente em tensão reduzida (24 V, 110 V ou 220 V). A referência cruzada entre os dois diagramas é feita pela identificação dos dispositivos (K1, F1, S1)."
         }
       ]
     },

@@ -20,7 +20,7 @@
             "12,5 A e 8,8 Ω"
           ],
           "resposta_correta": 1,
-          "explicacao": "Da potência em corrente contínua/resistiva, I = P/V = 5.500/220 = 25 A. Pela Lei de Ohm, R = V/I = 220/25 = 8,8 Ω. Também pode ser obtido por R = V²/P = 48.400/5.500 = 8,8 Ω. Esse cálculo é o que define a seção do condutor e o disjuntor do circuito."
+          "explicacao": "Em carga puramente resistiva (fator de potência unitário), I = P/V = 5.500/220 = 25 A. Pela Lei de Ohm, R = V/I = 220/25 = 8,8 Ω. Também pode ser obtido por R = V²/P = 48.400/5.500 = 8,8 Ω. Esse cálculo é o que define a seção do condutor e o disjuntor do circuito."
         },
         {
           "id": "PRE-M1-Q2",
@@ -336,7 +336,7 @@
             "Indefinido, pois a coordenação não depende da capacidade do condutor"
           ],
           "resposta_correta": 1,
-          "explicacao": "A regra de coordenação é corrente de projeto ≤ corrente nominal da proteção ≤ capacidade de condução do condutor. Com 20 A de disjuntor e 21 A de capacidade, o cabo está protegido. O erro clássico é o inverso: elevar o disjuntor acima da capacidade do condutor para parar os desarmes, deixando o cabo desprotegido."
+          "explicacao": "A regra de coordenação é corrente de projeto ≤ corrente nominal da proteção ≤ capacidade de condução do condutor. Com 20 A de disjuntor e 21 A de capacidade, a primeira condição está atendida. A NBR 5410 exige ainda uma segunda verificação: a corrente convencional de atuação da proteção (I2) não pode superar 1,45 vez a capacidade do condutor (I2 ≤ 1,45 × Iz) — condição normalmente satisfeita pelos disjuntores termomagnéticos conformes à NBR NM 60898. O erro clássico é o inverso: elevar o disjuntor acima da capacidade do condutor para parar os desarmes, deixando o cabo desprotegido."
         }
       ]
     },
@@ -811,15 +811,15 @@
       {
         "id": "PRE-PF-21",
         "modulo": 5,
-        "enunciado": "A queda de tensão máxima admitida pela NBR 5410 entre a origem da instalação e qualquer ponto de utilização, no caso mais comum de instalações alimentadas em baixa tensão pela concessionária, é da ordem de:",
+        "enunciado": "Em uma instalação alimentada por subestação própria a partir de rede de alta tensão, a queda de tensão máxima admitida pela NBR 5410 entre a saída do transformador e qualquer ponto de utilização é de:",
         "alternativas": [
           "4%",
-          "1%",
+          "7%",
           "15%",
           "25%"
         ],
         "resposta_correta": 0,
-        "explicacao": "A norma limita a queda a 4% para instalações alimentadas diretamente em baixa tensão a partir da rede pública, com limites específicos por trecho. Queda excessiva provoca perda de conjugado em motores, aquecimento e mau funcionamento de equipamentos eletrônicos."
+        "explicacao": "A NBR 5410 (item 6.2.7) limita a queda a 4% quando a instalação é alimentada por subestação própria. Quando o fornecimento vem diretamente da rede de baixa tensão da concessionária, o limite é de 7%, contado a partir do ponto de entrega. Em ambos os casos há limites específicos por trecho. Queda excessiva provoca perda de conjugado em motores, aquecimento e mau funcionamento de equipamentos eletrônicos."
       },
       {
         "id": "PRE-PF-22",
