@@ -80,6 +80,16 @@ export async function POST(req: NextRequest) {
         auto_return: 'approved',
         notification_url: `${process.env.NEXT_PUBLIC_URL}/api/webhook/mp`,
         statement_descriptor: 'NR CERTIFICA',
+        // Libera explicitamente PIX, boleto e cartao. Nada excluido.
+        payment_methods: {
+          excluded_payment_types: [],
+          excluded_payment_methods: [],
+          installments: 6,
+        },
+        // Preferencia expira em 24h para nao deixar pedido pendente eterno
+        expires: true,
+        expiration_date_from: new Date().toISOString(),
+        expiration_date_to: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
       },
     })
 
