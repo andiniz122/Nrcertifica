@@ -3,8 +3,9 @@ import { useState } from 'react'
 import {
   BookOpen, CheckCircle2, Lock, FileText, Download,
   ChevronRight, ChevronDown, Award, AlertCircle,
-  RotateCcw, Loader2, XCircle, PlayCircle, ClipboardList, CalendarDays
+  RotateCcw, Loader2, XCircle, PlayCircle, ClipboardList, CalendarDays, Wrench
 } from 'lucide-react'
+import PraticaModulo from './PraticaModulo'
 
 interface Props {
   curso: any
@@ -13,7 +14,7 @@ interface Props {
   usuario: any
 }
 
-type AbaModulo = 'material' | 'exercicios'
+type AbaModulo = 'material' | 'exercicios' | 'pratica'
 
 export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) {
   const [moduloAberto, setModuloAberto] = useState<number | null>(1)
@@ -24,6 +25,11 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
   )
   const [carregandoModulo, setCarregandoModulo] = useState<number | null>(null)
   const [erroModulo, setErroModulo] = useState<string>('')
+  // Modulos cujos exercicios praticos obrigatorios ja sairam. Preenchido pela
+  // aba Pratica ao carregar. Enquanto for undefined, o modulo com pratica nao
+  // pode ser concluido pelo questionario — e isso e proposital: ninguem se
+  // forma sem ter montado um selo funcionando.
+  const [praticaOk, setPraticaOk] = useState<Record<number, boolean>>({})
   const hoje = new Date().toISOString().split('T')[0]
 
   const inicioSalvo = matricula.data_inicio_curso
@@ -323,6 +329,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
               const mats = materiaisDoModulo(modulo.id)
               const acessou = materialAcessado[modulo.id] || concluido
               const abaAtiva = getAbaModulo(modulo.id)
+              const temPratica = (modulo.praticas?.length ?? 0) > 0
 
               // Módulo bloqueado? Só libera sequencialmente
               const anterior = modulo.id - 1
@@ -389,6 +396,22 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                           Exercícios
                           {!acessou && <Lock className="w-3 h-3" />}
                         </button>
+                        {temPratica && (
+                          <button
+                            onClick={() => acessou ? setAba(modulo.id, 'pratica') : null}
+                            className={`py-3 px-4 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${
+                              abaAtiva === 'pratica'
+                                ? 'border-brand-red text-brand-red'
+                                : acessou
+                                  ? 'border-transparent text-gray-400 hover:text-gray-600'
+                                  : 'border-transparent text-gray-200 cursor-not-allowed'
+                            }`}
+                          >
+                            <Wrench className="w-4 h-4" />
+                            Prática
+                            {!acessou && <Lock className="w-3 h-3" />}
+                          </button>
+                        )}
                       </div>
 
                       {/* Conteúdo da aba material */}
@@ -453,6 +476,20 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                         </div>
                       )}
 
+                      {/* Conteúdo da aba prática (simulador de comandos) */}
+                      {abaAtiva === 'pratica' && temPratica && (
+                        <div className="p-5">
+                          <PraticaModulo
+                            enrollmentId={matricula._id}
+                            moduloId={modulo.id}
+                            onModuloConcluido={(ms) => setModulosConcluidos(ms)}
+                            onProgresso={(ok) =>
+                              setPraticaOk((r) => (r[modulo.id] === ok ? r : { ...r, [modulo.id]: ok }))
+                            }
+                          />
+                        </div>
+                      )}
+
                       {/* Conteúdo da aba exercícios */}
                       {abaAtiva === 'exercicios' && (
                         <div className="p-5">
@@ -462,6 +499,8 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                             onConcluir={() => concluirModulo(modulo.id)}
                             carregando={carregandoModulo === modulo.id}
                             erro={carregandoModulo === null ? erroModulo : ''}
+                            praticaPendente={temPratica && !praticaOk[modulo.id]}
+                            onIrParaPratica={() => setAba(modulo.id, 'pratica')}
                           />
                         </div>
                       )}
@@ -583,7 +622,9 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
 }
 
 // ── Exercícios do módulo ──
-function ExerciciosModulo({ modulo, concluido, onConcluir, carregando, erro }: any) {
+function ExerciciosModulo({
+  modulo, concluido, onConcluir, carregando, erro, praticaPendente, onIrParaPratica,
+}: any) {
   const [respostas, setRespostas] = useState<Record<number, number>>({})
   const [enviado, setEnviado] = useState(false)
   const [acertos, setAcertos] = useState(0)
@@ -700,7 +741,15 @@ function ExerciciosModulo({ modulo, concluido, onConcluir, carregando, erro }: a
                 {erro}
               </p>
             )}
-            {!concluido ? (
+            {!concluido && praticaPendente ? (
+              <button
+                onClick={onIrParaPratica}
+                className="btn-primary ml-auto"
+              >
+                <Wrench className="w-4 h-4" />
+                Falta a montagem prática
+              </button>
+            ) : !concluido ? (
               <button
                 onClick={onConcluir}
                 disabled={carregando}

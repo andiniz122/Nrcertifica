@@ -8,11 +8,32 @@ export interface IQuestao {
   explicacao: string
 }
 
+/**
+ * Exercicio de bancada do simulador de comandos eletricos.
+ *
+ * `vetores` e o gabarito: a sequencia de acionamentos com que a correcao
+ * julga o circuito. Fica com `select: false` no schema — a pagina do AVA
+ * serializa o curso inteiro para o cliente, e sem isso o aluno leria as
+ * condicoes de teste no HTML da propria pagina.
+ */
+export interface IPratica {
+  exercicio_id: number
+  titulo: string
+  obrigatorio: boolean
+  enunciado: string
+  bancada: Array<{ tipo: string }>
+  circuito_inicial: any
+  nota_minima: number
+  tentativas_maximas: number
+  vetores?: any[]
+}
+
 export interface IModulo {
   id: number
   titulo: string
   descricao: string
   exercicios: IQuestao[]
+  praticas: IPratica[]
 }
 
 export interface ICourse extends Document {
@@ -45,11 +66,27 @@ const QuestaoSchema = new Schema({
   explicacao:       String,
 }, { _id: false })
 
+const PraticaSchema = new Schema({
+  exercicio_id:       { type: Number, required: true },
+  titulo:             String,
+  obrigatorio:        { type: Boolean, default: false },
+  enunciado:          String,
+  bancada:            [{ tipo: String, _id: false }],
+  circuito_inicial:   { type: Schema.Types.Mixed, default: {} },
+  nota_minima:        { type: Number, default: 10 },
+  tentativas_maximas: { type: Number, default: 10 },
+  // GABARITO. select:false para que nenhuma rota que ja faz Course.findOne()
+  // o devolva por acidente. A rota de correcao le com
+  // .select('+modulos.praticas.vetores').
+  vetores:            { type: [Schema.Types.Mixed], select: false, default: [] },
+}, { _id: false })
+
 const ModuloSchema = new Schema({
   id:        Number,
   titulo:    String,
   descricao: String,
   exercicios: [QuestaoSchema],
+  praticas:  { type: [PraticaSchema], default: [] },
 }, { _id: false })
 
 const CourseSchema = new Schema<ICourse>({
