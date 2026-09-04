@@ -1,16 +1,49 @@
 'use client'
-import { useEffect } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { useCart } from '../../../../components/CartProvider'
 import { Header } from '../../../../components/Header'
 import { CheckCircle2, BookOpen, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
-export default function PagamentoSucesso() {
+function PagamentoSucessoConteudo() {
   const { limparCarrinho } = useCart()
+  const params = useSearchParams()
+  const disparado = useRef(false)
 
   useEffect(() => {
     limparCarrinho()
   }, [])
+
+  useEffect(() => {
+    const orderId = params.get('external_reference')
+    if (!orderId || disparado.current) return
+
+    const chave = 'gads_conv_' + orderId
+    try {
+      if (sessionStorage.getItem(chave)) return
+    } catch {}
+    disparado.current = true
+
+    const enviar = (valor?: number) => {
+      const g = (window as any).gtag
+      if (typeof g !== 'function') return
+      g('event', 'conversion', {
+        send_to: 'AW-971253223/TeseCPbZtOscEOfLkM8D',
+        value: valor,
+        currency: 'BRL',
+        transaction_id: orderId,
+      })
+      try {
+        sessionStorage.setItem(chave, '1')
+      } catch {}
+    }
+
+    fetch('/api/orders/' + orderId + '/valor')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => enviar(d?.total))
+      .catch(() => enviar(undefined))
+  }, [params])
 
   return (
     <>
@@ -32,5 +65,13 @@ export default function PagamentoSucesso() {
         </div>
       </main>
     </>
+  )
+}
+
+export default function PagamentoSucesso() {
+  return (
+    <Suspense fallback={null}>
+      <PagamentoSucessoConteudo />
+    </Suspense>
   )
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Sora } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import { Providers } from './providers'
 import { WhatsAppButton } from '../components/WhatsAppButton'
@@ -83,6 +84,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd data={schemaBase} />
         <Providers>{children}</Providers>
         <WhatsAppButton />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-971253223"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-base" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-971253223');`}
+        </Script>
       </body>
     </html>
   )

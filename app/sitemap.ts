@@ -19,7 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
 
     { path: RESPONSAVEL.rota, freq: 'monthly', prio: 0.75 },
-    { path: '/validar',       freq: 'monthly', prio: 0.7  },
   ]
 
   return paginas.map((p) => ({

@@ -398,8 +398,8 @@ export default function Home() {
               },
               {
                 icon: Users,
-                titulo: 'Milhares de alunos certificados',
-                desc: 'Junte-se a milhares de profissionais que já se capacitaram com a NR Certifica.',
+                titulo: 'Responsabilidade técnica registrada',
+                desc: 'Conteúdo e certificados assinados por Engenheiro de Segurança do Trabalho registrado no CREA.',
               },
               {
                 icon: Lock,

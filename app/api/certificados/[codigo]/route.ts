@@ -23,7 +23,7 @@ export async function GET(
 
     const cert = await Certificate.findOne({ codigo: params.codigo })
       .populate('usuario_id', 'nome cpf email')
-      .populate('curso_id', 'titulo nr carga_horaria validade_anos conteudo_programatico')
+      .populate('curso_id', 'titulo nr carga_horaria validade_anos validade_texto conteudo_programatico')
       .lean() as any
 
     if (!cert) return NextResponse.json({ error: 'Certificado nao encontrado' }, { status: 404 })
@@ -76,13 +76,32 @@ export async function GET(
       cpf: cert.usuario_id?.cpf || "",
       curso: cert.curso_id?.titulo || "",
       cargaHoraria: cert.curso_id?.carga_horaria || 0,
-      dataInicio: cert.data_inicio ? new Date(cert.data_inicio).toLocaleDateString("pt-BR") : "",
-      dataFim: cert.data_conclusao ? new Date(cert.data_conclusao).toLocaleDateString("pt-BR") : new Date(cert.emitido_em).toLocaleDateString("pt-BR"),
-      notaFinal: Math.round((cert.nota_final || 0) * 10),
+      dataInicio: (() => {
+        const d = cert.dados?.data_inicio ?? cert.data_inicio
+        if (!d) return ""
+        const dt = new Date(d)
+        return isNaN(dt.getTime()) ? "" : dt.toLocaleDateString("pt-BR")
+      })(),
+      dataFim: (() => {
+        const d = cert.dados?.data_conclusao ?? cert.data_conclusao ?? cert.criadoEm ?? cert.emitido_em
+        if (!d) return ""
+        const dt = new Date(d)
+        return isNaN(dt.getTime()) ? "" : dt.toLocaleDateString("pt-BR")
+      })(),
+      notaFinal: (() => {
+        const d = cert.dados || {}
+        if (typeof d.percentual === 'number') return Math.round(d.percentual)
+        if (typeof d.acertos === 'number' && typeof d.total === 'number' && d.total > 0) {
+          return Math.round((d.acertos / d.total) * 100)
+        }
+        const n = d.nota_final ?? cert.nota_final
+        return typeof n === 'number' ? Math.round(n * 10) : 0
+      })(),
       codigoVerificacao: cert.codigo || "",
       assinaturaInstrutorUrl,
       conteudoProgramatico: cert.curso_id?.conteudo_programatico || [],
-      validadeAnos: cert.curso_id?.validade_anos ?? 2, // 0 = curso livre, sem vencimento
+      validadeAnos: cert.curso_id?.validade_anos ?? 0, // fallback seguro: nao afirma prazo
+      validadeTexto: cert.curso_id?.validade_texto || '',
       accentColor: getAccentColorPorNr(cert.curso_id?.nr || ""),
     })
     await page.setContent(html, { waitUntil: 'networkidle0' })

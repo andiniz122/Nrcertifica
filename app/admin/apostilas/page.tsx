@@ -3,21 +3,24 @@ import { useState, useEffect } from 'react'
 import { Upload, Trash2, FileText, Loader2, CheckCircle2, BookOpen } from 'lucide-react'
 import Link from 'next/link'
 
-const CURSOS = [
-  { slug: 'nr10-basico', titulo: 'NR-10 Básico', modulos: 4 },
-  { slug: 'nr35', titulo: 'NR-35 Trabalho em Altura', modulos: 3 },
-  { slug: 'nr10-sep', titulo: 'NR-10 SEP', modulos: 4 },
-  { slug: 'nr06', titulo: 'NR-06 EPI', modulos: 2 },
-  { slug: 'nr12-basico', titulo: 'NR-12 Máquinas e Equipamentos', modulos: 4 },
-]
+type CursoAdmin = {
+  _id: string
+  slug: string
+  titulo: string
+  nr?: string
+  modulos: number
+}
 
 export default function AdminApostilas() {
-  const [cursoSelecionado, setCursoSelecionado] = useState('nr10-basico')
+  const [cursos, setCursos] = useState<CursoAdmin[]>([])
+  const [cursoSelecionado, setCursoSelecionado] = useState('')
   const [cursoId, setCursoId] = useState('')
   const [moduloSelecionado, setModuloSelecionado] = useState(1)
   const [materiais, setMateriais] = useState<any[]>([])
   const [carregando, setCarregando] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [tipoMaterial, setTipoMaterial] = useState<'pdf' | 'video'>('pdf')
+  const [videoId, setVideoId] = useState('')
   const [sucesso, setSucesso] = useState('')
   const [erro, setErro] = useState('')
 
@@ -26,8 +29,24 @@ export default function AdminApostilas() {
   const [titulo, setTitulo] = useState('')
 
   useEffect(() => {
-    buscarCursoId()
+    buscarCursos()
+  }, [])
+
+  useEffect(() => {
+    if (cursoSelecionado) buscarCursoId()
   }, [cursoSelecionado])
+
+  const buscarCursos = async () => {
+    try {
+      const res = await fetch('/api/admin/cursos')
+      const data = await res.json()
+      const lista: CursoAdmin[] = data.cursos || []
+      setCursos(lista)
+      if (lista.length && !cursoSelecionado) setCursoSelecionado(lista[0].slug)
+    } catch {
+      setErro('Nao foi possivel carregar a lista de cursos')
+    }
+  }
 
   useEffect(() => {
     if (cursoId) buscarMateriais()
@@ -49,13 +68,20 @@ export default function AdminApostilas() {
 
   const handleUpload = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!arquivo || !titulo || !cursoId) return
+    if (!titulo || !cursoId) return
+    if (tipoMaterial === 'pdf' && !arquivo) return
+    if (tipoMaterial === 'video' && !videoId.trim()) return
     setUploading(true)
     setErro('')
     setSucesso('')
 
     const formData = new FormData()
-    formData.append('arquivo', arquivo)
+    formData.append('tipo', tipoMaterial)
+    if (tipoMaterial === 'pdf' && arquivo) {
+      formData.append('arquivo', arquivo)
+    } else {
+      formData.append('video_id', videoId.trim())
+    }
     formData.append('curso_id', cursoId)
     formData.append('modulo_id', String(moduloSelecionado))
     formData.append('titulo', titulo)
@@ -65,8 +91,9 @@ export default function AdminApostilas() {
       const res = await fetch('/api/admin/materiais', { method: 'POST', body: formData })
       const data = await res.json()
       if (!res.ok) { setErro(data.error); return }
-      setSucesso('Apostila enviada com sucesso!')
+      setSucesso(tipoMaterial === 'video' ? 'Videoaula cadastrada com sucesso!' : 'Apostila enviada com sucesso!')
       setArquivo(null)
+      setVideoId('')
       setTitulo('')
       buscarMateriais()
       setTimeout(() => setSucesso(''), 3000)
@@ -83,7 +110,7 @@ export default function AdminApostilas() {
     buscarMateriais()
   }
 
-  const curso = CURSOS.find(c => c.slug === cursoSelecionado)
+  const curso = cursos.find(c => c.slug === cursoSelecionado)
 
   return (
     <main className="min-h-screen bg-brand-light">
@@ -103,10 +130,13 @@ export default function AdminApostilas() {
           <div className="space-y-4">
             <div className="card">
               <p className="text-sm font-semibold text-brand-dark mb-3">Curso</p>
-              {CURSOS.map(c => (
+              {cursos.length === 0 && (
+                <p className="text-sm text-gray-400 px-3 py-2">Carregando cursos...</p>
+              )}
+              {cursos.map(c => (
                 <button
                   key={c.slug}
-                  onClick={() => setCursoSelecionado(c.slug)}
+                  onClick={() => { setCursoSelecionado(c.slug); setModuloSelecionado(1) }}
                   className={`w-full text-left p-3 rounded-xl text-sm transition-colors ${
                     cursoSelecionado === c.slug
                       ? 'bg-brand-red text-white'
@@ -120,7 +150,7 @@ export default function AdminApostilas() {
 
             <div className="card">
               <p className="text-sm font-semibold text-brand-dark mb-3">Módulo</p>
-              {Array.from({ length: curso?.modulos || 4 }, (_, i) => i + 1).map(m => (
+              {Array.from({ length: curso?.modulos ?? 0 }, (_, i) => i + 1).map(m => (
                 <button
                   key={m}
                   onClick={() => setModuloSelecionado(m)}
@@ -146,6 +176,35 @@ export default function AdminApostilas() {
               </h2>
               <form onSubmit={handleUpload} className="space-y-4">
                 <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Tipo de material
+                  </label>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setTipoMaterial('pdf')}
+                      className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-semibold border transition-colors ${
+                        tipoMaterial === 'pdf'
+                          ? 'bg-brand-red text-white border-brand-red'
+                          : 'bg-white text-gray-500 border-gray-200 hover:border-brand-red'
+                      }`}
+                    >
+                      Apostila PDF
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setTipoMaterial('video')}
+                      className={`flex-1 py-2.5 px-4 rounded-xl text-sm font-semibold border transition-colors ${
+                        tipoMaterial === 'video'
+                          ? 'bg-brand-red text-white border-brand-red'
+                          : 'bg-white text-gray-500 border-gray-200 hover:border-brand-red'
+                      }`}
+                    >
+                      Videoaula
+                    </button>
+                  </div>
+                </div>
+                <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Título do material
                   </label>
@@ -158,7 +217,26 @@ export default function AdminApostilas() {
                     className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red"
                   />
                 </div>
-                <div>
+                {tipoMaterial === 'video' && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      GUID do vídeo (Bunny Stream)
+                    </label>
+                    <input
+                      type="text"
+                      value={videoId}
+                      onChange={e => setVideoId(e.target.value)}
+                      placeholder="Ex: a1b2c3d4-0000-0000-0000-000000000000"
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-brand-red"
+                    />
+                    <p className="text-xs text-gray-400 mt-2">
+                      Copie o GUID na biblioteca NRcertifica do Bunny Stream. A videoaula é material
+                      complementar e não compõe a carga horária declarada no certificado.
+                    </p>
+                  </div>
+                )}
+
+                <div className={tipoMaterial === 'video' ? 'hidden' : ''}>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Arquivo PDF
                   </label>
@@ -199,11 +277,11 @@ export default function AdminApostilas() {
 
                 <button
                   type="submit"
-                  disabled={uploading || !arquivo || !titulo}
+                  disabled={uploading || !titulo || (tipoMaterial === 'pdf' ? !arquivo : !videoId)}
                   className="btn-primary w-full justify-center disabled:opacity-50"
                 >
                   {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                  {uploading ? 'Enviando...' : 'Enviar apostila'}
+                  {uploading ? 'Enviando...' : tipoMaterial === 'video' ? 'Cadastrar videoaula' : 'Enviar apostila'}
                 </button>
               </form>
             </div>

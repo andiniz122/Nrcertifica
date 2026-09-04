@@ -13,6 +13,15 @@ export interface IEnrollment extends Document {
     total: number
     aprovado: boolean
   }>
+  tentativas_pratica: Array<{
+    data: Date
+    modulo_id: number
+    circuito: any
+    nota: number
+    vetores_ok: number
+    vetores_total: number
+    aprovado: boolean
+  }>
   aprovado: boolean
   data_conclusao?: Date
   data_inicio_curso?: Date
@@ -32,6 +41,15 @@ const EnrollmentSchema = new Schema<IEnrollment>({
     acertos:  Number,
     total:    Number,
     aprovado: Boolean,
+  }],
+  tentativas_pratica: [{
+    data:          { type: Date, default: Date.now },
+    modulo_id:     Number,
+    circuito:      Schema.Types.Mixed,
+    nota:          Number,
+    vetores_ok:    Number,
+    vetores_total: Number,
+    aprovado:      Boolean,
   }],
   aprovado:       { type: Boolean, default: false },
   data_conclusao: Date,

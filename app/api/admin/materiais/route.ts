@@ -46,8 +46,34 @@ export async function POST(req: NextRequest) {
     const titulo    = formData.get('titulo') as string
     const ordem     = Number(formData.get('ordem') || 0)
 
-    if (!arquivo || !curso_id || !modulo_id || !titulo) {
+    const tipo     = (formData.get('tipo') as string) || 'pdf'
+    const video_id = (formData.get('video_id') as string) || ''
+
+    if (!curso_id || !modulo_id || !titulo) {
       return NextResponse.json({ error: 'Campos obrigatórios faltando' }, { status: 400 })
+    }
+
+    // Videoaula: nao ha upload, apenas o GUID do Bunny Stream.
+    if (tipo === 'video') {
+      if (!video_id) {
+        return NextResponse.json({ error: 'video_id obrigatório para videoaula' }, { status: 400 })
+      }
+      const cursoV = await Course.findById(curso_id)
+      if (!cursoV) return NextResponse.json({ error: 'Curso não encontrado' }, { status: 404 })
+
+      const materialVideo = await Material.create({
+        curso_id,
+        modulo_id,
+        titulo,
+        tipo: 'video',
+        url: video_id.trim(),
+        ordem,
+      })
+      return NextResponse.json({ material: materialVideo })
+    }
+
+    if (!arquivo) {
+      return NextResponse.json({ error: 'Arquivo obrigatório' }, { status: 400 })
     }
 
     // Verifica se o curso existe

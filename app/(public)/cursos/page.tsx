@@ -51,7 +51,6 @@ function CardCurso({ curso }: { curso: typeof CURSOS[number] }) {
       <p className="text-gray-500 text-sm mb-3">{curso.subtitulo}</p>
       <div className="flex gap-4 text-xs text-gray-400 mb-4">
         <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {curso.horas}</span>
-        <span className="flex items-center gap-1"><Award className="w-3.5 h-3.5" /> {curso.tipo === 'livre' ? 'Certificado sem validade' : `Validade: ${curso.validade}`}</span>
       </div>
       <ul className="space-y-1.5 mb-5">
         {curso.destaques.map(item => (

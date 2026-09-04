@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description:
     'Confira a autenticidade de qualquer certificado emitido pela NR Certifica. Digite o código de verificação e consulte curso, carga horária, data de emissão e validade.',
   alternates: { canonical: absUrl('/validar') },
+  robots: { index: false, follow: true },
   openGraph: {
     title: 'Validar Certificado NR — Consulta Pública',
     description: 'Consulte a autenticidade de um certificado NR Certifica pelo código de verificação.',

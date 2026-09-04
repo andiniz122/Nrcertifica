@@ -74,7 +74,6 @@ export default function LandingNR10() {
               </p>
               <div className="flex flex-wrap gap-4 text-sm text-gray-300 mb-8">
                 <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-brand-red" /> 40 horas</span>
-                <span className="flex items-center gap-1.5"><Award className="w-4 h-4 text-brand-red" /> Validade: 2 anos</span>
                 <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-brand-red" /> CREA 254516/MG</span>
                 <span className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-brand-red" /> Acesso imediato</span>
               </div>
@@ -170,7 +169,7 @@ export default function LandingNR10() {
                 </p>
                 <p className="text-sm font-semibold text-brand-red">Anderson Bicalho Diniz</p>
                 <p className="text-xs text-gray-400">Engenheiro Eletricista · Engenheiro de Segurança do Trabalho</p>
-                <p className="text-xs text-gray-400">Eletricom Manutenção Especializada · CREA 254516/MG</p>
+                <p className="text-xs text-gray-400">AEC Serviços Especializados LTDA · CREA 254516/MG</p>
               </div>
             </div>
           </div>

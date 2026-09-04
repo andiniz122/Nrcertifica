@@ -35,3 +35,12 @@ stripe_backup_code.txt
 
 # scripts de patch descartaveis
 patch_*.py
+
+.env.local.bak
+*.bak
+check_*.js
+diag-*.js
+fix_*.js
+fix_*.py
+patch*.py
+update_*.js

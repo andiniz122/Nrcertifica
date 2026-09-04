@@ -32,6 +32,17 @@ export async function POST(req: NextRequest) {
     const minimosDiasUteis = Math.ceil(horasCurso / 8)
 
     const fim = new Date(data_fim + 'T12:00:00')
+
+    // Certificado nao pode atestar conclusao em data futura
+    const limite = new Date()
+    limite.setHours(23, 59, 59, 999)
+    if (fim > limite) {
+      return NextResponse.json(
+        { error: 'A data de conclusao nao pode ser futura.' },
+        { status: 400 }
+      )
+    }
+
     let inicio: Date
 
     if (data_inicio) {

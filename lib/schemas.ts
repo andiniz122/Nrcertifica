@@ -54,7 +54,13 @@ export const schemaOrganizacao: Json = {
     url: absUrl(SITE.logo),
   },
   image: absUrl(SITE.logo),
-  areaServed: { '@type': 'Country', name: 'Brasil' },
+  areaServed: [
+    { '@type': 'Country', name: 'Brasil' },
+    { '@type': 'City', name: 'Contagem' },
+    { '@type': 'City', name: 'Betim' },
+    { '@type': 'City', name: 'Belo Horizonte' },
+    { '@type': 'AdministrativeArea', name: 'Regiao Metropolitana de Belo Horizonte' },
+  ],
   knowsLanguage: SITE.lang,
   employee: { '@id': ID_PESSOA },
   // legalName / taxID / address entram quando EMPRESA for definida (ver lib/seo.ts).
@@ -64,10 +70,15 @@ export const schemaOrganizacao: Json = {
     ? {
         address: {
           '@type': 'PostalAddress',
-          streetAddress: [EMPRESA.endereco.logradouro, EMPRESA.endereco.complemento]
+          streetAddress: [
+            [EMPRESA.endereco.logradouro, EMPRESA.endereco.numero].filter(Boolean).join(', '),
+            EMPRESA.endereco.complemento,
+          ]
             .filter(Boolean)
-            .join(', '),
-          addressLocality: EMPRESA.endereco.cidade,
+            .join(' — '),
+          addressLocality: EMPRESA.endereco.bairro
+            ? `${EMPRESA.endereco.bairro}, ${EMPRESA.endereco.cidade}`
+            : EMPRESA.endereco.cidade,
           addressRegion: EMPRESA.endereco.uf,
           postalCode: EMPRESA.endereco.cep,
           addressCountry: 'BR',

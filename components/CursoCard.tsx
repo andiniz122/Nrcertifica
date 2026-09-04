@@ -75,7 +75,6 @@ export function CursoCard({ nr, titulo, horas, validade = '2 anos', preco, href,
 
         <ul className="space-y-1.5 mb-4 text-[13px] text-brand-muted">
           <li className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-brand-muted" /> Carga horária: {horas}</li>
-          <li className="flex items-center gap-1.5"><BadgeCheck className="w-3.5 h-3.5 text-brand-muted" /> Validade: {validade}</li>
         </ul>
 
         <p className="font-display font-bold text-2xl text-brand-slate mb-4 mt-auto">

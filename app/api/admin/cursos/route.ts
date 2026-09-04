@@ -13,10 +13,28 @@ export async function GET(req: NextRequest) {
     await connectDB()
     const { searchParams } = new URL(req.url)
     const slug = searchParams.get('slug')
-    const curso = slug
-      ? await Course.findOne({ slug }).select('_id slug titulo nr modulos').lean()
-      : await Course.find({ ativo: true }).select('_id slug titulo nr').lean()
-    return NextResponse.json({ curso })
+    if (slug) {
+      const curso = await Course.findOne({ slug })
+        .select('_id slug titulo nr modulos')
+        .lean()
+      return NextResponse.json({ curso })
+    }
+    // Lista de cursos ativos com a contagem de modulos, sem carregar o
+    // conteudo de cada um (exercicios e prova pesariam demais no payload).
+    const cursos = await Course.aggregate([
+      { $match: { ativo: true } },
+      {
+        $project: {
+          slug: 1,
+          titulo: 1,
+          nr: 1,
+          ordem: 1,
+          modulos: { $size: { $ifNull: ['$modulos', []] } },
+        },
+      },
+      { $sort: { ordem: 1, titulo: 1 } },
+    ])
+    return NextResponse.json({ cursos, curso: cursos })
   } catch (error) {
     return NextResponse.json({ error: 'Erro interno' }, { status: 500 })
   }

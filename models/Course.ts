@@ -8,11 +8,30 @@ export interface IQuestao {
   explicacao: string
 }
 
+export interface IAcaoPratica { tipo: string; alvo?: string; ms?: number }
+
+export interface IVetorTeste {
+  descricao: string
+  acoes: IAcaoPratica[]
+  esperado: { energizados?: string[]; desenergizados?: string[]; falha?: string }
+  critico?: boolean
+}
+
+export interface IPratica {
+  enunciado: string
+  bancada: any[]
+  circuito_inicial: any
+  nota_minima: number
+  tentativas_maximas: number
+  vetores?: IVetorTeste[]
+}
+
 export interface IModulo {
   id: number
   titulo: string
   descricao: string
   exercicios: IQuestao[]
+  pratica?: IPratica
 }
 
 export interface ICourse extends Document {
@@ -45,11 +64,32 @@ const QuestaoSchema = new Schema({
   explicacao:       String,
 }, { _id: false })
 
+const VetorTesteSchema = new Schema({
+  descricao: String,
+  acoes: [{ tipo: String, alvo: String, ms: Number, _id: false }],
+  esperado: {
+    energizados:    [String],
+    desenergizados: [String],
+    falha:          String,
+  },
+  critico: { type: Boolean, default: false },
+}, { _id: false })
+
+const PraticaSchema = new Schema({
+  enunciado:          String,
+  bancada:            [Schema.Types.Mixed],
+  circuito_inicial:   Schema.Types.Mixed,
+  nota_minima:        { type: Number, default: 7 },
+  tentativas_maximas: { type: Number, default: 5 },
+  vetores: { type: [VetorTesteSchema], select: false },
+}, { _id: false })
+
 const ModuloSchema = new Schema({
   id:        Number,
   titulo:    String,
   descricao: String,
   exercicios: [QuestaoSchema],
+  pratica:   { type: PraticaSchema, required: false },
 }, { _id: false })
 
 const CourseSchema = new Schema<ICourse>({

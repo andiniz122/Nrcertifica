@@ -19,7 +19,8 @@ export interface DadosCertificado {
   creaInstrutor?: string;
   assinaturaInstrutorUrl?: string;
   conteudoProgramatico?: string[];
-  validadeAnos?: number; // 0 = curso livre: certificado emitido sem prazo de validade
+  validadeAnos?: number; // 0 = sem prazo fixo (curso livre OU NR sem periodicidade)
+  validadeTexto?: string; // texto normativo especifico; tem prioridade sobre validadeAnos
   accentColor?: string; // cor de destaque do certificado (por curso)
 }
 
@@ -38,6 +39,7 @@ export function getAccentColorPorNr(nr: string): string {
 function gerarCodigoVerificacao(): string {
   const ano = new Date().getFullYear();
   const random = Math.floor(100000 + Math.random() * 900000);
+
   return `NC-${ano}-${random}`;
 }
 
@@ -56,11 +58,17 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     creaInstrutor = "CREA 254516/MG",
     assinaturaInstrutorUrl = "",
     conteudoProgramatico = [],
-    validadeAnos = 2,
+    validadeAnos = 0,
+    validadeTexto = '',
     accentColor = "#b8860b",
   } = dados;
 
   const codigo = codigoVerificacao || gerarCodigoVerificacao();
+  const cpfFmt = (() => {
+    const d = String(cpf || '').replace(/\D/g, '');
+    if (d.length !== 11) return String(cpf || '');
+    return d.slice(0,3) + '.' + d.slice(3,6) + '.' + d.slice(6,9) + '-' + d.slice(9);
+  })();
 
   return `
 <!DOCTYPE html>
@@ -415,7 +423,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     <div class="title-underline"></div>
 
     <div class="body-text">
-      Certificamos que <span class="student-name">${nomeAluno}</span>, portador do CPF <strong>${cpf}</strong>,
+      Certificamos que <span class="student-name">${nomeAluno}</span>, portador do CPF <strong>${cpfFmt}</strong>,
       concluiu com <strong>100% de frequência</strong> o curso de capacitação com carga horária de <strong>${cargaHoraria} horas</strong>,
       obtendo aproveitamento de <strong>${notaFinal}%</strong> na avaliação de conhecimentos aplicada ao final do treinamento.
     </div>
@@ -435,7 +443,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
         <div class="sign-line"></div>
         <div class="sign-name">${nomeAluno}</div>
         <div class="sign-role">ALUNO(A)</div>
-        <div class="sign-extra">CPF: ${cpf}</div>
+        <div class="sign-extra">CPF: ${cpfFmt}</div>
       </div>
 
       <div class="seal">
@@ -498,7 +506,9 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
   </div>
 
   <div class="verify">Nº VERIFICAÇÃO: ${codigo}</div>
-  <div class="validade-line">${validadeAnos > 0
+  <div class="validade-line">${validadeTexto
+    ? validadeTexto
+    : validadeAnos > 0
     ? `Validade do treinamento: ${validadeAnos} ano${validadeAnos === 1 ? '' : 's'}.`
     : 'Curso livre de capacitação profissional (formação inicial e continuada — Lei 9.394/96, art. 39, § 2º). Certificado sem prazo de validade. Não constitui treinamento de Norma Regulamentadora e não atende ao item 10.8.1 da NR-10.'}</div>
 </div>

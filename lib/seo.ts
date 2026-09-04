@@ -40,7 +40,7 @@ export const RESPONSAVEL = {
 /**
  * PENDENTE DE DECISAO (ver secao 5 do briefing):
  * ha divergencia de razao social entre o contrato (AEC Servicos Especializados LTDA)
- * e o texto exibido hoje no site (Eletricom Manutencao Especializada).
+ * e o texto exibido no site (AEC Servicos Especializados LTDA).
  *
  * Enquanto o Anderson nao definir qual e a empresa oficial, NAO publicar
  * razao social, CNPJ, endereco nem `taxID` no schema. O Decreto 7.962/2013
@@ -51,6 +51,7 @@ export const EMPRESA: {
   cnpj: string | null
   endereco: {
     logradouro: string
+    numero: string
     complemento?: string
     bairro: string
     cidade: string
@@ -58,9 +59,17 @@ export const EMPRESA: {
     cep?: string
   } | null
 } = {
-  razaoSocial: null,
-  cnpj: null,
-  endereco: null,
+  razaoSocial: 'AEC Serviços Especializados LTDA',
+  cnpj: '13.060.422/0001-02',
+  endereco: {
+    logradouro: 'Av. Diamante',
+    numero: '485',
+    complemento: 'Sala 01',
+    bairro: 'Sapucaia II',
+    cidade: 'Contagem',
+    uf: 'MG',
+    cep: '32071-151',
+  },
 }
 
 /**
@@ -184,12 +193,11 @@ export const CURSOS: Curso[] = [
       'treinamento SEP 40 horas',
     ],
     ativo: true,
-    // validFor pendente de confirmacao do responsavel tecnico (ver relatorio).
     reciclagem: {
       periodicaFixa: true,
       periodicidade: 'Bienal',
       base: 'NR-10, item 10.8.8',
-      validFor: null,
+      validFor: 'P2Y',
       temPagina: false,
     },
   },

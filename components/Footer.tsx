@@ -78,7 +78,7 @@ export function Footer() {
       {/* TODO(Anderson): incluir razão social, CNPJ e endereço aqui (Decreto 7.962/2013)
           assim que estiver definido qual empresa assina o site — ver EMPRESA em lib/seo.ts. */}
       <div className="max-w-5xl mx-auto mt-8 pt-6 border-t border-white/10 text-xs text-gray-500 text-center">
-        © {new Date().getFullYear()} {SITE.nome} — Eletricom Manutenção Especializada.
+        © {new Date().getFullYear()} {SITE.nome} — AEC Serviços Especializados LTDA · CNPJ 13.060.422/0001-02 · Av. Diamante, 485, Sala 01 — Sapucaia II, Contagem/MG, CEP 32071-151.
         Todos os direitos reservados.
       </div>
     </footer>

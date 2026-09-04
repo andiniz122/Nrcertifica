@@ -7,6 +7,38 @@ import Course from '../../../models/Course'
 import Certificate from '../../../models/Certificate'
 import { v4 as uuidv4 } from 'uuid'
 
+// Conta dias uteis (seg-sex) no intervalo, inclusive
+function contarDiasUteis(inicio: Date, fim: Date): number {
+  const d = new Date(inicio); d.setHours(12, 0, 0, 0)
+  const f = new Date(fim); f.setHours(12, 0, 0, 0)
+  let count = 0
+  while (d <= f) {
+    const dia = d.getDay()
+    if (dia !== 0 && dia !== 6) count++
+    d.setDate(d.getDate() + 1)
+  }
+  return count
+}
+
+// Valida que as datas do curso foram definidas e respeitam a carga horaria
+function validarDatasCurso(matricula: any, curso: any): string | null {
+  const ini = matricula.data_inicio_curso
+  const fim = matricula.data_fim_curso
+  if (!ini || !fim) {
+    return 'Defina a data de realizacao do curso antes de iniciar a prova final.'
+  }
+  const horas = parseInt(String(curso?.carga_horaria || '8').replace('h', '')) || 8
+  const minimos = Math.ceil(horas / 8)
+  if (contarDiasUteis(new Date(ini), new Date(fim)) < minimos) {
+    return 'Intervalo insuficiente: ' + curso.carga_horaria + ' requer no minimo ' + minimos + ' dia(s) util(eis).'
+  }
+  const limite = new Date(); limite.setHours(23, 59, 59, 999)
+  if (new Date(fim) > limite) {
+    return 'A data de conclusao nao pode ser futura.'
+  }
+  return null
+}
+
 // GET /api/provas?enrollment_id=xxx — sorteia e retorna questões SEM gabarito
 export async function GET(req: NextRequest) {
   try {
@@ -29,6 +61,9 @@ export async function GET(req: NextRequest) {
     if (matricula.tentativas_prova.length >= curso.prova_final.tentativas_maximas) {
       return NextResponse.json({ error: 'Número máximo de tentativas atingido' }, { status: 400 })
     }
+
+    const erroDatas = validarDatasCurso(matricula, curso)
+    if (erroDatas) return NextResponse.json({ error: erroDatas }, { status: 400 })
 
     // Sorteia questões aleatoriamente
     const banco = [...curso.prova_final.banco]
@@ -78,6 +113,9 @@ export async function POST(req: NextRequest) {
     if (matricula.tentativas_prova.length >= curso.prova_final.tentativas_maximas) {
       return NextResponse.json({ error: 'Número máximo de tentativas atingido' }, { status: 400 })
     }
+
+    const erroDatas = validarDatasCurso(matricula, curso)
+    if (erroDatas) return NextResponse.json({ error: erroDatas }, { status: 400 })
 
     // Cria mapa do gabarito a partir do banco
     const gabarito = new Map(curso.prova_final.banco.map((q: any) => [q.id, q]))
@@ -160,6 +198,9 @@ export async function POST(req: NextRequest) {
             data_conclusao: (matricula as any).data_fim_curso || new Date(),
             ...(dataValidade ? { data_validade: dataValidade } : {}),
             nota_final: acertos,
+            acertos: acertos,
+            total: total,
+            percentual: total > 0 ? Math.round((acertos / total) * 100) : 0,
           },
           url_pdf: '', // será gerado pelo Puppeteer depois
         })
