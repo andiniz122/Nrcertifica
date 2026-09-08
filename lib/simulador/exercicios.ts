@@ -59,11 +59,13 @@ const alimentacao = (polosComando: 1 | 2) => [
 /** Texto comum sobre a separacao das protecoes. */
 const NOTA_380 =
   'Rede 380 V: -QG e o geral tripolar, -Q1 protege a forca e -Q2, unipolar, protege o comando. ' +
+  'Alimente -Q1 e -Q2 a partir da saida de -QG, em cascata: o geral tem de desligar forca e comando de uma vez. ' +
   'A bobina e de 220 V, obtidos entre fase e neutro — ligue o comando de -Q2 ate -A1 e o -A2 no neutro. ' +
   'Neutro e PE saem direto do barramento: nunca passam por disjuntor.'
 
 const NOTA_220 =
   'Rede 220 V: -QG e o geral tripolar, -Q1 protege a forca e -Q2 protege o comando. ' +
+  'Alimente -Q1 e -Q2 a partir da saida de -QG, em cascata: o geral tem de desligar forca e comando de uma vez. ' +
   'Aqui nao ha 220 V entre fase e neutro (sao 127 V), entao a bobina de 220 V tem de ser alimentada ' +
   'ENTRE DUAS FASES — por isso -Q2 e bipolar. Nao use o neutro no comando. ' +
   'Neutro e PE saem direto do barramento: nunca passam por disjuntor.'
