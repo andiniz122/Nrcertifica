@@ -164,11 +164,18 @@ export const SIMBOLOS: Record<string, DefSimbolo> = {
   rele_termico: {
     w: 40, h: 92, rotulo: 'Relé de sobrecarga',
     bornes: (c) => {
+      const n = polosDe(c)
+      const larg = (n - 1) * PASSO + 44
       const b: DefBorne[] = []
-      for (let i = 0; i < polosDe(c); i++) {
+      for (let i = 0; i < n; i++) {
         b.push({ id: String(1 + i * 2), x: 22 + i * PASSO, y: 0, lado: 'top' })
         b.push({ id: String(2 + i * 2), x: 22 + i * PASSO, y: 92, lado: 'bottom' })
       }
+      // contatos auxiliares: NF 95/96 e NA 97/98, na lateral direita
+      b.push({ id: '95', x: larg + 34, y: 22, lado: 'right' })
+      b.push({ id: '96', x: larg + 34, y: 46, lado: 'right' })
+      b.push({ id: '97', x: larg + 34, y: 62, lado: 'right' })
+      b.push({ id: '98', x: larg + 34, y: 86, lado: 'right' })
       return b
     },
     desenho: (c, e) => {
@@ -188,31 +195,47 @@ export const SIMBOLOS: Record<string, DefSimbolo> = {
           <path key={`b${i}`} d={`M${8 + i * PASSO} 52 q7 -13 14 0 q7 13 14 0`}
                 fill="none" stroke={at ? R : T} strokeWidth={1.5} />
         ))}
+        {/* contatos auxiliares acoplados ao bimetalico */}
+        {L(larg, 46, larg + 10, 46, { w: 0.9, d: '3 3' })}
+        {/* NF 95/96 — fechado em repouso, abre com a sobrecarga */}
+        {L(larg + 34, 22, larg + 34, 30)}
+        {L(larg + 34, 30, at ? larg + 22 : larg + 34, at ? 40 : 38, { c: at ? R : V, w: at ? 1.4 : 1.8 })}
+        {L(larg + 26, 38, larg + 42, 38, { w: 1.6 })}
+        {L(larg + 34, 38, larg + 34, 46)}
+        {L(larg + 10, 34, larg + 26, 34, { w: 0.9, d: '3 3' })}
+        {TX(larg + 46, 22, '95', { a: 'start' })}
+        {TX(larg + 46, 50, '96', { a: 'start' })}
+        {/* NA 97/98 — fecha com a sobrecarga */}
+        {L(larg + 34, 62, larg + 34, 70)}
+        {L(larg + 34, 70, at ? larg + 34 : larg + 22, at ? 78 : 80, { c: at ? V : T, w: at ? 1.8 : 1.4 })}
+        {L(larg + 34, 78, larg + 34, 86)}
+        {L(larg + 10, 74, larg + 22, 74, { w: 0.9, d: '3 3' })}
+        {TX(larg + 46, 62, '97', { a: 'start' })}
+        {TX(larg + 46, 90, '98', { a: 'start' })}
       </>
     },
   },
 
   // contato 95/96 do rele, desenhado no comando
   contato_termico: {
-    w: 46, h: 58, rotulo: 'Contato do relé 95/96',
+    w: 46, h: 58, rotulo: 'Contato do relé de sobrecarga',
     bornes: (c) => (c?.especie === 'NA'
       ? [{ id: '97', x: 22, y: 0, lado: 'top' as const }, { id: '98', x: 22, y: 58, lado: 'bottom' as const }]
       : [{ id: '95', x: 22, y: 0, lado: 'top' as const }, { id: '96', x: 22, y: 58, lado: 'bottom' as const }]),
     desenho: (c, e) => {
       const nf = c?.especie !== 'NA'
-      const at = !!e?.atuado
+      const at = !!e?.__ativo
       const fechado = nf ? !at : at
       return <>
-        {L(22, 0, 22, 12)}
-        {nf
-          ? <>{L(10, 12, 36, 12)}{L(36, 12, 36, 24)}{L(22, fechado ? 12 : 12, 22, 12)}</>
-          : null}
-        {nf
-          ? <>{L(22, 24, 22, 58)}{!fechado && L(22, 12, 38, 30, { c: R })}</>
-          : <>{L(22, 12, fechado ? 22 : 38, 40)}{L(22, 46, 22, 58)}{N(22, 12)}{N(22, 46)}</>}
-        {acionadorTermico(nf ? 10 : 22, nf ? 12 : 26)}
-        {TX(40, 10, nf ? '95' : '97', { a: 'start' })}
-        {TX(40, 54, nf ? '96' : '98', { a: 'start' })}
+        {L(22, 0, 22, 14)}{N(22, 14)}
+        {L(22, 14, fechado ? 22 : 38, fechado ? 46 : 42,
+           { c: fechado ? V : (nf ? R : T), w: fechado ? 1.8 : 1.4 })}
+        {N(22, 46)}{L(22, 46, 22, 58)}
+        {nf && L(14, 46, 30, 46, { w: 1.6 })}
+        {/* acionador termico: gancho do bimetalico */}
+        {L(32, 30, 40, 30)}{L(40, 30, 40, 18)}
+        {TX(44, 12, nf ? '95' : '97', { a: 'start' })}
+        {TX(44, 54, nf ? '96' : '98', { a: 'start' })}
       </>
     },
   },
