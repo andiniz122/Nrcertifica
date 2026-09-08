@@ -38,51 +38,56 @@ const primeiroErro = (a: any) => {
 const SOL: Record<number, Fio[]> = {
   1: [f('F.L1','Q1.1'), f('Q1.2','S1.13'), f('S1.14','H1.X1'), f('H1.X2','F.N')],
 
-  2: [f('F.L1','Q1.1'), f('F.N','Q1.3'),
+  // Do 2 em diante: -QG geral, -Q1 forca, -Q2 comando (unipolar).
+  // O neutro do comando vem direto do polo 3/4 do -QG.
+  2: [f('F.L1','QG.1'), f('F.N','QG.3'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
       f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','M1.U'), f('KF.4','M1.N'),
       f('F.PE','M1.PE'),
-      f('Q1.2','S1.13'), f('S1.14','K1.A1'), f('K1.A2','Q1.4')],
+      f('Q2.2','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4')],
 
-  3: [f('F.L1','Q1.1'), f('F.N','Q1.3'),
+  3: [f('F.L1','QG.1'), f('F.N','QG.3'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
       f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','M1.U'), f('KF.4','M1.N'),
       f('F.PE','M1.PE'),
-      f('Q1.2','S1.13'), f('S1.14','K1.A1'), f('K1.A2','Q1.4'),
-      f('Q1.2','KA.13'), f('KA.14','K1.A1')],
+      f('Q2.2','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4'),
+      f('Q2.2','KA.13'), f('KA.14','K1.A1')],
 
-  4: [f('F.L1','Q1.1'), f('F.N','Q1.3'),
+  4: [f('F.L1','QG.1'), f('F.N','QG.3'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
       f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','M1.U'), f('KF.4','M1.N'),
       f('F.PE','M1.PE'),
-      f('Q1.2','S0.11'), f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','Q1.4'),
+      f('Q2.2','S0.11'), f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4'),
       f('S0.12','KA.13'), f('KA.14','K1.A1')],
 
-  5: [f('F.L1','Q1.1'), f('F.N','Q1.3'),
+  5: [f('F.L1','QG.1'), f('F.N','QG.3'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
       f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','FT.1'), f('KF.4','FT.3'),
       f('FT.2','M1.U'), f('FT.4','M1.N'), f('F.PE','M1.PE'),
-      f('Q1.2','FT.95'), f('FT.96','S0.11'),
-      f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','Q1.4'),
+      f('Q2.2','FT.95'), f('FT.96','S0.11'),
+      f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4'),
       f('S0.12','KA.13'), f('KA.14','K1.A1')],
 
-  6: [f('F.L1','Q1.1'), f('F.N','Q1.3'),
+  6: [f('F.L1','QG.1'), f('F.N','QG.3'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
       f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','FT.1'), f('KF.4','FT.3'),
       f('FT.2','M1.U'), f('FT.4','M1.N'), f('F.PE','M1.PE'),
-      f('Q1.2','FT.95'), f('FT.96','S0.11'),
-      f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','Q1.4'),
+      f('Q2.2','FT.95'), f('FT.96','S0.11'),
+      f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4'),
       f('S0.12','KA.13'), f('KA.14','K1.A1'),
-      // sinalizacao de marcha
-      f('Q1.2','KH.13'), f('KH.14','H1.X1'), f('H1.X2','Q1.4'),
-      // sinalizacao de falha pelo 97/98
-      f('Q1.2','FA.97'), f('FA.98','H2.X1'), f('H2.X2','Q1.4')],
+      f('Q2.2','KH.13'), f('KH.14','H1.X1'), f('H1.X2','QG.4'),
+      f('Q2.2','FA.97'), f('FA.98','H2.X1'), f('H2.X2','QG.4')],
 
-  7: [f('F.L1','F1.1'), f('F.N','F1.3'), f('F1.2','Q1.1'), f('F1.4','Q1.3'),
+  7: [f('F.L1','QG.1'), f('F.N','QG.3'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
       f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','FT.1'), f('KF.4','FT.3'),
       f('FT.2','M1.U'), f('FT.4','M1.N'), f('F.PE','M1.PE'),
-      // comando: protecao antes de tudo
-      f('Q1.2','FT.95'), f('FT.96','S0.11'),
+      f('Q2.2','FT.95'), f('FT.96','S0.11'),
       f('S0.12','S2.13'), f('S0.12','S2.23'),
       f('S2.14','S1.13'), f('S1.14','K1.A1'),
       f('S2.14','KA.13'), f('KA.14','K1.A1'),
       f('S2.24','SN.11'), f('SN.12','K1.A1'),
-      f('K1.A2','Q1.4')],
+      f('K1.A2','QG.4')],
 }
 
 console.log('\n=== SOLUCOES CORRETAS ===')
@@ -112,23 +117,31 @@ console.log('\n=== ERROS TIPICOS ===')
 }
 {
   const fios = SOL[4].filter((x) => !(x.de.comp === 'S0' && x.para.comp === 'KA'))
-  fios.push(f('Q1.2','KA.13'))
+  fios.push(f('Q2.2','KA.13'))
   const a = nota(4, fios)
   ck('Ex 4: selo antes da parada -> nao desliga', !a.aprovado)
   console.log(`       ${a.reprovacaoCritica}`)
 }
 {
-  const fios = SOL[5].filter((x) => !(x.de.comp === 'Q1' && x.para.comp === 'FT'))
-  fios.push(f('Q1.2','S0.11'))
+  const fios = SOL[5].filter((x) => !(x.de.comp === 'Q2' && x.para.comp === 'FT'))
+  fios.push(f('Q2.2','S0.11'))
   const a = nota(5, fios)
   ck('Ex 5: comando sem passar pelo 95/96 -> sem protecao', !a.aprovado)
   console.log(`       ${a.reprovacaoCritica}`)
 }
 {
   const fios = SOL[7].filter((x) => !(x.de.comp === 'S0' && x.para.borne === '13'))
-  fios.push(f('Q1.2','S2.13'))
+  fios.push(f('Q2.2','S2.13'))
   const a = nota(7, fios)
   ck('Ex 7: manual sem protecao -> reprovado', !a.aprovado)
+  console.log(`       ${a.reprovacaoCritica}`)
+}
+
+{
+  const fios = SOL[3].filter((x) => !(x.de.comp === 'Q2'))
+  fios.push(f('Q1.2','S1.13'), f('Q1.2','KA.13'))
+  const a = nota(3, fios)
+  ck('Ex 3: comando pendurado no disjuntor da forca -> reprovado', !a.aprovado)
   console.log(`       ${a.reprovacaoCritica}`)
 }
 
