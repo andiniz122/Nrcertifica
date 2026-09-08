@@ -27,6 +27,11 @@ export interface VetorTeste {
     falha?: string;
     /** Pares que devem estar no mesmo no. Usado para exigir o aterramento. */
     continuidade?: Array<{ de: string; para: string }>;
+    /**
+     * Pares que NAO podem estar no mesmo no. Usado para proibir o uso do
+     * neutro onde o circuito exige duas fases (bobina de 220 V em rede 220).
+     */
+    isolamento?: Array<{ de: string; para: string }>;
   };
   /**
    * Vetor de segurança: desligamento, parada de emergência, atuação de
@@ -198,6 +203,13 @@ export function avaliar(
         const [cb, bb] = par.para.split('.');
         if (!sim.mesmaNet(ca, ba, cb, bb)) {
           ok = false; motivo = `${par.de} nao esta ligado a ${par.para}.`; break;
+        }
+      }
+      if (ok) for (const par of v.esperado.isolamento ?? []) {
+        const [ca, ba] = par.de.split('.');
+        const [cb, bb] = par.para.split('.');
+        if (sim.mesmaNet(ca, ba, cb, bb)) {
+          ok = false; motivo = `${par.de} nao pode estar ligado a ${par.para}.`; break;
         }
       }
       if (ok && v.esperado.falha) {

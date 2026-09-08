@@ -38,56 +38,73 @@ const primeiroErro = (a: any) => {
 const SOL: Record<number, Fio[]> = {
   1: [f('F.L1','Q1.1'), f('Q1.2','S1.13'), f('S1.14','H1.X1'), f('H1.X2','F.N')],
 
-  // Do 2 em diante: -QG geral, -Q1 forca, -Q2 comando (unipolar).
-  // O neutro do comando vem direto do polo 3/4 do -QG.
-  2: [f('F.L1','QG.1'), f('F.N','QG.3'),
-      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
-      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','M1.U'), f('KF.4','M1.N'),
+  // --- rede 380 V: comando entre L1 e N, -Q2 unipolar --------------------
+  // Neutro e PE saem direto do barramento; so as fases passam por disjuntor.
+  2: [f('F.L1','QG.1'), f('F.L2','QG.3'), f('F.L3','QG.5'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.6','Q1.5'),
+      f('QG.2','Q2.1'),
+      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('Q1.6','KF.5'),
+      f('KF.2','M1.U'), f('KF.4','M1.V'), f('KF.6','M1.W'),
       f('F.PE','M1.PE'),
-      f('Q2.2','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4')],
+      f('Q2.2','S1.13'), f('S1.14','K1.A1'), f('K1.A2','F.N')],
 
-  3: [f('F.L1','QG.1'), f('F.N','QG.3'),
-      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
-      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','M1.U'), f('KF.4','M1.N'),
+  3: [f('F.L1','QG.1'), f('F.L2','QG.3'), f('F.L3','QG.5'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.6','Q1.5'),
+      f('QG.2','Q2.1'),
+      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('Q1.6','KF.5'),
+      f('KF.2','M1.U'), f('KF.4','M1.V'), f('KF.6','M1.W'),
       f('F.PE','M1.PE'),
-      f('Q2.2','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4'),
+      f('Q2.2','S1.13'), f('S1.14','K1.A1'), f('K1.A2','F.N'),
       f('Q2.2','KA.13'), f('KA.14','K1.A1')],
 
-  4: [f('F.L1','QG.1'), f('F.N','QG.3'),
-      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
-      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','M1.U'), f('KF.4','M1.N'),
+  4: [f('F.L1','QG.1'), f('F.L2','QG.3'), f('F.L3','QG.5'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.6','Q1.5'),
+      f('QG.2','Q2.1'),
+      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('Q1.6','KF.5'),
+      f('KF.2','M1.U'), f('KF.4','M1.V'), f('KF.6','M1.W'),
       f('F.PE','M1.PE'),
-      f('Q2.2','S0.11'), f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4'),
+      f('Q2.2','S0.11'), f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','F.N'),
       f('S0.12','KA.13'), f('KA.14','K1.A1')],
 
-  5: [f('F.L1','QG.1'), f('F.N','QG.3'),
-      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
-      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','FT.1'), f('KF.4','FT.3'),
-      f('FT.2','M1.U'), f('FT.4','M1.N'), f('F.PE','M1.PE'),
+  // --- rede 220 V: comando entre L1 e L2, -Q2 bipolar --------------------
+  // Nao ha 220 V fase-neutro (sao 127), entao o comando e fase-fase.
+  5: [f('F.L1','QG.1'), f('F.L2','QG.3'), f('F.L3','QG.5'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.6','Q1.5'),
+      f('QG.2','Q2.1'), f('QG.4','Q2.3'),
+      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('Q1.6','KF.5'),
+      f('KF.2','FT.1'), f('KF.4','FT.3'), f('KF.6','FT.5'),
+      f('FT.2','M1.U'), f('FT.4','M1.V'), f('FT.6','M1.W'),
+      f('F.PE','M1.PE'),
       f('Q2.2','FT.95'), f('FT.96','S0.11'),
-      f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4'),
+      f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','Q2.4'),
       f('S0.12','KA.13'), f('KA.14','K1.A1')],
 
-  6: [f('F.L1','QG.1'), f('F.N','QG.3'),
-      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
-      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','FT.1'), f('KF.4','FT.3'),
-      f('FT.2','M1.U'), f('FT.4','M1.N'), f('F.PE','M1.PE'),
+  6: [f('F.L1','QG.1'), f('F.L2','QG.3'), f('F.L3','QG.5'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.6','Q1.5'),
+      f('QG.2','Q2.1'), f('QG.4','Q2.3'),
+      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('Q1.6','KF.5'),
+      f('KF.2','FT.1'), f('KF.4','FT.3'), f('KF.6','FT.5'),
+      f('FT.2','M1.U'), f('FT.4','M1.V'), f('FT.6','M1.W'),
+      f('F.PE','M1.PE'),
       f('Q2.2','FT.95'), f('FT.96','S0.11'),
-      f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','QG.4'),
+      f('S0.12','S1.13'), f('S1.14','K1.A1'), f('K1.A2','Q2.4'),
       f('S0.12','KA.13'), f('KA.14','K1.A1'),
-      f('Q2.2','KH.13'), f('KH.14','H1.X1'), f('H1.X2','QG.4'),
-      f('Q2.2','FA.97'), f('FA.98','H2.X1'), f('H2.X2','QG.4')],
+      f('Q2.2','KH.13'), f('KH.14','H1.X1'), f('H1.X2','Q2.4'),
+      f('Q2.2','FA.97'), f('FA.98','H2.X1'), f('H2.X2','Q2.4')],
 
-  7: [f('F.L1','QG.1'), f('F.N','QG.3'),
-      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.2','Q2.1'),
-      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('KF.2','FT.1'), f('KF.4','FT.3'),
-      f('FT.2','M1.U'), f('FT.4','M1.N'), f('F.PE','M1.PE'),
+  7: [f('F.L1','QG.1'), f('F.L2','QG.3'), f('F.L3','QG.5'),
+      f('QG.2','Q1.1'), f('QG.4','Q1.3'), f('QG.6','Q1.5'),
+      f('QG.2','Q2.1'), f('QG.4','Q2.3'),
+      f('Q1.2','KF.1'), f('Q1.4','KF.3'), f('Q1.6','KF.5'),
+      f('KF.2','FT.1'), f('KF.4','FT.3'), f('KF.6','FT.5'),
+      f('FT.2','M1.U'), f('FT.4','M1.V'), f('FT.6','M1.W'),
+      f('F.PE','M1.PE'),
       f('Q2.2','FT.95'), f('FT.96','S0.11'),
       f('S0.12','S2.13'), f('S0.12','S2.23'),
       f('S2.14','S1.13'), f('S1.14','K1.A1'),
       f('S2.14','KA.13'), f('KA.14','K1.A1'),
       f('S2.24','SN.11'), f('SN.12','K1.A1'),
-      f('K1.A2','QG.4')],
+      f('K1.A2','Q2.4')],
 }
 
 console.log('\n=== SOLUCOES CORRETAS ===')
@@ -142,6 +159,14 @@ console.log('\n=== ERROS TIPICOS ===')
   fios.push(f('Q1.2','S1.13'), f('Q1.2','KA.13'))
   const a = nota(3, fios)
   ck('Ex 3: comando pendurado no disjuntor da forca -> reprovado', !a.aprovado)
+  console.log(`       ${a.reprovacaoCritica}`)
+}
+
+{
+  const fios = SOL[5].filter((x) => !(x.de.comp === 'K1' && x.de.borne === 'A2'))
+  fios.push(f('K1.A2','F.N'))
+  const a = nota(5, fios)
+  ck('Ex 5: comando no neutro numa rede 220 V -> reprovado', !a.aprovado)
   console.log(`       ${a.reprovacaoCritica}`)
 }
 

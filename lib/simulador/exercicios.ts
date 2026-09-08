@@ -6,20 +6,28 @@
 // nota_minima = 10 em todos: com poucos vetores, um circuito morto acerta
 // metade por acidente ("esta apagado" e verdade num circuito que nao funciona).
 //
-// TOPOLOGIA (exercicios 2 em diante) — tres protecoes, como em painel real:
+// TOPOLOGIA — pratica brasileira: NEUTRO E PE NAO SAO SECCIONADOS.
+// Os disjuntores cortam apenas os condutores vivos; neutro e terra saem
+// direto do barramento.
 //
-//   L1 --- -QG (2P, geral) --- barra
-//                               |--- -Q1 (2P, forca)   --- -Km --- -FT --- -M1
-//                               '--- -Q2 (1P, comando) --- -S0 --- -S1 --- A1
+//   L1 L2 L3 --- -QG (3P, geral) --- barra
+//                                     |--- -Q1 (3P, forca) --- -Km --- -FT --- -M1
+//                                     '--- -Q2 (comando)
+//   N  ------------------------------------------------- direto (nunca seccionado)
+//   PE ------------------------------------------------- direto (nunca seccionado)
 //
-// O comando tem protecao propria, dimensionada para a corrente da bobina. Com
-// um disjuntor unico, um curto no comando seria visto pela protecao do motor,
-// grande demais para atuar. -Q2 e unipolar: corta a fase; o neutro do comando
-// vem direto da barra do -QG.
+// DUAS REDES, e o numero de polos do comando segue o numero de condutores vivos:
 //
-// Isso rende o diagnostico de campo que nenhum outro exercicio da: com -Q1
-// desligado e -Q2 ligado, o contator ATRAI mas o motor NAO GIRA. Comando vivo,
-// forca cortada — a situacao que o eletricista encontra e nao sabe interpretar.
+//   Rede 380 V (ex. 2 a 4)   comando entre L1 e N   -> 220 V   -> -Q2 UNIPOLAR
+//                            motor em estrela
+//
+//   Rede 220 V (ex. 5 a 7)   comando entre L1 e L2  -> 220 V   -> -Q2 BIPOLAR
+//                            motor em triangulo
+//
+// A bobina e sempre de 220 V; o que muda e de onde saem os 220 V. Na rede de
+// 220 V nao ha 220 entre fase e neutro (sao 127), entao o comando TEM de ser
+// fase-fase — e por isso um vetor de continuidade cobra que -A2 esteja na fase
+// L2, e nao no neutro.
 
 import type { VetorTeste } from './avaliador'
 
@@ -40,19 +48,25 @@ const c = (id: string, tipo: string, config: any = {}, estado: any = {}, x = 0, 
 
 const tipos = (...t: string[]) => t.map((x) => ({ tipo: x }))
 
-/** Alimentacao comum aos exercicios 2 em diante. */
-const alimentacao = () => [
-  c('F',  'fonte', { fases: ['L1', 'N', 'PE'] }, {}, 200, 0),
-  c('QG', 'disjuntor', { polos: 2 }, { ligado: true }, 150, 120),
-  c('Q1', 'disjuntor', { polos: 2 }, { ligado: true }, 40, 290),
-  c('Q2', 'disjuntor', { polos: 1 }, { ligado: true }, 430, 290),
+/** Alimentacao trifasica. polosComando: 1 na rede 380 (L1-N), 2 na rede 220 (L1-L2). */
+const alimentacao = (polosComando: 1 | 2) => [
+  c('F',  'fonte', { fases: ['L1', 'L2', 'L3', 'N', 'PE'] }, {}, 240, 0),
+  c('QG', 'disjuntor', { polos: 3 }, { ligado: true }, 120, 130),
+  c('Q1', 'disjuntor', { polos: 3 }, { ligado: true }, 40, 320),
+  c('Q2', 'disjuntor', { polos: polosComando }, { ligado: true }, 520, 320),
 ]
 
 /** Texto comum sobre a separacao das protecoes. */
-const NOTA_PROTECAO =
-  'O painel tem tres protecoes: -QG e o geral, -Q1 protege a forca e -Q2, unipolar, protege o comando. ' +
-  'Alimente a forca por -Q1 e o comando por -Q2, os dois saindo da barra de -QG. ' +
-  'O neutro do comando vem direto do polo 3/4 de -QG.'
+const NOTA_380 =
+  'Rede 380 V: -QG e o geral tripolar, -Q1 protege a forca e -Q2, unipolar, protege o comando. ' +
+  'A bobina e de 220 V, obtidos entre fase e neutro — ligue o comando de -Q2 ate -A1 e o -A2 no neutro. ' +
+  'Neutro e PE saem direto do barramento: nunca passam por disjuntor.'
+
+const NOTA_220 =
+  'Rede 220 V: -QG e o geral tripolar, -Q1 protege a forca e -Q2 protege o comando. ' +
+  'Aqui nao ha 220 V entre fase e neutro (sao 127 V), entao a bobina de 220 V tem de ser alimentada ' +
+  'ENTRE DUAS FASES — por isso -Q2 e bipolar. Nao use o neutro no comando. ' +
+  'Neutro e PE saem direto do barramento: nunca passam por disjuntor.'
 
 /** Vetores que provam a separacao — presentes do exercicio 2 em diante. */
 const vetoresSeparacao = (comSelo: boolean): VetorTeste[] => {
@@ -90,6 +104,14 @@ const vetoresSeparacao = (comSelo: boolean): VetorTeste[] => {
       critico: true,
     },
   ]
+}
+
+/** Rede 220 V: o comando TEM de sair de duas fases, nunca do neutro. */
+const comandoFaseFase: VetorTeste = {
+  descricao: 'O comando esta alimentado entre duas fases, e nao pelo neutro.',
+  acoes: [],
+  esperado: { isolamento: [{ de: 'K1.A2', para: 'F.N' }] },
+  critico: true,
 }
 
 const aterramento: VetorTeste = {
@@ -145,13 +167,13 @@ export const EXERCICIOS: Exercicio[] = [
   enunciado:
     'Monte o circuito de forca e o de comando de uma partida sem retencao. ' +
     'A bobina -K1 deve ser energizada pela botoeira -S1, e os contatos principais -KF alimentam o motor -M1. ' +
-    NOTA_PROTECAO + ' ' +
+    NOTA_380 + ' ' +
     'Nao esqueca de aterrar a carcaca do motor ligando -M1 PE ao PE da alimentacao.',
   bancada: tipos('fonte', 'disjuntor', 'botoeira_na', 'bobina', 'contato_forca', 'motor'),
   circuito_inicial: { componentes: [
-    ...alimentacao(),
-    c('KF', 'contato_forca', { vinculo: 'K1', polos: 2 }, {}, 40, 470),
-    c('M1', 'motor', { polos: 1 }, {}, 20, 620),
+    ...alimentacao(1),
+    c('KF', 'contato_forca', { vinculo: 'K1', polos: 3 }, {}, 40, 470),
+    c('M1', 'motor', { polos: 3 }, {}, 20, 620),
     c('S1', 'botoeira_na', {}, {}, 430, 460),
     c('K1', 'bobina', {}, {}, 415, 610),
   ], fios: [] },
@@ -178,12 +200,12 @@ export const EXERCICIOS: Exercicio[] = [
     'No exercicio anterior o motor parava assim que voce soltava a botoeira. ' +
     'Acrescente o contato auxiliar -KA em paralelo com -S1 para que a bobina continue alimentada por si mesma. ' +
     'Esse e o selo de retencao. Depois de ligado, o motor deve permanecer em marcha com a botoeira solta. ' +
-    NOTA_PROTECAO,
+    NOTA_380,
   bancada: tipos('fonte', 'disjuntor', 'botoeira_na', 'bobina', 'contato_forca', 'contato_aux', 'motor'),
   circuito_inicial: { componentes: [
-    ...alimentacao(),
-    c('KF', 'contato_forca', { vinculo: 'K1', polos: 2 }, {}, 40, 470),
-    c('M1', 'motor', { polos: 1 }, {}, 20, 620),
+    ...alimentacao(1),
+    c('KF', 'contato_forca', { vinculo: 'K1', polos: 3 }, {}, 40, 470),
+    c('M1', 'motor', { polos: 3 }, {}, 20, 620),
     c('S1', 'botoeira_na', {}, {}, 430, 440),
     c('KA', 'contato_aux', { vinculo: 'K1', especie: 'NA' }, {}, 560, 440),
     c('K1', 'bobina', {}, {}, 415, 610),
@@ -211,12 +233,12 @@ export const EXERCICIOS: Exercicio[] = [
     'Acrescente a botoeira de parada -S0, que e normalmente fechada (NF). ' +
     'Atencao a posicao dela: o selo deve ficar DEPOIS da parada, senao o motor nao desliga. ' +
     'Pressionar -S0 tem de interromper o comando mesmo com o motor selado. ' +
-    NOTA_PROTECAO,
+    NOTA_380,
   bancada: tipos('fonte', 'disjuntor', 'botoeira_na', 'botoeira_nf', 'bobina', 'contato_forca', 'contato_aux', 'motor'),
   circuito_inicial: { componentes: [
-    ...alimentacao(),
-    c('KF', 'contato_forca', { vinculo: 'K1', polos: 2 }, {}, 40, 470),
-    c('M1', 'motor', { polos: 1 }, {}, 20, 620),
+    ...alimentacao(1),
+    c('KF', 'contato_forca', { vinculo: 'K1', polos: 3 }, {}, 40, 470),
+    c('M1', 'motor', { polos: 3 }, {}, 20, 620),
     c('S0', 'botoeira_nf', {}, {}, 430, 400),
     c('S1', 'botoeira_na', {}, {}, 430, 520),
     c('KA', 'contato_aux', { vinculo: 'K1', especie: 'NA' }, {}, 560, 520),
@@ -248,14 +270,14 @@ export const EXERCICIOS: Exercicio[] = [
     'Acrescente o rele de sobrecarga -FT. Os contatos principais dele ficam na forca, entre -KF e o motor. ' +
     'O contato 95/96, que e NF, entra no circuito de comando e deve derrubar a bobina quando o rele atuar. ' +
     'Com o rele atuado, a botoeira de partida nao pode religar o motor. ' +
-    NOTA_PROTECAO,
+    NOTA_220,
   bancada: tipos('fonte', 'disjuntor', 'botoeira_na', 'botoeira_nf', 'bobina', 'contato_forca',
                  'contato_aux', 'rele_termico', 'motor'),
   circuito_inicial: { componentes: [
-    ...alimentacao(),
-    c('KF', 'contato_forca', { vinculo: 'K1', polos: 2 }, {}, 40, 460),
-    c('FT', 'rele_termico', { polos: 2 }, {}, 40, 590),
-    c('M1', 'motor', { polos: 1 }, {}, 20, 730),
+    ...alimentacao(2),
+    c('KF', 'contato_forca', { vinculo: 'K1', polos: 3 }, {}, 40, 460),
+    c('FT', 'rele_termico', { polos: 3 }, {}, 40, 590),
+    c('M1', 'motor', { polos: 3 }, {}, 20, 730),
     c('S0', 'botoeira_nf', {}, {}, 430, 400),
     c('S1', 'botoeira_na', {}, {}, 430, 520),
     c('KA', 'contato_aux', { vinculo: 'K1', especie: 'NA' }, {}, 560, 520),
@@ -280,6 +302,7 @@ export const EXERCICIOS: Exercicio[] = [
       acoes: [{ tipo: 'pressionar', alvo: 'S0' }, { tipo: 'soltar', alvo: 'S0' }],
       esperado: { desenergizados: ['K1', 'M1'] }, critico: true },
     ...vetoresSeparacao(true),
+    comandoFaseFase,
     aterramento,
   ],
 },
@@ -291,14 +314,14 @@ export const EXERCICIOS: Exercicio[] = [
     'Acrescente duas sinalizacoes: -H1 acende com o motor em marcha, comandada pelo contato auxiliar -KH de -K1; ' +
     '-H2 acende quando o rele de sobrecarga atuar, comandada pelo contato 97/98 (NA) de -FT. ' +
     'As duas lampadas ficam no circuito de comando e nao podem interferir no acionamento do motor. ' +
-    NOTA_PROTECAO,
+    NOTA_220,
   bancada: tipos('fonte', 'disjuntor', 'botoeira_na', 'botoeira_nf', 'bobina', 'contato_forca',
                  'contato_aux', 'rele_termico', 'contato_termico', 'sinaleiro', 'motor'),
   circuito_inicial: { componentes: [
-    ...alimentacao(),
-    c('KF', 'contato_forca', { vinculo: 'K1', polos: 2 }, {}, 40, 460),
-    c('FT', 'rele_termico', { polos: 2 }, {}, 40, 590),
-    c('M1', 'motor', { polos: 1 }, {}, 20, 730),
+    ...alimentacao(2),
+    c('KF', 'contato_forca', { vinculo: 'K1', polos: 3 }, {}, 40, 460),
+    c('FT', 'rele_termico', { polos: 3 }, {}, 40, 590),
+    c('M1', 'motor', { polos: 3 }, {}, 20, 730),
     c('S0', 'botoeira_nf', {}, {}, 420, 400),
     c('S1', 'botoeira_na', {}, {}, 420, 520),
     c('KA', 'contato_aux', { vinculo: 'K1', especie: 'NA' }, {}, 540, 520),
@@ -323,6 +346,7 @@ export const EXERCICIOS: Exercicio[] = [
       acoes: [{ tipo: 'rearmar_termico', alvo: 'FT' }],
       esperado: { desenergizados: ['H2', 'M1'] }, critico: true },
     ...vetoresSeparacao(true),
+    comandoFaseFase,
     aterramento,
   ],
 },
@@ -336,14 +360,14 @@ export const EXERCICIOS: Exercicio[] = [
     'Em Manual, a bomba e comandada por -S1 com selo. Em Automatico, quem comanda e a boia -SN, ' +
     'que e NF e abre quando a caixa enche. O rele -FT deve proteger o motor NAS DUAS posicoes — ' +
     'cuidado para nao tirar a protecao do ramo manual. ' +
-    NOTA_PROTECAO,
+    NOTA_220,
   bancada: tipos('fonte', 'disjuntor', 'botoeira_na', 'botoeira_nf', 'bobina', 'contato_forca',
                  'contato_aux', 'rele_termico', 'boia', 'seletora', 'motor'),
   circuito_inicial: { componentes: [
-    ...alimentacao(),
-    c('KF', 'contato_forca', { vinculo: 'K1', polos: 2 }, {}, 40, 460),
-    c('FT', 'rele_termico', { polos: 2 }, {}, 40, 590),
-    c('M1', 'motor', { polos: 1 }, {}, 20, 730),
+    ...alimentacao(2),
+    c('KF', 'contato_forca', { vinculo: 'K1', polos: 3 }, {}, 40, 460),
+    c('FT', 'rele_termico', { polos: 3 }, {}, 40, 590),
+    c('M1', 'motor', { polos: 3 }, {}, 20, 730),
     c('S0', 'botoeira_nf', {}, {}, 430, 390),
     c('S2', 'seletora', { posicoes: 3, camos: [
         { a: '13', b: '14', posicoes: [0] },
@@ -386,6 +410,7 @@ export const EXERCICIOS: Exercicio[] = [
       acoes: [{ tipo: 'ligar_disjuntor', alvo: 'Q1' },
               { tipo: 'desligar_disjuntor', alvo: 'Q2' }],
       esperado: { desenergizados: ['K1', 'M1'] }, critico: true },
+    comandoFaseFase,
     { descricao: 'A carcaca do motor esta aterrada.',
       acoes: [{ tipo: 'ligar_disjuntor', alvo: 'Q2' }],
       esperado: { continuidade: [{ de: 'M1.PE', para: 'F.PE' }] }, critico: true },
