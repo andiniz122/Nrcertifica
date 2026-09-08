@@ -82,6 +82,20 @@ export const BIBLIOTECA: Record<string, DefComponente> = {
     saidaAtiva: (c) => !!c.estado.atuado,
   },
 
+  // Contato 95/96 (NF) ou 97/98 (NA) do rele, desenhado no circuito de comando
+  // e vinculado ao elemento termico que fica na forca.
+  contato_termico: {
+    bornes: (c) => (c.config.especie === 'NA' ? ['97', '98'] : ['95', '96']),
+    contatos: (c, ativo) => {
+      const na = c.config.especie === 'NA';
+      const atuado = ativo(c.config.vinculo);
+      return na
+        ? [{ a: '97', b: '98', fechado: atuado }]
+        : [{ a: '95', b: '96', fechado: !atuado }];
+    },
+    cargas: () => [],
+  },
+
   // --- contator representado em partes -------------------------------------
   bobina: {
     bornes: () => ['A1', 'A2'],

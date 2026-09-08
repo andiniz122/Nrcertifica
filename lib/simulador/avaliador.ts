@@ -5,7 +5,7 @@
 
 import { Simulador } from './engine';
 import { BIBLIOTECA } from './library';
-import type { Circuito } from './types';
+import type { Circuito, Componente } from './types';
 
 export type TipoAcao =
   | 'pressionar' | 'soltar'
@@ -76,12 +76,55 @@ export function validarCircuito(c: Circuito, tiposPermitidos?: string[]): string
     comp.config ??= {};
     comp.estado ??= {};
   }
+  // Um fio so pode chegar num borne que o componente realmente tem. Sem esta
+  // checagem, 'K1.99' criava silenciosamente uma net fantasma: nao dava erro,
+  // nao conduzia nada, e o aluno ficava sem entender por que o circuito estava
+  // morto.
+  const bornesDe = new Map<string, Set<string>>();
+  for (const comp of c.componentes) {
+    bornesDe.set(comp.id, new Set(BIBLIOTECA[comp.tipo].bornes(comp as Componente)));
+  }
   for (const f of c.fios) {
-    if (!ids.has(f?.de?.comp) || !ids.has(f?.para?.comp)) {
-      return 'Fio ligado a componente inexistente.';
+    for (const t of [f?.de, f?.para]) {
+      if (!t || !ids.has(t.comp)) return 'Fio ligado a componente inexistente.';
+      if (!bornesDe.get(t.comp)!.has(t.borne)) {
+        return `Borne inexistente: ${t.comp}.${t.borne}.`;
+      }
     }
   }
   return null;
+}
+
+/**
+ * O aluno monta os fios; o gabarito manda no resto.
+ *
+ * `config` e `estado` chegam no payload junto com o circuito, e nada obrigava
+ * o aluno a devolver os que recebeu. Dava para submeter o disjuntor do
+ * exercicio 2 como unipolar (o enunciado pede bipolar, comutando o neutro) ou
+ * mandar a bobina ja energizada; nenhum vetor testa isso, entao passava.
+ *
+ * Regra: todo id que existe no circuito inicial tem tipo, config e estado
+ * restaurados do gabarito. O que o aluno acrescenta por conta propria continua
+ * valendo — e assim que ele poe um contato auxiliar a mais para fazer o selo —
+ * desde que o tipo esteja na bancada.
+ */
+export function fixarGabarito(aluno: Circuito, inicial?: Circuito): Circuito {
+  const seed = new Map<string, Componente>();
+  for (const c of inicial?.componentes ?? []) seed.set(c.id, c);
+
+  return {
+    fios: aluno.fios,
+    componentes: aluno.componentes.map((c) => {
+      const g = seed.get(c.id);
+      if (!g) return { ...c, config: { ...(c.config ?? {}) }, estado: { ...(c.estado ?? {}) } };
+      return {
+        id: g.id,
+        tipo: g.tipo,
+        config: JSON.parse(JSON.stringify(g.config ?? {})),
+        estado: JSON.parse(JSON.stringify(g.estado ?? {})),
+      };
+    }),
+  };
 }
 
 function aplicar(sim: Simulador, a: Acao) {
@@ -106,18 +149,30 @@ export function avaliar(
   vetores: VetorTeste[],
   notaMinima = 7,
   tiposPermitidos?: string[],
+  circuitoInicial?: Circuito,
 ): Avaliacao {
   const vazio: Avaliacao = {
     nota: 0, vetoresOk: 0, vetoresTotal: vetores.length,
     aprovado: false, resultados: [],
   };
 
-  const erro = validarCircuito(circuito, tiposPermitidos);
+  if (!circuito || !Array.isArray(circuito.componentes) || !Array.isArray(circuito.fios)) {
+    return { ...vazio, erroEstrutural: 'Circuito inválido.' };
+  }
+
+  // Fixar ANTES de validar. Validando o payload cru, um `config` adulterado
+  // pelo aluno era julgado como se fosse dele: mandar o disjuntor trifasico
+  // como unipolar virava "borne inexistente" em vez de simplesmente voltar a
+  // ser trifasico. Fixar primeiro tambem isola a simulacao, que muta `estado`
+  // a cada varredura, do subdocumento do Mongo que a rota reusa.
+  const circuitoFixado = fixarGabarito(circuito, circuitoInicial);
+
+  const erro = validarCircuito(circuitoFixado, tiposPermitidos);
   if (erro) return { ...vazio, erroEstrutural: erro };
 
   let sim: Simulador;
   try {
-    sim = new Simulador(circuito);
+    sim = new Simulador(circuitoFixado);
   } catch (e: any) {
     return { ...vazio, erroEstrutural: e?.message ?? 'Falha ao montar o circuito.' };
   }

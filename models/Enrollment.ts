@@ -16,11 +16,10 @@ export interface IEnrollment extends Document {
   tentativas_pratica: Array<{
     data: Date
     modulo_id: number
-    circuito: any
+    exercicio_id: number
     nota: number
-    vetores_ok: number
-    vetores_total: number
     aprovado: boolean
+    circuito: any
   }>
   aprovado: boolean
   data_conclusao?: Date
@@ -42,14 +41,16 @@ const EnrollmentSchema = new Schema<IEnrollment>({
     total:    Number,
     aprovado: Boolean,
   }],
+  // Guarda o circuito que o aluno efetivamente montou, nao so a nota. Se um
+  // certificado assinado sob o CREA for questionado, existe a evidencia.
   tentativas_pratica: [{
-    data:          { type: Date, default: Date.now },
-    modulo_id:     Number,
-    circuito:      Schema.Types.Mixed,
-    nota:          Number,
-    vetores_ok:    Number,
-    vetores_total: Number,
-    aprovado:      Boolean,
+    data:         { type: Date, default: Date.now },
+    modulo_id:    Number,
+    exercicio_id: Number,
+    nota:         Number,
+    aprovado:     Boolean,
+    circuito:     Schema.Types.Mixed,
+    _id: false,
   }],
   aprovado:       { type: Boolean, default: false },
   data_conclusao: Date,

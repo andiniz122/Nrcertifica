@@ -1,19 +1,11 @@
 'use client'
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
-
-// ssr:false - React Flow depende de window. O import dinamico tambem evita
-// que o bundle do canvas pese nas abas de material, video e exercicios.
-const SimuladorPratica = dynamic(() => import('./SimuladorPratica'), {
-  ssr: false,
-  loading: () => (
-    <div className="p-10 text-center text-sm text-gray-400">Carregando bancada...</div>
-  ),
-})
 import {
   BookOpen, CheckCircle2, Lock, FileText, Download,
   ChevronRight, ChevronDown, Award, AlertCircle,
-  RotateCcw, Loader2, XCircle, PlayCircle, ClipboardList, CalendarDays, Zap } from 'lucide-react'
+  RotateCcw, Loader2, XCircle, PlayCircle, ClipboardList, CalendarDays, Wrench
+} from 'lucide-react'
+import PraticaModulo from './PraticaModulo'
 
 interface Props {
   curso: any
@@ -22,34 +14,22 @@ interface Props {
   usuario: any
 }
 
-type AbaModulo = 'material' | 'video' | 'exercicios' | 'pratica'
+type AbaModulo = 'material' | 'exercicios' | 'pratica'
 
 export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) {
   const [moduloAberto, setModuloAberto] = useState<number | null>(1)
   const [abaModulo, setAbaModulo] = useState<Record<number, AbaModulo>>({})
   const [materialAcessado, setMaterialAcessado] = useState<Record<number, boolean>>({})
-  const [urlVideo, setUrlVideo] = useState<Record<string, string>>({})
-  const [erroVideo, setErroVideo] = useState<Record<string, string>>({})
-
-  const carregarVideo = async (materialId: string) => {
-    if (urlVideo[materialId]) return
-    try {
-      const res = await fetch(`/api/videos/${materialId}/token`)
-      const data = await res.json()
-      if (!res.ok) {
-        setErroVideo(r => ({ ...r, [materialId]: data.error || 'Nao foi possivel carregar a videoaula.' }))
-        return
-      }
-      setUrlVideo(r => ({ ...r, [materialId]: data.url }))
-    } catch {
-      setErroVideo(r => ({ ...r, [materialId]: 'Erro de conexao ao carregar a videoaula.' }))
-    }
-  }
   const [modulosConcluidos, setModulosConcluidos] = useState<number[]>(
     matricula.modulos_concluidos || []
   )
   const [carregandoModulo, setCarregandoModulo] = useState<number | null>(null)
   const [erroModulo, setErroModulo] = useState<string>('')
+  // Modulos cujos exercicios praticos obrigatorios ja sairam. Preenchido pela
+  // aba Pratica ao carregar. Enquanto for undefined, o modulo com pratica nao
+  // pode ser concluido pelo questionario — e isso e proposital: ninguem se
+  // forma sem ter montado um selo funcionando.
+  const [praticaOk, setPraticaOk] = useState<Record<number, boolean>>({})
   const hoje = new Date().toISOString().split('T')[0]
 
   const inicioSalvo = matricula.data_inicio_curso
@@ -95,10 +75,6 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
     if (!inicio || !fim) return
     if (inicio > fim) {
       setErroData('A data de início não pode ser posterior à conclusão.')
-      return
-    }
-    if (fim > hoje) {
-      setErroData('A data de conclusão não pode ser futura.')
       return
     }
     const diasSelecionados = contarDiasUteis(inicio, fim)
@@ -353,6 +329,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
               const mats = materiaisDoModulo(modulo.id)
               const acessou = materialAcessado[modulo.id] || concluido
               const abaAtiva = getAbaModulo(modulo.id)
+              const temPratica = (modulo.praticas?.length ?? 0) > 0
 
               // Módulo bloqueado? Só libera sequencialmente
               const anterior = modulo.id - 1
@@ -405,18 +382,6 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                         >
                           <FileText className="w-4 h-4" /> Material de estudo
                         </button>
-                        {mats.some((m: any) => m.tipo === 'video') && (
-                          <button
-                            onClick={() => setAba(modulo.id, 'video')}
-                            className={`py-3 px-4 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${
-                              abaAtiva === 'video'
-                                ? 'border-brand-red text-brand-red'
-                                : 'border-transparent text-gray-400 hover:text-gray-600'
-                            }`}
-                          >
-                            <PlayCircle className="w-4 h-4" /> Videoaula
-                          </button>
-                        )}
                         <button
                           onClick={() => acessou ? setAba(modulo.id, 'exercicios') : null}
                           className={`py-3 px-4 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${
@@ -431,7 +396,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                           Exercícios
                           {!acessou && <Lock className="w-3 h-3" />}
                         </button>
-                        {modulo.pratica && (
+                        {temPratica && (
                           <button
                             onClick={() => acessou ? setAba(modulo.id, 'pratica') : null}
                             className={`py-3 px-4 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${
@@ -442,22 +407,12 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                                   : 'border-transparent text-gray-200 cursor-not-allowed'
                             }`}
                           >
-                            <Zap className="w-4 h-4" />
+                            <Wrench className="w-4 h-4" />
                             Prática
                             {!acessou && <Lock className="w-3 h-3" />}
                           </button>
                         )}
                       </div>
-
-                      {abaAtiva === 'pratica' && modulo.pratica && (
-                        <SimuladorPratica
-                          pratica={modulo.pratica}
-                          enrollmentId={matricula._id}
-                          moduloId={modulo.id}
-                          onAprovado={() => setModulosConcluidos(mc =>
-                            mc.includes(modulo.id) ? mc : [...mc, modulo.id])}
-                        />
-                      )}
 
                       {/* Conteúdo da aba material */}
                       {abaAtiva === 'material' && (
@@ -521,39 +476,17 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                         </div>
                       )}
 
-                      {/* Conteúdo da aba videoaula */}
-                      {abaAtiva === 'video' && (
-                        <div className="p-5 space-y-5">
-                          <p className="text-sm text-gray-500">
-                            Material complementar. A carga horária do curso é cumprida pela apostila e
-                            pela avaliação — a videoaula é apoio ao estudo.
-                          </p>
-                          {mats.filter((m: any) => m.tipo === 'video').map((m: any) => (
-                            <div key={m._id} className="space-y-2">
-                              <p className="text-sm font-semibold text-brand-dark">{m.titulo}</p>
-                              {urlVideo[m._id] ? (
-                                <div className="relative w-full rounded-xl overflow-hidden bg-black" style={{ paddingTop: '56.25%' }}>
-                                  <iframe
-                                    src={urlVideo[m._id]}
-                                    loading="lazy"
-                                    className="absolute inset-0 w-full h-full"
-                                    allow="encrypted-media; picture-in-picture; fullscreen"
-                                    allowFullScreen
-                                  />
-                                </div>
-                              ) : erroVideo[m._id] ? (
-                                <p className="text-sm text-red-500">{erroVideo[m._id]}</p>
-                              ) : (
-                                <button
-                                  onClick={() => carregarVideo(m._id)}
-                                  className="w-full rounded-xl border-2 border-dashed border-gray-200 hover:border-brand-red transition-colors py-10 flex flex-col items-center gap-2"
-                                >
-                                  <PlayCircle className="w-10 h-10 text-gray-300" />
-                                  <span className="text-sm text-gray-500 font-medium">Assistir videoaula</span>
-                                </button>
-                              )}
-                            </div>
-                          ))}
+                      {/* Conteúdo da aba prática (simulador de comandos) */}
+                      {abaAtiva === 'pratica' && temPratica && (
+                        <div className="p-5">
+                          <PraticaModulo
+                            enrollmentId={matricula._id}
+                            moduloId={modulo.id}
+                            onModuloConcluido={(ms) => setModulosConcluidos(ms)}
+                            onProgresso={(ok) =>
+                              setPraticaOk((r) => (r[modulo.id] === ok ? r : { ...r, [modulo.id]: ok }))
+                            }
+                          />
                         </div>
                       )}
 
@@ -566,6 +499,8 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                             onConcluir={() => concluirModulo(modulo.id)}
                             carregando={carregandoModulo === modulo.id}
                             erro={carregandoModulo === null ? erroModulo : ''}
+                            praticaPendente={temPratica && !praticaOk[modulo.id]}
+                            onIrParaPratica={() => setAba(modulo.id, 'pratica')}
                           />
                         </div>
                       )}
@@ -687,7 +622,9 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
 }
 
 // ── Exercícios do módulo ──
-function ExerciciosModulo({ modulo, concluido, onConcluir, carregando, erro }: any) {
+function ExerciciosModulo({
+  modulo, concluido, onConcluir, carregando, erro, praticaPendente, onIrParaPratica,
+}: any) {
   const [respostas, setRespostas] = useState<Record<number, number>>({})
   const [enviado, setEnviado] = useState(false)
   const [acertos, setAcertos] = useState(0)
@@ -804,7 +741,15 @@ function ExerciciosModulo({ modulo, concluido, onConcluir, carregando, erro }: a
                 {erro}
               </p>
             )}
-            {!concluido ? (
+            {!concluido && praticaPendente ? (
+              <button
+                onClick={onIrParaPratica}
+                className="btn-primary ml-auto"
+              >
+                <Wrench className="w-4 h-4" />
+                Falta a montagem prática
+              </button>
+            ) : !concluido ? (
               <button
                 onClick={onConcluir}
                 disabled={carregando}

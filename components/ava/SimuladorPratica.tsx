@@ -1,314 +1,205 @@
 'use client'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import {
-  ReactFlow, Background, Controls, Handle, Position, ConnectionMode,
+  ReactFlow, Background, BackgroundVariant, Controls, ConnectionMode,
   useNodesState, useEdgesState, addEdge,
   type Node, type Edge, type Connection,
 } from '@xyflow/react'
 import '@xyflow/react/dist/style.css'
+import NoSimbolo from './simulador/NoSimbolo'
 import { Simulador } from '../../lib/simulador/engine'
-import type { Circuito, Componente } from '../../lib/simulador/types'
-import { Zap, Play, RotateCcw, Send, CheckCircle2, XCircle, AlertTriangle } from 'lucide-react'
+import type { Circuito, Componente, Falha } from '../../lib/simulador/types'
 
-// ---------------------------------------------------------------------------
-// Simbologia conforme IEC 60617. Os bornes seguem a IEC 60947 / EN 50005.
-// Sem fotografia de produto: o aluno precisa aprender a ler o simbolo, nao a
-// reconhecer a marca.
-// ---------------------------------------------------------------------------
-
-const COR_FASE: Record<string, string> = {
-  L1: '#dc2626', L2: '#1f2937', L3: '#78716c', N: '#2563eb', PE: '#16a34a',
+// Cores de condutor conforme NBR 5410: o fio muda de cor com o potencial que
+// carrega, entao o aluno aprende a convencao montando, sem ninguem dizer.
+const COR_CONDUTOR = {
+  fase:  '#C2410C',
+  neutro:'#1D4ED8',
+  terra: '#15803D',
+  morto: '#94A3B8',
+  curto: '#B91C1C',
 }
 
-/** Posiciona os bornes de um lado do simbolo. */
-function Bornes({ lista, lado }: { lista: string[]; lado: 'top' | 'bottom' | 'left' | 'right' }) {
-  const pos = lado === 'top' ? Position.Top
-    : lado === 'bottom' ? Position.Bottom
-    : lado === 'left' ? Position.Left : Position.Right
-  const horizontal = lado === 'top' || lado === 'bottom'
-  return (
-    <>
-      {lista.map((b, i) => {
-        const p = `${((i + 1) / (lista.length + 1)) * 100}%`
-        return (
-          <Handle
-            key={b} id={b} type="source" position={pos}
-            style={{
-              [horizontal ? 'left' : 'top']: p,
-              width: 14, height: 14, background: '#fff',
-              border: '2px solid #9ca3af', borderRadius: 7,
-            }}
-          />
-        )
-      })}
-    </>
-  )
-}
+const PAPEL = '#FBFAF7'
+const GRID  = '#DCE3EC'
+const PAINEL = '#0E1D2E'
 
-function Caixa({ children, titulo, ativo, alerta }: any) {
-  return (
-    <div
-      className="rounded-lg bg-white shadow-sm px-3 py-2 min-w-[92px] text-center transition-colors"
-      style={{
-        border: `2px solid ${alerta ? '#dc2626' : ativo ? '#16a34a' : '#d1d5db'}`,
-        boxShadow: ativo ? '0 0 0 3px rgba(22,163,74,.15)' : undefined,
-      }}
-    >
-      <p className="text-[11px] font-bold text-gray-700 leading-none mb-1">{titulo}</p>
-      {children}
-    </div>
-  )
-}
+const TIPOS_NO = { simbolo: NoSimbolo }
 
-const NoFonte = ({ data }: any) => (
-  <div className="rounded-lg bg-gray-900 text-white px-3 py-2 text-center min-w-[120px]">
-    <p className="text-[11px] font-bold mb-1">Alimentação</p>
-    <div className="flex gap-2 justify-center">
-      {['L1', 'L2', 'L3', 'N'].map((f) => (
-        <span key={f} className="text-[10px] font-mono px-1 rounded"
-          style={{ background: COR_FASE[f] }}>{f}</span>
-      ))}
-    </div>
-    <Bornes lista={['L1', 'L2', 'L3', 'N']} lado="bottom" />
-  </div>
-)
-
-const NoDisjuntor = ({ data }: any) => {
-  const n = data.config?.polos ?? 1
-  const b: string[] = []
-  for (let i = 0; i < n; i++) b.push(String(1 + i * 2), String(2 + i * 2))
-  const cima = b.filter((_, i) => i % 2 === 0)
-  const baixo = b.filter((_, i) => i % 2 === 1)
-  const on = data.estado?.ligado && !data.estado?.atuado
-  return (
-    <Caixa titulo={`${data.id} · ${n}P`} ativo={on} alerta={data.estado?.atuado}>
-      <Bornes lista={cima} lado="top" />
-      <svg width="56" height="30" viewBox="0 0 56 30">
-        <line x1="10" y1="4" x2="10" y2="12" stroke="#374151" strokeWidth="2" />
-        <line x1="10" y1="12" x2={on ? 10 : 22} y2="26" stroke="#374151" strokeWidth="2" />
-        <line x1="10" y1="26" x2="10" y2="26" stroke="#374151" strokeWidth="2" />
-        <path d="M32 6 h14 v18 h-14 z" fill="none" stroke="#374151" strokeWidth="1.5" />
-        <path d="M35 20 l4 -8 l4 8" fill="none" stroke="#374151" strokeWidth="1.5" />
-      </svg>
-      <p className="text-[9px] text-gray-400 leading-none">
-        {data.estado?.atuado ? 'DESARMADO' : on ? 'ligado' : 'desligado'}
-      </p>
-      <Bornes lista={baixo} lado="bottom" />
-    </Caixa>
-  )
-}
-
-const NoBotoeira = ({ data }: any) => {
-  const nf = data.tipo === 'botoeira_nf' || data.tipo === 'emergencia'
-  const bornes = nf ? ['11', '12'] : ['13', '14']
-  const at = data.tipo === 'emergencia' ? data.estado?.travado : data.estado?.pressionado
-  return (
-    <Caixa titulo={data.id} ativo={!!at}>
-      <Bornes lista={[bornes[0]]} lado="top" />
-      <svg width="46" height="30" viewBox="0 0 46 30">
-        <line x1="10" y1="2" x2="10" y2="10" stroke="#374151" strokeWidth="2" />
-        <line x1="10" y1={nf ? 10 : 12} x2={nf ? 34 : 32} y2={nf ? 10 : 8}
-          stroke="#374151" strokeWidth="2" />
-        {nf && <line x1="22" y1="10" x2="22" y2="4" stroke="#374151" strokeWidth="1.5" />}
-        <line x1="34" y1="10" x2="34" y2="28" stroke="#374151" strokeWidth="2" />
-        <circle cx="22" cy={nf ? 2 : 3} r="3"
-          fill={data.tipo === 'emergencia' ? '#dc2626' : '#6b7280'} />
-      </svg>
-      <p className="text-[9px] text-gray-400 leading-none">{nf ? 'NF' : 'NA'}</p>
-      <Bornes lista={[bornes[1]]} lado="bottom" />
-    </Caixa>
-  )
-}
-
-const NoContator = ({ data }: any) => {
-  const n = data.config?.polos ?? 3
-  const pot: string[] = []
-  for (let i = 0; i < n; i++) pot.push(String(1 + i * 2), String(2 + i * 2))
-  const on = !!data.estado?.energizado
-  return (
-    <Caixa titulo={data.id} ativo={on}>
-      <Bornes lista={[...pot.filter((_, i) => i % 2 === 0), 'A1', '13']} lado="top" />
-      <svg width="70" height="32" viewBox="0 0 70 32">
-        <rect x="4" y="8" width="22" height="16" fill="none" stroke="#374151" strokeWidth="1.5" />
-        <text x="15" y="20" fontSize="9" textAnchor="middle" fill="#374151">A</text>
-        {[0, 1, 2].slice(0, n).map((i) => (
-          <g key={i} transform={`translate(${34 + i * 12},0)`}>
-            <line x1="0" y1="4" x2="0" y2="12" stroke="#374151" strokeWidth="1.5" />
-            <line x1="0" y1="12" x2={on ? 0 : 6} y2="22" stroke="#374151" strokeWidth="1.5" />
-            <line x1="0" y1="22" x2="0" y2="28" stroke="#374151" strokeWidth="1.5" />
-          </g>
-        ))}
-      </svg>
-      <p className="text-[9px] leading-none" style={{ color: on ? '#16a34a' : '#9ca3af' }}>
-        {on ? 'energizado' : 'em repouso'}
-      </p>
-      <Bornes lista={[...pot.filter((_, i) => i % 2 === 1), 'A2', '14']} lado="bottom" />
-    </Caixa>
-  )
-}
-
-const NoContatoAux = ({ data }: any) => {
-  const nf = data.config?.especie === 'NF'
-  const bornes = nf ? ['21', '22'] : ['13', '14']
-  return (
-    <Caixa titulo={`${data.id} (${data.config?.vinculo})`}>
-      <Bornes lista={[bornes[0]]} lado="top" />
-      <svg width="40" height="26" viewBox="0 0 40 26">
-        <line x1="8" y1="2" x2="8" y2="9" stroke="#374151" strokeWidth="2" />
-        <line x1="8" y1={nf ? 9 : 11} x2="30" y2={nf ? 9 : 5} stroke="#374151" strokeWidth="2" />
-        {nf && <line x1="19" y1="9" x2="19" y2="3" stroke="#374151" strokeWidth="1.5" />}
-        <line x1="30" y1="9" x2="30" y2="24" stroke="#374151" strokeWidth="2" />
-      </svg>
-      <p className="text-[9px] text-gray-400 leading-none">contato {nf ? 'NF' : 'NA'}</p>
-      <Bornes lista={[bornes[1]]} lado="bottom" />
-    </Caixa>
-  )
-}
-
-const NoTermico = ({ data }: any) => {
-  const at = !!data.estado?.atuado
-  return (
-    <Caixa titulo={data.id} alerta={at}>
-      <Bornes lista={['1', '3', '5', '95', '97']} lado="top" />
-      <svg width="64" height="28" viewBox="0 0 64 28">
-        <rect x="4" y="6" width="34" height="16" fill="none" stroke="#374151" strokeWidth="1.5" />
-        <path d="M9 18 q6 -10 12 0 q6 10 12 0" fill="none" stroke="#374151" strokeWidth="1.5" />
-        <line x1="46" y1="4" x2="46" y2="11" stroke="#374151" strokeWidth="1.5" />
-        <line x1="46" y1="11" x2={at ? 56 : 46} y2="20" stroke="#374151" strokeWidth="1.5" />
-        <line x1="46" y1="20" x2="46" y2="26" stroke="#374151" strokeWidth="1.5" />
-      </svg>
-      <p className="text-[9px] leading-none" style={{ color: at ? '#dc2626' : '#9ca3af' }}>
-        {at ? 'ATUADO' : 'normal'}
-      </p>
-      <Bornes lista={['2', '4', '6', '96', '98']} lado="bottom" />
-    </Caixa>
-  )
-}
-
-const NoSinaleiro = ({ data }: any) => {
-  const on = !!data.aceso
-  return (
-    <Caixa titulo={data.id} ativo={on}>
-      <Bornes lista={['X1']} lado="top" />
-      <svg width="32" height="30" viewBox="0 0 32 30">
-        <circle cx="16" cy="15" r="10" fill={on ? '#fbbf24' : '#f3f4f6'}
-          stroke="#374151" strokeWidth="1.5" />
-        <line x1="9" y1="8" x2="23" y2="22" stroke="#374151" strokeWidth="1.2" />
-        <line x1="23" y1="8" x2="9" y2="22" stroke="#374151" strokeWidth="1.2" />
-      </svg>
-      <Bornes lista={['X2']} lado="bottom" />
-    </Caixa>
-  )
-}
-
-const NoMotor = ({ data }: any) => {
-  const on = !!data.girando
-  const n = data.config?.polos ?? 3
-  return (
-    <Caixa titulo={data.id} ativo={on}>
-      <Bornes lista={n === 3 ? ['U', 'V', 'W'] : ['U', 'V']} lado="top" />
-      <svg width="44" height="40" viewBox="0 0 44 40">
-        <circle cx="22" cy="20" r="15" fill="none" stroke="#374151" strokeWidth="1.8" />
-        <text x="22" y="21" fontSize="11" fontWeight="bold" textAnchor="middle" fill="#374151">M</text>
-        <text x="22" y="31" fontSize="7" textAnchor="middle" fill="#6b7280">3~</text>
-      </svg>
-      <p className="text-[9px] leading-none" style={{ color: on ? '#16a34a' : '#9ca3af' }}>
-        {on ? 'girando' : 'parado'}
-      </p>
-    </Caixa>
-  )
-}
-
-const TIPOS_NO = {
-  fonte: NoFonte, disjuntor: NoDisjuntor,
-  botoeira_na: NoBotoeira, botoeira_nf: NoBotoeira, emergencia: NoBotoeira,
-  contator: NoContator, contato_aux: NoContatoAux, rele_termico: NoTermico,
-  sinaleiro: NoSinaleiro, motor: NoMotor,
-}
-
-// ---------------------------------------------------------------------------
+const ACIONAVEIS = [
+  'botoeira_na', 'botoeira_nf', 'emergencia', 'disjuntor',
+  'rele_termico', 'boia', 'seletora', 'fusivel',
+]
 
 interface Props {
   pratica: any
   enrollmentId: string
   moduloId: number
-  onAprovado?: () => void
+  exercicioId?: number
+  tentativasUsadas?: number
+  aprovadoAntes?: boolean
+  /** Recebe a resposta da correcao: traz modulos_concluidos quando o
+   *  modulo fecha com este exercicio. */
+  onAprovado?: (resposta: any) => void
 }
 
-export default function SimuladorPratica({ pratica, enrollmentId, moduloId, onAprovado }: Props) {
+export default function SimuladorPratica({
+  pratica, enrollmentId, moduloId, exercicioId,
+  tentativasUsadas = 0, aprovadoAntes = false, onAprovado,
+}: Props) {
   const inicial: Circuito = pratica.circuito_inicial
+
   // Referencias estaveis: o estado do contator precisa sobreviver entre
   // varreduras, senao o selo de retencao nao se sustenta.
   const compsRef = useRef<Componente[]>(
-    inicial.componentes.map((c: any) => ({ ...c, estado: { ...(c.estado ?? {}) } })),
+    inicial.componentes.map((c: any) => ({
+      id: c.id, tipo: c.tipo,
+      config: { ...(c.config ?? {}) },
+      estado: { ...(c.estado ?? {}) },
+    })),
   )
 
-  const [nodes, setNodes, onNodesChange] = useNodesState<Node>(
+  const [nodes, , onNodesChange] = useNodesState<Node>(
     inicial.componentes.map((c: any) => ({
       id: c.id,
-      type: c.tipo,
+      type: 'simbolo',
       position: c.posicao ?? { x: 0, y: 0 },
-      data: { ...c, estado: compsRef.current.find((k) => k.id === c.id)!.estado },
+      data: { tipo: c.tipo },
     })),
   )
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([])
-  const [energizadas, setEnergizadas] = useState<Set<number>>(new Set())
-  const [falhas, setFalhas] = useState<any[]>([])
   const [resposta, setResposta] = useState<any>(null)
   const [enviando, setEnviando] = useState(false)
+  const [tick, setTick] = useState(0)   // forca redesenho apos cada varredura
+
+  const tentativas = resposta?.tentativas_usadas ?? tentativasUsadas
+  const maximas = pratica.tentativas_maximas ?? 10
+  const restantes = Math.max(0, maximas - tentativas)
+  const aprovado = resposta?.aprovado ?? aprovadoAntes
 
   const circuito = useCallback((): Circuito => ({
     componentes: compsRef.current,
     fios: edges.map((e) => ({
       id: e.id,
-      de: { comp: e.source, borne: e.sourceHandle! },
+      de:   { comp: e.source, borne: e.sourceHandle! },
       para: { comp: e.target, borne: e.targetHandle! },
     })),
   }), [edges])
 
-  /** Roda a varredura e devolve o retorno visual ao aluno. */
-  const simular = useCallback(() => {
+  const idFonte = compsRef.current.find((c) => c.tipo === 'fonte')?.id
+
+  /**
+   * Varre o circuito e devolve a cor de cada fio e o estado visual de cada
+   * simbolo. Nao muta `compsRef` durante o render: os flags de desenho saem
+   * em `visual` e sao mesclados no `data` do no na hora de montar o JSX, o
+   * que gera um objeto novo e desarma o memo do NoSimbolo. Mutar o estado no
+   * lugar congelava o desenho — a lampada nunca acendia.
+   */
+  const { cores, falhas, visual } = useMemo(() => {
+    const cores: Record<string, string> = {}
+    const visual: Record<string, Record<string, boolean>> = {}
+    let falhas: Falha[] = []
     try {
       const sim = new Simulador(circuito())
       const r = sim.run()
-      const nets = new Set<number>()
-      r.potenciais.forEach((fontes, n) => { if (fontes.size) nets.add(n) })
-      setEnergizadas(nets)
-      setFalhas(r.falhas)
-      setNodes((ns) => ns.map((n) => ({
+      falhas = r.falhas
+
+      for (const e of edges) {
+        try {
+          const net = sim.net(e.source, e.sourceHandle!)
+          const fontes = r.potenciais.get(net)
+          const aterrado = idFonte
+            ? sim.mesmaNet(e.source, e.sourceHandle!, idFonte, 'PE')
+            : false
+
+          if (fontes && fontes.size > 1)      cores[e.id] = COR_CONDUTOR.curto
+          else if (aterrado)                  cores[e.id] = COR_CONDUTOR.terra
+          else if (fontes?.has('N'))          cores[e.id] = COR_CONDUTOR.neutro
+          else if (fontes?.size)              cores[e.id] = COR_CONDUTOR.fase
+          else                                cores[e.id] = COR_CONDUTOR.morto
+        } catch {
+          cores[e.id] = COR_CONDUTOR.morto
+        }
+      }
+
+      // reflete o estado eletrico nos simbolos (contato fechado, lampada acesa)
+      for (const c of compsRef.current) {
+        const ativo = r.energizados.has(c.id)
+        if (c.tipo === 'sinaleiro') visual[c.id] = { __aceso: ativo }
+        else if (c.tipo === 'motor') visual[c.id] = { __girando: ativo }
+        else if (c.tipo === 'contato_forca' || c.tipo === 'contato_aux') {
+          const alvo = compsRef.current.find((k) => k.id === c.config.vinculo)
+          visual[c.id] = { __ativo: !!alvo?.estado?.energizado }
+        } else if (c.tipo === 'contato_termico') {
+          const alvo = compsRef.current.find((k) => k.id === c.config.vinculo)
+          visual[c.id] = { __ativo: !!alvo?.estado?.atuado }
+        }
+      }
+    } catch {
+      for (const e of edges) cores[e.id] = COR_CONDUTOR.morto
+    }
+    return { cores, falhas, visual }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [edges, tick])
+
+  /**
+   * Nos derivados a cada render. O `data` e sempre um objeto novo, senao o
+   * memo() do NoSimbolo corta o redesenho e o simbolo fica congelado enquanto
+   * o fio muda de cor — o aluno via metade do feedback.
+   */
+  const nosDesenhados = useMemo(
+    () => nodes.map((n) => {
+      const c = compsRef.current.find((k) => k.id === n.id)
+      return {
         ...n,
         data: {
-          ...n.data,
-          estado: compsRef.current.find((c) => c.id === n.id)!.estado,
-          aceso: r.energizados.has(n.id),
-          girando: r.energizados.has(n.id),
+          tipo: c?.tipo ?? (n.data as any)?.tipo,
+          config: c?.config ?? {},
+          estado: { ...(c?.estado ?? {}), ...(visual[n.id] ?? {}) },
         },
-      })))
-    } catch (e: any) {
-      setFalhas([{ tipo: 'erro', mensagem: e?.message ?? 'Erro na simulação.' }])
-    }
-  }, [circuito, setNodes])
+      }
+    }),
+    [nodes, visual],
+  )
+
+  const arestasDesenhadas = useMemo(
+    () => edges.map((e) => ({
+      ...e,
+      style: { stroke: cores[e.id] ?? COR_CONDUTOR.morto, strokeWidth: 2.2 },
+      interactionWidth: 18,   // area de toque no celular
+    })),
+    [edges, cores],
+  )
 
   const acionar = (id: string, patch: Record<string, any>) => {
     const c = compsRef.current.find((k) => k.id === id)
     if (!c) return
     Object.assign(c.estado, patch)
-    simular()
+    setTick((t) => t + 1)
   }
 
   const onConnect = useCallback((c: Connection) => {
-    setEdges((eds) => addEdge({ ...c, type: 'smoothstep', style: { strokeWidth: 3 } }, eds))
-    setTimeout(simular, 0)
-  }, [setEdges, simular])
+    setEdges((eds) => addEdge({ ...c, type: 'smoothstep' }, eds))
+  }, [setEdges])
 
-  const limpar = () => {
+  /**
+   * Remove o fio no clique. Sem isto o aluno so podia desfazer com Backspace
+   * depois de selecionar — e no celular nao ha teclado, entao o unico caminho
+   * era "Refazer do zero", que joga fora a montagem inteira.
+   */
+  const onEdgeClick = useCallback((ev: React.MouseEvent, e: Edge) => {
+    ev.stopPropagation()
+    setEdges((eds) => eds.filter((k) => k.id !== e.id))
+  }, [setEdges])
+
+  const refazer = () => {
     setEdges([])
     for (const c of compsRef.current) {
-      Object.keys(c.estado).forEach((k) => delete c.estado[k])
-      if (c.tipo === 'disjuntor') c.estado.ligado = true
+      const inicialC = inicial.componentes.find((k: any) => k.id === c.id)
+      Object.keys(c.estado).forEach((k) => delete (c.estado as any)[k])
+      Object.assign(c.estado, inicialC?.estado ?? {})
     }
-    setResposta(null); setFalhas([]); setEnergizadas(new Set())
-    setTimeout(simular, 0)
+    setResposta(null); setTick((t) => t + 1)
   }
 
   const enviar = async () => {
@@ -318,151 +209,247 @@ export default function SimuladorPratica({ pratica, enrollmentId, moduloId, onAp
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          enrollment_id: enrollmentId,
-          modulo_id: moduloId,
-          circuito: circuito(),
+          enrollment_id: enrollmentId, modulo_id: moduloId,
+          exercicio_id: exercicioId, circuito: circuito(),
         }),
       })
       const data = await res.json()
       setResposta(data)
-      if (data.aprovado) onAprovado?.()
+      if (data.aprovado) onAprovado?.(data)
     } catch {
-      setResposta({ error: 'Falha de comunicação. Tente novamente.' })
+      setResposta({ error: 'Não foi possível enviar. Verifique a conexão e tente de novo.' })
     } finally {
       setEnviando(false)
     }
   }
 
-  const acionaveis = compsRef.current.filter((c) =>
-    ['botoeira_na', 'botoeira_nf', 'emergencia', 'disjuntor', 'rele_termico'].includes(c.tipo))
+  const acionaveis = compsRef.current.filter((c) => ACIONAVEIS.includes(c.tipo))
+
+  const estado = aprovado ? 'aprovado'
+    : edges.length === 0 ? 'em branco'
+    : 'em montagem'
 
   return (
-    <div className="p-4 sm:p-5">
-      <div className="bg-brand-light border border-gray-200 rounded-xl p-4 mb-4">
-        <p className="text-sm font-semibold text-brand-dark mb-1 flex items-center gap-2">
-          <Zap className="w-4 h-4 text-brand-red" /> Atividade prática
-        </p>
-        <p className="text-sm text-gray-600 leading-relaxed">{pratica.enunciado}</p>
-        <p className="text-xs text-gray-400 mt-2">
-          Toque em um borne e depois no borne de destino para criar a ligação.
-          Acione os dispositivos no painel abaixo e observe o comportamento do circuito.
-        </p>
+    <div className="p-4 sm:p-6" style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
+
+      <p className="text-[15px] leading-relaxed text-slate-700 max-w-[68ch] mb-5">
+        {pratica.enunciado}
+      </p>
+
+      {/* ---------------------------------------------------------- prancha */}
+      <div className="relative border border-slate-300" style={{ background: PAPEL }}>
+        <div className="h-[460px] sm:h-[600px]">
+          <ReactFlow
+            nodes={nosDesenhados}
+            edges={arestasDesenhadas}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            onEdgeClick={onEdgeClick}
+            nodeTypes={TIPOS_NO}
+            connectionMode={ConnectionMode.Loose}
+            connectionLineStyle={{ stroke: '#F5851F', strokeWidth: 2.2 }}
+            defaultEdgeOptions={{ type: 'smoothstep' }}
+            fitView
+            proOptions={{ hideAttribution: true }}
+          >
+            <Background variant={BackgroundVariant.Dots} gap={20} size={1} color={GRID} />
+            <Controls showInteractive={false} position="top-left" />
+          </ReactFlow>
+        </div>
+
+        {/* carimbo, como em prancha tecnica */}
+        <div className="absolute bottom-0 right-0 border-t border-l border-slate-300 bg-white/90
+                        px-4 py-2.5 font-mono text-[11px] leading-tight text-slate-600 pointer-events-none">
+          <div className="text-slate-900">{pratica.titulo ?? 'Atividade prática'}</div>
+          <div className="mt-1 flex gap-5">
+            <span>exerc. {exercicioId ?? '—'}</span>
+            <span>ligações {edges.length}</span>
+            <span className={aprovado ? 'text-green-700' : ''}>{estado}</span>
+          </div>
+        </div>
       </div>
 
-      <div className="h-[440px] sm:h-[560px] rounded-xl border border-gray-200 bg-slate-50 overflow-hidden">
-        <ReactFlow
-          nodes={nodes} edges={edges.map((e) => ({
-            ...e,
-            animated: false,
-            style: { strokeWidth: 3, stroke: '#6b7280' },
-          }))}
-          onNodesChange={onNodesChange} onEdgesChange={onEdgesChange}
-          onConnect={onConnect} nodeTypes={TIPOS_NO as any}
-          connectionMode={ConnectionMode.Loose}
-          fitView proOptions={{ hideAttribution: true }}
-          defaultEdgeOptions={{ type: 'smoothstep' }}
-        >
-          <Background gap={16} color="#e2e8f0" />
-          <Controls showInteractive={false} />
-        </ReactFlow>
-      </div>
+      <p className="mt-2 text-[13px] text-slate-500">
+        Arraste de um borne até o outro para criar a ligação. Toque num fio para removê-lo.
+      </p>
 
-      {/* Painel de acionamento */}
-      <div className="mt-4 flex flex-wrap gap-2">
+      {/* ----------------------------------------------------------- painel */}
+      <div className="mt-5 px-4 py-4 flex flex-wrap gap-3 items-center"
+           style={{ background: PAINEL, borderRadius: 2 }}>
         {acionaveis.map((c) => {
-          if (c.tipo === 'disjuntor') return (
-            <button key={c.id} onClick={() => acionar(c.id, { ligado: !c.estado.ligado, atuado: false })}
-              className="px-3 py-2 rounded-lg text-xs font-semibold border bg-white hover:bg-gray-50">
-              {c.id} · {c.estado.ligado && !c.estado.atuado ? 'desligar' : 'ligar / rearmar'}
-            </button>
-          )
-          if (c.tipo === 'rele_termico') return (
-            <button key={c.id} onClick={() => acionar(c.id, { atuado: !c.estado.atuado })}
-              className="px-3 py-2 rounded-lg text-xs font-semibold border bg-white hover:bg-gray-50">
-              {c.id} · {c.estado.atuado ? 'rearmar' : 'simular sobrecarga'}
-            </button>
-          )
-          if (c.tipo === 'emergencia') return (
-            <button key={c.id} onClick={() => acionar(c.id, { travado: !c.estado.travado })}
-              className="px-3 py-2 rounded-lg text-xs font-semibold border bg-red-50 border-red-200 text-red-700">
-              {c.id} · {c.estado.travado ? 'destravar' : 'acionar emergência'}
-            </button>
-          )
+          if (c.tipo === 'disjuntor') {
+            const on = c.estado.ligado && !c.estado.atuado
+            return (
+              <BotaoPainel key={c.id} rotulo={c.id}
+                estado={c.estado.atuado ? 'desarmado' : on ? 'ligado' : 'desligado'}
+                aceso={!!on} cor={c.estado.atuado ? '#DC2626' : '#22C55E'}
+                onClick={() => acionar(c.id, { ligado: !on, atuado: false })} />
+            )
+          }
+          if (c.tipo === 'fusivel') {
+            return (
+              <BotaoPainel key={c.id} rotulo={c.id}
+                estado={c.estado.queimado ? 'queimado' : 'íntegro'}
+                aceso={!c.estado.queimado} cor={c.estado.queimado ? '#DC2626' : '#22C55E'}
+                onClick={() => acionar(c.id, { queimado: false })} />
+            )
+          }
+          if (c.tipo === 'rele_termico') {
+            return (
+              <BotaoPainel key={c.id} rotulo={c.id}
+                estado={c.estado.atuado ? 'atuado' : 'normal'}
+                aceso={!!c.estado.atuado} cor="#DC2626"
+                onClick={() => acionar(c.id, { atuado: !c.estado.atuado })} />
+            )
+          }
+          if (c.tipo === 'boia') {
+            const alto = !!c.estado.nivel_alto
+            return (
+              <BotaoPainel key={c.id} rotulo={c.id}
+                estado={alto ? 'caixa cheia' : 'caixa vazia'}
+                aceso={alto} cor="#38BDF8"
+                onClick={() => acionar(c.id, { nivel_alto: !alto })} />
+            )
+          }
+          if (c.tipo === 'seletora') {
+            const pos = (c.estado.posicao ?? 0) as number
+            const nomes = c.config.rotulos ?? ['Manual', 'Desligado', 'Automático']
+            return (
+              <div key={c.id} className="flex items-center gap-2">
+                <span className="font-mono text-[11px] text-slate-400">-{c.id}</span>
+                <div className="flex" style={{ borderRadius: 2, overflow: 'hidden' }}>
+                  {nomes.slice(0, c.config.posicoes ?? 3).map((n: string, i: number) => (
+                    <button key={i} onClick={() => acionar(c.id, { posicao: i })}
+                      className="px-3 py-2 text-[12px] font-medium transition-colors"
+                      style={{
+                        background: i === pos ? '#F5851F' : '#16283C',
+                        color: i === pos ? '#0E1D2E' : '#94A3B8',
+                      }}>{n}</button>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+          if (c.tipo === 'emergencia') {
+            return (
+              <BotaoPainel key={c.id} rotulo={c.id} cogumelo
+                estado={c.estado.travado ? 'travado' : 'liberado'}
+                aceso={!!c.estado.travado} cor="#DC2626"
+                onClick={() => acionar(c.id, { travado: !c.estado.travado })} />
+            )
+          }
+          // botoeiras: agem enquanto pressionadas
           return (
-            <button key={c.id}
-              onPointerDown={() => acionar(c.id, { pressionado: true })}
-              onPointerUp={() => acionar(c.id, { pressionado: false })}
-              onPointerLeave={() => c.estado.pressionado && acionar(c.id, { pressionado: false })}
-              className="px-4 py-2 rounded-lg text-xs font-semibold border bg-white hover:bg-gray-50 active:bg-brand-red active:text-white select-none touch-none">
-              {c.id} · manter pressionado
-            </button>
+            <BotaoPainel key={c.id} rotulo={c.id} pulsador
+              estado={c.tipo === 'botoeira_nf' ? 'parada' : 'partida'}
+              aceso={!!c.estado.pressionado}
+              cor={c.tipo === 'botoeira_nf' ? '#DC2626' : '#22C55E'}
+              onPressStart={() => acionar(c.id, { pressionado: true })}
+              onPressEnd={() => acionar(c.id, { pressionado: false })} />
           )
         })}
       </div>
 
       {falhas.length > 0 && (
-        <div className="mt-3 space-y-1">
+        <ul className="mt-3 space-y-1">
           {falhas.map((f, i) => (
-            <p key={i} className="text-xs text-red-600 flex items-center gap-1.5">
-              <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" /> {f.mensagem}
-            </p>
+            <li key={i} className="text-[13px] text-red-700">{f.mensagem}</li>
           ))}
-        </div>
+        </ul>
       )}
 
-      <div className="mt-4 flex flex-wrap gap-2 justify-end border-t border-gray-100 pt-4">
-        <button onClick={limpar}
-          className="px-4 py-2.5 rounded-lg text-sm font-semibold border border-gray-200 text-gray-500 hover:bg-gray-50 flex items-center gap-2">
-          <RotateCcw className="w-4 h-4" /> Refazer
+      {/* ------------------------------------------------------------ ações */}
+      <div className="mt-5 flex flex-wrap gap-3 justify-end items-center">
+        <span className="mr-auto text-[13px] text-slate-500">
+          {aprovado
+            ? 'Exercício concluído. Você pode continuar praticando à vontade.'
+            : `${restantes} ${restantes === 1 ? 'tentativa restante' : 'tentativas restantes'} de ${maximas}`}
+        </span>
+        <button onClick={refazer}
+          className="px-4 py-2.5 text-[14px] font-medium text-slate-600 border border-slate-300
+                     hover:bg-slate-50" style={{ borderRadius: 2 }}>
+          Refazer do zero
         </button>
-        <button onClick={simular}
-          className="px-4 py-2.5 rounded-lg text-sm font-semibold border border-gray-200 text-brand-dark hover:bg-gray-50 flex items-center gap-2">
-          <Play className="w-4 h-4" /> Testar
-        </button>
-        <button onClick={enviar} disabled={enviando || !edges.length}
-          className="btn-primary text-sm py-2.5 disabled:opacity-40 flex items-center gap-2">
-          <Send className="w-4 h-4" /> {enviando ? 'Corrigindo...' : 'Enviar para correção'}
+        <button onClick={enviar}
+          disabled={enviando || edges.length === 0 || (restantes === 0 && !aprovado)}
+          className="px-5 py-2.5 text-[14px] font-semibold text-white disabled:opacity-40"
+          style={{ background: '#F5851F', borderRadius: 2 }}>
+          {enviando ? 'Corrigindo…' : 'Enviar para correção'}
         </button>
       </div>
 
-      {resposta && (
-        <div className={`mt-4 rounded-xl border p-4 ${
-          resposta.aprovado ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
-          {resposta.error ? (
-            <p className="text-sm text-red-700">{resposta.error}</p>
-          ) : (
-            <>
-              <p className="font-semibold flex items-center gap-2 mb-1"
-                style={{ color: resposta.aprovado ? '#15803d' : '#b91c1c' }}>
-                {resposta.aprovado
-                  ? <><CheckCircle2 className="w-5 h-5" /> Atividade aprovada — nota {resposta.nota}</>
-                  : <><XCircle className="w-5 h-5" /> Atividade não aprovada — nota {resposta.nota}</>}
-              </p>
-              {resposta.reprovacao_critica && (
-                <p className="text-sm text-red-700 mb-2 font-medium">{resposta.reprovacao_critica}</p>
-              )}
-              <ul className="mt-2 space-y-1.5">
-                {resposta.resultados?.map((r: any, i: number) => (
-                  <li key={i} className="text-xs flex items-start gap-2">
-                    {r.ok
-                      ? <CheckCircle2 className="w-3.5 h-3.5 text-green-600 mt-0.5 flex-shrink-0" />
-                      : <XCircle className="w-3.5 h-3.5 text-red-600 mt-0.5 flex-shrink-0" />}
-                    <span className={r.ok ? 'text-gray-500' : 'text-red-700'}>
-                      {r.descricao}{!r.ok && r.motivo ? ` — ${r.motivo}` : ''}
-                      {r.critico && !r.ok ? ' (requisito de segurança)' : ''}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              {!resposta.aprovado && typeof resposta.tentativas_restantes === 'number' && (
-                <p className="text-xs text-gray-500 mt-3">
-                  Tentativas restantes: {resposta.tentativas_restantes}
-                </p>
-              )}
-            </>
-          )}
-        </div>
+      {resposta && <Resultado resposta={resposta} />}
+    </div>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+
+function BotaoPainel({ rotulo, estado, aceso, cor, pulsador, cogumelo, onClick, onPressStart, onPressEnd }: any) {
+  const props = pulsador
+    ? {
+        onPointerDown: onPressStart,
+        onPointerUp: onPressEnd,
+        onPointerLeave: (e: any) => { if (e.buttons) onPressEnd?.() },
+      }
+    : { onClick }
+  return (
+    <button {...props}
+      className="flex items-center gap-2.5 px-3 py-2 touch-none select-none transition-colors"
+      style={{ background: '#16283C', borderRadius: 2 }}>
+      <span className="block transition-all"
+        style={{
+          width: cogumelo ? 20 : 14, height: cogumelo ? 20 : 14,
+          borderRadius: cogumelo ? 4 : 8,
+          background: aceso ? cor : '#0B1926',
+          boxShadow: aceso ? `0 0 0 3px ${cor}33` : 'inset 0 1px 2px rgba(0,0,0,.6)',
+          border: `1px solid ${aceso ? cor : '#243B52'}`,
+        }} />
+      <span className="text-left leading-tight">
+        <span className="block font-mono text-[12px] text-slate-200">-{rotulo}</span>
+        <span className="block text-[10px] text-slate-400">{estado}</span>
+      </span>
+    </button>
+  )
+}
+
+function Resultado({ resposta }: any) {
+  if (resposta.error) {
+    return <p className="mt-5 text-[14px] text-red-700">{resposta.error}</p>
+  }
+  const ok = resposta.aprovado
+  return (
+    <div className="mt-5 border-l-2 pl-4 py-1"
+         style={{ borderColor: ok ? '#15803D' : '#B91C1C' }}>
+      <p className="text-[15px] font-semibold" style={{ color: ok ? '#15803D' : '#B91C1C' }}>
+        {ok ? 'Circuito aprovado' : 'Circuito não aprovado'}
+        <span className="ml-2 font-mono text-[13px] font-normal text-slate-500">
+          {resposta.vetores_ok}/{resposta.vetores_total}
+        </span>
+      </p>
+
+      {resposta.erro_estrutural && (
+        <p className="mt-1 text-[14px] text-red-800">{resposta.erro_estrutural}</p>
       )}
+
+      {resposta.reprovacao_critica && (
+        <p className="mt-1 text-[14px] text-red-800">{resposta.reprovacao_critica}</p>
+      )}
+
+      <ul className="mt-3 space-y-1.5">
+        {resposta.resultados?.map((r: any, i: number) => (
+          <li key={i} className="text-[13px] flex gap-2">
+            <span className="font-mono" style={{ color: r.ok ? '#15803D' : '#B91C1C' }}>
+              {r.ok ? '✓' : '✗'}
+            </span>
+            <span className={r.ok ? 'text-slate-500' : 'text-slate-800'}>
+              {r.descricao}
+              {!r.ok && r.motivo && <span className="block text-red-700">{r.motivo}</span>}
+            </span>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

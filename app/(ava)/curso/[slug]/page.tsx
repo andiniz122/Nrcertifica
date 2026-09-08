@@ -17,10 +17,13 @@ export default async function CursoPage({ params }: { params: { slug: string } }
   const curso = await Course.findOne({ slug: params.slug, ativo: true }).lean() as any
   if (!curso) notFound()
 
+  // -tentativas_pratica: cada tentativa guarda o circuito inteiro que o aluno
+  // montou (evidencia para o certificado). Nao precisa ir para o HTML da
+  // pagina — a aba Pratica busca o progresso pela rota, ja resumido.
   const matricula = await Enrollment.findOne({
     usuario_id: session.user.id,
     curso_id: curso._id,
-  }).lean() as any
+  }).select('-tentativas_pratica').lean() as any
 
   if (!matricula) redirect('/dashboard')
 
