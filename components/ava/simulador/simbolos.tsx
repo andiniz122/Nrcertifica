@@ -315,11 +315,13 @@ export const SIMBOLOS: Record<string, DefSimbolo> = {
     desenho: (_c, e) => {
       const p = !!e?.pressionado
       return <>
-        {L(22, 0, 22, p ? 14 : 18)}
-        {!p && <>{L(10, 18, 36, 18)}{L(36, 18, 36, 30)}</>}
-        {p && L(22, 14, 38, 34, { c: R })}
-        {L(22, 30, 22, 58)}
-        {acionadorBotao(10, 18)}
+        {L(22, 0, 22, 14)}{N(22, 14)}
+        {/* fechado em repouso: o movel apoia sobre o fixo */}
+        {L(22, 14, p ? 38 : 22, p ? 42 : 46, { c: p ? R : V, w: p ? 1.4 : 1.8 })}
+        {N(22, 46)}{L(22, 46, 22, 58)}
+        {/* barra do contato fixo, que o movel toca quando fechado */}
+        {L(14, 46, 30, 46, { w: 1.6 })}
+        {acionadorBotao(32, 30)}
         {TX(40, 12, '11', { a: 'start' })}
         {TX(40, 54, '12', { a: 'start' })}
       </>
@@ -335,12 +337,12 @@ export const SIMBOLOS: Record<string, DefSimbolo> = {
     desenho: (_c, e) => {
       const t = !!e?.travado
       return <>
-        {L(22, 0, 22, t ? 14 : 18)}
-        {!t && <>{L(10, 18, 36, 18)}{L(36, 18, 36, 30)}</>}
-        {t && L(22, 14, 38, 34, { c: R })}
-        {L(22, 30, 22, 58)}
-        {L(10, 18, 10, 10)}
-        <rect x={2} y={4} width={16} height={7} fill={t ? R : 'none'} stroke={T} strokeWidth={1.4} />
+        {L(22, 0, 22, 14)}{N(22, 14)}
+        {L(22, 14, t ? 38 : 22, t ? 42 : 46, { c: t ? R : V, w: t ? 1.4 : 1.8 })}
+        {N(22, 46)}{L(22, 46, 22, 58)}
+        {L(14, 46, 30, 46, { w: 1.6 })}
+        {L(32, 30, 32, 14)}
+        <rect x={24} y={7} width={16} height={7} fill={t ? R : 'none'} stroke={T} strokeWidth={1.4} />
         {TX(40, 12, '11', { a: 'start' })}
         {TX(40, 54, '12', { a: 'start' })}
       </>
