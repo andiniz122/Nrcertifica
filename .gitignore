@@ -44,3 +44,11 @@ fix_*.js
 fix_*.py
 patch*.py
 update_*.js
+
+# backups e rascunhos locais
+*.bak
+*.bak-*
+*.bak[0-9]*
+aplica
+só
+inspect_db.js
