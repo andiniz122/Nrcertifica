@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   BookOpen, CheckCircle2, Lock, FileText, Download,
   ChevronRight, ChevronDown, Award, AlertCircle,
@@ -14,7 +14,7 @@ interface Props {
   usuario: any
 }
 
-type AbaModulo = 'material' | 'exercicios' | 'pratica'
+type AbaModulo = 'material' | 'video' | 'exercicios' | 'pratica'
 
 export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) {
   const [moduloAberto, setModuloAberto] = useState<number | null>(1)
@@ -124,7 +124,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
     contarDiasUteis(dataInicioInput, dataFimInput) >= minimosDiasUteis
   )
 
-  const getAbaModulo = (id: number) => abaModulo[id] || 'material'
+  const getAbaModulo = (id: number, fallback: AbaModulo = 'material') => abaModulo[id] || fallback
   const setAba = (id: number, aba: AbaModulo) => setAbaModulo(r => ({ ...r, [id]: aba }))
 
   const handleAcessarMaterial = (modulo_id: number) => {
@@ -205,6 +205,12 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
 
   const materiaisDoModulo = (modulo_id: number) =>
     materiais.filter(m => m.modulo_id === modulo_id)
+
+  const docsDoModulo = (modulo_id: number) =>
+    materiaisDoModulo(modulo_id).filter(m => m.tipo !== 'video')
+
+  const videosDoModulo = (modulo_id: number) =>
+    materiaisDoModulo(modulo_id).filter(m => m.tipo === 'video')
 
   const progresso = Math.round((modulosConcluidos.length / totalModulos) * 100)
 
@@ -326,9 +332,11 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
             {curso.modulos?.map((modulo: any, idx: number) => {
               const concluido = modulosConcluidos.includes(modulo.id)
               const aberto = moduloAberto === modulo.id
-              const mats = materiaisDoModulo(modulo.id)
+              const mats = docsDoModulo(modulo.id)
+              const videos = videosDoModulo(modulo.id)
+              const temVideo = videos.length > 0
               const acessou = materialAcessado[modulo.id] || concluido
-              const abaAtiva = getAbaModulo(modulo.id)
+              const abaAtiva = getAbaModulo(modulo.id, mats.length === 0 && temVideo ? 'video' : 'material')
               const temPratica = (modulo.praticas?.length ?? 0) > 0
 
               // Módulo bloqueado? Só libera sequencialmente
@@ -382,6 +390,21 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                         >
                           <FileText className="w-4 h-4" /> Material de estudo
                         </button>
+                        {temVideo && (
+                          <button
+                            onClick={() => { setMaterialAcessado(r => ({ ...r, [modulo.id]: true })); setAba(modulo.id, 'video') }}
+                            className={`py-3 px-4 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${
+                              abaAtiva === 'video'
+                                ? 'border-brand-red text-brand-red'
+                                : 'border-transparent text-gray-400 hover:text-gray-600'
+                            }`}
+                          >
+                            <PlayCircle className="w-4 h-4" /> Videoaulas
+                            <span className="text-[10px] bg-brand-red/10 text-brand-red rounded-full px-1.5 py-0.5 font-bold">
+                              {videos.length}
+                            </span>
+                          </button>
+                        )}
                         <button
                           onClick={() => acessou ? setAba(modulo.id, 'exercicios') : null}
                           className={`py-3 px-4 text-sm font-semibold border-b-2 transition-colors flex items-center gap-2 ${
@@ -425,7 +448,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                               {mats.map((mat: any) => (
                                 <a
                                   key={mat._id}
-                                  href={mat.url}
+                                  href={normalizaUrl(mat.url)}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   onClick={() => setMaterialAcessado(r => ({ ...r, [modulo.id]: true }))}
@@ -439,7 +462,7 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                                       {mat.titulo}
                                     </p>
                                     <p className="text-xs text-gray-400 mt-0.5">
-                                      PDF · {mat.tamanho ? `${(mat.tamanho / 1024 / 1024).toFixed(1)} MB` : 'Clique para abrir'}
+                                      {(mat.tipo || 'pdf').toUpperCase()} · {mat.tamanho ? `${(mat.tamanho / 1024 / 1024).toFixed(1)} MB` : 'Clique para abrir'}
                                     </p>
                                   </div>
                                   <div className="flex items-center gap-2 text-brand-red opacity-0 group-hover:opacity-100 transition-opacity">
@@ -473,6 +496,17 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                               </button>
                             </div>
                           )}
+                        </div>
+                      )}
+
+                      {/* Conteúdo da aba videoaulas */}
+                      {abaAtiva === 'video' && temVideo && (
+                        <div className="p-5">
+                          <VideoaulasModulo
+                            videos={videos}
+                            onAssistiu={() => setMaterialAcessado(r => ({ ...r, [modulo.id]: true }))}
+                            onIrParaExercicios={() => setAba(modulo.id, 'exercicios')}
+                          />
                         </div>
                       )}
 
@@ -893,6 +927,128 @@ function ResultadoProva({ resultado, tentativasUsadas, tentativasMaximas, onRefa
           </a>
         </div>
       )}
+    </div>
+  )
+}
+
+// ── Videoaulas ──
+export function normalizaUrl(url: string): string {
+  const u = (url || '').trim()
+  if (!u) return ''
+  if (/^https?:\/\//i.test(u)) return u
+  return u.startsWith('/') ? u : `/${u}`
+}
+
+function VideoaulasModulo({ videos, onAssistiu, onIrParaExercicios }: any) {
+  const [idx, setIdx] = useState(0)
+  const [vistos, setVistos] = useState<Record<number, boolean>>({})
+  const [src, setSrc] = useState('')
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState('')
+  const atual = videos[idx] || {}
+
+  useEffect(() => {
+    let cancelado = false
+    setCarregando(true); setErro(''); setSrc('')
+    fetch(`/api/videos/${atual._id}/token`)
+      .then(async (r) => {
+        const d = await r.json().catch(() => ({}))
+        if (cancelado) return
+        if (!r.ok) {
+          setErro(
+            r.status === 401 ? 'Sessao expirada. Recarregue a pagina e faca login novamente.' :
+            r.status === 403 ? 'Voce nao possui matricula ativa neste curso.' :
+            r.status === 503 ? 'Streaming nao configurado no servidor.' :
+            d.error || 'Nao foi possivel carregar a videoaula.'
+          )
+          return
+        }
+        setSrc(d.url)
+      })
+      .catch(() => { if (!cancelado) setErro('Falha de conexao ao carregar a videoaula.') })
+      .finally(() => { if (!cancelado) setCarregando(false) })
+    return () => { cancelado = true }
+  }, [atual._id])
+
+  const marcarVisto = (i: number) => {
+    setVistos(v => (v[i] ? v : { ...v, [i]: true }))
+    onAssistiu()
+  }
+
+  return (
+    <div>
+      <p className="text-sm text-gray-500 mb-4">
+        Assista à videoaula abaixo antes de passar para os exercícios.
+      </p>
+
+      <div className="rounded-xl overflow-hidden bg-black aspect-video mb-4">
+        {carregando && (
+          <div className="w-full h-full flex items-center justify-center">
+            <Loader2 className="w-8 h-8 text-gray-500 animate-spin" />
+          </div>
+        )}
+        {!carregando && erro && (
+          <div className="w-full h-full flex flex-col items-center justify-center text-center px-6">
+            <AlertCircle className="w-10 h-10 text-brand-red mb-3" />
+            <p className="text-white text-sm font-semibold">Videoaula indisponivel</p>
+            <p className="text-gray-400 text-xs mt-1">{erro}</p>
+          </div>
+        )}
+        {!carregando && !erro && src && (
+          <iframe
+            key={src}
+            src={src}
+            className="w-full h-full"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+            allowFullScreen
+            onLoad={() => marcarVisto(idx)}
+          />
+        )}
+      </div>
+
+      <div className="flex items-start justify-between gap-4 mb-4">
+        <div>
+          <p className="font-semibold text-brand-dark">{atual.titulo}</p>
+          {atual.descricao && <p className="text-xs text-gray-400 mt-0.5">{atual.descricao}</p>}
+        </div>
+        {vistos[idx] && (
+          <span className="badge bg-green-100 text-green-700 text-xs flex-shrink-0">
+            <CheckCircle2 className="w-3 h-3" /> Assistida
+          </span>
+        )}
+      </div>
+
+      {videos.length > 1 && (
+        <div className="space-y-2 mb-4">
+          {videos.map((v: any, i: number) => (
+            <button
+              key={v._id || i}
+              onClick={() => setIdx(i)}
+              className={`w-full flex items-center gap-3 p-3 rounded-xl text-left transition-colors border ${
+                i === idx
+                  ? 'bg-brand-red/10 border-brand-red/20'
+                  : 'bg-brand-light border-transparent hover:bg-red-50'
+              }`}
+            >
+              <PlayCircle className={`w-5 h-5 flex-shrink-0 ${i === idx ? 'text-brand-red' : 'text-gray-400'}`} />
+              <span className="text-sm flex-1 text-brand-dark">{v.titulo}</span>
+              {vistos[i] && <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div className="pt-4 border-t border-gray-100 flex justify-between items-center gap-3 flex-wrap">
+        <button
+          onClick={() => marcarVisto(idx)}
+          className="text-sm text-gray-500 hover:text-brand-dark transition-colors flex items-center gap-1.5"
+        >
+          <CheckCircle2 className="w-4 h-4" /> Marcar como assistida
+        </button>
+        <button onClick={onIrParaExercicios} className="btn-primary text-sm py-2.5">
+          Ir para exercícios <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   )
 }

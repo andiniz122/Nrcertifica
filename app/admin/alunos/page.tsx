@@ -35,6 +35,7 @@ export default async function AdminAlunos() {
               <tr>
                 <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Aluno</th>
                 <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase">CPF</th>
+                <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Telefone</th>
                 <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Cursos</th>
                 <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Certificados</th>
                 <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Cadastro</th>
@@ -56,6 +57,11 @@ export default async function AdminAlunos() {
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-500 font-mono">
                     {aluno.cpf?.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')}
+                  </td>
+                  <td className="px-6 py-4 text-sm font-mono">
+                    <a href={waLink(aluno.telefone)} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">
+                      {aluno.telefone || '-'}
+                    </a>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex flex-col gap-1">
@@ -92,4 +98,9 @@ export default async function AdminAlunos() {
       </div>
     </div>
   )
+}
+
+function waLink(tel: string) {
+  const d = String(tel || '').replace(/[^0-9]/g, '')
+  return 'https://wa.me/' + (d.indexOf('55') === 0 ? d : '55' + d)
 }

@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og'
 import { CURSOS, SITE, RESPONSAVEL } from '../../../lib/seo'
+import { getPrecos, precoDe } from '../../../lib/precos'
 
 export const runtime = 'nodejs'
 
@@ -21,11 +22,12 @@ const ESCURO = '#0f172a'
 export async function GET(_req: Request, { params }: { params: { slug?: string[] } }) {
   const rota = `/${(params.slug ?? []).join('/')}`
   const curso = CURSOS.find((c) => c.rota === rota)
+  const precoAtual = curso ? precoDe(await getPrecos(), curso.slugBanco, curso.preco) : 0
 
   const titulo = curso ? curso.nome.replace(/ — /g, ' — ') : 'Cursos NR online com certificado'
   const chapeu = curso ? `${curso.nr} — Curso online` : SITE.nome
   const selos = curso
-    ? [`${curso.cargaHoraria} EAD`, 'Prova online', 'Certificado em PDF', `R$ ${curso.preco}`]
+    ? [`${curso.cargaHoraria} EAD`, 'Prova online', 'Certificado em PDF', `R$ ${precoAtual}`]
     : ['NR-10', 'NR-10 SEP', 'NR-12', 'NR-35', 'NR-06']
 
   return new ImageResponse(

@@ -7,6 +7,7 @@ import { JsonLd } from '../../../components/JsonLd'
 import { Breadcrumb } from '../../../components/Breadcrumb'
 import { SITE, absUrl } from '../../../lib/seo'
 import { schemaCatalogo } from '../../../lib/schemas'
+import { getPrecos, precoDe, aplicarPrecos } from '../../../lib/precos'
 import { CheckCircle2, Clock, Award, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -71,10 +72,12 @@ function CardCurso({ curso }: { curso: typeof CURSOS[number] }) {
   )
 }
 
-export default function Cursos() {
+export default async function Cursos() {
+  const precos = await getPrecos()
+  const LISTA = CURSOS.map(c => ({ ...c, preco: precoDe(precos, c.slug, c.preco) }))
   return (
     <>
-      <JsonLd data={schemaCatalogo} />
+      <JsonLd data={aplicarPrecos(schemaCatalogo, precos)} />
       <Header />
       <main>
         <Breadcrumb itens={[{ nome: 'Início', href: '/' }, { nome: 'Cursos' }]} />
@@ -94,7 +97,7 @@ export default function Cursos() {
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
-              {CURSOS.filter(c => c.tipo === 'nr').map(curso => (
+              {LISTA.filter(c => c.tipo === 'nr').map(curso => (
                 <CardCurso key={curso.slug} curso={curso} />
               ))}
             </div>
@@ -111,7 +114,7 @@ export default function Cursos() {
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
-              {CURSOS.filter(c => c.tipo === 'livre').map(curso => (
+              {LISTA.filter(c => c.tipo === 'livre').map(curso => (
                 <CardCurso key={curso.slug} curso={curso} />
               ))}
             </div>

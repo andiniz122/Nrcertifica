@@ -5,6 +5,8 @@ import { connectDB } from '../../../../lib/db'
 import Certificate from '../../../../models/Certificate'
 import Course from '../../../../models/Course'
 import User from '../../../../models/User'
+import Enrollment from '../../../../models/Enrollment'
+import Company from '../../../../models/Company'
 import { gerarHtmlCertificado, getAccentColorPorNr } from '../../../../lib/certificado-template'
 import { mkdir, writeFile, readFile } from 'fs/promises'
 import { existsSync } from 'fs'
@@ -45,6 +47,45 @@ export async function GET(
 
     if (cert.usuario_id._id.toString() !== session.user.id && session.user.papel !== 'admin') {
       return NextResponse.json({ error: 'Acesso negado' }, { status: 403 })
+    }
+
+    // --- empresa contratante (matricula corporativa) ---
+    // O Certificate nao guarda empresa_id; a origem vem da Enrollment.
+    let empresaContratante = ''
+    let empresaCnpj = ''
+    let empresaLogoUrl = ''
+    try {
+      const matricula = await Enrollment.findOne({
+        usuario_id: cert.usuario_id._id,
+        curso_id: cert.curso_id._id,
+        empresa_id: { $exists: true, $ne: null },
+      }).sort({ criadoEm: -1 }).lean() as any
+
+      if (matricula?.empresa_id) {
+        const empresa = await Company.findById(matricula.empresa_id)
+          .select('razao_social nome_fantasia cnpj logo_url')
+          .lean() as any
+
+        if (empresa) {
+          empresaContratante = empresa.nome_fantasia || empresa.razao_social || ''
+          empresaCnpj = empresa.cnpj || ''
+
+          if (empresa.logo_url) {
+            // Puppeteer nao carrega file:// — embutir como data URI
+            const logoPath = path.join(process.cwd(), 'public', empresa.logo_url)
+            const logoBuffer = await readFile(logoPath)
+            const ext = path.extname(logoPath).replace('.', '').toLowerCase()
+            const mimes: Record<string, string> = {
+              png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg',
+              webp: 'image/webp', svg: 'image/svg+xml',
+            }
+            empresaLogoUrl = `data:${mimes[ext] || 'image/png'};base64,${logoBuffer.toString('base64')}`
+          }
+        }
+      }
+    } catch (e) {
+      // logo e identificacao visual: nunca impede a emissao do documento
+      console.error('[CERTIFICADO] Falha ao carregar dados da empresa contratante', e)
     }
 
     const dirPath = path.join(process.cwd(), 'public', 'certificados')
@@ -103,7 +144,10 @@ export async function GET(
       validadeAnos: cert.curso_id?.validade_anos ?? 0, // fallback seguro: nao afirma prazo
       validadeTexto: cert.curso_id?.validade_texto || '',
       accentColor: getAccentColorPorNr(cert.curso_id?.nr || ""),
-    })
+      empresaNome: empresaContratante,
+      empresaCnpj,
+      empresaLogoUrl,
+    } as any)
     await page.setContent(html, { waitUntil: 'networkidle0' })
 
     const pdfBuffer = await page.pdf({

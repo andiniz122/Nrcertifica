@@ -1,0 +1,142 @@
+import { NextRequest, NextResponse } from 'next/server'
+import { connectDB } from '../../../../lib/db'
+import Seat from '../../../../models/Seat'
+import SeatBatch from '../../../../models/SeatBatch'
+import Course from '../../../../models/Course'
+import { getCompanyContext, resolverEmpresa } from '../../../../lib/b2b/auth'
+import { alocarVaga, loteComSaldo } from '../../../../lib/b2b/alocacao'
+import { LinhaFuncionario } from '../../../../lib/b2b/validators'
+
+/**
+ * GET /api/empresa/vagas
+ *
+ * Painel do RH: saldo por curso e lista de funcionarios.
+ * Toda query e escopada por empresa_id — o RH nunca ve outra empresa.
+ */
+export async function GET(req: NextRequest) {
+  try {
+    const ctx = await getCompanyContext()
+    if (!ctx) return NextResponse.json({ error: 'Nao autorizado' }, { status: 403 })
+
+    const { searchParams } = new URL(req.url)
+    const empresaId = resolverEmpresa(ctx, searchParams.get('empresa_id'))
+    if (!empresaId) return NextResponse.json({ error: 'Empresa nao informada' }, { status: 400 })
+
+    await connectDB()
+    // registra o schema do Course antes do populate (evita MissingSchemaError)
+    await Course.findOne({}).select('_id').limit(1).lean()
+
+    const lotes = await SeatBatch.find({ empresa_id: empresaId, status: 'pago' })
+      .populate('curso_id', 'slug titulo nr carga_horaria validade_anos')
+      .sort({ criadoEm: -1 })
+      .lean()
+
+    const vagas = await Seat.find({ empresa_id: empresaId })
+      .populate('curso_id', 'slug titulo nr')
+      .sort({ criadoEm: -1 })
+      .lean()
+
+    const saldos = lotes.map((l: any) => ({
+      lote_id: String(l._id),
+      curso: l.curso_id,
+      vagas_total: l.vagas_total,
+      vagas_alocadas: l.vagas_alocadas,
+      vagas_disponiveis: l.vagas_total - l.vagas_alocadas,
+      vagas_consumidas: l.vagas_consumidas,
+      expira_em: l.expira_em,
+      pago_em: l.pago_em,
+    }))
+
+    return NextResponse.json({
+      saldos,
+      total_disponivel: saldos.reduce((a, s) => a + s.vagas_disponiveis, 0),
+      vagas: vagas.map((v: any) => ({
+        id: String(v._id),
+        nome: v.nome,
+        cpf: v.cpf,
+        email: v.email,
+        funcao: v.funcao,
+        setor: v.setor,
+        matricula_interna: v.matricula_interna,
+        curso: v.curso_id,
+        status: v.status,
+        iniciado_em: v.iniciado_em,
+        concluido_em: v.concluido_em,
+        prazo_em: v.prazo_em,
+        criadoEm: v.criadoEm,
+      })),
+    })
+  } catch (error: any) {
+    console.error('[EMPRESA/VAGAS GET] Erro:', error)
+    return NextResponse.json({ error: 'Erro interno do servidor' }, { status: 500 })
+  }
+}
+
+/**
+ * POST /api/empresa/vagas
+ * body: { curso_slug, funcionarios: [{ nome, cpf, email, telefone?, funcao?, setor?, matriculaInterna? }] }
+ *
+ * Aceita 1 ou N funcionarios pelo mesmo caminho — a importacao de CSV usa este
+ * mesmo nucleo. Processa item a item e devolve o resultado de cada um: uma
+ * linha ruim no meio do CSV nao derruba as outras 29.
+ */
+export async function POST(req: NextRequest) {
+  try {
+    const ctx = await getCompanyContext()
+    if (!ctx) return NextResponse.json({ error: 'Nao autorizado' }, { status: 403 })
+
+    const body = await req.json()
+    const { curso_slug, funcionarios, empresa_id } = body ?? {}
+
+    const empresaId = resolverEmpresa(ctx, empresa_id)
+    if (!empresaId) return NextResponse.json({ error: 'Empresa nao informada' }, { status: 400 })
+
+    if (!curso_slug) return NextResponse.json({ error: 'Curso obrigatorio' }, { status: 400 })
+    if (!Array.isArray(funcionarios) || funcionarios.length === 0) {
+      return NextResponse.json({ error: 'Informe ao menos um funcionario' }, { status: 400 })
+    }
+    if (funcionarios.length > 500) {
+      return NextResponse.json({ error: 'Maximo de 500 funcionarios por vez' }, { status: 400 })
+    }
+
+    await connectDB()
+
+    const curso = await Course.findOne({ slug: curso_slug, ativo: true }).select('_id slug titulo')
+    if (!curso) return NextResponse.json({ error: 'Curso nao encontrado' }, { status: 404 })
+
+    const resultados = []
+    for (const f of funcionarios as LinhaFuncionario[]) {
+      const lote = await loteComSaldo(empresaId, String(curso._id))
+      if (!lote) {
+        resultados.push({
+          ok: false,
+          nome: f?.nome ?? '',
+          cpf: f?.cpf ?? '',
+          email: f?.email ?? '',
+          erro: 'Sem vagas disponiveis para este curso',
+        })
+        continue
+      }
+      resultados.push(await alocarVaga(empresaId, lote._id, curso._id, f))
+    }
+
+    const alocados = resultados.filter((r) => r.ok)
+    console.log(
+      `[EMPRESA/VAGAS] empresa ${empresaId} curso ${curso.slug}: ` +
+        `${alocados.length}/${resultados.length} alocados`
+    )
+
+    return NextResponse.json({
+      curso: { slug: curso.slug, titulo: curso.titulo },
+      total: resultados.length,
+      alocados: alocados.length,
+      falhas: resultados.length - alocados.length,
+      // senha_provisoria e token vem AQUI e nunca mais: o banco so tem o hash.
+      // O painel deve exibir/permitir download desta lista imediatamente.
+      resultados,
+    })
+  } catch (error: any) {
+    console.error('[EMPRESA/VAGAS POST] Erro:', error)
+    return NextResponse.json({ error: 'Erro interno do servidor' }, { status: 500 })
+  }
+}

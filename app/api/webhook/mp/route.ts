@@ -29,6 +29,10 @@ export async function POST(req: NextRequest) {
     const orderId = mpPayment.external_reference
     if (!orderId) return NextResponse.json({ ok: true })
 
+    // Lote corporativo: quem trata e /api/webhook/mp-empresa. Sem este guard o
+    // Order.findById() receberia "LOTE:<id>" e lancaria CastError.
+    if (orderId.startsWith('LOTE:')) return NextResponse.json({ ok: true })
+
     const order = await Order.findById(orderId)
     if (!order) return NextResponse.json({ ok: true })
 
@@ -46,13 +50,31 @@ export async function POST(req: NextRequest) {
 
     // Processa pagamento aprovado
     if (mpPayment.status === 'approved') {
+      // Confere o valor pago contra o total do pedido. Sem isto, uma preference
+      // adulterada liberaria a matricula por qualquer valor.
+      const pagoCentavos = Math.round((mpPayment.transaction_amount ?? 0) * 100)
+      const esperadoCentavos = Math.round((order.total ?? 0) * 100)
+      if (pagoCentavos < esperadoCentavos - 1) {
+        console.error(
+          `[WEBHOOK MP] VALOR DIVERGENTE no pedido ${orderId}: ` +
+            `pago R$ ${(pagoCentavos / 100).toFixed(2)}, ` +
+            `esperado R$ ${(esperadoCentavos / 100).toFixed(2)}. Matricula nao criada.`
+        )
+        await Order.findByIdAndUpdate(orderId, { status: 'pendente', valor_divergente: true })
+        return NextResponse.json({ ok: true })
+      }
+
       await Order.findByIdAndUpdate(orderId, { status: 'aprovado' })
 
       // Cria matrícula para cada curso comprado
       for (const item of order.itens) {
+        // So a matricula ATIVA impede criar outra. Sem este filtro, o aluno
+        // que compra a reciclagem PAGA e nao recebe acesso: o webhook acha a
+        // matricula antiga concluida e nao cria a nova.
         const jaMatriculado = await Enrollment.findOne({
           usuario_id: order.usuario_id,
           curso_id: item.curso_id,
+          status: 'ativo',
         })
 
         if (!jaMatriculado) {

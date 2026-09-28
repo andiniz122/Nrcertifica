@@ -2,7 +2,7 @@
 import { useCart } from '../../../components/CartProvider'
 import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
-import { Trash2, ShoppingCart, ArrowRight, BookOpen } from 'lucide-react'
+import { Trash2, ShoppingCart, ArrowRight, BookOpen, Users } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
@@ -68,6 +68,26 @@ export default function Carrinho() {
                 <Link href="/cursos" className="text-brand-red text-sm hover:underline flex items-center gap-1">
                   + Adicionar outro curso
                 </Link>
+
+                {itens.length >= 2 && (
+                  <div className="card bg-brand-red/5 border-brand-red/20">
+                    <div className="flex items-start gap-3">
+                      <Users className="w-5 h-5 text-brand-red flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="font-semibold text-brand-dark text-sm mb-1">
+                          Vai matricular mais de uma pessoa?
+                        </h3>
+                        <p className="text-sm text-gray-600 mb-2">
+                          A partir de 5 vagas o preco por pessoa cai, voce paga uma vez so com nota
+                          fiscal no CNPJ e cadastra a equipe pelo painel da empresa.
+                        </p>
+                        <Link href="/empresas" className="text-brand-red text-sm font-medium hover:underline">
+                          Ver planos para empresas
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Resumo */}

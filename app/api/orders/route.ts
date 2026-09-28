@@ -29,13 +29,17 @@ export async function POST(req: NextRequest) {
 
     // Verifica se já tem matrícula ativa em algum curso
     for (const curso of cursos) {
+      // Apenas matricula ATIVA bloqueia. Concluida nao impede recompra: e
+      // exatamente o caso da reciclagem (NR-10/NR-35 a cada 2 anos, NR-33
+      // anual), que e receita recorrente.
       const matriculaExistente = await Enrollment.findOne({
         usuario_id: session.user.id,
         curso_id: curso._id,
+        status: 'ativo',
       })
       if (matriculaExistente) {
         return NextResponse.json(
-          { error: `Você já está matriculado em ${curso.titulo}` },
+          { error: `Você já tem uma matrícula em andamento em ${curso.titulo}` },
           { status: 400 }
         )
       }

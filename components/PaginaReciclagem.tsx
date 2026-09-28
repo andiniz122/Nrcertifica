@@ -6,6 +6,7 @@ import { JsonLd } from './JsonLd'
 import { BotaoComprar } from './BotaoComprar'
 import { getCurso, RESPONSAVEL, SITE, absUrl } from '../lib/seo'
 import { schemaCurso, schemaBreadcrumb } from '../lib/schemas'
+import { getPrecos, precoDe, aplicarPrecoFixo } from '../lib/precos'
 import { RefreshCw, CalendarClock, AlertTriangle, CheckCircle2, Clock, ShieldCheck, ChevronRight } from 'lucide-react'
 
 /**
@@ -15,8 +16,9 @@ import { RefreshCw, CalendarClock, AlertTriangle, CheckCircle2, Clock, ShieldChe
  * em lib/seo.ts). Todo o texto normativo desta pagina sai de la — nao escrever
  * prazo nem base legal direto no JSX.
  */
-export function PaginaReciclagem({ rota }: { rota: string }) {
+export async function PaginaReciclagem({ rota }: { rota: string }) {
   const curso = getCurso(rota)
+  const PRECO = precoDe(await getPrecos(), curso.slugBanco, curso.preco)
   const { reciclagem } = curso
   const rotaReciclagem = `${curso.rota}/reciclagem`
   const url = absUrl(rotaReciclagem)
@@ -27,7 +29,7 @@ export function PaginaReciclagem({ rota }: { rota: string }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      schemaCurso(curso.rota, { url, nome, descricao }),
+      aplicarPrecoFixo(schemaCurso(curso.rota, { url, nome, descricao }), PRECO),
       schemaBreadcrumb([
         { nome: 'Início', path: '' },
         { nome: 'Cursos', path: '/cursos' },
@@ -42,7 +44,7 @@ export function PaginaReciclagem({ rota }: { rota: string }) {
     titulo: curso.nome,
     nr: curso.nr,
     carga_horaria: curso.cargaHoraria,
-    preco: curso.preco,
+    preco: PRECO,
   }
 
   return (
@@ -90,7 +92,7 @@ export function PaginaReciclagem({ rota }: { rota: string }) {
 
             <div className="card bg-white/5 border-white/10 text-white">
               <p className="text-gray-400 text-sm mb-1">Reciclagem {curso.nr}</p>
-              <p className="font-display font-bold text-4xl mb-1">R$ {curso.preco}</p>
+              <p className="font-display font-bold text-4xl mb-1">R$ {PRECO}</p>
               <p className="text-gray-400 text-sm mb-5">à vista ou parcelado no cartão</p>
               <ul className="space-y-2 text-sm text-gray-300">
                 {[

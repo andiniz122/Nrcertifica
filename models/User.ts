@@ -10,7 +10,11 @@ export interface IUser extends Document {
   foto?: string
   data_nascimento?: Date
   assinaturaUrl?: string
-  papel: 'aluno' | 'admin'
+  papel: 'aluno' | 'admin' | 'empresa'
+  // empresas em que este usuario opera o painel de RH
+  empresas_admin?: mongoose.Types.ObjectId[]
+  // true enquanto o usuario estiver com a senha provisoria gerada pelo RH
+  precisa_definir_senha?: boolean
   ativo: boolean
   criadoEm: Date
   compararSenha(senha: string): Promise<boolean>
@@ -20,12 +24,15 @@ const UserSchema = new Schema<IUser>({
   nome:     { type: String, required: true, trim: true },
   cpf:      { type: String, required: true, unique: true, trim: true },
   email:    { type: String, required: true, unique: true, lowercase: true, trim: true },
-  telefone: { type: String, required: true, trim: true },
+  // opcional: funcionario cadastrado por CSV pode nao ter telefone informado
+  telefone: { type: String, trim: true },
   senha:    { type: String, required: true },
   foto:            { type: String, default: '' },
   data_nascimento: { type: Date },
   assinaturaUrl:   { type: String, default: '' },
-  papel:    { type: String, enum: ['aluno', 'admin'], default: 'aluno' },
+  papel:    { type: String, enum: ['aluno', 'admin', 'empresa'], default: 'aluno' },
+  empresas_admin: [{ type: Schema.Types.ObjectId, ref: 'Company', index: true }],
+  precisa_definir_senha: { type: Boolean, default: false },
   ativo:    { type: Boolean, default: true },
   criadoEm: { type: Date, default: Date.now },
 })

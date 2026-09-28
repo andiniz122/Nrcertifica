@@ -4,6 +4,9 @@ export interface IEnrollment extends Document {
   usuario_id: mongoose.Types.ObjectId
   curso_id: mongoose.Types.ObjectId
   order_id?: mongoose.Types.ObjectId
+  // --- matricula corporativa (B2B): nulos em matricula avulsa ---
+  empresa_id?: mongoose.Types.ObjectId
+  vaga_id?: mongoose.Types.ObjectId
   status: 'ativo' | 'concluido' | 'expirado'
   modulos_concluidos: number[]
   tentativas_prova: Array<{
@@ -32,6 +35,9 @@ const EnrollmentSchema = new Schema<IEnrollment>({
   usuario_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   curso_id:   { type: Schema.Types.ObjectId, ref: 'Course', required: true },
   order_id:   { type: Schema.Types.ObjectId, ref: 'Order', required: false },
+  // Matricula gerada por compra corporativa. Ficam nulos no fluxo B2C.
+  empresa_id: { type: Schema.Types.ObjectId, ref: 'Company', required: false, index: true },
+  vaga_id:    { type: Schema.Types.ObjectId, ref: 'Seat',    required: false, index: true },
   status:     { type: String, enum: ['ativo', 'concluido', 'expirado'], default: 'ativo' },
   modulos_concluidos: [Number],
   tentativas_prova: [{
@@ -59,7 +65,14 @@ const EnrollmentSchema = new Schema<IEnrollment>({
   criadoEm:       { type: Date, default: Date.now },
 })
 
-// Índice único: um aluno não pode ter duas matrículas no mesmo curso
-EnrollmentSchema.index({ usuario_id: 1, curso_id: 1 }, { unique: true })
+// Indice unico PARCIAL: um aluno so pode ter UMA matricula ATIVA por curso.
+// Matriculas 'concluido'/'expirado' ficam como historico e nao bloqueiam a
+// recompra — e o que viabiliza a reciclagem (NR-10/NR-35 a cada 2 anos,
+// NR-33 a cada 1 ano), tanto na venda avulsa quanto na corporativa.
+// Trocar este indice no banco exige o script scripts/migrate_enrollment_index.js.
+EnrollmentSchema.index(
+  { usuario_id: 1, curso_id: 1 },
+  { unique: true, partialFilterExpression: { status: 'ativo' } }
+)
 
 export default mongoose.models.Enrollment || mongoose.model<IEnrollment>('Enrollment', EnrollmentSchema)

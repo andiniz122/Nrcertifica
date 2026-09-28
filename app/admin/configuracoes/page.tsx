@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { Upload, Trash2, Loader2, CheckCircle2, PenTool } from 'lucide-react'
 import Link from 'next/link'
+import PrecosCursos from '../../../components/admin/PrecosCursos'
 
 export default function AdminConfiguracoes() {
   const [assinaturaUrl, setAssinaturaUrl] = useState('')
@@ -161,6 +162,8 @@ export default function AdminConfiguracoes() {
             </>
           )}
         </div>
+
+        <PrecosCursos />
       </div>
     </main>
   )

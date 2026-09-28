@@ -6,6 +6,7 @@ import { Breadcrumb } from './Breadcrumb'
 import { JsonLd } from './JsonLd'
 import { getCurso, RESPONSAVEL } from '../lib/seo'
 import { schemaLandingCurso } from '../lib/schemas'
+import { getPrecos, precoDe, aplicarPrecoFixo } from '../lib/precos'
 import { CheckCircle2, Clock, Award, ShieldCheck, Zap, BookOpen, ChevronRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -37,18 +38,19 @@ export type PaginaCursoLivreProps = {
  * o certificado sai sem prazo de validade e a página avisa que capacitação
  * técnica nao substitui o treinamento de segurança da NR-10.
  */
-export function PaginaCursoLivre({
+export async function PaginaCursoLivre({
   rota, slugBanco, icone: Icone, chamada, modulos, conteudo, paraQuem, prova, destaques,
 }: PaginaCursoLivreProps) {
   const CURSO = getCurso(rota)
+  const PRECO = precoDe(await getPrecos(), CURSO.slugBanco, CURSO.preco)
   const curso = {
     slug: slugBanco,
     titulo: CURSO.nome,
     nr: CURSO.nr,
     carga_horaria: CURSO.cargaHoraria,
-    preco: CURSO.preco,
+    preco: PRECO,
   }
-  const [reais, centavos] = CURSO.preco.toFixed(2).split('.')
+  const [reais, centavos] = PRECO.toFixed(2).split('.')
 
   const CardCompra = () => (
     <div className="bg-white rounded-2xl shadow-xl p-6 text-brand-dark">
@@ -71,7 +73,7 @@ export function PaginaCursoLivre({
 
   return (
     <>
-      <JsonLd data={schemaLandingCurso(CURSO.rota)} />
+      <JsonLd data={aplicarPrecoFixo(schemaLandingCurso(CURSO.rota), PRECO)} />
       <Header />
       <main>
         <Breadcrumb

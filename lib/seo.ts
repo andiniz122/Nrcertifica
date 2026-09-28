@@ -142,7 +142,7 @@ export const CURSOS: Curso[] = [
     nomeCurto: 'NR-10 — Eletricidade',
     tituloSeo: 'Curso NR-10 Online com Certificado — Segurança em Eletricidade 40h',
     descricaoSeo:
-      'Curso NR-10 online com certificado. 40 horas em 4 módulos, prova final online e certificado PDF imediato após a aprovação. Indicado para eletricistas e para quem trabalha com instalações elétricas. Responsável técnico CREA 254516/MG. R$ 97.',
+      'Curso NR-10 online com certificado. 40 horas em 4 módulos, prova final online e certificado PDF imediato após a aprovação. Indicado para eletricistas e para quem trabalha com instalações elétricas. Responsável técnico CREA 254516/MG.',
     descricaoOg:
       'NR-10 Básico online: 40h em 4 módulos, prova online e certificado PDF imediato. Responsável técnico CREA 254516/MG.',
     cargaHoraria: '40h',
@@ -310,7 +310,7 @@ export const CURSOS: Curso[] = [
     credencial: 'Certificado de capacitação profissional em Instalações Elétricas Prediais',
     tituloSeo: 'Curso de Elétrica Predial 120h Online com Certificado — Instalações Residenciais',
     descricaoSeo:
-      'Curso de elétrica predial online, 120 horas EAD em 8 módulos: eletricidade básica, eletrônica aplicada, padrão de entrada, projeto pela NBR 5410, dimensionamento e proteção, aterramento e SPDA, luminotécnica e manutenção predial. Prova online e certificado PDF imediato, sob responsabilidade técnica de Engenheiro Eletricista CREA 254516/MG. R$ 297.',
+      'Curso de elétrica predial online, 120 horas EAD em 8 módulos: eletricidade básica, eletrônica aplicada, padrão de entrada, projeto pela NBR 5410, dimensionamento e proteção, aterramento e SPDA, luminotécnica e manutenção predial. Prova online e certificado PDF imediato, sob responsabilidade técnica de Engenheiro Eletricista CREA 254516/MG.',
     descricaoOg:
       'Elétrica Predial 120h online: projeto pela NBR 5410, dimensionamento, aterramento e luminotécnica. Certificado PDF imediato. CREA 254516/MG.',
     cargaHoraria: '120h',
@@ -345,7 +345,7 @@ export const CURSOS: Curso[] = [
     credencial: 'Certificado de capacitação profissional em Comandos Elétricos',
     tituloSeo: 'Curso de Comandos Elétricos 40h Online com Certificado',
     descricaoSeo:
-      'Curso de comandos elétricos online, 40 horas EAD em 4 módulos: motores de indução, contatores e relés de sobrecarga, diagramas de comando e força, partida direta, reversora e estrela-triângulo, soft-starter, inversores e montagem de painéis. Certificado PDF imediato, CREA 254516/MG. R$ 147.',
+      'Curso de comandos elétricos online, 40 horas EAD em 4 módulos: motores de indução, contatores e relés de sobrecarga, diagramas de comando e força, partida direta, reversora e estrela-triângulo, soft-starter, inversores e montagem de painéis. Certificado PDF imediato, CREA 254516/MG.',
     descricaoOg:
       'Comandos Elétricos 40h online: contatores, diagramas, partidas e painéis. Certificado PDF imediato. CREA 254516/MG.',
     cargaHoraria: '40h',
@@ -379,7 +379,7 @@ export const CURSOS: Curso[] = [
     credencial: 'Certificado de capacitação profissional em Arduino e Automação',
     tituloSeo: 'Curso de Arduino e Automação 40h Online com Certificado',
     descricaoSeo:
-      'Curso de Arduino online, 40 horas EAD em 4 módulos: eletrônica digital e interfaceamento de potência, entradas e saídas digitais e analógicas, PWM, sensores e atuadores, comunicação serial e I2C, CLP em Ladder e inversores. Certificado PDF imediato, CREA 254516/MG. R$ 147.',
+      'Curso de Arduino online, 40 horas EAD em 4 módulos: eletrônica digital e interfaceamento de potência, entradas e saídas digitais e analógicas, PWM, sensores e atuadores, comunicação serial e I2C, CLP em Ladder e inversores. Certificado PDF imediato, CREA 254516/MG.',
     descricaoOg:
       'Arduino e Automação 40h online: sensores, atuadores, PWM, I2C e CLP em Ladder. Certificado PDF imediato. CREA 254516/MG.',
     cargaHoraria: '40h',

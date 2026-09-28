@@ -6,12 +6,14 @@ import { JsonLd } from '../../components/JsonLd'
 import { CursoCard } from '../../components/CursoCard'
 import { HeroArte } from '../../components/HeroArte'
 import { SITE, CURSOS, CURSOS_ATIVOS, RESPONSAVEL, textoValidade } from '../../lib/seo'
+import { getPrecos, precoDe } from '../../lib/precos'
 import { fotoCurso, fotoHero } from '../../lib/imagens'
 import { schemaBreadcrumb } from '../../lib/schemas'
 import {
   ShieldCheck, Award, Clock, Users, CheckCircle2, ChevronRight, Zap, BookOpen,
   FileText, Monitor, Headset, BadgeCheck, Lock, Play, Building2, MessageCircle,
 } from 'lucide-react'
+import FaixaEmpresas from '../../components/FaixaEmpresas'
 
 const BASE = SITE.url
 
@@ -95,7 +97,8 @@ const BENEFICIOS = [
 
 const FOTO_HERO = fotoHero()
 
-export default function Home() {
+export default async function Home() {
+  const precos = await getPrecos()
   return (
     <>
       <JsonLd data={jsonLdHome} />
@@ -193,6 +196,8 @@ export default function Home() {
           </div>
         </section>
 
+        <FaixaEmpresas />
+
         {/* ── VITRINE DE CURSOS ── */}
         <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto">
@@ -208,7 +213,7 @@ export default function Home() {
                   titulo={RESUMO[curso.nr] ?? curso.nomeCurto}
                   horas={`${curso.cargaHoras} horas`}
                   validade={textoValidade(curso)}
-                  preco={curso.preco}
+                  preco={precoDe(precos, curso.slugBanco, curso.preco)}
                   href={curso.rota}
                   destaque={i === 0}
                   foto={fotoCurso(curso.nr)}
@@ -261,25 +266,27 @@ export default function Home() {
                 <Building2 className="w-3.5 h-3.5" /> Para empresas
               </span>
               <h2 className="font-display text-2xl md:text-3xl font-bold text-brand-slate mb-3">
-                Capacite sua equipe inteira em uma única compra
+                Compre vagas em lote e distribua para a sua equipe
               </h2>
               <p className="text-brand-muted mb-6">
-                Turmas fechadas para colaboradores, nota fiscal em nome da empresa e
-                acompanhamento das certificações emitidas. Fale com a gente e monte o
-                pacote de NRs que a sua operação precisa.
+                A partir de 5 vagas o preço por pessoa cai, até 25% de desconto.
+                Pagamento único, nota fiscal no CNPJ e um painel para cadastrar
+                cada colaborador e acompanhar quem já concluiu.
               </p>
-              <a
-                href={`${SITE.whatsappUrl}?text=${encodeURIComponent('Ola! Quero capacitar a equipe da minha empresa nos cursos de NR.')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                <MessageCircle className="w-4 h-4" /> Solicitar proposta
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href="/empresas" className="btn-primary justify-center">
+                  Calcular o valor das vagas
+                </a>
+                <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-lg border border-brand-border px-5 py-3 text-sm font-semibold text-brand-slate hover:bg-brand-light transition-colors">
+                  <MessageCircle className="w-4 h-4" /> Tirar dúvidas
+                </a>
+              </div>
             </div>
             <ul className="space-y-3">
               {[
-                'Vários colaboradores no mesmo pedido',
+                'Desconto progressivo a partir de 5 vagas',
+                'Pagamento único com nota fiscal no CNPJ',
+                'Painel para cadastrar colaboradores e acompanhar a conclusão',
                 'Certificados emitidos em nome de cada aluno',
                 'Controle das validades para a reciclagem',
                 'Conteúdo assinado por responsável técnico registrado no CREA',

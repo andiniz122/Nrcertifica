@@ -6,6 +6,7 @@ import { Breadcrumb } from '../../../components/Breadcrumb'
 import { JsonLd } from '../../../components/JsonLd'
 import { getCurso } from '../../../lib/seo'
 import { schemaLandingCurso } from '../../../lib/schemas'
+import { getPrecos, precoDe, brl, aplicarPrecoFixo } from '../../../lib/precos'
 import { CheckCircle2, Clock, Award, ShieldCheck, Zap, BookOpen, ChevronRight } from 'lucide-react'
 
 const CURSO = getCurso('/nr12')
@@ -28,18 +29,19 @@ const CONTEUDO = [
   'Responsabilidades legais e implicações jurídicas (2h)',
 ]
 
-export default function LandingNR12() {
+export default async function LandingNR12() {
+  const PRECO = precoDe(await getPrecos(), CURSO.slugBanco, CURSO.preco)
   const curso = {
     slug: 'nr12-basico',
     titulo: 'NR-12 — Segurança no Trabalho em Máquinas e Equipamentos',
     nr: 'NR-12',
     carga_horaria: '16h',
-    preco: 97,
+    preco: PRECO,
   }
 
   return (
     <>
-      <JsonLd data={schemaLandingCurso(CURSO.rota)} />
+      <JsonLd data={aplicarPrecoFixo(schemaLandingCurso(CURSO.rota), PRECO)} />
       <Header />
       <main>
         <Breadcrumb
@@ -183,7 +185,7 @@ function CardCompra({ curso }: { curso: any }) {
     <div className="bg-white rounded-2xl shadow-xl p-6 text-brand-dark">
       <div className="text-center mb-6">
         <p className="text-gray-500 text-sm mb-1">Curso NR-12 Básico — 16h</p>
-        <p className="font-display text-4xl font-bold text-brand-dark">R$ 97,00</p>
+        <p className="font-display text-4xl font-bold text-brand-dark">R$ {brl(curso.preco)}</p>
         <p className="text-gray-400 text-sm mt-1">ou em até 3x no cartão</p>
       </div>
       <ul className="space-y-2 mb-6">

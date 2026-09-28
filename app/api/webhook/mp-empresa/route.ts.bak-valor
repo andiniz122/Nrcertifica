@@ -1,0 +1,143 @@
+import { NextRequest, NextResponse } from 'next/server'
+import crypto from 'crypto'
+import { connectDB } from '../../../../lib/db'
+import SeatBatch from '../../../../models/SeatBatch'
+import Company from '../../../../models/Company'
+import Course from '../../../../models/Course'
+import User from '../../../../models/User'
+import { MercadoPagoConfig, Payment } from 'mercadopago'
+
+const mp = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN! })
+
+const REF_PREFIX = 'LOTE:'
+
+/** Senha provisoria legivel — sem caracteres ambiguos (0/O, 1/l/I). */
+function senhaProvisoria(): string {
+  const alfabeto = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+  const bytes = crypto.randomBytes(10)
+  return Array.from(bytes)
+    .map((b) => alfabeto[b % alfabeto.length])
+    .join('')
+}
+
+/**
+ * Webhook dedicado aos lotes corporativos.
+ *
+ * Isolado de /api/webhook/mp de proposito: a venda avulsa continua intocada.
+ * Este endpoint so aceita external_reference com o prefixo LOTE: — qualquer
+ * outra notificacao e ignorada com 200.
+ */
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json()
+    console.log('[WEBHOOK MP-EMPRESA]', JSON.stringify(body))
+
+    if (body.type !== 'payment') return NextResponse.json({ ok: true })
+
+    const paymentId = body.data?.id
+    if (!paymentId) return NextResponse.json({ ok: true })
+
+    await connectDB()
+
+    const payment = new Payment(mp)
+    const mpPayment = await payment.get({ id: paymentId })
+
+    const ref = mpPayment.external_reference
+    if (!ref || !ref.startsWith(REF_PREFIX)) {
+      // notificacao de venda avulsa caiu aqui — quem trata e /api/webhook/mp
+      return NextResponse.json({ ok: true })
+    }
+
+    const loteId = ref.slice(REF_PREFIX.length)
+    const lote = await SeatBatch.findById(loteId)
+    if (!lote) {
+      console.warn(`[WEBHOOK MP-EMPRESA] Lote ${loteId} nao encontrado`)
+      return NextResponse.json({ ok: true })
+    }
+
+    // idempotencia: o MP reenvia a mesma notificacao varias vezes
+    if (lote.status === 'pago') return NextResponse.json({ ok: true })
+
+    await SeatBatch.findByIdAndUpdate(loteId, {
+      mp_payment_id: String(paymentId),
+      mp_metodo: mpPayment.payment_type_id,
+    })
+
+    if (mpPayment.status === 'approved') {
+      const agora = new Date()
+      const expira = new Date(agora)
+      expira.setFullYear(expira.getFullYear() + 1) // 12 meses para alocar as vagas
+
+      await SeatBatch.findByIdAndUpdate(loteId, {
+        status: 'pago',
+        pago_em: agora,
+        expira_em: expira,
+      })
+
+      const empresa = await Company.findById(lote.empresa_id)
+      const curso = await Course.findById(lote.curso_id).select('slug titulo')
+
+      if (!empresa) {
+        console.error(`[WEBHOOK MP-EMPRESA] Lote ${loteId} pago mas empresa ${lote.empresa_id} sumiu`)
+        return NextResponse.json({ ok: true })
+      }
+
+      // ---- usuario do painel do RH ----
+      // Se o responsavel ja tem conta (comprou um curso avulso antes), apenas
+      // vinculamos. Senao, criamos com senha provisoria.
+      const cpf = empresa.responsavel.cpf
+      const email = empresa.responsavel.email
+
+      let usuario = await User.findOne({ $or: [{ cpf }, { email }] })
+      let senhaNova: string | null = null
+
+      if (!usuario) {
+        senhaNova = senhaProvisoria()
+        usuario = await User.create({
+          nome: empresa.responsavel.nome,
+          cpf,
+          email,
+          telefone: empresa.responsavel.telefone || '',
+          senha: senhaNova, // o pre('save') do User faz o hash
+          papel: 'empresa',
+          empresas_admin: [empresa._id],
+        })
+      } else {
+        const jaAdmin = (usuario.empresas_admin || []).some(
+          (id: any) => String(id) === String(empresa._id)
+        )
+        if (!jaAdmin) {
+          await User.findByIdAndUpdate(usuario._id, {
+            $addToSet: { empresas_admin: empresa._id },
+          })
+        }
+      }
+
+      await Company.findByIdAndUpdate(empresa._id, {
+        $addToSet: { admins: usuario._id },
+      })
+
+      // TODO(email): enviar credenciais/link de acesso ao painel /empresa.
+      // Ate la, a senha provisoria fica no log do PM2 para envio manual:
+      //   pm2 logs nrcertifica --lines 200 | grep MP-EMPRESA
+      console.log(
+        `[WEBHOOK MP-EMPRESA] Lote ${loteId} APROVADO — ${empresa.razao_social} | ` +
+          `${lote.vagas_total} vagas de ${curso?.slug ?? lote.curso_id} | ` +
+          `admin: ${email}` +
+          (senhaNova ? ` | SENHA PROVISORIA: ${senhaNova}` : ' | conta ja existia')
+      )
+    } else if (['cancelled', 'rejected'].includes(mpPayment.status!)) {
+      await SeatBatch.findByIdAndUpdate(loteId, { status: 'cancelado' })
+      console.log(`[WEBHOOK MP-EMPRESA] Lote ${loteId} ${mpPayment.status}`)
+    } else if (mpPayment.status === 'refunded' || mpPayment.status === 'charged_back') {
+      await SeatBatch.findByIdAndUpdate(loteId, { status: 'estornado' })
+      console.warn(`[WEBHOOK MP-EMPRESA] Lote ${loteId} ESTORNADO — revisar vagas ja alocadas`)
+    }
+
+    return NextResponse.json({ ok: true })
+  } catch (error) {
+    console.error('[WEBHOOK MP-EMPRESA] Erro:', error)
+    // 200 para o MP nao ficar retentando erro de logica
+    return NextResponse.json({ ok: true })
+  }
+}

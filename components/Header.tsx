@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
 import {
-  ShoppingCart, LogOut, Menu, X, Settings, UserCircle, ChevronDown, BookOpen, User,
+  ShoppingCart, LogOut, Menu, X, Settings, UserCircle, ChevronDown, BookOpen, User, Users,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import { useCart } from './CartProvider'
@@ -13,6 +13,13 @@ const CURSOS_MENU = CURSOS.filter(c => c.ativo)
 
 export function Header() {
   const { data: session } = useSession()
+  const [precosMenu, setPrecosMenu] = useState<Record<string, number>>({})
+  useEffect(() => {
+    fetch('/api/precos')
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => { if (d?.precos) setPrecosMenu(d.precos) })
+      .catch(() => {})
+  }, [])
   const { totalItens } = useCart()
   const [menuAberto, setMenuAberto] = useState(false)
   const [contaAberta, setContaAberta] = useState(false)
@@ -20,6 +27,7 @@ export function Header() {
   const contaRef = useRef<HTMLDivElement>(null)
   const cursosRef = useRef<HTMLDivElement>(null)
   const isAdmin = session?.user?.papel === 'admin'
+  const isEmpresa = session?.user?.papel === 'empresa'
 
   useEffect(() => {
     function fecharAoClicarFora(e: MouseEvent) {
@@ -58,7 +66,7 @@ export function Header() {
                     onClick={() => setCursosAberto(false)}
                   >
                     <span className="font-semibold">{curso.nr}</span>
-                    <span className="text-brand-muted text-xs text-right">{curso.cargaHoraria} · R$ {curso.preco}</span>
+                    <span className="text-brand-muted text-xs text-right">{curso.cargaHoraria} · R$ {precosMenu[curso.slugBanco ?? ''] ?? curso.preco}</span>
                   </Link>
                 ))}
                 <div className="my-1 border-t border-brand-border" />
@@ -73,7 +81,7 @@ export function Header() {
             )}
           </div>
           <Link href="/#como-funciona" className={linkNav}>Como funciona</Link>
-          <Link href="/#empresas" className={linkNav}>Para empresas</Link>
+          <Link href="/empresas" className={linkNav}>Para empresas</Link>
           <Link href="/validar" className={linkNav}>Validar certificado</Link>
           <Link href="/#contato" className={linkNav}>Contato</Link>
           {isAdmin && (
@@ -124,6 +132,15 @@ export function Header() {
                   >
                     <BookOpen className="w-4 h-4" /> Meus cursos
                   </Link>
+                  {isEmpresa && (
+                    <Link
+                      href="/empresa"
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-brand-slate hover:bg-brand-light transition-colors"
+                      onClick={() => setContaAberta(false)}
+                    >
+                      <Users className="w-4 h-4" /> Painel da empresa
+                    </Link>
+                  )}
                   {isAdmin && (
                     <Link
                       href="/admin"
@@ -181,13 +198,13 @@ export function Header() {
               onClick={() => setMenuAberto(false)}
             >
               <span>{curso.nr}</span>
-              <span className="text-white/40 text-xs">{curso.cargaHoraria} · R$ {curso.preco}</span>
+              <span className="text-white/40 text-xs">{curso.cargaHoraria} · R$ {precosMenu[curso.slugBanco ?? ''] ?? curso.preco}</span>
             </Link>
           ))}
           <div className="border-t border-white/10 pt-3 flex flex-col gap-3.5">
             <Link href="/cursos" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Ver todos os cursos</Link>
             <Link href="/#como-funciona" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Como funciona</Link>
-            <Link href="/#empresas" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Para empresas</Link>
+            <Link href="/empresas" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Para empresas</Link>
             <Link href="/validar" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Validar certificado</Link>
             <Link href="/#contato" className="text-white/85 hover:text-white text-sm" onClick={() => setMenuAberto(false)}>Contato</Link>
             {isAdmin && (
@@ -199,6 +216,9 @@ export function Header() {
           <div className="border-t border-white/10 pt-3 flex flex-col gap-3">
             {session ? (
               <>
+                {isEmpresa && (
+                  <Link href="/empresa" className="btn-primary justify-center text-sm" onClick={() => setMenuAberto(false)}>Painel da empresa</Link>
+                )}
                 <Link href="/dashboard" className="btn-primary justify-center text-sm" onClick={() => setMenuAberto(false)}>Meus cursos</Link>
                 <button onClick={() => signOut({ callbackUrl: '/' })} className="text-left text-white/60 hover:text-white text-sm">Sair</button>
               </>

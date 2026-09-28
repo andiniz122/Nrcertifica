@@ -63,6 +63,36 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
     accentColor = "#b8860b",
   } = dados;
 
+  // Empresa contratante (matricula corporativa). Lidos via cast para nao
+  // alterar a interface — certificado individual nao passa nada e o bloco
+  // simplesmente nao e renderizado.
+  const empresaContratante = String((dados as any).empresaNome || '');
+  const empresaLogo = String((dados as any).empresaLogoUrl || '');
+  const empresaCnpj = String((dados as any).empresaCnpj || '');
+  const cnpjFmt = (() => {
+    const d = empresaCnpj.replace(/\D/g, '');
+    if (d.length !== 14) return '';
+    return d.slice(0,2) + '.' + d.slice(2,5) + '.' + d.slice(5,8) + '/' + d.slice(8,12) + '-' + d.slice(12);
+  })();
+
+  // Bloco do contratante — renderizado no VERSO, entre o conteudo programatico
+  // e o texto legal. A frente fica exclusivamente com a marca emissora.
+  const blocoContratante = empresaContratante ? `
+    <div style="display:flex; align-items:center; justify-content:center; gap:22px;
+                margin:26px auto 8px; padding:16px 26px; max-width:620px;
+                border-top:1px solid rgba(0,0,0,0.07); border-bottom:1px solid rgba(0,0,0,0.07);">
+      ${empresaLogo ? `<img src="${empresaLogo}" alt="" style="max-height:60px; max-width:190px;
+                  object-fit:contain; flex-shrink:0;" />` : ''}
+      <div style="text-align:${empresaLogo ? 'left' : 'center'};">
+        <div style="font-family:'Montserrat',sans-serif; font-size:8.5px; letter-spacing:0.6px;
+                    color:#8a8a8a; margin-bottom:4px;">Treinamento contratado por</div>
+        <div style="font-family:'Montserrat',sans-serif; font-size:12px; font-weight:700;
+                    color:#3a3a3a; line-height:1.3;">${empresaContratante}</div>
+        ${cnpjFmt ? `<div style="font-family:'Montserrat',sans-serif; font-size:8.5px;
+                    color:#8a8a8a; margin-top:2px;">CNPJ ${cnpjFmt}</div>` : ''}
+      </div>
+    </div>` : '';
+
   const codigo = codigoVerificacao || gerarCodigoVerificacao();
   const cpfFmt = (() => {
     const d = String(cpf || '').replace(/\D/g, '');
@@ -424,7 +454,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
 
     <div class="body-text">
       Certificamos que <span class="student-name">${nomeAluno}</span>, portador do CPF <strong>${cpfFmt}</strong>,
-      concluiu com <strong>100% de frequência</strong> o curso de capacitação com carga horária de <strong>${cargaHoraria} horas</strong>,
+      concluiu com <strong>100% de frequência</strong> o curso de capacitação com carga horária de <strong>${String(cargaHoraria).replace(/\D/g, '')} horas</strong>,
       obtendo aproveitamento de <strong>${notaFinal}%</strong> na avaliação de conhecimentos aplicada ao final do treinamento.
     </div>
 
@@ -488,6 +518,7 @@ export function gerarHtmlCertificado(dados: DadosCertificado): string {
       ${conteudoProgramatico.map((item) => `<div class="programa-item">${item}</div>`).join('')}
     </div>
 
+    ${blocoContratante}
 
     <div class="page2-legal">
       Curso realizado na modalidade EAD, com fundamento legal na Constituição Federal/88, Artigo 206º Inciso II e Artigo 209º,
