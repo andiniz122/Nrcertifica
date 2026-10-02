@@ -3,6 +3,7 @@ import { connectDB } from '../../../../lib/db'
 import Order from '../../../../models/Order'
 import Enrollment from '../../../../models/Enrollment'
 import Course from '../../../../models/Course'
+import { registrarUsoCupom } from '../../../../lib/cupom'
 import { MercadoPagoConfig, Payment } from 'mercadopago'
 
 const mp = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN! })
@@ -65,6 +66,15 @@ export async function POST(req: NextRequest) {
       }
 
       await Order.findByIdAndUpdate(orderId, { status: 'aprovado' })
+
+      // Consome o cupom somente apos pagamento aprovado. Falha aqui nunca
+      // pode impedir a matricula de quem ja pagou.
+      try {
+        const cupomPago = (mpPayment.metadata as any)?.cupom
+        if (cupomPago) await registrarUsoCupom(String(cupomPago))
+      } catch (e) {
+        console.error('[WEBHOOK MP] Falha ao registrar uso do cupom:', e)
+      }
 
       // Cria matrícula para cada curso comprado
       for (const item of order.itens) {

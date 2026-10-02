@@ -5,7 +5,7 @@ import { Header } from '../../../components/Header'
 import { Footer } from '../../../components/Footer'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { ShieldCheck, Loader2, BookOpen } from 'lucide-react'
+import { ShieldCheck, Loader2, BookOpen, Tag, X } from 'lucide-react'
 
 export default function Checkout() {
   const { itens, total, limparCarrinho } = useCart()
@@ -13,6 +13,15 @@ export default function Checkout() {
   const router = useRouter()
   const [carregando, setCarregando] = useState(false)
   const [erro, setErro] = useState('')
+  const [cupomInput, setCupomInput] = useState('')
+  const [cupomAplicado, setCupomAplicado] = useState<{
+    codigo: string; subtotal: number; desconto: number; total: number
+  } | null>(null)
+  const [cupomErro, setCupomErro] = useState('')
+  const [validandoCupom, setValidandoCupom] = useState(false)
+
+  // Carrinho mudou: o desconto precisa ser revalidado
+  useEffect(() => { setCupomAplicado(null) }, [itens.length])
 
   useEffect(() => {
     if (status === 'loading') return
@@ -36,6 +45,38 @@ export default function Checkout() {
     )
   }
 
+  const fmt = (n: number) => `R$ ${n.toFixed(2).replace('.', ',')}`
+
+  const handleAplicarCupom = async () => {
+    const codigo = cupomInput.trim()
+    if (!codigo) return
+    setValidandoCupom(true)
+    setCupomErro('')
+    try {
+      const res = await fetch('/api/cupom/validar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ itens, cupom: codigo }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Cupom inválido')
+      setCupomAplicado({
+        codigo: data.codigo, subtotal: data.subtotal, desconto: data.desconto, total: data.total,
+      })
+    } catch (e: any) {
+      setCupomAplicado(null)
+      setCupomErro(e.message)
+    } finally {
+      setValidandoCupom(false)
+    }
+  }
+
+  const removerCupom = () => {
+    setCupomAplicado(null)
+    setCupomInput('')
+    setCupomErro('')
+  }
+
   const handlePagar = async () => {
     setCarregando(true)
     setErro('')
@@ -44,7 +85,7 @@ export default function Checkout() {
       const res = await fetch('/api/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ itens }),
+        body: JSON.stringify({ itens, cupom: cupomAplicado?.codigo }),
       })
 
       const data = await res.json()
@@ -107,10 +148,64 @@ export default function Checkout() {
                 </div>
               ))}
             </div>
+            {/* Cupom de desconto */}
+            <div className="border-t border-gray-100 mt-4 pt-4">
+              {cupomAplicado ? (
+                <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg px-3 py-2 text-sm">
+                  <span className="flex items-center gap-2 text-green-700 font-medium">
+                    <Tag className="w-4 h-4" /> Cupom {cupomAplicado.codigo} aplicado
+                  </span>
+                  <button
+                    type="button"
+                    onClick={removerCupom}
+                    className="text-gray-400 hover:text-red-600"
+                    aria-label="Remover cupom"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={cupomInput}
+                      onChange={e => setCupomInput(e.target.value.toUpperCase())}
+                      onKeyDown={e => { if (e.key === 'Enter') handleAplicarCupom() }}
+                      placeholder="Cupom de desconto"
+                      className="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm uppercase focus:outline-none focus:border-brand-red"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAplicarCupom}
+                      disabled={validandoCupom || !cupomInput.trim()}
+                      className="px-4 py-2 rounded-lg bg-brand-dark text-white text-sm font-medium disabled:opacity-50"
+                    >
+                      {validandoCupom ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Aplicar'}
+                    </button>
+                  </div>
+                  {cupomErro && <p className="text-xs text-red-600 mt-2">{cupomErro}</p>}
+                </>
+              )}
+            </div>
+
+            {cupomAplicado && (
+              <div className="mt-4 space-y-1 text-sm">
+                <div className="flex justify-between text-gray-500">
+                  <span>Subtotal</span>
+                  <span>{fmt(cupomAplicado.subtotal)}</span>
+                </div>
+                <div className="flex justify-between text-green-700 font-medium">
+                  <span>Desconto ({cupomAplicado.codigo})</span>
+                  <span>- {fmt(cupomAplicado.desconto)}</span>
+                </div>
+              </div>
+            )}
+
             <div className="border-t border-gray-100 mt-4 pt-4 flex justify-between">
               <span className="font-bold text-brand-dark">Total</span>
               <span className="font-bold text-brand-red text-xl">
-                R$ {total.toFixed(2).replace('.', ',')}
+                {fmt(cupomAplicado ? cupomAplicado.total : total)}
               </span>
             </div>
           </div>

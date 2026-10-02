@@ -6,6 +6,8 @@ import Order from '../../../models/Order'
 import Course from '../../../models/Course'
 import Enrollment from '../../../models/Enrollment'
 import { MercadoPagoConfig, Preference } from 'mercadopago'
+import { lerAtribuicao } from '../../../lib/attribution'
+import { calcularCupom } from '../../../lib/cupom'
 
 const mp = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN! })
 
@@ -14,7 +16,7 @@ export async function POST(req: NextRequest) {
     const session = await getServerSession(authOptions)
     if (!session) return NextResponse.json({ error: 'Não autenticado' }, { status: 401 })
 
-    const { itens } = await req.json()
+    const { itens, cupom } = await req.json()
     if (!itens?.length) return NextResponse.json({ error: 'Carrinho vazio' }, { status: 400 })
 
     await connectDB()
@@ -47,6 +49,21 @@ export async function POST(req: NextRequest) {
 
     const totalReal = cursos.reduce((acc, c) => acc + c.preco, 0)
 
+    // Cupom: recalculado no servidor com precos do banco (nunca do frontend)
+    let totalFinal = totalReal
+    let cupomAplicado: { codigo: string; desconto: number } | null = null
+    if (typeof cupom === 'string' && cupom.trim()) {
+      const r = await calcularCupom(
+        cupom,
+        cursos.map(c => ({ _id: String(c._id), preco: c.preco })),
+        session.user.email ?? undefined
+      )
+      if (!r.ok) return NextResponse.json({ error: r.erro }, { status: 400 })
+      if (r.total < 1) return NextResponse.json({ error: 'Cupom inválido para este pedido.' }, { status: 400 })
+      totalFinal = r.total
+      cupomAplicado = { codigo: r.codigo, desconto: r.desconto }
+    }
+
     // Cria o pedido no banco
     const order = await Order.create({
       usuario_id: session.user.id,
@@ -56,21 +73,32 @@ export async function POST(req: NextRequest) {
         titulo: c.titulo,
         preco: c.preco,
       })),
-      total: totalReal,
+      total: totalFinal,
       status: 'pendente',
+      // Origem lida do cookie no servidor (whitelist + limite de tamanho)
+      atribuicao: lerAtribuicao(req),
     })
 
     // Cria preferência no Mercado Pago
     const preference = new Preference(mp)
     const mpResponse = await preference.create({
       body: {
-        items: cursos.map(c => ({
-          id: c.slug,
-          title: c.titulo,
-          quantity: 1,
-          unit_price: c.preco,
-          currency_id: 'BRL',
-        })),
+        items: cupomAplicado
+          ? [{
+              id: `combo-${cupomAplicado.codigo}`,
+              title: `${cursos.length} curso(s) NR Certifica - cupom ${cupomAplicado.codigo}`,
+              quantity: 1,
+              unit_price: totalFinal,
+              currency_id: 'BRL',
+            }]
+          : cursos.map(c => ({
+              id: c.slug,
+              title: c.titulo,
+              quantity: 1,
+              unit_price: c.preco,
+              currency_id: 'BRL',
+            })),
+        metadata: cupomAplicado ? { cupom: cupomAplicado.codigo } : undefined,
         payer: {
           name: session.user.nome,
           email: session.user.email,
