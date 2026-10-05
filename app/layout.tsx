@@ -1,3 +1,4 @@
+import UtmCapture from '../components/UtmCapture';
 import type { Metadata } from 'next'
 import { Inter, Sora } from 'next/font/google'
 import Script from 'next/script'
@@ -81,6 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR" className={`${inter.variable} ${sora.variable}`}>
       <body className="bg-brand-light font-sans antialiased">
+        <UtmCapture />
         <JsonLd data={schemaBase} />
         <Providers>{children}</Providers>
         <WhatsAppButton />

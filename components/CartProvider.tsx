@@ -26,8 +26,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Persistir no localStorage
   useEffect(() => {
-    const salvo = localStorage.getItem('nrc_cart')
-    if (salvo) setItens(JSON.parse(salvo))
+    let salvos: CartItem[] = []
+    try {
+      const salvo = localStorage.getItem('nrc_cart')
+      if (salvo) salvos = JSON.parse(salvo)
+    } catch {}
+    if (!Array.isArray(salvos) || !salvos.length) return
+    setItens(salvos)
+    // Sincroniza precos salvos no navegador com o valor atual do banco
+    fetch('/api/precos', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        const precos = d?.precos as Record<string, number> | undefined
+        if (!precos) return
+        setItens(prev => prev.map(i =>
+          typeof precos[i.slug] === 'number' && precos[i.slug] !== i.preco ? { ...i, preco: precos[i.slug] } : i
+        ))
+      })
+      .catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -35,7 +51,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [itens])
 
   const adicionarItem = (item: CartItem) => {
-    setItens(prev => prev.find(i => i.slug === item.slug) ? prev : [...prev, item])
+    setItens(prev => prev.find(i => i.slug === item.slug)
+      ? prev.map(i => (i.slug === item.slug ? { ...i, preco: item.preco } : i))
+      : [...prev, item])
   }
 
   const removerItem = (slug: string) => {

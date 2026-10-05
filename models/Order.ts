@@ -20,6 +20,10 @@ export interface IOrder extends Document {
   }
   criadoEm: Date
   atualizadoEm: Date
+  atribuicao?: {
+    first?: Record<string, string>
+    last?: Record<string, string>
+  }
 }
 
 const OrderSchema = new Schema<IOrder>({
@@ -42,6 +46,7 @@ const OrderSchema = new Schema<IOrder>({
   },
   criadoEm:    { type: Date, default: Date.now },
   atualizadoEm: { type: Date, default: Date.now },
+  atribuicao:   { type: Schema.Types.Mixed, default: undefined },
 })
 
 export default mongoose.models.Order || mongoose.model<IOrder>('Order', OrderSchema)

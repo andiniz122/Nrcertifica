@@ -5,12 +5,14 @@ import {
   LayoutDashboard, Users, Award, ShoppingBag,
   BookOpen, Upload, LogOut, ExternalLink, Settings
 } from 'lucide-react'
+import { BarChart3 } from 'lucide-react'
 import { signOut } from 'next-auth/react'
 
 const MENU = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { href: '/admin/alunos', label: 'Alunos', icon: Users },
   { href: '/admin/pedidos', label: 'Pedidos', icon: ShoppingBag },
+  { href: '/admin/atribuicao', label: 'Atribuição', icon: BarChart3 },
   { href: '/admin/certificados', label: 'Certificados', icon: Award },
   { href: '/admin/cursos', label: 'Cursos', icon: BookOpen },
   { href: '/admin/apostilas', label: 'Apostilas', icon: Upload },

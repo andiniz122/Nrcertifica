@@ -52,3 +52,7 @@ update_*.js
 aplica
 só
 inspect_db.js
+
+# backups locais e cache de build incremental
+*.bak*
+tsconfig.tsbuildinfo
