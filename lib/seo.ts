@@ -239,6 +239,42 @@ export const CURSOS: Curso[] = [
     },
   },
   {
+    rota: '/nr18',
+    slugBanco: 'nr18',
+    nr: 'NR-18',
+    nome: 'NR-18 — Segurança e Saúde no Trabalho na Indústria da Construção',
+    nomeCurto: 'NR-18 — Construção Civil',
+    tituloSeo: 'Curso NR-18 Construção Civil Online 8h com Certificado',
+    descricaoSeo:
+      'Curso NR-18 online, 8 horas EAD, segurança e saúde no trabalho na indústria da construção: PGR do canteiro, áreas de vivência, escavações, máquinas, andaimes, proteção contra quedas e EPI. Certificado emitido sob responsabilidade de Engenheiro de Segurança do Trabalho (CREA 254516/MG).',
+    descricaoOg:
+      'NR-18 online: 8h EAD sobre segurança na construção civil, prova online e certificado PDF imediato. CREA 254516/MG.',
+    cargaHoraria: '8h',
+    cargaHoras: 8,
+    workload: 'PT8H',
+    preco: 67,
+    keywords: [
+      'curso NR-18 online',
+      'NR-18 construção civil',
+      'NR-18 com certificado',
+      'treinamento NR-18 EAD',
+      'reciclagem NR-18',
+    ],
+    ativo: true,
+    reciclagem: {
+      periodicaFixa: true,
+      periodicidade: 'Bienal',
+      base: 'NR-18, item 18.14',
+      validFor: 'P2Y',
+      temPagina: false,
+      situacoes: [
+        'Mudança nos procedimentos, condições ou operações de trabalho que impliquem alteração dos riscos ocupacionais.',
+        'Ocorrência de acidente grave ou fatal que indique a necessidade de novo treinamento.',
+        'Retorno de afastamento do trabalho por período superior a cento e oitenta dias.',
+      ],
+    },
+  },
+  {
     rota: '/nr12',
     slugBanco: 'nr12-basico',
     nr: 'NR-12',

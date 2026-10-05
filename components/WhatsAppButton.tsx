@@ -10,6 +10,7 @@ const MENSAGENS: Record<string, string> = {
   '/nr10': 'Ola! Tenho uma duvida sobre o curso NR-10.',
   '/nr10sep': 'Ola! Tenho uma duvida sobre o curso NR-10 SEP.',
   '/nr35': 'Ola! Tenho uma duvida sobre o curso NR-35.',
+  '/nr18': 'Ola! Tenho uma duvida sobre o curso NR-18.',
   '/nr12': 'Ola! Tenho uma duvida sobre o curso NR-12.',
   '/nr06': 'Ola! Tenho uma duvida sobre o curso NR-06.',
   '/carrinho': 'Ola! Estou finalizando uma compra e tenho uma duvida.',

@@ -28,7 +28,7 @@ export async function GET(_req: Request, { params }: { params: { slug?: string[]
   const chapeu = curso ? `${curso.nr} — Curso online` : SITE.nome
   const selos = curso
     ? [`${curso.cargaHoraria} EAD`, 'Prova online', 'Certificado em PDF', `R$ ${precoAtual}`]
-    : ['NR-10', 'NR-10 SEP', 'NR-12', 'NR-35', 'NR-06']
+    : ['NR-10', 'NR-10 SEP', 'NR-12', 'NR-18', 'NR-35', 'NR-06']
 
   return new ImageResponse(
     (

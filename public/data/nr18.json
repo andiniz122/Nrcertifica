@@ -1,0 +1,545 @@
+{
+  "curso": "NR-18 - Segurança e Saúde no Trabalho na Indústria da Construção",
+  "sigla": "NR-18",
+  "carga_horaria": "8h",
+  "validade_anos": 2,
+  "aprovacao_minima": 0.7,
+  "modulos": [
+    {
+      "id": 1,
+      "titulo": "Legislação, PGR do Canteiro, Responsabilidades e Capacitação",
+      "descricao": "Objetivo e campo de aplicação da NR-18, relação com a NR-01, Programa de Gerenciamento de Riscos (PGR) do canteiro de obras, responsabilidades do empregador e do trabalhador, direito de recusa e treinamentos inicial, periódico e eventual.",
+      "exercicios": [
+        {
+          "id": "NR18-M1-Q1",
+          "enunciado": "Qual é o objetivo da NR-18?",
+          "alternativas": [
+            "Regulamentar exclusivamente o uso de andaimes em obras com mais de 4 pavimentos",
+            "Definir o piso salarial dos trabalhadores da construção civil",
+            "Estabelecer diretrizes administrativas, de planejamento e de organização para implementar medidas de controle e sistemas preventivos de segurança e saúde na indústria da construção",
+            "Tratar apenas da aprovação de projetos arquitetônicos junto à prefeitura"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A NR-18 estabelece diretrizes de ordem administrativa, de planejamento e de organização que visam à implementação de medidas de controle e sistemas preventivos de segurança nos processos, nas condições e no meio ambiente de trabalho na indústria da construção."
+        },
+        {
+          "id": "NR18-M1-Q2",
+          "enunciado": "Com a redação da NR-18 dada pela Portaria SEPRT nº 3.733/2020, o antigo PCMAT foi substituído por qual programa?",
+          "alternativas": [
+            "PGR — Programa de Gerenciamento de Riscos, elaborado para o canteiro de obras",
+            "PPRA — Programa de Prevenção de Riscos Ambientais",
+            "PCMSO — Programa de Controle Médico de Saúde Ocupacional",
+            "SIPAT — Semana Interna de Prevenção de Acidentes do Trabalho"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "A NR-18 atual exige o PGR do canteiro de obras, alinhado ao Gerenciamento de Riscos Ocupacionais (GRO) da NR-01. O PCMAT deixou de existir. O PCMSO continua existindo, mas trata do controle médico (NR-07), e não substitui o PCMAT."
+        },
+        {
+          "id": "NR18-M1-Q3",
+          "enunciado": "Sobre o treinamento inicial previsto na NR-18, é correto afirmar:",
+          "alternativas": [
+            "Pode ser realizado em até 30 dias após o início das atividades",
+            "Deve ocorrer antes de o trabalhador iniciar suas atividades, com carga horária mínima de 4 horas",
+            "É obrigatório apenas para trabalhadores com mais de um ano de empresa",
+            "Substitui o treinamento de NR-35 para quem trabalha em altura"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "O treinamento inicial da NR-18 deve ser realizado antes de o trabalhador iniciar suas atividades, com carga horária mínima de 4 horas. Ele não substitui treinamentos específicos exigidos por outras normas, como a NR-35 (trabalho em altura) ou a NR-10 (eletricidade)."
+        },
+        {
+          "id": "NR18-M1-Q4",
+          "enunciado": "Um pedreiro percebe que a escora de uma laje está trincada e cedendo enquanto trabalha embaixo dela. Segundo o direito de recusa previsto na NR-01, ele deve:",
+          "alternativas": [
+            "Continuar o serviço e avisar o encarregado ao final do dia",
+            "Reforçar a escora por conta própria com uma tábua qualquer",
+            "Ignorar, pois a responsabilidade pela estrutura é apenas do engenheiro",
+            "Interromper a atividade, afastar-se do local e comunicar imediatamente o superior hierárquico, pois há risco grave e iminente"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "A NR-01 garante ao trabalhador o direito de interromper sua atividade sempre que constatar situação de trabalho que, a seu ver, envolva risco grave e iminente para sua vida e saúde, informando imediatamente ao superior hierárquico. Improvisar reforços sem avaliação técnica pode agravar o risco."
+        },
+        {
+          "id": "NR18-M1-Q5",
+          "enunciado": "Qual destes itens faz parte do conteúdo mínimo do treinamento inicial da NR-18?",
+          "alternativas": [
+            "Técnicas de vendas de imóveis",
+            "Cálculo estrutural de lajes protendidas",
+            "Os riscos inerentes às atividades desenvolvidas e o uso adequado dos EPI",
+            "Legislação tributária aplicada à construção"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O treinamento inicial deve abordar: as condições e o meio ambiente de trabalho; os riscos inerentes às atividades; os equipamentos e proteções coletivas existentes no canteiro; o uso adequado dos EPI; e o PGR do canteiro de obras."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Canteiro de Obras: Áreas de Vivência, Organização, Eletricidade e Incêndio",
+      "descricao": "Áreas de vivência, água potável, ordem e limpeza, armazenamento de materiais, circulação e sinalização, instalações elétricas provisórias e prevenção e combate a incêndio no canteiro.",
+      "exercicios": [
+        {
+          "id": "NR18-M2-Q1",
+          "enunciado": "Quais instalações compõem as áreas de vivência do canteiro de obras?",
+          "alternativas": [
+            "Instalações sanitárias, vestiário, local para refeição e, quando houver trabalhadores alojados, alojamento",
+            "Almoxarifado, central de concreto e depósito de entulho",
+            "Escritório da engenharia, estacionamento e guarita",
+            "Apenas o refeitório, desde que tenha televisão"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "Áreas de vivência são as destinadas a suprir as necessidades básicas dos trabalhadores: instalações sanitárias, vestiário, local para refeição e alojamento (este quando houver trabalhadores alojados). Almoxarifado e central de concreto são áreas operacionais."
+        },
+        {
+          "id": "NR18-M2-Q2",
+          "enunciado": "Um servente encontra uma extensão elétrica com emendas feitas só com fita crepe e fios expostos. A atitude correta é:",
+          "alternativas": [
+            "Usar com cuidado, sem pisar nos fios",
+            "Retirar a extensão de uso, sinalizar e comunicar ao responsável para que um profissional qualificado faça o reparo ou a substituição",
+            "Refazer a emenda com fita isolante, já que é rápido",
+            "Molhar o chão ao redor para evitar faíscas"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "As instalações elétricas provisórias devem ser executadas e mantidas por profissional qualificado, conforme a NR-10, sem partes vivas expostas. Emendas improvisadas e fios expostos causam choque elétrico e incêndio. O trabalhador não autorizado não deve intervir na instalação."
+        },
+        {
+          "id": "NR18-M2-Q3",
+          "enunciado": "Sobre o armazenamento de materiais no canteiro, assinale a alternativa correta:",
+          "alternativas": [
+            "Sacos de cimento podem ser empilhados junto às bordas da laje para facilitar o içamento",
+            "Os materiais podem bloquear saídas de emergência se for por pouco tempo",
+            "Vergalhões devem ser guardados em pé, apoiados na parede",
+            "Os materiais devem ser armazenados de forma estável, sem obstruir passagens, saídas e equipamentos de combate a incêndio, e afastados das bordas e aberturas"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Pilhas devem ser estáveis e com altura segura, sem bloquear circulação, saídas, quadros elétricos ou extintores. Materiais junto às bordas podem cair sobre pessoas e sobrecarregar a estrutura."
+        },
+        {
+          "id": "NR18-M2-Q4",
+          "enunciado": "Qual é a forma correta de retirar entulho dos pavimentos superiores de um prédio em construção?",
+          "alternativas": [
+            "Lançar o entulho livremente pela fachada, após gritar avisando quem está embaixo",
+            "Acumular todo o entulho no último pavimento até o fim da obra",
+            "Por meio de calhas ou tubos fechados, equipamento de transporte vertical ou outro meio que evite queda livre, poeira e risco a terceiros",
+            "Jogar o entulho pelo poço do elevador, desde que seja à noite"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "É proibido lançar entulho e materiais em queda livre. A remoção deve ser feita por calhas/tubos fechados, elevadores ou outros meios que impeçam a queda de materiais, a dispersão de poeira e o risco a trabalhadores e terceiros."
+        },
+        {
+          "id": "NR18-M2-Q5",
+          "enunciado": "Qual é a finalidade da sinalização de segurança no canteiro de obras?",
+          "alternativas": [
+            "Apenas decorar o tapume com a marca da construtora",
+            "Identificar locais de risco, indicar saídas e rotas, advertir sobre cargas suspensas e obrigatoriedade de EPI, e orientar a circulação de pessoas e veículos",
+            "Substituir as proteções coletivas, como guarda-corpos",
+            "Atender somente à fiscalização da prefeitura"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "A sinalização identifica riscos, saídas, rotas de fuga, localização de extintores, áreas de movimentação de cargas, obrigatoriedade de EPI e o trânsito no canteiro. Ela complementa — mas nunca substitui — as proteções coletivas."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Etapas da Obra, Máquinas, Ferramentas e Movimentação de Cargas",
+      "descricao": "Demolição, escavações e fundações, carpintaria, armação de aço, estruturas de concreto, máquinas e ferramentas (serra circular, betoneira, ferramentas portáteis) e movimentação e transporte de materiais e pessoas.",
+      "exercicios": [
+        {
+          "id": "NR18-M3-Q1",
+          "enunciado": "Em uma escavação com profundidade superior a 1,25 m, quais medidas são esperadas?",
+          "alternativas": [
+            "Nenhuma, pois só escavações acima de 5 m oferecem risco",
+            "Basta que o trabalhador use capacete",
+            "Colocar o material escavado bem na borda para ajudar a segurar a parede",
+            "Garantir a estabilidade das paredes (escoramento ou talude conforme avaliação técnica), dispor de escada ou rampa para acesso e saída e manter materiais afastados da borda"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Soterramento é uma das causas de morte mais graves na construção. Escavações acima de 1,25 m exigem estabilidade das paredes definida tecnicamente, meios seguros de entrada e saída e materiais afastados da borda, pois o peso na borda provoca desmoronamentos."
+        },
+        {
+          "id": "NR18-M3-Q2",
+          "enunciado": "Um carpinteiro quer remover a coifa protetora do disco da serra circular de bancada para \"ganhar tempo\". Isso é:",
+          "alternativas": [
+            "Proibido: a serra deve operar com coifa, cutelo divisor e guia de alinhamento, e só por trabalhador capacitado",
+            "Permitido, se ele usar luvas grossas",
+            "Permitido apenas para cortes de madeira molhada",
+            "Recomendado, porque melhora a visão do corte"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "A serra circular deve ter coifa protetora do disco, cutelo divisor, guia de alinhamento, carcaça do motor aterrada e dispositivo de partida e parada acessível. Remover proteções é uma das principais causas de amputações. Luvas perto do disco aumentam o risco de arraste da mão."
+        },
+        {
+          "id": "NR18-M3-Q3",
+          "enunciado": "Durante o içamento de um fardo de blocos por um guincho, qual é a regra de ouro?",
+          "alternativas": [
+            "O ajudante deve ficar embaixo da carga para guiá-la com as mãos",
+            "Pode-se passar por baixo da carga, desde que rapidamente",
+            "Ninguém deve permanecer ou circular sob cargas suspensas; a área deve ser isolada e sinalizada",
+            "A carga pode ser içada acima da capacidade do equipamento se for por pouco tempo"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "É proibida a permanência e a circulação de pessoas sob cargas suspensas. A área de movimentação deve ser isolada e sinalizada, a capacidade do equipamento respeitada e a operação feita por trabalhador qualificado, com comunicação clara (sinaleiro)."
+        },
+        {
+          "id": "NR18-M3-Q4",
+          "enunciado": "Antes de iniciar a demolição de uma edificação, é necessário:",
+          "alternativas": [
+            "Começar pela base da estrutura para que ela caia mais rápido",
+            "Desligar e retirar ou proteger as linhas de energia, gás, água e esgoto e avaliar as construções vizinhas",
+            "Manter a energia ligada para usar a iluminação existente",
+            "Dispensar o isolamento da área, pois a obra é rápida"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Antes da demolição, as linhas de fornecimento de energia elétrica, gás, água, esgoto e demais redes devem ser desligadas, retiradas, protegidas ou isoladas, e as edificações vizinhas devem ser avaliadas. A demolição segue planejamento técnico, normalmente de cima para baixo, com área isolada."
+        },
+        {
+          "id": "NR18-M3-Q5",
+          "enunciado": "Ao trocar o disco de uma esmerilhadeira (lixadeira angular), o trabalhador deve:",
+          "alternativas": [
+            "Manter a ferramenta ligada na tomada, apenas com o gatilho solto",
+            "Usar qualquer disco que encaixe no eixo, independentemente da rotação indicada",
+            "Retirar a capa de proteção para facilitar a troca e não recolocá-la",
+            "Desconectar a ferramenta da energia, usar disco compatível com a rotação da máquina e manter a capa de proteção instalada"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Ferramentas elétricas portáteis devem ser desconectadas antes de qualquer ajuste ou troca de acessório. O disco deve ser compatível com a rotação (RPM) da ferramenta — um disco inadequado pode estilhaçar — e a capa de proteção deve permanecer instalada."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "titulo": "Proteção Contra Quedas, Andaimes, EPI, Saúde e Emergências",
+      "descricao": "Medidas de prevenção contra quedas de pessoas e materiais, guarda-corpo, fechamento de aberturas, escadas, rampas e passarelas, andaimes e plataformas, EPI, agentes de saúde (poeira de sílica, ruído, calor) e atendimento a emergências.",
+      "exercicios": [
+        {
+          "id": "NR18-M4-Q1",
+          "enunciado": "O sistema de guarda-corpo e rodapé previsto na NR-18 deve ter, no mínimo:",
+          "alternativas": [
+            "Travessão superior a 0,90 m, sem travessão intermediário e sem rodapé",
+            "Apenas uma fita zebrada a 1,00 m de altura",
+            "Travessão superior a 1,20 m, travessão intermediário a 0,70 m e rodapé de 0,15 m, resistente aos esforços previstos",
+            "Travessão superior a 2,00 m e rodapé de 0,50 m"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "O guarda-corpo deve ter travessão superior a 1,20 m, travessão intermediário a 0,70 m e rodapé de 0,15 m, com resistência compatível e vãos fechados por tela quando houver risco de queda de materiais. Fita zebrada é sinalização, não proteção contra queda."
+        },
+        {
+          "id": "NR18-M4-Q2",
+          "enunciado": "Segundo a hierarquia das medidas de prevenção (NR-01), em uma laje sem proteção na periferia, a prioridade deve ser:",
+          "alternativas": [
+            "Instalar proteção coletiva (guarda-corpo, fechamento), e só depois complementar com EPI quando necessário",
+            "Fornecer apenas o cinto de segurança e liberar o trabalho",
+            "Pedir que os trabalhadores fiquem atentos à borda",
+            "Colocar uma placa de \"cuidado\" e iniciar o serviço"
+          ],
+          "resposta_correta": 0,
+          "explicacao": "A NR-01 estabelece a hierarquia: eliminar o risco, depois medidas de proteção coletiva, depois medidas administrativas e, por fim, EPI. A proteção coletiva protege todos, independentemente do comportamento individual."
+        },
+        {
+          "id": "NR18-M4-Q3",
+          "enunciado": "Como devem ser protegidas as aberturas no piso (por exemplo, poço de elevador ou shaft)?",
+          "alternativas": [
+            "Com uma folha de papelão sobre a abertura",
+            "Com fechamento provisório resistente e fixado, ou com guarda-corpo, além de sinalização",
+            "Não é necessário proteger se a abertura for menor que uma pessoa",
+            "Apenas com fita zebrada ao redor"
+          ],
+          "resposta_correta": 1,
+          "explicacao": "Aberturas no piso devem ter fechamento provisório resistente, fixado para não deslizar, ou sistema de guarda-corpo e rodapé. Papelão, lona ou fita não suportam o peso de uma pessoa e escondem o perigo, causando quedas graves."
+        },
+        {
+          "id": "NR18-M4-Q4",
+          "enunciado": "Ao subir em um andaime fachadeiro, o trabalhador percebe que faltam pranchas no piso de trabalho e o guarda-corpo foi retirado. Ele deve:",
+          "alternativas": [
+            "Trabalhar com cuidado, pisando só nas pranchas existentes",
+            "Usar o andaime, pois só falta uma parte do piso",
+            "Recolocar as peças por conta própria, sem comunicar ninguém",
+            "Não utilizar o andaime e comunicar o responsável, pois o andaime só pode ser usado com piso completo, nivelado e antiderrapante e com guarda-corpo e rodapé"
+          ],
+          "resposta_correta": 3,
+          "explicacao": "Andaimes devem ser montados conforme projeto, por trabalhadores capacitados, e inspecionados antes do uso. O piso deve ter forração completa, antiderrapante e nivelada, com guarda-corpo e rodapé. Andaime incompleto deve ser interditado até a correção por pessoa capacitada."
+        },
+        {
+          "id": "NR18-M4-Q5",
+          "enunciado": "Sobre o uso de escada de mão no canteiro, é correto afirmar:",
+          "alternativas": [
+            "Pode ter qualquer comprimento, desde que seja de alumínio",
+            "Pode ser apoiada sobre tambores ou blocos soltos para alcançar maior altura",
+            "Deve ter até 7 m de comprimento, ultrapassar em 1 m o piso superior, estar apoiada em piso resistente e ser fixada ou travada contra deslizamento",
+            "Pode ser usada por duas pessoas ao mesmo tempo para agilizar o serviço"
+          ],
+          "resposta_correta": 2,
+          "explicacao": "A escada de mão deve ter no máximo 7 m de extensão, ultrapassar em 1 m o piso superior quando usada para acesso, ter apoio firme em piso resistente e ser fixada ou travada. É proibido apoiá-la em bases improvisadas."
+        }
+      ]
+    }
+  ],
+  "prova_final": {
+    "instrucoes": "Serão sorteadas 10 questões deste banco de 20, cobrindo os 4 módulos. Nota mínima para aprovação: 7/10 (70%). Máximo de 3 tentativas.",
+    "tentativas_maximas": 3,
+    "questoes_sorteadas": 10,
+    "nota_minima": 7,
+    "banco": [
+      {
+        "id": "NR18-PF-01",
+        "modulo": 1,
+        "enunciado": "Com que periodicidade a NR-18 exige o treinamento periódico dos trabalhadores?",
+        "alternativas": [
+          "A cada 2 anos (bienal)",
+          "A cada 5 anos",
+          "Somente uma vez, na admissão",
+          "A cada 6 meses"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "O treinamento periódico da NR-18 é bienal, com conteúdo programático definido pelo empregador. Além dele, existe o treinamento eventual, exigido em situações específicas."
+      },
+      {
+        "id": "NR18-PF-02",
+        "modulo": 1,
+        "enunciado": "Qual destas situações exige a realização de treinamento eventual, independentemente do prazo do periódico?",
+        "alternativas": [
+          "Mudança de cor do uniforme da empresa",
+          "Retorno de afastamento do trabalho por período superior a 180 dias",
+          "Troca do engenheiro responsável pelo escritório central",
+          "Aniversário de admissão do trabalhador"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O treinamento eventual deve ocorrer quando houver mudança nos procedimentos, condições ou operações de trabalho que alterem os riscos; na ocorrência de acidente grave ou fatal que indique essa necessidade; e no retorno de afastamento por período superior a 180 dias."
+      },
+      {
+        "id": "NR18-PF-03",
+        "modulo": 1,
+        "enunciado": "Qual é uma obrigação do trabalhador em relação à segurança no canteiro?",
+        "alternativas": [
+          "Comprar seus próprios EPIs",
+          "Elaborar o PGR do canteiro",
+          "Cumprir as disposições legais e os procedimentos de segurança, usar corretamente os EPIs fornecidos e comunicar situações de risco",
+          "Dimensionar os sistemas de proteção coletiva"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Conforme a NR-01, cabe ao trabalhador cumprir as disposições legais e os procedimentos de SST, usar o EPI fornecido, submeter-se aos exames médicos e colaborar com a organização. Fornecer EPI gratuitamente, elaborar o PGR e projetar proteções são obrigações do empregador."
+      },
+      {
+        "id": "NR18-PF-04",
+        "modulo": 1,
+        "enunciado": "Sobre o PGR do canteiro de obras, assinale a alternativa correta:",
+        "alternativas": [
+          "É um documento único, feito no início e nunca mais revisado",
+          "Só é exigido em obras públicas",
+          "Pode ser substituído por uma placa com as regras da obra",
+          "Deve contemplar os riscos de cada fase da obra e ser mantido atualizado conforme a obra evolui"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "O canteiro muda a cada etapa (fundação, estrutura, alvenaria, acabamento), e os riscos mudam junto. Por isso o PGR deve identificar os perigos e as medidas de prevenção de cada fase e ser revisado à medida que a obra evolui."
+      },
+      {
+        "id": "NR18-PF-05",
+        "modulo": 1,
+        "enunciado": "O que deve ser feito antes do início das atividades de uma obra, segundo a NR-18?",
+        "alternativas": [
+          "A comunicação prévia da obra à inspeção do trabalho",
+          "A emissão do habite-se",
+          "A contratação obrigatória de um médico residente na obra",
+          "A instalação de câmeras de vigilância em todos os pavimentos"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A NR-18 exige que a empresa faça a comunicação prévia da obra à inspeção do trabalho, com os dados do empreendimento, antes do início das atividades. O habite-se é emitido pela prefeitura ao final da obra."
+      },
+      {
+        "id": "NR18-PF-06",
+        "modulo": 2,
+        "enunciado": "Em relação à água para consumo dos trabalhadores no canteiro, é correto:",
+        "alternativas": [
+          "Pode-se usar água da caixa de obra destinada ao concreto",
+          "Deve ser fornecida água potável, fresca e em condições higiênicas, sendo proibido o uso de copos coletivos",
+          "Cada trabalhador deve trazer sua água de casa",
+          "O copo coletivo é permitido se for lavado uma vez por dia"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O empregador deve fornecer água potável, filtrada e fresca, em condições higiênicas, por bebedouro ou outro meio adequado. O copo coletivo é proibido por transmitir doenças."
+      },
+      {
+        "id": "NR18-PF-07",
+        "modulo": 2,
+        "enunciado": "Sobre a prevenção de incêndio no canteiro, qual prática é correta?",
+        "alternativas": [
+          "Armazenar tintas e solventes junto ao quadro elétrico",
+          "Fumar dentro do depósito de materiais inflamáveis, desde que perto da porta",
+          "Usar o extintor como calço de porta",
+          "Manter extintores sinalizados, desobstruídos e dentro da validade, e armazenar inflamáveis em local ventilado, longe de fontes de calor e faíscas"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Inflamáveis (tintas, solventes, combustíveis, gases) devem ficar em local ventilado, sinalizado e afastado de fontes de ignição. Os equipamentos de combate a incêndio devem estar sinalizados, desobstruídos, inspecionados e acessíveis."
+      },
+      {
+        "id": "NR18-PF-08",
+        "modulo": 2,
+        "enunciado": "Como deve estar o quadro de distribuição provisório de energia do canteiro?",
+        "alternativas": [
+          "Aberto, para facilitar o acesso de qualquer trabalhador",
+          "Instalado no chão, dentro de áreas alagáveis",
+          "Fechado, sinalizado, aterrado, com proteção por dispositivo DR e acesso restrito a pessoas autorizadas",
+          "Sem identificação dos circuitos, para evitar mexerem nele"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "O quadro provisório deve ser protegido contra intempéries e impactos, mantido fechado, sinalizado, com circuitos identificados, aterrado e com dispositivo diferencial residual (DR). Somente pessoas autorizadas (NR-10) podem intervir."
+      },
+      {
+        "id": "NR18-PF-09",
+        "modulo": 2,
+        "enunciado": "Sobre a circulação de pessoas e veículos no canteiro, assinale a alternativa correta:",
+        "alternativas": [
+          "As vias de circulação devem ser definidas, mantidas desobstruídas e sinalizadas, separando sempre que possível o fluxo de pedestres do de veículos e máquinas",
+          "Pedestres e caminhões devem usar sempre o mesmo caminho, para economizar espaço",
+          "O motorista do caminhão betoneira dispensa auxílio para dar ré em áreas com pessoas",
+          "Não é necessário iluminar as vias de circulação durante trabalhos noturnos"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "Atropelamentos e esmagamentos por máquinas são acidentes recorrentes. As vias devem ser planejadas, sinalizadas, iluminadas e desobstruídas, e as manobras em marcha à ré devem contar com sinalização sonora e auxílio quando houver pessoas próximas."
+      },
+      {
+        "id": "NR18-PF-10",
+        "modulo": 2,
+        "enunciado": "Onde os trabalhadores devem fazer suas refeições?",
+        "alternativas": [
+          "Sentados sobre os sacos de cimento no pavimento em execução",
+          "Em local adequado destinado a refeições, limpo e com condições de higiene e conforto",
+          "Dentro da betoneira desligada",
+          "Em qualquer lugar, pois a norma não trata disso"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "O local para refeição faz parte das áreas de vivência. Ele deve oferecer condições de higiene e conforto, com assentos, mesas, lavatório próximo e meio para aquecer as refeições, longe de poeira, produtos químicos e riscos da obra."
+      },
+      {
+        "id": "NR18-PF-11",
+        "modulo": 3,
+        "enunciado": "Para limpar o tambor de uma betoneira, o procedimento correto é:",
+        "alternativas": [
+          "Enfiar a pá no tambor com a máquina girando devagar",
+          "Pedir ao colega que segure o botão de desligar enquanto você limpa",
+          "Desligar a máquina, bloquear a partida e retirar a alimentação de energia antes de qualquer limpeza ou manutenção",
+          "Limpar com as mãos protegidas por luvas, com a máquina ligada"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Limpeza e manutenção devem ser feitas com a máquina desligada e com a energia bloqueada, impedindo partida acidental. Introduzir ferramentas ou mãos em partes móveis causa esmagamentos e amputações."
+      },
+      {
+        "id": "NR18-PF-12",
+        "modulo": 3,
+        "enunciado": "Quem pode operar gruas, guinchos e outros equipamentos de movimentação de cargas no canteiro?",
+        "alternativas": [
+          "Qualquer trabalhador que já tenha visto alguém operar",
+          "O servente mais antigo da obra",
+          "O visitante, desde que acompanhado",
+          "Somente trabalhador qualificado, com capacitação específica para o equipamento e autorizado pelo empregador"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "A operação de equipamentos de guindar e de transporte vertical exige trabalhador qualificado, com treinamento específico para o equipamento, e autorizado formalmente. O treinamento básico da NR-18 não habilita para essas operações."
+      },
+      {
+        "id": "NR18-PF-13",
+        "modulo": 3,
+        "enunciado": "Quando é permitido retirar as fôrmas e escoras de uma laje concretada?",
+        "alternativas": [
+          "Após o concreto atingir a resistência prevista, conforme liberação do responsável técnico",
+          "No dia seguinte à concretagem, sempre",
+          "Quando o encarregado achar que já secou",
+          "A qualquer momento, desde que comece pelas escoras do meio"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A desforma e a retirada do escoramento seguem o plano definido pelo responsável técnico, de acordo com a resistência do concreto. A retirada precoce pode levar ao colapso da estrutura sobre os trabalhadores."
+      },
+      {
+        "id": "NR18-PF-14",
+        "modulo": 3,
+        "enunciado": "Na etapa de armação, como devem ser tratadas as pontas verticais de vergalhões expostas?",
+        "alternativas": [
+          "Podem ficar expostas, pois todos sabem que estão ali",
+          "Devem ser protegidas (por exemplo, com protetores tipo cogumelo ou dobradas) para evitar perfurações e lesões",
+          "Devem ser pintadas de amarelo, sem outra proteção",
+          "Devem ser cobertas com sacos plásticos"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "Pontas de vergalhões expostas causam perfurações graves, inclusive em quedas de pequena altura. Elas devem ser protegidas por dispositivos resistentes ou dobradas. Pintura e sacos plásticos não impedem a perfuração."
+      },
+      {
+        "id": "NR18-PF-15",
+        "modulo": 3,
+        "enunciado": "Durante uma escavação, surgem rachaduras no terreno próximo à borda da vala. O que fazer?",
+        "alternativas": [
+          "Continuar o serviço, pois rachaduras são normais",
+          "Colocar mais terra sobre a borda para tampar as rachaduras",
+          "Acelerar o trabalho para terminar antes que desmorone",
+          "Retirar imediatamente os trabalhadores da vala e comunicar o responsável para avaliação e reforço do escoramento"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "Rachaduras na borda indicam instabilidade e risco iminente de desmoronamento e soterramento. Os trabalhadores devem sair da escavação e o serviço só deve ser retomado após avaliação técnica e adoção das medidas de estabilização."
+      },
+      {
+        "id": "NR18-PF-16",
+        "modulo": 4,
+        "enunciado": "Sobre os EPIs utilizados no canteiro de obras, é correto afirmar:",
+        "alternativas": [
+          "O trabalhador deve pagar pelo EPI e descontar do salário",
+          "Qualquer luva serve para qualquer atividade",
+          "Devem ser fornecidos gratuitamente pelo empregador, adequados ao risco, com Certificado de Aprovação (CA) válido e com orientação sobre uso e conservação",
+          "O capacete pode ser dispensado em dias muito quentes"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Conforme a NR-06, o empregador deve fornecer EPI gratuitamente, adequado ao risco, em perfeito estado e com CA válido, orientar e treinar o trabalhador e exigir o uso. O trabalhador deve usar, guardar e conservar o EPI e comunicar danos."
+      },
+      {
+        "id": "NR18-PF-17",
+        "modulo": 4,
+        "enunciado": "O corte a seco de blocos, concreto e porcelanato gera poeira com sílica cristalina. Qual é a medida mais adequada?",
+        "alternativas": [
+          "Cortar por via úmida ou com aspiração na fonte e, quando necessário, usar proteção respiratória adequada",
+          "Cortar contra o vento, sem nenhuma proteção",
+          "Usar apenas um pano amarrado no rosto",
+          "Cortar dentro de um cômodo fechado para a poeira não se espalhar"
+        ],
+        "resposta_correta": 0,
+        "explicacao": "A sílica cristalina inalada causa silicose, doença pulmonar irreversível. O controle deve priorizar a fonte (corte úmido, aspiração), depois ventilação, e complementar com respirador adequado (PFF2 ou superior, conforme avaliação). Panos não filtram partículas finas."
+      },
+      {
+        "id": "NR18-PF-18",
+        "modulo": 4,
+        "enunciado": "Um trabalhador concluiu o treinamento de NR-18 e vai montar a forma de uma viga a 6 m de altura. Em relação à capacitação, é correto afirmar:",
+        "alternativas": [
+          "O treinamento de NR-18 já o habilita para qualquer trabalho em altura",
+          "Não há exigência de treinamento, pois a viga é baixa",
+          "Basta assistir a um vídeo de 5 minutos sobre cinto de segurança",
+          "Ele também precisa estar capacitado conforme a NR-35, pois a atividade é realizada acima de 2 m com risco de queda"
+        ],
+        "resposta_correta": 3,
+        "explicacao": "A NR-18 trata da segurança geral na construção, mas as atividades acima de 2 m do nível inferior com risco de queda exigem capacitação específica em NR-35, além de análise de risco e, quando aplicável, permissão de trabalho."
+      },
+      {
+        "id": "NR18-PF-19",
+        "modulo": 4,
+        "enunciado": "Em dias de calor intenso e exposição ao sol no canteiro, são medidas de prevenção:",
+        "alternativas": [
+          "Trabalhar sem camisa para refrescar",
+          "Hidratação frequente com água fresca, pausas em local sombreado, protetor solar e roupas de manga longa e proteção para nuca",
+          "Evitar beber água para não interromper o serviço",
+          "Tomar bebidas alcoólicas no almoço para relaxar"
+        ],
+        "resposta_correta": 1,
+        "explicacao": "A exposição ao calor e à radiação solar causa desidratação, exaustão, insolação e câncer de pele. Hidratação, pausas à sombra, protetor solar e vestimentas adequadas são medidas essenciais. O álcool agrava a desidratação e é proibido no trabalho."
+      },
+      {
+        "id": "NR18-PF-20",
+        "modulo": 4,
+        "enunciado": "Um colega cai de uma altura e permanece consciente, queixando-se de dor nas costas. A conduta correta é:",
+        "alternativas": [
+          "Levantá-lo imediatamente e levá-lo de carro ao hospital",
+          "Dar água e pedir que ele tente andar",
+          "Não movimentá-lo (salvo risco imediato no local), acionar o socorro especializado (SAMU 192 ou Bombeiros 193) e o responsável pela obra, e mantê-lo calmo até a chegada do atendimento",
+          "Esperar o fim do expediente para avisar o encarregado"
+        ],
+        "resposta_correta": 2,
+        "explicacao": "Em quedas há risco de lesão na coluna: movimentar a vítima de forma inadequada pode causar paralisia. Deve-se acionar o socorro especializado, avisar o responsável e seguir o plano de emergência da obra. O acidente deve ser comunicado e registrado por meio da CAT."
+      }
+    ]
+  }
+}

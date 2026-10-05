@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Treinamento de NR para equipes | NR Certifica',
   description:
-    'Matricule toda a sua equipe em cursos de NR-10, NR-35, NR-06 e NR-12 com desconto a partir de 5 vagas. Pagamento unico, gestao pelo painel da empresa e certificados com registro CREA.',
+    'Matricule toda a sua equipe em cursos de NR-10, NR-35, NR-18, NR-06 e NR-12 com desconto a partir de 5 vagas. Pagamento unico, gestao pelo painel da empresa e certificados com registro CREA.',
 }
 
 export default async function EmpresasPage() {

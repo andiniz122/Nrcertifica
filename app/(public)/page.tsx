@@ -65,7 +65,7 @@ const jsonLdHome = {
 }
 
 /** Ordem de exibição na vitrine — o primeiro leva o selo "mais procurado". */
-const VITRINE = ['NR-10', 'ELÉTRICA', 'COMANDOS', 'ARDUINO', 'NR-10 SEP', 'NR-35', 'NR-12', 'NR-06']
+const VITRINE = ['NR-10', 'ELÉTRICA', 'COMANDOS', 'ARDUINO', 'NR-10 SEP', 'NR-35', 'NR-18', 'NR-12', 'NR-06']
   .map(nr => CURSOS.find(c => c.nr === nr))
   .filter((c): c is (typeof CURSOS)[number] => Boolean(c && c.ativo))
 
@@ -74,6 +74,7 @@ const RESUMO: Record<string, string> = {
   'NR-10': 'Segurança em Instalações e Serviços em Eletricidade',
   'NR-10 SEP': 'Sistema Elétrico de Potência',
   'NR-35': 'Trabalho em Altura',
+  'NR-18': 'Segurança na Construção Civil',
   'NR-12': 'Máquinas e Equipamentos',
   'NR-06': 'Equipamentos de Proteção Individual',
   'ELÉTRICA': 'Instalações Elétricas Prediais',

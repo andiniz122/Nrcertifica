@@ -7,6 +7,7 @@ Coloque aqui a foto de cada curso usando exatamente estes nomes:
 | NR-10      | `nr10.jpg`               |
 | NR-10 SEP  | `nr10sep.jpg`            |
 | NR-35      | `nr35.jpg`               |
+| NR-18      | `nr18.jpg`               |
 | NR-12      | `nr12.jpg`               |
 | NR-06      | `nr06.jpg`               |
 | Elétrica Predial   | `eletrica.jpg`     |

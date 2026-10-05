@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    'Cursos de NR-10, NR-12, NR-35 e NR-06 online com certificado. Estude no seu ritmo, faça a prova e receba o certificado em PDF imediatamente após a aprovação. Responsável técnico CREA 254516/MG.',
+    'Cursos de NR-10, NR-12, NR-35, NR-18 e NR-06 online com certificado. Estude no seu ritmo, faça a prova e receba o certificado em PDF imediatamente após a aprovação. Responsável técnico CREA 254516/MG.',
 
 
   authors: [{ name: 'NR Certifica', url: BASE_URL }],
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     siteName: 'NR Certifica',
     title: 'NR Certifica — Cursos NR Online com Certificado',
     description:
-      'Cursos de NR-10, NR-12, NR-35 e NR-06 online com certificado emitido sob responsabilidade técnica de engenheiro (CREA 254516/MG).',
+      'Cursos de NR-10, NR-12, NR-35, NR-18 e NR-06 online com certificado emitido sob responsabilidade técnica de engenheiro (CREA 254516/MG).',
     images: [
       {
         url: SITE.ogImagePadrao,
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'NR Certifica — Cursos NR Online com Certificado',
     description:
-      'Cursos de NR-10, NR-12, NR-35 e NR-06 online com certificado. Responsável técnico CREA 254516/MG.',
+      'Cursos de NR-10, NR-12, NR-35, NR-18 e NR-06 online com certificado. Responsável técnico CREA 254516/MG.',
     images: [SITE.ogImagePadrao],
   },
 

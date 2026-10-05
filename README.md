@@ -34,6 +34,14 @@ NEXT_PUBLIC_MP_PUBLIC_KEY=<sua public key>
 node scripts/seed-nr10.js
 ```
 
+### 3.1 Curso NR-18 (construção civil)
+```bash
+node scripts/seed-nr18.js                      # curso, exercícios e prova final
+node scripts/gerar-apostilas-nr18.js --registrar  # PDFs das apostilas + cadastro no AVA
+```
+O texto das apostilas fica em `conteudo/nr18/modulo-N.html`; depois de editar, rode o
+segundo comando de novo (ele sobrescreve os PDFs sem duplicar o cadastro).
+
 ### 4. Build e iniciar com PM2
 ```bash
 npm run build

@@ -11,14 +11,14 @@ import { getPrecos, precoDe, aplicarPrecos } from '../../../lib/precos'
 import { CheckCircle2, Clock, Award, ChevronRight } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Cursos Online com Certificado — NR-10, NR-35, Elétrica Predial, Comandos e Arduino',
+  title: 'Cursos Online com Certificado — NR-10, NR-35, NR-18, Elétrica Predial, Comandos e Arduino',
   description:
-    'Todos os cursos online com certificado válido: NR-10 (40h), NR-10 SEP (40h), NR-35 (8h), NR-12 (16h), NR-06 (4h), Elétrica Predial (120h), Comandos Elétricos (40h) e Arduino e Automação (40h). Acesso imediato e certificado PDF automático.',
+    'Todos os cursos online com certificado válido: NR-10 (40h), NR-10 SEP (40h), NR-35 (8h), NR-18 (8h), NR-12 (16h), NR-06 (4h), Elétrica Predial (120h), Comandos Elétricos (40h) e Arduino e Automação (40h). Acesso imediato e certificado PDF automático.',
   alternates: { canonical: absUrl('/cursos') },
   openGraph: {
     title: 'Cursos Online — NR-10, NR-35, Elétrica Predial, Comandos e Arduino',
     description:
-      'Escolha seu curso online: NR-10 (40h), NR-35 (8h), NR-12 (16h), NR-06 (4h), Elétrica Predial (120h), Comandos Elétricos (40h) ou Arduino (40h). Acesso imediato e certificado.',
+      'Escolha seu curso online: NR-10 (40h), NR-35 (8h), NR-18 (8h), NR-12 (16h), NR-06 (4h), Elétrica Predial (120h), Comandos Elétricos (40h) ou Arduino (40h). Acesso imediato e certificado.',
     url: absUrl('/cursos'),
     siteName: SITE.nome,
     locale: SITE.locale,
@@ -32,6 +32,7 @@ const CURSOS = [
   { tipo: 'livre', slug: 'comandos-eletricos-40h', nr: 'COMANDOS', titulo: 'Comandos Elétricos e Acionamento de Motores', subtitulo: 'Do motor de indução à montagem do painel de comando', horas: '40h', validade: 'Sem validade', preco: 147, ativo: true, href: '/comandos-eletricos', destaques: ['4 módulos online', 'Diagramas de comando e força', 'Partidas direta, reversora e Y-Δ', 'Prova final com 10 questões'] },
   { tipo: 'livre', slug: 'arduino-automacao-40h', nr: 'ARDUINO', titulo: 'Arduino, Sensores e Automação com CLP', subtitulo: 'Da eletrônica digital ao CLP em Ladder, com sensores e atuadores', horas: '40h', validade: 'Sem validade', preco: 147, ativo: true, href: '/arduino', destaques: ['4 módulos online', 'Entradas, saídas, PWM e I2C', 'CLP em Ladder e inversores', 'Prova final com 10 questões'] },
   { tipo: 'nr', slug: 'nr35', nr: 'NR-35', titulo: 'Trabalho em Altura', subtitulo: 'Para trabalhadores que atuam acima de 2 metros', horas: '8h', validade: '2 anos', preco: 67, ativo: true, href: '/nr35', destaques: ['3 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
+  { tipo: 'nr', slug: 'nr18', nr: 'NR-18', titulo: 'Segurança e Saúde no Trabalho na Indústria da Construção', subtitulo: 'Treinamento inicial e periódico para trabalhadores de canteiros de obras', horas: '8h', validade: '2 anos', preco: 67, ativo: true, href: '/nr18', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
   { tipo: 'nr', slug: 'nr10-sep', nr: 'NR-10 SEP', titulo: 'Segurança em Sistemas Elétricos de Potência', subtitulo: 'Complemento obrigatório para quem trabalha em alta tensão', horas: '40h', validade: '2 anos', preco: 127, ativo: true, href: '/nr10sep', destaques: ['4 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
   { tipo: 'nr', slug: 'nr06', nr: 'NR-06', titulo: 'Equipamentos de Proteção Individual', subtitulo: 'Seleção, uso, conservação e descarte de EPIs', horas: '4h', validade: '2 anos', preco: 47, ativo: true, href: '/nr06', destaques: ['2 módulos online', 'Exercícios por módulo', 'Prova final com 10 questões', 'Certificado PDF automático'] },
   { tipo: 'nr', slug: 'nr33', nr: 'NR-33', titulo: 'Segurança em Espaços Confinados', subtitulo: 'Vigia, Trabalhador Autorizado e Supervisor', horas: '16h / 40h', validade: '1 ano', preco: 127, ativo: false, href: '#', destaques: ['Vigia/Trabalhador: 16h', 'Supervisor: 40h', 'Atmosferas perigosas', 'Certificado PDF automático'] },
