@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '../../../../lib/auth'
 import { connectDB } from '../../../../lib/db'
 import Enrollment from '../../../../models/Enrollment'
+import { verificarSobreposicao } from '../../../../lib/travaPeriodo'
 
 export async function POST(req: NextRequest) {
   try {
@@ -78,6 +79,30 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         { error: `Intervalo insuficiente: ${curso.carga_horaria} requer no mínimo ${label} (${diasUteisSelecionados} selecionado${diasUteisSelecionados !== 1 ? 's' : ''}).` },
         { status: 400 }
+      )
+    }
+
+    // Trava: soma das cargas de outros cursos do aluno no mesmo período (máx. 8h por dia útil)
+    const trava = await verificarSobreposicao({
+      usuarioId: matricula.usuario_id,
+      enrollmentId: matricula._id,
+      horas: horasCurso,
+      inicio,
+      fim,
+    })
+    if (!trava.ok) {
+      const lista = trava.conflitos.map(c => `${c.nome} (${c.horas}h, ${c.inicio} a ${c.fim})`).join('; ')
+      return NextResponse.json(
+        {
+          error: `Período sobreposto a outros cursos seus: ${lista}. Somando, são ${trava.horas_total}h, ` +
+                 `que exigem ${trava.dias_necessarios} dias úteis (máx. 8h por dia). ` +
+                 `Escolha início em ${trava.inicio_sugerido_br} ou antes.`,
+          sobreposicao: true,
+          inicio_sugerido_iso: trava.inicio_sugerido_iso,
+          inicio_sugerido_br: trava.inicio_sugerido_br,
+          conflitos: trava.conflitos,
+        },
+        { status: 409 }
       )
     }
 

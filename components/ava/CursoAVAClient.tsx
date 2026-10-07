@@ -70,6 +70,14 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
   )
   const [salvandoData, setSalvandoData] = useState(false)
   const [erroData, setErroData] = useState('')
+  const [conflitoDatas, setConflitoDatas] = useState(false)
+  const [sugestaoInicio, setSugestaoInicio] = useState<{ iso: string; br: string } | null>(null)
+
+  // Revalida datas já salvas ao abrir o curso (pega sobreposição gravada antes da trava)
+  useEffect(() => {
+    if (!matricula.aprovado && inicioSalvo && fimSalvo) salvarDatas(inicioSalvo, fimSalvo)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const salvarDatas = async (inicio: string, fim: string) => {
     if (!inicio || !fim) return
@@ -94,7 +102,16 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
         body: JSON.stringify({ enrollment_id: matricula._id, data_inicio: inicio, data_fim: fim }),
       })
       const result = await res.json()
-      if (!res.ok) setErroData(result.error || 'Erro ao salvar datas')
+      if (!res.ok) {
+        setErroData(result.error || 'Erro ao salvar datas')
+        if (result.sobreposicao) {
+          setConflitoDatas(true)
+          setSugestaoInicio({ iso: result.inicio_sugerido_iso, br: result.inicio_sugerido_br })
+        }
+      } else {
+        setConflitoDatas(false)
+        setSugestaoInicio(null)
+      }
     } finally {
       setSalvandoData(false)
     }
@@ -121,7 +138,8 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
     dataInicioInput &&
     dataFimInput &&
     dataInicioInput <= dataFimInput &&
-    contarDiasUteis(dataInicioInput, dataFimInput) >= minimosDiasUteis
+    contarDiasUteis(dataInicioInput, dataFimInput) >= minimosDiasUteis &&
+    !conflitoDatas
   )
 
   const getAbaModulo = (id: number, fallback: AbaModulo = 'material') => abaModulo[id] || fallback
@@ -328,6 +346,15 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                 <AlertCircle className="w-3 h-3" /> {erroData}
               </p>
             )}
+          {sugestaoInicio && !datasBloqueadas && (
+            <button
+              type="button"
+              onClick={() => { setDataInicioInput(sugestaoInicio.iso); salvarDatas(sugestaoInicio.iso, dataFimInput) }}
+              className="mt-2 inline-flex items-center gap-1 rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-semibold text-white hover:bg-amber-600"
+            >
+              <CalendarDays className="w-3 h-3" /> Usar início em {sugestaoInicio.br}
+            </button>
+          )}
           </div>
             {curso.modulos?.map((modulo: any, idx: number) => {
               const concluido = modulosConcluidos.includes(modulo.id)
@@ -637,14 +664,14 @@ export function CursoAVAClient({ curso, matricula, materiais, usuario }: Props) 
                 )}
                 <button
                   onClick={iniciarProva}
-                  disabled={carregandoProva || tentativasUsadas >= tentativasMaximas}
+                  disabled={carregandoProva || tentativasUsadas >= tentativasMaximas || !datasValidas}
                   className="btn-primary disabled:opacity-50"
                 >
                   {carregandoProva
                     ? <Loader2 className="w-4 h-4 animate-spin" />
                     : <PlayCircle className="w-5 h-5" />
                   }
-                  {tentativasUsadas >= tentativasMaximas ? 'Tentativas esgotadas' : 'Iniciar prova agora'}
+                  {tentativasUsadas >= tentativasMaximas ? 'Tentativas esgotadas' : !datasValidas ? 'Ajuste as datas do curso' : 'Iniciar prova agora'}
                 </button>
               </div>
             )}

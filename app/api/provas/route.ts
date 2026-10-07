@@ -5,6 +5,7 @@ import { connectDB } from '../../../lib/db'
 import Enrollment from '../../../models/Enrollment'
 import Course from '../../../models/Course'
 import Certificate from '../../../models/Certificate'
+import { verificarSobreposicao } from '../../../lib/travaPeriodo'
 import { v4 as uuidv4 } from 'uuid'
 
 // Conta dias uteis (seg-sex) no intervalo, inclusive
@@ -63,6 +64,26 @@ export async function GET(req: NextRequest) {
     }
 
     const erroDatas = validarDatasCurso(matricula, curso)
+    if (!erroDatas) {
+      const travaP = await verificarSobreposicao({
+        usuarioId: (matricula as any).usuario_id,
+        enrollmentId: (matricula as any)._id,
+        horas: parseInt(String(curso?.carga_horaria || '8').replace('h', '')) || 8,
+        inicio: new Date((matricula as any).data_inicio_curso),
+        fim: new Date((matricula as any).data_fim_curso),
+      })
+      if (!travaP.ok) {
+        return NextResponse.json(
+          {
+            error: 'As datas deste curso se sobrepõem a outros cursos seus (máx. 8h por dia útil). Ajuste o início para ' + travaP.inicio_sugerido_br + ' ou antes, na aba Módulos.',
+            sobreposicao: true,
+            inicio_sugerido_iso: travaP.inicio_sugerido_iso,
+            inicio_sugerido_br: travaP.inicio_sugerido_br,
+          },
+          { status: 409 }
+        )
+      }
+    }
     if (erroDatas) return NextResponse.json({ error: erroDatas }, { status: 400 })
 
     // Sorteia questões aleatoriamente
@@ -115,6 +136,26 @@ export async function POST(req: NextRequest) {
     }
 
     const erroDatas = validarDatasCurso(matricula, curso)
+    if (!erroDatas) {
+      const travaP = await verificarSobreposicao({
+        usuarioId: (matricula as any).usuario_id,
+        enrollmentId: (matricula as any)._id,
+        horas: parseInt(String(curso?.carga_horaria || '8').replace('h', '')) || 8,
+        inicio: new Date((matricula as any).data_inicio_curso),
+        fim: new Date((matricula as any).data_fim_curso),
+      })
+      if (!travaP.ok) {
+        return NextResponse.json(
+          {
+            error: 'As datas deste curso se sobrepõem a outros cursos seus (máx. 8h por dia útil). Ajuste o início para ' + travaP.inicio_sugerido_br + ' ou antes, na aba Módulos.',
+            sobreposicao: true,
+            inicio_sugerido_iso: travaP.inicio_sugerido_iso,
+            inicio_sugerido_br: travaP.inicio_sugerido_br,
+          },
+          { status: 409 }
+        )
+      }
+    }
     if (erroDatas) return NextResponse.json({ error: erroDatas }, { status: 400 })
 
     // Cria mapa do gabarito a partir do banco
@@ -178,7 +219,7 @@ export async function POST(req: NextRequest) {
         const validadeAnos = Number(curso.validade_anos) || 0
         let dataValidade: Date | null = null
         if (validadeAnos > 0) {
-          dataValidade = new Date()
+          dataValidade = new Date((matricula as any).data_fim_curso || new Date()) // validade conta da conclusão declarada
           dataValidade.setFullYear(dataValidade.getFullYear() + validadeAnos)
         }
 
